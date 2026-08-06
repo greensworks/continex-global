@@ -1,0 +1,151 @@
+---
+const {
+  eyebrow = 'Selected Experience',
+  title = 'Practical support across the full opportunity cycle.',
+  text = 'A reusable mixed content grid for case studies, market notes, or selected experience cards.',
+  items = [
+    {
+      label: 'Market Access',
+      title: 'Helping international companies understand where the real opportunity is.',
+      text: 'Commercial mapping, buyer prioritization, and go-to-market direction for expansion teams.',
+      image: '/assets/img/general/contact-banner.webp',
+    },
+    {
+      label: 'Partner Development',
+      title: 'Building the local relationships that turn intent into momentum.',
+      text: 'Qualified partner outreach, meetings, follow-up, and partnership structuring support.',
+      image: '/assets/img/general/continex.webp',
+    },
+    {
+      label: 'Strategic Projects',
+      title: 'Advancing projects through stakeholders, timing, and commercial detail.',
+      text: 'Project shaping, local context, opportunity qualification, and execution coordination.',
+      image: '/assets/img/general/insights.webp',
+    },
+  ],
+} = Astro.props;
+---
+
+<section class="cx-wire-mixed-grid tp-sec-ptb pt-120 pb-90">
+  <div class="container">
+    <div class="row align-items-end mb-40">
+      <div class="col-lg-7">
+        <span class="tp-section-sub">{eyebrow}</span>
+        <h2 class="tp-section-title">{title}</h2>
+      </div>
+      <div class="col-lg-5">
+        <p class="cx-wire-section-copy">{text}</p>
+      </div>
+    </div>
+    <div class="cx-wire-experience-grid">
+      {items.map((item, index) => (
+        <article class:list={['cx-wire-experience-card', { 'cx-wire-experience-card-large': index === 0 }]}>
+          <img src={item.image} alt="">
+          <div class="cx-wire-card-overlay"></div>
+          {index !== 0 && <div class="cx-wire-card-label">{item.label}</div>}
+          <div class="cx-wire-card-content">
+            <span>{item.label}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cx-wire-section-copy {
+    color: #586c6e;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+
+  .cx-wire-experience-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-rows: repeat(2, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .cx-wire-experience-card {
+    position: relative;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: 6px;
+    background: #222f30;
+  }
+
+  .cx-wire-experience-card-large {
+    grid-row: span 2;
+  }
+
+  .cx-wire-experience-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .cx-wire-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(34, 47, 48, 0.06), rgba(34, 47, 48, 0.9));
+  }
+
+  .cx-wire-card-label {
+    position: absolute;
+    z-index: 2;
+    top: 24px;
+    left: 24px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(34, 47, 48, 0.78);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .cx-wire-card-content {
+    position: absolute;
+    z-index: 2;
+    left: 28px;
+    right: 28px;
+    bottom: 28px;
+  }
+
+  .cx-wire-card-content span {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .cx-wire-card-content h3 {
+    color: #fff;
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .cx-wire-card-content p {
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  @media (max-width: 1199px) {
+    .cx-wire-experience-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cx-wire-experience-card,
+    .cx-wire-experience-card-large {
+      min-height: 380px;
+      grid-row: auto;
+    }
+  }
+</style>

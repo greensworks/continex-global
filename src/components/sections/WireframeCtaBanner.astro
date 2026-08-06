@@ -1,0 +1,69 @@
+---
+const {
+  title = 'Entering a new market or developing a cross-border opportunity?',
+  text = 'We help leadership teams validate the opportunity, find the right people, and build the commercial path from first conversation to concrete next step.',
+  href = '/contact.html',
+  label = 'Start the conversation',
+} = Astro.props;
+---
+
+<section class="cx-wire-cta">
+  <div class="container">
+    <div class="cx-wire-cta-inner">
+      <h2>{title}</h2>
+      <p>{text}</p>
+      <a class="tp-btn theme-bg-color tp-btn-switch-animation" href={href}>
+        <span class="d-flex align-items-center justify-content-center">
+          <span class="btn-text">{label}</span>
+          <i class="btn-icon"></i>
+          <i class="btn-icon"></i>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cx-wire-cta {
+    padding: 70px 0;
+    background: #fff;
+  }
+
+  .cx-wire-cta-inner {
+    display: grid;
+    grid-template-columns: 0.85fr 1fr auto;
+    align-items: center;
+    gap: 34px;
+    padding: 42px;
+    border-radius: 6px;
+    background: #222f30;
+  }
+
+  .cx-wire-cta-inner h2 {
+    color: #fff;
+    font-size: 32px;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .cx-wire-cta-inner p {
+    color: rgba(255, 255, 255, 0.74);
+    margin: 0;
+  }
+
+  @media (max-width: 1199px) {
+    .cx-wire-cta-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .cx-wire-cta-inner {
+      padding: 28px;
+    }
+
+    .cx-wire-cta-inner h2 {
+      font-size: 26px;
+    }
+  }
+</style>

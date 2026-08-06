@@ -1,0 +1,162 @@
+---
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import { getLangFromUrl } from '../i18n';
+
+const {
+  pageHeader = '',
+  extraHead = '',
+  pageScripts1 = '',
+  pageScripts2 = '',
+  bodyClass = 'theme-finances',
+} = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+---
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<Fragment set:html={pageHeader} />
+
+<link rel="icon" type="image/webp" href="/assets/img/logos/favicon.webp">
+<link rel="shortcut icon" type="image/webp" href="/assets/img/logos/favicon.webp">
+
+<link rel="stylesheet" href="/assets/css/bootstrap.css">
+<link rel="stylesheet" href="/assets/css/swiper-bundle.css">
+<link rel="stylesheet" href="/assets/css/nice-select.css">
+<link rel="stylesheet" href="/assets/css/magnific-popup.css">
+<link rel="stylesheet" href="/assets/css/spacing.css">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/no-effects.css">
+<Fragment set:html={extraHead} />
+</head>
+<body class={bodyClass}>
+<Header />
+<slot />
+<Footer />
+<Fragment set:html={pageScripts1} />
+
+<script is:inline src="/assets/js/vendor/jquery.js"></script>
+<script is:inline src="/assets/js/bootstrap-bundle.js"></script>
+<script is:inline src="/assets/js/swiper-bundle.js"></script>
+<script is:inline src="/assets/js/magnific-popup.js"></script>
+<script is:inline src="/assets/js/nice-select.js"></script>
+<script is:inline src="/assets/js/purecounter.js"></script>
+<script is:inline src="/assets/js/plugin.js"></script>
+<script is:inline src="/assets/js/slider-active.js"></script>
+<script is:inline src="/assets/js/ajax-form.js"></script>
+<script is:inline src="/assets/js/main.js"></script>
+<Fragment set:html={pageScripts2} />
+<style is:inline>
+  .cx-section-copy-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    max-width: min(260px, calc(100% - 20px));
+    padding: 7px 10px;
+    border: 1px solid rgba(34, 47, 48, 0.18);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.94);
+    color: #222f30;
+    font: 700 11px/1.2 Arial, sans-serif;
+    letter-spacing: 0;
+    text-align: left;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    white-space: normal;
+  }
+
+  .cx-section-copy-host {
+    position: relative !important;
+  }
+
+  .cx-section-copy-host:hover > .cx-section-copy-btn,
+  .cx-section-copy-btn:focus {
+    display: inline-flex;
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+    if (!isLocal) return;
+
+    const tidy = (value) => value
+      .replace(/area\s+start/i, '')
+      .replace(/section\s+start/i, '')
+      .replace(/start$/i, '')
+      .replace(/[-_]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    const fromComment = (element) => {
+      let node = element.previousSibling;
+      while (node) {
+        if (node.nodeType === Node.COMMENT_NODE) {
+          const label = tidy(node.textContent || '');
+          if (label) return label;
+        }
+        if (node.nodeType === Node.ELEMENT_NODE) return '';
+        node = node.previousSibling;
+      }
+      return '';
+    };
+
+    const fromClass = (element) => {
+      const className = Array.from(element.classList || []).find((item) => /^(tp|cx)-/.test(item));
+      return className ? tidy(className) : '';
+    };
+
+    const copyText = async (text) => {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const input = document.createElement('textarea');
+      input.value = text;
+      input.setAttribute('readonly', '');
+      input.style.position = 'fixed';
+      input.style.opacity = '0';
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand('copy');
+      input.remove();
+    };
+
+    const addButton = (element, index) => {
+      if (element.querySelector(':scope > .cx-section-copy-btn')) return;
+      const explicit = element.dataset.sectionName;
+      const label = explicit || fromComment(element) || fromClass(element) || 'Section ' + (index + 1);
+      const copyValue = explicit || label;
+      element.classList.add('cx-section-copy-host');
+
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'cx-section-copy-btn';
+      button.textContent = 'Copy: ' + copyValue;
+      button.setAttribute('aria-label', 'Copy section name ' + copyValue);
+      button.addEventListener('click', async (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        await copyText(copyValue);
+        button.textContent = 'Copied: ' + copyValue;
+        setTimeout(() => {
+          button.textContent = 'Copy: ' + copyValue;
+        }, 1200);
+      });
+      element.prepend(button);
+    };
+
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('main > div, main > section').forEach(addButton);
+    });
+  })();
+</script>
+
+</body>
+</html>

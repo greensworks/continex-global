@@ -1,0 +1,40 @@
+---
+const pageModules = import.meta.glob('../*.astro');
+
+export function getStaticPaths() {
+  const localizedPages = [
+    'about-us',
+    'blog',
+    'blog-details',
+    'career',
+    'career-details',
+    'case-studies',
+    'case-studies-details',
+    'contact',
+    'error',
+    'index-2',
+    'index-3',
+    'index-4',
+    'index-5',
+    'industries',
+    'industries-details',
+    'markets',
+    'press-release',
+    'pricing',
+    'service',
+    'service-details',
+    'story-details',
+    'sucess-story',
+    'team',
+    'team-details',
+    'testimonial',
+    'worksheet',
+  ];
+
+  return localizedPages.map((slug) => ({ params: { slug } }));
+}
+
+const moduleKey = `../${Astro.params.slug}.astro`;
+const Page = (await pageModules[moduleKey]()).default;
+---
+<Page />

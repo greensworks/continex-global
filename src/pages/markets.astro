@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+
+const pageHeader = '<meta http-equiv="x-ua-compatible" content="ie=edge">\n<title>Markets | Continex Global</title>\n<meta name="description" content="Continex Global supports cross-border market entry and business development across priority international markets.">';
+const bodyClass = 'theme-finances';
+---
+<BaseLayout pageHeader={pageHeader} bodyClass={bodyClass}>
+  <main>
+    <div class="tp-breadcrumb-ptb pt-90 pb-70 z-index-1">
+      <div class="tp-cc-chose-bg">
+        <img src="/assets/img/breadcrumb/image-1.jpg" alt="">
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+            <div class="tp-breadcrumb-content p-relative">
+              <ul class="tp-breadcrumb-list">
+                <li><a href="index.html">Home</a></li>
+                <li>></li>
+                <li>Markets</li>
+              </ul>
+              <h2 class="tp-breadcrumb-title">Markets</h2>
+              <p>We help international companies evaluate, enter, and grow across strategic cross-border markets.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="tp-service-ptb tp-sec-ptb pt-135 pb-110">
+      <div class="container">
+        <div class="row align-items-end">
+          <div class="col-lg-7">
+            <div class="tp-fi-service-heading mb-60">
+              <span class="tp-section-sub">Market Access</span>
+              <h3 class="tp-section-title">Connecting companies with the right markets, partners, and opportunities.</h3>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="tp-career-text mb-60">
+              <p>Continex Global supports market-entry strategy, partner discovery, opportunity qualification, and commercial follow-through for companies expanding internationally.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="tp-service-item mb-30">
+              <h3 class="tp-service-title">Türkiye</h3>
+              <p>Gateway market support for regional expansion, partnerships, and commercial projects.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="tp-service-item mb-30">
+              <h3 class="tp-service-title">Southeast Asia</h3>
+              <p>Business development and local relationship building across high-growth ASEAN markets.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="tp-service-item mb-30">
+              <h3 class="tp-service-title">Global Corridors</h3>
+              <p>Cross-border advisory for companies pursuing selected international trade and investment corridors.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

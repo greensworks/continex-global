@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import {
+  WireframeArticleGrid,
+  WireframeCareersBanner,
+  WireframeCtaBanner,
+  WireframeFeatureBanner,
+  WireframeHeroSection,
+  WireframeLocationFeature,
+  WireframeMixedContentGrid,
+  WireframeNewsletterBanner,
+  WireframePillNav,
+} from '../components/sections';
+
+const pageHeader = `<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Component Test | Continex Global</title>
+<meta name="description" content="Continex Global component test page">`;
+---
+
+<BaseLayout pageHeader={pageHeader} bodyClass="theme-finances">
+  <main>
+    <div data-section-name="WireframeHeroSection">
+      <WireframeHeroSection />
+    </div>
+    <div data-section-name="WireframePillNav">
+      <WireframePillNav />
+    </div>
+    <div data-section-name="WireframeCtaBanner">
+      <WireframeCtaBanner />
+    </div>
+    <div data-section-name="WireframeArticleGrid">
+      <WireframeArticleGrid />
+    </div>
+    <div data-section-name="WireframeFeatureBanner">
+      <WireframeFeatureBanner />
+    </div>
+    <div data-section-name="WireframeMixedContentGrid">
+      <WireframeMixedContentGrid />
+    </div>
+    <div data-section-name="WireframeLocationFeature">
+      <WireframeLocationFeature />
+    </div>
+    <div data-section-name="WireframeCareersBanner">
+      <WireframeCareersBanner />
+    </div>
+    <div data-section-name="WireframeNewsletterBanner">
+      <WireframeNewsletterBanner />
+    </div>
+  </main>
+</BaseLayout>

@@ -1,0 +1,54 @@
+---
+const { label = 'Explore', items = [
+  { href: '#capabilities', text: 'Capabilities' },
+  { href: '#industries', text: 'Industries' },
+  { href: '#experience', text: 'Selected Experience' },
+] } = Astro.props;
+---
+
+<nav class="cx-wire-pill-nav" aria-label={label}>
+  <div class="container">
+    <div class="cx-wire-pill-row">
+      <span>{label}</span>
+      {items.map((item) => <a href={item.href}>{item.text}</a>)}
+    </div>
+  </div>
+</nav>
+
+<style>
+  .cx-wire-pill-nav {
+    padding: 24px 0;
+    border-top: 1px solid rgba(34, 47, 48, 0.12);
+    border-bottom: 1px solid rgba(34, 47, 48, 0.12);
+    background: #fff;
+  }
+
+  .cx-wire-pill-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .cx-wire-pill-row span,
+  .cx-wire-pill-row a {
+    color: #222f30;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .cx-wire-pill-row span {
+    color: #8a9a9c;
+  }
+
+  .cx-wire-pill-row a {
+    padding-bottom: 6px;
+    border-bottom: 2px solid transparent;
+  }
+
+  .cx-wire-pill-row a:hover {
+    border-color: #222f30;
+  }
+</style>

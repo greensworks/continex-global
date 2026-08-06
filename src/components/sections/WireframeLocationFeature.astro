@@ -1,0 +1,74 @@
+---
+const {
+  eyebrow = 'Markets',
+  title = 'Türkiye, Southeast Asia, and selected global corridors.',
+  text = 'With offices in Istanbul, Ankara, and Kuala Lumpur, Continex Global supports international companies across relationship-led markets and strategic trade corridors.',
+  image = '/assets/img/general/contact-breadcrumb-bg.webp',
+  href = '/markets.html',
+  label = 'Explore markets',
+} = Astro.props;
+---
+
+<section class="cx-wire-location-feature">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <div class="cx-wire-location-image">
+          <img src={image} alt="">
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="cx-wire-location-copy">
+          <span class="tp-section-sub">{eyebrow}</span>
+          <h2 class="tp-section-title">{title}</h2>
+          <p>{text}</p>
+          <a class="tp-btn tp-btn-switch-animation" href={href}>
+            <span class="d-flex align-items-center justify-content-center">
+              <span class="btn-text">{label}</span>
+              <i class="btn-icon"></i>
+              <i class="btn-icon"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cx-wire-location-feature {
+    padding: 0 0 120px;
+    background: #fff;
+  }
+
+  .cx-wire-location-image {
+    height: 390px;
+    overflow: hidden;
+    border-radius: 6px;
+  }
+
+  .cx-wire-location-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .cx-wire-location-copy {
+    padding-left: 30px;
+  }
+
+  .cx-wire-location-copy p {
+    color: #586c6e;
+    font-size: 17px;
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+
+  @media (max-width: 767px) {
+    .cx-wire-location-copy {
+      padding: 0;
+      margin-top: 34px;
+    }
+  }
+</style>
