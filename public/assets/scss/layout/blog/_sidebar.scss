@@ -40,7 +40,7 @@
             padding: 40px 40px;
             border-radius: 6px;
             background: var(--tp-finance-white);
-            border: 1px solid rgba(34, 47, 48, 0.10);
+            border: 1px solid rgba(24, 52, 87, 0.10);
             @media #{$xl} {
                 padding: 35px 30px;
             }
@@ -54,7 +54,7 @@
                     list-style: none;
                     border-radius: 6px;
                     padding: 8px 8px 8px 25px;
-                    border: 1px solid rgba(34, 47, 48, 0.10);
+                    border: 1px solid rgba(24, 52, 87, 0.10);
                     &:not(:last-child){
                         margin-bottom: 15px;
                     }
@@ -101,7 +101,7 @@
                 padding-left: 0;
                 padding-right: 40px;
                 color: var(--tp-finance-secondary);
-                border-bottom: 1px solid rgba(34, 47, 48, 0.10);
+                border-bottom: 1px solid rgba(24, 52, 87, 0.10);
                 &::placeholder{
                     font-size: 16px;
                     color: var(--tp-finance-secondary);

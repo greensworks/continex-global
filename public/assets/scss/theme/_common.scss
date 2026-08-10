@@ -167,7 +167,7 @@
 		}
 	}
 	&-line{
-		border-bottom: 1px solid rgba(34, 47, 48, 0.08);
+		border-bottom: 1px solid rgba(24, 52, 87, 0.08);
 	}
 }
 
@@ -250,7 +250,7 @@
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: 12px 10px;
-			border: 1px solid rgba(34, 47, 48, 0.15);
+			border: 1px solid rgba(24, 52, 87, 0.15);
 			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='9' viewBox='0 0 10 9' fill='none'%3E%3Cpath d='M0.750122 5.50012C0.750122 5.50012 2.35012 6.41265 3.15012 7.75012C3.15012 7.75012 5.55012 2.50012 8.75012 0.750122' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 			background-color: var(--tp-common-white);
 		}

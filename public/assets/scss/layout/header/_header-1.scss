@@ -104,6 +104,22 @@
             }
         }
     }
+    &-lan-bottom{
+        z-index: 20;
+        &::before{
+            content: none;
+        }
+        & .tp-header-lan-content{
+            right: 0 !important;
+            left: auto !important;
+            width: 150px;
+            z-index: 30;
+            text-align: left;
+            & ul{
+                width: 100%;
+            }
+        }
+    }
     &-search{
         & span{
             color: var(--tp-finance-secondary);
@@ -124,6 +140,9 @@
         }
     }
     &-bottom{
+        position: relative;
+        z-index: 20;
+        overflow: visible;
         padding: 12px 0;
     }
     &-info{

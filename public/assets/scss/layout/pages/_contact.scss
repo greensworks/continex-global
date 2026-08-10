@@ -203,6 +203,28 @@
 }
 
 
+.tp-contact-breadcrumb{
+    background: #183457;
+    & .tp-breadcrumb-content{
+        padding-right: 40px;
+    }
+    & .tp-breadcrumb-title,
+    & .tp-breadcrumb-content p,
+    & .tp-breadcrumb-list li,
+    & .tp-breadcrumb-list li a{
+        color: var(--tp-common-white);
+        text-shadow: none;
+    }
+    & .tp-breadcrumb-list{
+        border-bottom: none;
+    }
+    @media #{$xs} {
+        & .tp-breadcrumb-content{
+            padding-right: 20px;
+        }
+    }
+}
+
 .tp-contact{
     &-input{
         & input,
@@ -210,7 +232,7 @@
             border-radius: 6px;
             background-color: transparent;
             color: var(--tp-finance-secondary);
-            border: 1px solid rgba(34, 47, 48, 0.10);
+            border: 1px solid rgba(24, 52, 87, 0.10);
             &::placeholder{
                 color: var(--tp-finance-secondary);
             }
@@ -227,9 +249,25 @@
         @media #{$md,$xs} {
             margin-bottom: 30px;
         }
+        & .tp-section-title br {
+            display: inline;
+        }
     }
     &-banner{
         &-ptb{
+            & .container{
+                max-width: none;
+                padding-right: 0;
+                padding-left: 0;
+            }
+            & .row{
+                margin-right: 0;
+                margin-left: 0;
+            }
+            & [class*="col-"]{
+                padding-right: 0;
+                padding-left: 0;
+            }
             @media #{$lg} {
                 padding-bottom: 100px;
             }
@@ -238,14 +276,19 @@
             }
         }
         &-thumb{
+            width: 100%;
+            height: 70vh;
+            min-height: 500px;
             @media #{$xs} {
                 height: 300px;
+                min-height: 300px;
             }
             & img{
-                @media #{$xs} {
-                    height: 100%;
-                    object-fit: cover;
-                }
+                width: 100%;
+                height: 100%;
+                max-width: none;
+                object-fit: cover;
+                display: block;
             }
         }
     }
@@ -266,7 +309,7 @@
                 border-radius: 50px;
                 display: inline-grid;
                 place-content: center;
-                border: 1px solid rgba(34, 47, 48, 0.10);
+                border: 1px solid rgba(24, 52, 87, 0.10);
             }
         }
         &-content{
@@ -355,7 +398,7 @@
                 border-radius: 50%;
                 display: inline-grid;
                 place-content: center;
-                border: 1px solid rgba(34, 47, 48, 0.10);
+                border: 1px solid rgba(24, 52, 87, 0.10);
                 background-color: var(--tp-finance-primary);
                 animation: animate-pulse 3s linear infinite;
             }

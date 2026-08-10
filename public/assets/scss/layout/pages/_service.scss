@@ -19,7 +19,7 @@
         border-radius: 6px;
         padding: 50px 30px 30px;
         @include tp-transition();
-        border: 1px solid rgba(34, 47, 48, 0.10);
+        border: 1px solid rgba(24, 52, 87, 0.10);
         @media #{$xxl,$xl} {
             padding: 50px 20px 30px;
         }
@@ -81,7 +81,7 @@
                 border-radius: 4px;
                 justify-content: space-between;
                 color: var(--tp-finance-secondary);
-                border: 1px solid rgba(34, 47, 48, 0.10);
+                border: 1px solid rgba(24, 52, 87, 0.10);
                 @media #{$md} {
                     padding: 10px 25px;
                 }

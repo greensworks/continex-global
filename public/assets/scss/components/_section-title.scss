@@ -15,19 +15,12 @@
         display: inline-block;
         color: var(--tp-theme-secondary);
         &::before{
-            position: absolute;
-            content: '';
-            left: 0;
-            bottom: 6px;
-            height: 5px;
-            width: 100%;
-            z-index: -1;
-            background: #CEF79E;
+            content: none;
         }
         &.primary-color{
             color: var(--tp-theme-primary);
             &::before{
-                background: #476769;
+                content: none;
             }
         }
     }

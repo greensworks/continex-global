@@ -43,6 +43,10 @@ const pageSectionRemovals = new Map([
   ['index-5.html', ['award', 'price']],
 ]);
 
+const pageBusinessSectionRemovals = new Map([
+  ['index-2.html', ['Powering purposeful scale for']],
+]);
+
 const commonScripts = new Set([
   'assets/js/vendor/jquery.js',
   'assets/js/bootstrap-bundle.js',
@@ -122,23 +126,20 @@ function normalizeAssetPaths(html) {
 function replaceContactOffices(html) {
   const offices = [
     {
-      image: '/assets/img/advisory/contact/city-1.jpg',
       city: 'Istanbul',
-      address: '19 Mayıs Mah. 19 Mayıs Cad. Nova Baran Plaza No:4 K:13 34360 Şişli / Istanbul, TURKIYE',
+      address: '19 Mayıs Mah. 19 Mayıs Cad. Nova Baran Plaza No:4 K:13<br>34360 Şişli / Istanbul, TURKIYE',
       phone: '0212 347 47 56 - 113',
       phoneHref: 'tel:02123474756113',
     },
     {
-      image: '/assets/img/advisory/contact/city-2.jpg',
       city: 'Ankara',
-      address: 'J.F.Kennedy Caddesi No: 84 Çankaya / Ankara, TURKIYE',
+      address: 'J.F.Kennedy Caddesi No: 84<br>Çankaya / Ankara, TURKIYE',
       phone: '+90(312)466 00 10',
       phoneHref: 'tel:+903124660010',
     },
     {
-      image: '/assets/img/advisory/contact/city-3.jpg',
       city: 'Kuala Lumpur',
-      address: '8072, Pantai HillPark Ph5, 59200 Kuala Lumpur, MALAYSIA',
+      address: '8072, Pantai HillPark Ph5<br>59200 Kuala Lumpur, MALAYSIA',
       phone: '+603-42657867',
       phoneHref: 'tel:+60342657867',
     },
@@ -146,9 +147,6 @@ function replaceContactOffices(html) {
 
   const officeCards = offices.map((office) => `                  <div class="col-lg-4 col-md-6">
                      <div class="tp-contact-city-item text-center mb-30">
-                        <div class="tp-contact-city-item-thumb">
-                           <img src="${office.image}" alt="">
-                        </div>
                         <div class="tp-contact-city-item-content">
                            <h3 class="tp-contact-city-item-title">${office.city}</h3>
                            <p>${office.address}</p>
@@ -234,7 +232,7 @@ function replaceContactMessaging(html) {
     )
     .replace(
       /<h3 class="tp-section-title">We’re ready to support <br> your financial journey\.<\/h3>/,
-      '<h3 class="tp-section-title">Be a part of Continex Culture</h3>',
+      '<h3 class="tp-section-title">Be a part of <br> Continex Culture</h3>',
     )
     .replace(/<h4 class="tp-contact-info-title">Call Us Directly<\/h4>\s*<p><a href="tel:\+0123456789">\+\(1\) 224 676 7430<\/a><\/p>/,
       '<h4 class="tp-contact-info-title">Call Us Directly</h4>\r\n                                 <p><a href="tel:+902123474756113">0212 347 47 56 - 113</a></p>',
@@ -243,6 +241,10 @@ function replaceContactMessaging(html) {
       '<h4 class="tp-contact-info-title">Need Support?</h4>\r\n                                 <p><a href="mailto:info@continexglobal.com">info@continexglobal.com</a></p>',
     )
     .replace(/<p><a href="#">Start Chat<\/a><\/p>/, '<p><a href="mailto:info@continexglobal.com">Discuss an Opportunity</a></p>')
+    .replace(
+      /src="\/assets\/img\/finance\/banner\/banner-bg-2\.jpg"/,
+      'src="/assets/img/general/continex-global-2.webp"',
+    )
     .replace(/<form id="contact-form"[\s\S]*?<\/form>/, formMarkup);
 }
 
@@ -252,6 +254,29 @@ function replaceInsightsMessaging(html) {
     .replace(/src="\/assets\/img\/breadcrumb\/image-1\.jpg"/, 'src="/assets/img/general/insights.webp"')
     .replace(/<li>Blog<\/li>/, '<li>Insights</li>')
     .replace(/<h2 class="tp-breadcrumb-title">Blog<\/h2>/, '<h2 class="tp-breadcrumb-title">Insights</h2>');
+}
+
+function removeBusinessSectionsContaining(html, targets) {
+  const start = '<!-- business area start -->';
+  const end = '<!-- business area end -->';
+  for (const target of targets) {
+    let cursor = 0;
+    while (true) {
+      const startIndex = html.indexOf(start, cursor);
+      if (startIndex === -1) break;
+      const endIndex = html.indexOf(end, startIndex);
+      if (endIndex === -1) break;
+      const endPosition = endIndex + end.length;
+      const block = html.slice(startIndex, endPosition);
+      if (block.includes(target)) {
+        html = html.slice(0, startIndex) + html.slice(endPosition);
+        cursor = startIndex;
+      } else {
+        cursor = endPosition;
+      }
+    }
+  }
+  return html;
 }
 
 function removeNamedSections(html, sections) {
@@ -369,6 +394,10 @@ for (const [sourceName, outputName] of pagesToImport) {
   const sectionsToRemove = pageSectionRemovals.get(sourceName);
   if (sectionsToRemove) {
     pageContent = removeNamedSections(pageContent, sectionsToRemove);
+  }
+  const businessSectionsToRemove = pageBusinessSectionRemovals.get(sourceName);
+  if (businessSectionsToRemove) {
+    pageContent = removeBusinessSectionsContaining(pageContent, businessSectionsToRemove);
   }
   const pageScripts2 = getExtraScripts(html);
   const bodyClass = getBodyClass(html);

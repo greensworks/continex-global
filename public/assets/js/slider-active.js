@@ -43,15 +43,15 @@
 	////brand-slider
 	let tp_brand_slide = new Swiper(".tp-brand-slider-active", {
 		loop: true,
-        freemode: true,
+        freeMode: true,
         slidesPerView: 5,
         spaceBetween: 30,
         centeredSlides: true,
         allowTouchMove: false,
-        speed: 4000,
+        speed: 12000,
         autoplay: {
             delay: 1,
-            disableOnInteraction: true,
+            disableOnInteraction: false,
         },
         breakpoints: {
 			'1400': {

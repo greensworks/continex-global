@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import { getLangFromUrl, localizePath } from '../i18n';
+
+const currentLang = getLangFromUrl(Astro.url);
+const privacyPath = localizePath('/privacy-policy.html', currentLang);
+const contactPath = localizePath('/contact.html', currentLang);
+
+const pageHeader = '<meta http-equiv="x-ua-compatible" content="ie=edge">\n<title>Cookie Policy | Continex Global</title>\n<meta name="description" content="How Continex Global uses cookies and similar technologies, and how you can manage consent.">';
+const bodyClass = 'theme-finances';
+---
+<BaseLayout pageHeader={pageHeader} bodyClass={bodyClass}>
+  <main>
+    <section class="cx-legal-ptb tp-sec-ptb pt-140 pb-120">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-9">
+            <article class="cx-legal-content">
+              <h2 class="cx-legal-page-title">Cookie Policy</h2>
+              <p class="cx-legal-meta">Last updated: August 2026</p>
+
+              <h3>1. What Are Cookies?</h3>
+              <p>
+                Cookies are small text files stored on your device when you visit a website. They help the site function, remember preferences, and—if you allow them—understand how the site is used.
+              </p>
+
+              <h3>2. Who Controls Cookies on This Site?</h3>
+              <p>
+                Continex Global controls cookies set by this website. Some cookies may be placed by third-party providers that support analytics or embedded services. For related data practices, see our <a href={privacyPath}>Privacy Policy &amp; GDPR/KVKK</a>.
+              </p>
+
+              <h3>3. Cookie Categories We Use</h3>
+
+              <h4>Essential cookies</h4>
+              <p>
+                Required for core site functions such as security, load balancing, and remembering your cookie consent choice. These cookies do not require consent.
+              </p>
+
+              <h4>Analytics cookies</h4>
+              <p>
+                Help us understand traffic, page performance, and navigation patterns so we can improve the website. These cookies are used only if you accept optional cookies.
+              </p>
+
+              <h4>Marketing / tracking cookies</h4>
+              <p>
+                May be used to measure campaign effectiveness or remember interactions across sessions. These cookies are used only if you accept optional cookies.
+              </p>
+
+              <h3>4. Consent</h3>
+              <p>
+                When you first visit the site, a cookie consent banner asks you to accept or reject optional cookies. Essential cookies remain active. You can change your choice later by clearing site data for this domain or using the “Cookie settings” control in the footer area of the banner after it reappears following a reset.
+              </p>
+              <p>
+                Your preference is stored locally in your browser (for example via <code>localStorage</code>) so we do not repeatedly ask on every page load.
+              </p>
+
+              <h3>5. How Long Cookies Last</h3>
+              <ul>
+                <li><strong>Session cookies:</strong> deleted when you close your browser</li>
+                <li><strong>Persistent cookies:</strong> remain for a defined period or until you delete them</li>
+                <li><strong>Consent preference:</strong> typically retained for up to 12 months, then we may ask again</li>
+              </ul>
+
+              <h3>6. Managing Cookies in Your Browser</h3>
+              <p>
+                Most browsers let you block or delete cookies in settings. Blocking essential cookies may affect site functionality. You can also use our on-site consent banner to accept or reject optional cookies.
+              </p>
+
+              <h3>7. Updates</h3>
+              <p>
+                We may update this Cookie Policy when our tools, providers, or legal requirements change. Please review this page periodically.
+              </p>
+
+              <h3>8. Contact</h3>
+              <p>
+                Questions about cookies or tracking? Email <a href="mailto:info@continexglobal.com">info@continexglobal.com</a> or visit our <a href={contactPath}>Contact</a> page.
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style is:global>
+  .cx-legal-content {
+    color: var(--tp-finance-secondary);
+  }
+  .cx-legal-page-title {
+    margin: 0 0 12px;
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.42px;
+    color: var(--tp-finance-secondary);
+  }
+  .cx-legal-meta {
+    margin-bottom: 36px;
+    font-size: 14px;
+    opacity: 0.7;
+  }
+  .cx-legal-content h3 {
+    margin: 42px 0 16px;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -0.28px;
+    color: var(--tp-finance-secondary);
+  }
+  .cx-legal-content h4 {
+    margin: 24px 0 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--tp-finance-secondary);
+  }
+  .cx-legal-content p,
+  .cx-legal-content li {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(24, 52, 87, 0.82);
+  }
+  .cx-legal-content p {
+    margin-bottom: 16px;
+  }
+  .cx-legal-content ul {
+    margin: 0 0 18px;
+    padding-left: 20px;
+  }
+  .cx-legal-content li {
+    margin-bottom: 8px;
+  }
+  .cx-legal-content a {
+    color: var(--tp-finance-secondary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .cx-legal-content a:hover {
+    opacity: 0.75;
+  }
+  .cx-legal-content code {
+    font-size: 0.92em;
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: #f0f0ec;
+  }
+</style>

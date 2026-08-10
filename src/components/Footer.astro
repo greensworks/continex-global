@@ -10,7 +10,7 @@ const homePath = localizePath('/index.html', currentLang);
       <footer>
 
          <!-- footer area start -->
-         <div class="tp-footer-3-area tp-footer-3-style fix z-index-1 pt-100" data-bg-color="#222F30">
+         <div class="tp-footer-3-area tp-footer-3-style fix z-index-1 pt-100" data-bg-color="#183457">
             <div class="tp-footer-3-shape">
                <img src="/assets/img/advisory/strategy/footer-shape.png" alt="">
             </div>
@@ -25,22 +25,9 @@ const homePath = localizePath('/index.html', currentLang);
                               strategy, Continex Global is your partner <br>
                               for success.</p>
                            </div>
-                           <h4 class="tp-footer-widget-title">NEWSLETTER</h4>
-                           <div class="tp-footer-3-input mb-130">
-                              <div class="tp-fa-contact-form-input">
-                                 <input type="email" name="email" placeholder="Your email address">
-                              </div>
-                              <button>
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                 <path d="M0.75 6.75H12.75" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                 <path d="M6.75 0.75L12.75 6.75L6.75 12.75" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                 </svg>
-                              </button>
-                           </div>
                            <div class="tp-footer-3-privacy">
-                              <a href="#">Confidentiality & Privacy</a>|
-                              <a href="#">Legal Information</a>|
-                              <a href="#">Return and Refund Policy</a>
+                              <a href={localizePath('/privacy-policy.html', currentLang)}>Privacy Policy & GDPR/KVKK</a>|
+                              <a href={localizePath('/cookie-policy.html', currentLang)}>Cookie Policy</a>
                            </div>
                         </div>
                      </div>

@@ -5,6 +5,35 @@
 /*----------------------------------------*/
 
 .tp-fi-stories{
+    &-ptb{
+        & .row > [class*="col-"]{
+            display: flex;
+        }
+        & .tp-fi-stories-content,
+        & .tp-fi-stories-item{
+            width: 100%;
+            height: 100%;
+            min-height: 360px;
+        }
+        & .tp-fi-stories-content{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        & .tp-fi-stories-item{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        & .tp-fi-stories-item-logo{
+            padding-bottom: 0;
+            flex: 1 1 auto;
+        }
+        & .tp-fi-stories-item-content.pb-195{
+            padding-bottom: 0 !important;
+            flex: 1 1 auto;
+        }
+    }
     &-content{
         & p{
             font-size: 20px;
@@ -38,8 +67,16 @@
         @media #{$xs} {
             padding: 30px;
         }
+        &.continex-team-card{
+            min-height: 360px;
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+            overflow: hidden;
+            background-position: center;
+        }
         &.style-3{
-            border: 1px solid rgba(34, 47, 48, 0.08);
+            border: 1px solid rgba(24, 52, 87, 0.08);
         }
         &-content{
             & span{
@@ -334,7 +371,7 @@
                 border-radius: 100px;
                 display: inline-block;
                 color: var(--tp-finance-secondary);
-                border: 1px solid rgba(34, 47, 48, 0.15);
+                border: 1px solid rgba(24, 52, 87, 0.15);
             }
         }
         &-title{
@@ -370,7 +407,7 @@
         border-radius: 6px;
         align-items: center;
         @include tp-transition();
-        border: 1px solid rgba(34, 47, 48, 0.10);
+        border: 1px solid rgba(24, 52, 87, 0.10);
         @media #{$xxl,$lg,$xs} {
             gap: 15px;
         }
@@ -431,9 +468,9 @@
         &-item{
             padding-top: 45px;
             padding-bottom: 10px;
-            border-top: 1px solid rgba(34, 47, 48, 0.10);
+            border-top: 1px solid rgba(24, 52, 87, 0.10);
             &:last-of-type{
-                border-bottom: 1px solid rgba(34, 47, 48, 0.10);
+                border-bottom: 1px solid rgba(24, 52, 87, 0.10);
             }
             &:hover{
                 & .tp-press-release{
@@ -488,7 +525,7 @@
                 border-radius: 20px;
                 display: inline-block;
                 color: var(--tp-finance-secondary);
-                border: 1px solid rgba(34, 47, 48, 0.1);
+                border: 1px solid rgba(24, 52, 87, 0.1);
             }
             & p{
                 margin: 0;

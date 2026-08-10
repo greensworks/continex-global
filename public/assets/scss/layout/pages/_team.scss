@@ -11,7 +11,7 @@
         overflow: hidden;
         border-radius: 6px;
         transition: all 0.4s ease-in-out;
-        border: 1px dashed rgba(34, 47, 48, 0.13);
+        border: 1px dashed rgba(24, 52, 87, 0.13);
         @media #{$xl,$lg,$md,$xs} {
             padding: 35px;
         }
@@ -467,7 +467,7 @@
         &-content{
             margin-bottom: 30px;
             & .tp-team-details-contact{
-                border-top: 1px solid rgba(34, 47, 48, 0.08);
+                border-top: 1px solid rgba(24, 52, 87, 0.08);
             }
         }
         &-contact{

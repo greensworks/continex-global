@@ -119,20 +119,20 @@
     &-style{
         & .tp-at-pricing{
             &-card{
-                border-color: rgba(34, 47, 48, 0.10);
+                border-color: rgba(24, 52, 87, 0.10);
             }
             &-title{
                 color: var(--tp-finance-secondary);
             }
             &-desc{
-                color: rgba(34, 47, 48, 0.70);
+                color: rgba(24, 52, 87, 0.70);
             }
             &-amount,
             &-interval{
                 color: var(--tp-finance-secondary);
             }
             &-divider{
-                background: rgba(34, 47, 48, 0.10);
+                background: rgba(24, 52, 87, 0.10);
             }
             &-features{
                 li{
@@ -140,7 +140,7 @@
                 }
             }
             &-sub-title{
-                color: rgba(34, 47, 48, 0.70);
+                color: rgba(24, 52, 87, 0.70);
             }
             &-sub-features{
                 li{

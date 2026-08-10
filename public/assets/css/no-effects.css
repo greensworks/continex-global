@@ -30,3 +30,24 @@
 .swiper-slide {
   transition-duration: 0ms !important;
 }
+
+/* Keep continuous brand/text marquees moving */
+.tp-brand-slider-active > .swiper-wrapper {
+  transition-property: transform !important;
+  transition-timing-function: linear !important;
+  transition-duration: 12000ms !important;
+}
+
+.tp-brand-slider-active > .swiper-wrapper > .swiper-slide {
+  transition-duration: inherit !important;
+}
+
+.tp-text-slider-active > .swiper-wrapper {
+  transition-property: transform !important;
+  transition-timing-function: linear !important;
+  transition-duration: 4000ms !important;
+}
+
+.tp-text-slider-active > .swiper-wrapper > .swiper-slide {
+  transition-duration: inherit !important;
+}

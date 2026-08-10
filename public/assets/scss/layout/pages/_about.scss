@@ -4,6 +4,15 @@
 /*  7.2 about css
 /*----------------------------------------*/
 
+.cx-home-about-media{
+    & > img{
+        width: 619px;
+        max-width: 100%;
+        aspect-ratio: 619 / 560;
+        object-fit: cover;
+    }
+}
+
 .tp-fi-about{
     &-content{
         & p{
@@ -322,7 +331,7 @@
         &-item{
             margin-bottom: 25px;
             padding-bottom: 30px;
-            border-bottom: 1px solid rgba(34, 47, 48, 0.08);
+            border-bottom: 1px solid rgba(24, 52, 87, 0.08);
             @media #{$lg,$md,$xs} {
                 margin-bottom: 10px;
                 padding-bottom: 15px;

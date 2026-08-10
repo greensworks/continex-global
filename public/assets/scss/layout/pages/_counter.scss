@@ -154,7 +154,7 @@
         & .tp-cn-success-item-icon {
             & span{
                 background: #F6FAF3;
-                border: 1px solid rgba(34, 47, 48, 0.10);
+                border: 1px solid rgba(24, 52, 87, 0.10);
             }
         }
         & .tp-cn-success-item-wrap{
@@ -207,7 +207,7 @@
             }
         }
         &-heading{
-            border-bottom: 1px solid rgba(34, 47, 48, 0.10);
+            border-bottom: 1px solid rgba(24, 52, 87, 0.10);
             @media #{$md,$xs} {
                 margin-bottom: 50px;
             }
@@ -338,7 +338,7 @@
     }
     &-details{
         &-line{
-            border-bottom: 1px solid rgba(34, 47, 48, 0.10);
+            border-bottom: 1px solid rgba(24, 52, 87, 0.10);
         }
         &-heading{
             @media #{$xl,$lg} {
@@ -408,7 +408,7 @@
                 border-radius: 6px;
                 background-color: transparent;
                 color: var(--tp-finance-secondary);
-                border: 1px solid rgba(34, 47, 48, 0.10);
+                border: 1px solid rgba(24, 52, 87, 0.10);
                 &::placeholder{
                     color: var(--tp-finance-secondary);
                 }
@@ -428,7 +428,7 @@
                         overflow: hidden;
                         position: relative;
                         border-radius: 6px;
-                        border: 1px dashed #222F30;
+                        border: 1px dashed #183457;
                         background: rgba(255, 255, 255, 0.55);
                     & input{
                         width: 100%;
@@ -457,7 +457,7 @@
             &-top{
                 padding: 70px;
                 padding-bottom: 35px;
-                border-bottom: 1px dashed rgba(34, 47, 48, 0.10);
+                border-bottom: 1px dashed rgba(24, 52, 87, 0.10);
                 @media #{$xl,$lg,$md} {
                     padding: 45px;
                 }
@@ -504,7 +504,7 @@
     &-item{
         border-radius: 6px;
         padding: 30px 30px 35px;
-        border: 1px solid rgba(34, 47, 48, 0.08);
+        border: 1px solid rgba(24, 52, 87, 0.08);
         @media #{$lg,$xs} {
             padding: 25px 25px 30px;
         }
@@ -523,7 +523,7 @@
             margin-bottom: 20px;
             padding-bottom: 22px;
             color: var(--tp-finance-secondary);
-            border-bottom: 1px solid rgba(34, 47, 48, 0.08);
+            border-bottom: 1px solid rgba(24, 52, 87, 0.08);
             @media #{$lg,$xs} {
                 padding: 0 15px 20px;
             }
