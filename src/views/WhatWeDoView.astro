@@ -15,9 +15,9 @@ const tr = useTranslations(locale);
 <Base title={t(pages.whatWeDo.title, locale)} description={t(pages.whatWeDo.lead, locale)} headerTheme="dark">
   <PageHero eyebrow={tr('nav.whatWeDo')} title={t(pages.whatWeDo.title, locale)} lead={t(pages.whatWeDo.lead, locale)} image={heroImg} />
   <nav class="border-b border-line bg-surface" aria-label={tr('label.services')}>
-    <ul class="container-site grid grid-cols-2 gap-px bg-line lg:grid-cols-4">
+    <ul class="container-site grid grid-cols-2 divide-y divide-line lg:grid-cols-4 lg:divide-x lg:divide-y-0">
       {services.map((s, i) => (
-        <li class="bg-surface">
+        <li>
           <a href={`#${s.slug}`} class="flex h-full items-start gap-3 px-1 py-5 text-sm font-medium leading-snug text-ink-700 transition hover:text-navy-900 lg:px-4">
             <span class="mt-0.5 font-mono text-xs text-ink-400">0{i + 1}</span>
             <span>{t(s.title, locale)}</span>
