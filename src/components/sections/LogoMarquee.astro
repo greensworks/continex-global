@@ -37,7 +37,7 @@ const rows = [partners.slice(0, half), partners.slice(half)];
           <ul class="marquee-row" aria-hidden={dup === 1 ? 'true' : undefined}>
             {row.map((p) => (
               <li class="marquee-item">
-                <Image src={p.logo} alt={dup === 0 ? p.name : ''} height={40} layout="none" densities={[1, 2]} class="h-8 w-auto max-w-[140px] object-contain sm:h-9" loading="lazy" />
+                <Image src={p.logo} alt={dup === 0 ? p.name : ''} height={40} densities={[1, 2]} class="h-8 w-auto max-w-[140px] object-contain sm:h-9" loading="lazy" />
               </li>
             ))}
           </ul>
