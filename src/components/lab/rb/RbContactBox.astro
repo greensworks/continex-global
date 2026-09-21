@@ -15,7 +15,7 @@ const tones = { mint: 'bg-emerald-100 text-black', grey: 'bg-neutral-100 text-bl
 <section class:list={['relative', tones[tone]]}>
   <div class="mx-auto max-w-7xl px-6 pb-20 pt-12 md:pb-24 md:pt-16 lg:px-10">
     <div class="md:ml-[50%] md:pl-8">
-      <h2 class="font-display text-2xl font-semibold tracking-tight md:text-3xl">{title}</h2>
+      <h2 class:list={['font-display text-2xl font-semibold tracking-tight md:text-3xl', tone === 'navy' ? 'text-white' : 'text-black']}>{title}</h2>
       <p class="mt-2 text-sm opacity-80">{text}</p>
     </div>
   </div>

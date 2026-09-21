@@ -14,7 +14,7 @@ const { image = defaultImg, title = 'Be a Kearney Original', subtitle = 'Put you
   <Image src={image} alt="" widths={[768, 1280, 1920]} sizes="100vw" layout="none" class="absolute inset-0 -z-10 h-full w-full object-cover" />
   <div class="absolute inset-0 -z-10 bg-black/45" aria-hidden="true"></div>
   <div class:list={['w-full px-6', align === 'center' ? 'max-w-3xl' : 'mx-auto max-w-[1512px] pb-14 lg:px-12']}>
-    <h1 class:list={['font-display font-medium leading-tight', align === 'center' ? 'text-4xl md:text-[52px]' : 'max-w-[816px] text-4xl md:text-[60px] md:leading-[73px]']}>{title}</h1>
+    <h1 class:list={['font-display font-medium leading-tight text-white', align === 'center' ? 'text-4xl md:text-[52px]' : 'max-w-[816px] text-4xl md:text-[60px] md:leading-[73px]']}>{title}</h1>
     {subtitle && <p class:list={['mt-3 text-white/80', align === 'center' ? 'text-lg' : 'max-w-[816px] text-xl md:text-2xl']}>{subtitle}</p>}
   </div>
 </section>

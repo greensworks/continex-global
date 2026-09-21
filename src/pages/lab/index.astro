@@ -7,6 +7,7 @@
  */
 import Lab from '@layouts/Lab.astro';
 import Frame from '@components/lab/ComponentFrame.astro';
+import Group from '@components/lab/LabGroup.astro';
 
 // Roland Berger
 import RbHeader from '@components/lab/rb/RbHeader.astro';
@@ -101,100 +102,111 @@ const trFooterColumns = [
 ];
 ---
 <Lab title="All components">
-  {/* ---------------- Roland Berger ---------------- */}
+  <Group title="Headers" count={5} />
   <Frame name="RbHeader" source={src('RbHeader')}><RbHeader mode="static" /></Frame>
-  <Frame name="RbHero" source={src('RbHero')}><RbHero><RbHeader slot="header" mode="overlay" /></RbHero></Frame>
-  <Frame name="RbSectionHeadline" source={src('RbSectionHeadline')}><RbSectionHeadline title="Insights to drive real<br />business outcomes" /></Frame>
-  <Frame name="RbTileGrid" source={src('RbTileGrid')}><RbTileGrid /></Frame>
-  <Frame name="RbOverline" source={src('RbOverline')}><RbOverline text="Our latest insights, delivered straight to your inbox" /></Frame>
-  <Frame name="RbFlagCta" source={src('RbFlagCta')}><RbFlagCta /></Frame>
-  <Frame name="RbExpertQuote" source={src('RbExpertQuote')}><RbOverline text="Meet our experts" /><RbExpertQuote /></Frame>
-  <Frame name="RbJoinTiles" source={src('RbJoinTiles')}><RbOverline text="Join the team" /><RbJoinTiles /></Frame>
-  <Frame name="RbSeparator" source={src('RbSeparator')}><RbSeparator /></Frame>
-  <Frame name="RbAwardBadge" source={src('RbAwardBadge')}><RbOverline text="What others say" line={false} /><RbAwardBadge /></Frame>
-  <Frame name="RbContactBox" source={src('RbContactBox')}><RbSeparator /><RbContactBox /></Frame>
-  <Frame name="RbBreadcrumb" source={src('RbBreadcrumb')}><RbBreadcrumb /></Frame>
-  <Frame name="RbFooter" source={src('RbFooter')}><RbFooter /></Frame>
-
-  {/* ---------------- Strategy& ---------------- */}
   <Frame name="SaHeader" source={src('SaHeader')}><SaHeader /></Frame>
+  <Frame name="KeHeader" source={src('KeHeader')}><KeHeader /></Frame>
+  <Frame name="SoaNav" source={src('SoaNav')}><SoaNav /></Frame>
+  <Frame name="BcgHeader" source={src('BcgHeader')}><BcgHeader /></Frame>
+
+  <Group title="Heroes" count={7} />
+  <Frame name="RbHero" source={src('RbHero')}><RbHero><RbHeader slot="header" mode="overlay" /></RbHero></Frame>
   <Frame name="SaHero" source={src('SaHero')}><SaHero /></Frame>
+  <Frame name="SaCareersHero" source={src('SaCareersHero')}><SaCareersHero /></Frame>
+  <Frame name="KeHero" source={src('KeHero')}><KeHero /></Frame>
+  <Frame name="KeHero" source={src('KeHero')}><KeHero align="left" title="Opportunities at Kearney" subtitle="From consulting to internal roles, find paths that fit your ambitions." /></Frame>
+  <Frame name="SoaPageHeader" source={src('SoaPageHeader')}><SoaPageHeader /></Frame>
+  <Frame name="BcgHero" source={src('BcgHero')}><BcgHero /></Frame>
+
+  <Group title="Navigation, headlines & dividers" count={9} />
   <Frame name="SaInPageNav" source={src('SaInPageNav')}><SaInPageNav /></Frame>
+  <Frame name="KeSubnav" source={src('KeSubnav')}><KeSubnav /></Frame>
+  <Frame name="SoaFilterBar" source={src('SoaFilterBar')}><SoaFilterBar /></Frame>
+  <Frame name="SaSideTabList" source={src('SaSideTabList')}><SaSideTabList /></Frame>
+  <Frame name="RbSectionHeadline" source={src('RbSectionHeadline')}><RbSectionHeadline title="Insights to drive real<br />business outcomes" /></Frame>
+  <Frame name="RbOverline" source={src('RbOverline')}><RbOverline text="Our latest insights, delivered straight to your inbox" /></Frame>
+  <Frame name="RbSeparator" source={src('RbSeparator')}><RbSeparator /></Frame>
+  <Frame name="RbBreadcrumb" source={src('RbBreadcrumb')}><RbBreadcrumb /></Frame>
+  <Frame name="BcgSectionBanner" source={src('BcgSectionBanner')}><BcgSectionBanner link={{ label: 'See more', href: '#' }} /></Frame>
+
+  <Group title="Intro & text blocks" count={8} />
   <Frame name="SaStatIntro" source={src('SaStatIntro')}><SaStatIntro /></Frame>
-  <Frame name="SaImagePanels" source={src('SaImagePanels')}><SaImagePanels /></Frame>
-  <Frame name="SaFaq" source={src('SaFaq')}><SaFaq /></Frame>
-  <Frame name="SaPublications" source={src('SaPublications')}><SaPublications /></Frame>
   <Frame name="SaStatIntro" source={src('SaStatIntro')}>
     <SaStatIntro rule title="Join the Strategy& team" text="Support clients to tackle their most pressing challenges. Work with a team that values your ideas and invests in your growth." stat="20+" caption="industries served to date" link={{ label: 'Go to careers', href: '#' }} />
   </Frame>
-  <Frame name="SaFollowUs" source={src('SaFollowUs')}><SaFollowUs /></Frame>
-  <Frame name="SaFooter" source={src('SaFooter')}><SaFooter /></Frame>
   <Frame name="SaTextIntro" source={src('SaTextIntro')}><SaTextIntro /></Frame>
+  <Frame name="KeIntro" source={src('KeIntro')}><KeIntro /></Frame>
+  <Frame name="KeJobsIntro" source={src('KeJobsIntro')}><KeJobsIntro /></Frame>
+  <Frame name="BcgRichText" source={src('BcgRichText')}><BcgRichText /></Frame>
+  <Frame name="KeNotice" source={src('KeNotice')}><KeNotice /></Frame>
   <Frame name="SaDirections" source={src('SaDirections')}><SaDirections /></Frame>
-  <Frame name="SaPeopleGrid" source={src('SaPeopleGrid')}><SaPeopleGrid /></Frame>
+
+  <Group title="Split features" count={4} />
+  <Frame name="SaSplitFeature" source={src('SaSplitFeature')}><SaSplitFeature /></Frame>
   <Frame name="SaSplitFeature" source={src('SaSplitFeature')}>
-    <SaSplitFeature />
     <SaSplitFeature imageSide="right" image={img2} title="Contact – Amsterdam office" text="Thomas R. Malthusstraat 5, 1066 JR Amsterdam. Call +31 (0)88 792 00 00 or send us a message." link={{ label: 'Send a message', href: '#' }} rule />
   </Frame>
-  <Frame name="SaCareersHero" source={src('SaCareersHero')}><SaCareersHero /></Frame>
-  <Frame name="SaVideoSection" source={src('SaVideoSection')}><SaVideoSection /></Frame>
-  <Frame name="SaPeopleStrip" source={src('SaPeopleStrip')}><SaPeopleStrip /></Frame>
+  <Frame name="KeFeatureRow" source={src('KeFeatureRow')}><KeFeatureRow /></Frame>
+  <Frame name="KeFeatureRow" source={src('KeFeatureRow')}>
+    <KeFeatureRow imageSide="left" title="Life at Kearney" text="Kearney fosters an environment where Originals not only thrive but also feel a genuine sense of belonging." cta={{ label: 'Discover life at Kearney', href: '#' }} image={img1} />
+  </Frame>
+
+  <Group title="Cards & grids" count={11} />
+  <Frame name="RbTileGrid" source={src('RbTileGrid')}><RbTileGrid /></Frame>
+  <Frame name="RbJoinTiles" source={src('RbJoinTiles')}><RbJoinTiles /></Frame>
+  <Frame name="SaImagePanels" source={src('SaImagePanels')}><SaImagePanels /></Frame>
+  <Frame name="SaPublications" source={src('SaPublications')}><SaPublications /></Frame>
+  <Frame name="KeArticleGrid" source={src('KeArticleGrid')}><KeArticleGrid /></Frame>
+  <Frame name="SoaFeaturedPost" source={src('SoaFeaturedPost')}><SoaFeaturedPost /></Frame>
+  <Frame name="SoaPostGrid" source={src('SoaPostGrid')}><SoaPostGrid /></Frame>
+  <Frame name="SoaServices" source={src('SoaServices')}><SoaServices /></Frame>
+  <Frame name="BcgServiceTiles" source={src('BcgServiceTiles')}><BcgServiceTiles /></Frame>
+  <Frame name="BcgIconTabs" source={src('BcgIconTabs')}><BcgIconTabs /></Frame>
+  <Frame name="BcgExploreMore" source={src('BcgExploreMore')}><BcgExploreMore /></Frame>
+
+  <Group title="Lists, tabs & accordions" count={7} />
+  <Frame name="SaFaq" source={src('SaFaq')}><SaFaq /></Frame>
+  <Frame name="BcgAccordion" source={src('BcgAccordion')}><BcgAccordion /></Frame>
+  <Frame name="SaSideTabs" source={src('SaSideTabs')}><SaSideTabs /></Frame>
   <Frame name="SaEventsList" source={src('SaEventsList')}><SaEventsList /></Frame>
   <Frame name="SaStories" source={src('SaStories')}><SaStories /></Frame>
-  <Frame name="SaInfoBanner" source={src('SaInfoBanner')}><SaInfoBanner /></Frame>
+  <Frame name="KeRolesList" source={src('KeRolesList')}><KeRolesList /></Frame>
+  <Frame name="BcgNewsList" source={src('BcgNewsList')}><BcgNewsList /></Frame>
+
+  <Group title="Media & carousels" count={3} />
+  <Frame name="SaVideoSection" source={src('SaVideoSection')}><SaVideoSection /></Frame>
+  <Frame name="KeCarousel" source={src('KeCarousel')}><KeCarousel /></Frame>
+  <Frame name="BcgCardCarousel" source={src('BcgCardCarousel')}><BcgCardCarousel /></Frame>
+
+  <Group title="People" count={5} />
+  <Frame name="RbExpertQuote" source={src('RbExpertQuote')}><RbExpertQuote /></Frame>
+  <Frame name="SaPeopleGrid" source={src('SaPeopleGrid')}><SaPeopleGrid /></Frame>
+  <Frame name="SaPeopleStrip" source={src('SaPeopleStrip')}><SaPeopleStrip /></Frame>
   <Frame name="SaTeamContacts" source={src('SaTeamContacts')}><SaTeamContacts /></Frame>
-  <Frame name="SaSideTabs" source={src('SaSideTabs')}><SaSideTabs /></Frame>
+  <Frame name="BcgExperts" source={src('BcgExperts')}><BcgExperts /></Frame>
+
+  <Group title="Stats & badges" count={2} />
+  <Frame name="BcgNumbers" source={src('BcgNumbers')}><BcgNumbers /></Frame>
+  <Frame name="RbAwardBadge" source={src('RbAwardBadge')}><RbAwardBadge /></Frame>
+
+  <Group title="CTAs & banners" count={9} />
+  <Frame name="RbFlagCta" source={src('RbFlagCta')}><RbFlagCta /></Frame>
+  <Frame name="RbContactBox" source={src('RbContactBox')}><RbContactBox /></Frame>
+  <Frame name="SaInfoBanner" source={src('SaInfoBanner')}><SaInfoBanner /></Frame>
   <Frame name="SaContactCta" source={src('SaContactCta')}><SaContactCta /></Frame>
-  <Frame name="SaSideTabList" source={src('SaSideTabList')}><SaSideTabList /></Frame>
+  <Frame name="SoaCtaBanner" source={src('SoaCtaBanner')}><SoaCtaBanner /></Frame>
+  <Frame name="SoaSideCtas" source={src('SoaSideCtas')}><SoaSideCtas /></Frame>
+  <Frame name="BcgFeaturePromo" source={src('BcgFeaturePromo')}><BcgFeaturePromo /></Frame>
+  <Frame name="BcgSubscribeRail" source={src('BcgSubscribeRail')}><BcgSubscribeRail /></Frame>
+  <Frame name="SaFollowUs" source={src('SaFollowUs')}><SaFollowUs /></Frame>
+
+  <Group title="Footers" count={6} />
+  <Frame name="RbFooter" source={src('RbFooter')}><RbFooter /></Frame>
+  <Frame name="SaFooter" source={src('SaFooter')}><SaFooter /></Frame>
   <Frame name="SaFooter" source={src('SaFooter')}>
     <SaFooter breadcrumb={[{ label: 'Strategy& Türkiye', href: '#' }, { label: 'Uzmanlıklarımız', href: '#' }, { label: 'Operasyon Stratejisi' }]} columns={trFooterColumns} copyright="© 2023 - 2026 PwC. Her hakkı saklıdır. PwC, PwC ağını ve/veya bir veya daha fazla üye firmasını ifade eder." legal={['Kişisel Verilerin Korunması', 'Yasal Uyarı', 'Site Sahibi', 'Çerezler Hakkında', 'Harici Hizmet Sağlayıcılar'].map((l) => ({ label: l, href: '#' }))} />
   </Frame>
-
-  {/* ---------------- Kearney ---------------- */}
-  <Frame name="KeHeader" source={src('KeHeader')}><KeHeader /></Frame>
-  <Frame name="KeHero" source={src('KeHero')}><KeHero /></Frame>
-  <Frame name="KeSubnav" source={src('KeSubnav')}><KeSubnav /></Frame>
-  <Frame name="KeIntro" source={src('KeIntro')}><KeIntro /></Frame>
-  <Frame name="KeFeatureRow" source={src('KeFeatureRow')}>
-    <KeFeatureRow />
-    <KeFeatureRow imageSide="left" title="Life at Kearney" text="Kearney fosters an environment where Originals not only thrive but also feel a genuine sense of belonging." cta={{ label: 'Discover life at Kearney', href: '#' }} image={img1} />
-  </Frame>
-  <Frame name="KeArticleGrid" source={src('KeArticleGrid')}><KeArticleGrid /></Frame>
-  <Frame name="KeNotice" source={src('KeNotice')}><KeNotice /></Frame>
   <Frame name="KeFooter" source={src('KeFooter')}><KeFooter /></Frame>
-  <Frame name="KeHero" source={src('KeHero')}><KeHero align="left" title="Opportunities at Kearney" subtitle="From consulting to internal roles, find paths that fit your ambitions." /></Frame>
-  <Frame name="KeJobsIntro" source={src('KeJobsIntro')}><KeJobsIntro /></Frame>
-  <Frame name="KeCarousel" source={src('KeCarousel')}><KeCarousel /></Frame>
-  <Frame name="KeRolesList" source={src('KeRolesList')}><KeRolesList /></Frame>
-
-  {/* ---------------- Source of Asia ---------------- */}
-  <Frame name="SoaNav" source={src('SoaNav')}><SoaNav /></Frame>
-  <Frame name="SoaPageHeader" source={src('SoaPageHeader')}><SoaPageHeader /></Frame>
-  <Frame name="SoaFilterBar" source={src('SoaFilterBar')}><SoaFilterBar /></Frame>
-  <Frame name="SoaFeaturedPost" source={src('SoaFeaturedPost')}><SoaFeaturedPost /></Frame>
-  <Frame name="SoaPostGrid" source={src('SoaPostGrid')}><SoaPostGrid /></Frame>
-  <Frame name="SoaSideCtas" source={src('SoaSideCtas')}><SoaSideCtas /></Frame>
-  <Frame name="SoaServices" source={src('SoaServices')}><SoaServices /></Frame>
-  <Frame name="SoaCtaBanner" source={src('SoaCtaBanner')}><SoaCtaBanner /></Frame>
   <Frame name="SoaFooter" source={src('SoaFooter')}><SoaFooter /></Frame>
-
-  {/* ---------------- BCG ---------------- */}
-  <Frame name="BcgHeader" source={src('BcgHeader')}><BcgHeader /></Frame>
-  <Frame name="BcgHero" source={src('BcgHero')}><BcgHero /></Frame>
-  <Frame name="BcgSectionBanner" source={src('BcgSectionBanner')}><BcgSectionBanner /></Frame>
-  <Frame name="BcgServiceTiles" source={src('BcgServiceTiles')}><BcgServiceTiles /></Frame>
-  <Frame name="BcgNumbers" source={src('BcgNumbers')}><BcgSectionBanner title="Our Approach to AI Transformation" /><BcgNumbers /></Frame>
-  <Frame name="BcgRichText" source={src('BcgRichText')}><BcgRichText /></Frame>
-  <Frame name="BcgIconTabs" source={src('BcgIconTabs')}><BcgIconTabs /></Frame>
-  <Frame name="BcgAccordion" source={src('BcgAccordion')}><BcgAccordion /></Frame>
-  <Frame name="BcgCardCarousel" source={src('BcgCardCarousel')}><BcgSectionBanner title="Our Clients’ Success in Artificial Intelligence" /><BcgCardCarousel /></Frame>
-  <Frame name="BcgNewsList" source={src('BcgNewsList')}><BcgSectionBanner title="Our Latest News Headlines" /><BcgNewsList /></Frame>
-  <Frame name="BcgExperts" source={src('BcgExperts')}>
-    <BcgSectionBanner title="Our Artificial Intelligence Consulting Leaders" text="Ushering in the future of AI in business, our AI consulting leaders combine deep technical expertise with decades of industry experience." link={{ label: 'See more experts', href: '#' }} />
-    <BcgExperts />
-  </Frame>
-  <Frame name="BcgFeaturePromo" source={src('BcgFeaturePromo')}><BcgFeaturePromo /></Frame>
-  <Frame name="BcgExploreMore" source={src('BcgExploreMore')}><BcgSectionBanner title="Explore More" /><BcgExploreMore /></Frame>
-  <Frame name="BcgSubscribeRail" source={src('BcgSubscribeRail')}><BcgSubscribeRail /></Frame>
   <Frame name="BcgFooter" source={src('BcgFooter')}><BcgFooter /></Frame>
 </Lab>
