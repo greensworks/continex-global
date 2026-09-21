@@ -1,0 +1,10 @@
+---
+import { getCollection } from 'astro:content';
+import InsightPostView from '@/views/InsightPostView.astro';
+export async function getStaticPaths() {
+  const posts = await getCollection('insights', (e) => e.id.startsWith('en/') && !e.data.draft);
+  return posts.map((post) => ({ params: { slug: post.id.split('/').slice(1).join('/') }, props: { post } }));
+}
+const { post } = Astro.props;
+---
+<InsightPostView post={post} />

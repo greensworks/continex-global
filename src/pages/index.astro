@@ -1,11 +1,4 @@
 ---
-import Base from '@layouts/Base.astro';
-import Hero from '@components/sections/Hero.astro';
-import LogoMarquee from '@components/sections/LogoMarquee.astro';
-import heroImg from '@assets/images/high-voltage-towers.webp';
-import { site } from '@data/site';
+import HomeView from '@/views/HomeView.astro';
 ---
-<Base title={site.name} description={site.description.en} headerTheme="dark">
-  <Hero image={heroImg} imageAlt="High-voltage transmission towers at dusk" />
-  <LogoMarquee />
-</Base>
+<HomeView />

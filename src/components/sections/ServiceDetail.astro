@@ -1,0 +1,27 @@
+---
+/** One service: title, summary and the bullet list, alternating with a photo (pattern: SaSplitFeature). */
+import { Image } from 'astro:assets';
+import type { Service } from '@data/services';
+import { getLocale, t } from '@i18n/utils';
+import { img } from '@/lib/images';
+
+interface Props { service: Service; index: number; image: string }
+const { service, index, image } = Astro.props;
+const locale = getLocale(Astro.url);
+const flip = index % 2 === 1;
+---
+<section id={service.slug} class:list={['section', flip ? 'bg-surface-alt' : 'bg-surface']}>
+  <div class="container-site grid items-start gap-12 lg:grid-cols-2 lg:gap-20">
+    <div class:list={[flip && 'lg:order-2']} data-reveal>
+      <span class="font-mono text-xs text-ink-400">0{index + 1}</span>
+      <h2 class="mt-3 text-h2">{t(service.title, locale)}</h2>
+      <p class="mt-5 text-lead text-ink-500">{t(service.summary, locale)}</p>
+      <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+        {t(service.points, locale).map((pt) => <li class="flex gap-3 text-sm text-ink-700"><span class="mt-2 h-px w-4 shrink-0 bg-accent-600" aria-hidden="true"></span>{pt}</li>)}
+      </ul>
+    </div>
+    <div class:list={['aspect-[4/3] overflow-hidden rounded-card bg-surface-muted', flip && 'lg:order-1']} data-reveal>
+      <Image src={img(image)} alt="" widths={[640, 1280]} sizes="(min-width: 1024px) 50vw, 100vw" layout="none" class="h-full w-full object-cover" />
+    </div>
+  </div>
+</section>

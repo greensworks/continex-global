@@ -1,0 +1,40 @@
+---
+/** Leadership cards: portrait (placeholder until supplied), name, role, bio, experience, LinkedIn. */
+import { Image } from 'astro:assets';
+import { getLocale, t } from '@i18n/utils';
+import { useTranslations } from '@i18n/ui';
+import { team } from '@data/team';
+import { img } from '@/lib/images';
+
+interface Props { full?: boolean; eyebrow?: string; title?: string }
+const locale = getLocale(Astro.url);
+const tr = useTranslations(locale);
+const { full = false, eyebrow = tr('nav.leadership'), title = locale === 'tr' ? 'Mandatı alan kişiler işi yapar.' : 'The people who win the mandate do the work.' } = Astro.props;
+---
+<section class="section bg-surface" id="leadership">
+  <div class="container-site">
+    <div class="max-w-3xl" data-reveal>
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 class="mt-4 text-h2">{title}</h2>
+    </div>
+    <div class="mt-12 grid gap-8 lg:grid-cols-2" data-reveal-group>
+      {team.map((p) => (
+        <article class="grid gap-6 rounded-card border border-line bg-surface p-6 sm:grid-cols-[180px_1fr]">
+          <div class="aspect-[4/5] w-full max-w-[180px] overflow-hidden rounded-card bg-surface-muted">
+            {p.image ? <Image src={img(p.image)} alt={p.name} width={360} height={450} layout="none" class="h-full w-full object-cover" /> : <div class="grid h-full w-full place-items-center font-display text-4xl font-semibold text-ink-400">{p.name.split(' ').map((n) => n[0]).join('')}</div>}
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-navy-900">{p.name}</h3>
+            <p class="text-sm font-medium text-accent-600">{t(p.role, locale)}</p>
+            {full ? t(p.bio, locale).map((para) => <p class="mt-3 text-sm leading-relaxed text-ink-500">{para}</p>) : <p class="mt-3 text-sm leading-relaxed text-ink-500">{t(p.short, locale)}</p>}
+            <dl class="mt-4 space-y-1 text-xs text-ink-500">
+              <div><dt class="inline font-semibold text-navy-900">{tr('label.sectors')}: </dt><dd class="inline">{t(p.sectors, locale)}</dd></div>
+              <div><dt class="inline font-semibold text-navy-900">{tr('label.countries')}: </dt><dd class="inline">{t(p.countries, locale)}</dd></div>
+            </dl>
+            {p.linkedin && <a href={p.linkedin} rel="noopener" target="_blank" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-navy-900 hover:underline underline-offset-4">LinkedIn ↗</a>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+---
+/** Four service cards in a hairline grid (pattern: RbTileGrid, Continex palette). */
+import { getLocale, localizePath, t } from '@i18n/utils';
+import { useTranslations } from '@i18n/ui';
+import { services } from '@data/services';
+import { whatWeDo } from '@data/home';
+
+const locale = getLocale(Astro.url);
+const tr = useTranslations(locale);
+---
+<section class="section bg-surface">
+  <div class="container-site">
+    <div class="max-w-3xl" data-reveal>
+      <p class="eyebrow">{t(whatWeDo.eyebrow, locale)}</p>
+      <h2 class="mt-4 text-h2">{t(whatWeDo.title, locale)}</h2>
+    </div>
+    <div class="mt-12 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-4" data-reveal-group>
+      {services.map((s, i) => (
+        <a href={localizePath(`/what-we-do/${s.slug}`, locale)} class="group flex min-h-[320px] flex-col justify-between bg-surface p-7 transition hover:bg-surface-alt">
+          <div>
+            <span class="font-mono text-xs text-ink-400">0{i + 1}</span>
+            <h3 class="mt-5 text-h3">{t(s.title, locale)}</h3>
+            <p class="mt-4 text-sm leading-relaxed text-ink-500">{t(s.summary, locale)}</p>
+          </div>
+          <span class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-accent-600">{tr('cta.readMore')}<span class="transition group-hover:translate-x-1" aria-hidden="true">→</span></span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

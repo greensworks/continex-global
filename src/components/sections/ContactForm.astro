@@ -1,0 +1,72 @@
+---
+/**
+ * Enquiry form. Posts JSON to PUBLIC_FORM_ENDPOINT (HubSpot/Pipedrive
+ * webhook, serverless function, …). Captures source (referrer + UTM) and
+ * page language so the CRM record matches the brief's field list.
+ */
+import { getLocale, t } from '@i18n/utils';
+import { useTranslations } from '@i18n/ui';
+import { services } from '@data/services';
+import { markets } from '@data/markets';
+import { site } from '@data/site';
+
+const locale = getLocale(Astro.url);
+const tr = useTranslations(locale);
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || '';
+const field = 'w-full rounded-card border border-line bg-surface px-4 py-3 text-sm text-ink-900 outline-none transition placeholder:text-ink-400 focus:border-accent-500';
+---
+<form class="grid gap-5 sm:grid-cols-2" data-contact-form data-endpoint={endpoint} novalidate>
+  <label class="block"><span class="mb-1.5 block text-xs font-semibold text-navy-900">{tr('form.name')} *</span><input name="name" required autocomplete="name" class={field} /></label>
+  <label class="block"><span class="mb-1.5 block text-xs font-semibold text-navy-900">{tr('form.company')} *</span><input name="company" required autocomplete="organization" class={field} /></label>
+  <label class="block"><span class="mb-1.5 block text-xs font-semibold text-navy-900">{tr('form.role')}</span><input name="role" autocomplete="organization-title" class={field} /></label>
+  <label class="block"><span class="mb-1.5 block text-xs font-semibold text-navy-900">{tr('form.email')} *</span><input name="email" type="email" required autocomplete="email" class={field} /></label>
+  <label class="block"><span class="mb-1.5 block text-xs font-semibold text-navy-900">{tr('form.country')}</span><input name="country" autocomplete="country-name" class={field} /></label>
+  <label class="block"><span class="mb-1.5 block text-xs font-semibold text-navy-900">{tr('form.service')}</span>
+    <select name="service" class={field}><option value="">{tr('form.select')}</option>{services.map((s) => <option value={s.slug}>{t(s.title, locale)}</option>)}</select>
+  </label>
+  <label class="block sm:col-span-2"><span class="mb-1.5 block text-xs font-semibold text-navy-900">{tr('form.market')}</span>
+    <select name="market" class={field}><option value="">{tr('form.select')}</option>{markets.map((m) => <option value={t(m.name, 'en')}>{t(m.name, locale)}</option>)}</select>
+  </label>
+  <label class="block sm:col-span-2"><span class="mb-1.5 block text-xs font-semibold text-navy-900">{tr('form.message')} *</span><textarea name="message" required rows="5" class={field}></textarea></label>
+  <label class="flex items-start gap-3 text-xs text-ink-500 sm:col-span-2"><input type="checkbox" name="consent" required class="mt-0.5 accent-navy-800" /><span>{tr('form.consent')}</span></label>
+  <input type="hidden" name="language" value={locale} />
+  <input type="hidden" name="source" value="" />
+  <input type="hidden" name="page" value="" />
+  <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+  <div class="sm:col-span-2">
+    <button type="submit" class="inline-flex items-center rounded-card bg-accent-600 px-6 py-3.5 text-base font-semibold text-white transition hover:bg-accent-500 disabled:opacity-60" data-submit>{tr('form.submit')}</button>
+    <p class="mt-3 hidden text-sm" data-status role="status"></p>
+    {!endpoint && <p class="mt-3 text-xs text-ink-400">PUBLIC_FORM_ENDPOINT is not set; submissions will fall back to e-mail.</p>}
+  </div>
+</form>
+
+<script define:vars={{ msgs: { sending: tr('form.sending'), success: tr('form.success'), error: tr('form.error'), submit: tr('form.submit') }, email: site.email }}>
+  const form = document.querySelector('[data-contact-form]');
+  const btn = form.querySelector('[data-submit]');
+  const status = form.querySelector('[data-status]');
+  const p = new URLSearchParams(location.search);
+  form.elements.source.value = ['utm_source', 'utm_medium', 'utm_campaign'].map((k) => p.get(k)).filter(Boolean).join(' / ') || document.referrer || 'direct';
+  form.elements.page.value = location.href;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.reportValidity() || form.elements.website.value) return;
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.submittedAt = new Date().toISOString();
+    btn.disabled = true; btn.textContent = msgs.sending; status.hidden = true;
+    const endpoint = form.dataset.endpoint;
+    try {
+      if (!endpoint) throw new Error('no endpoint');
+      const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      if (!res.ok) throw new Error(String(res.status));
+      form.reset(); status.textContent = msgs.success; status.className = 'mt-3 text-sm text-emerald-700';
+    } catch {
+      if (email) {
+        location.href = `mailto:${email}?subject=${encodeURIComponent('Enquiry: ' + (data.company || ''))}&body=${encodeURIComponent(Object.entries(data).map(([k, v]) => `${k}: ${v}`).join('\n'))}`;
+      }
+      status.textContent = msgs.error; status.className = 'mt-3 text-sm text-red-600';
+    } finally {
+      status.hidden = false; btn.disabled = false; btn.textContent = msgs.submit;
+    }
+  });
+</script>

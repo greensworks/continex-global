@@ -1,0 +1,33 @@
+---
+/** Five photo tiles with a navy caption strip (pattern: RbMediaTiles). */
+import { Image } from 'astro:assets';
+import { getLocale, localizePath, t } from '@i18n/utils';
+import { industries } from '@data/industries';
+import { industryDetails } from '@data/pages';
+import { img } from '@/lib/images';
+
+interface Props { eyebrow?: string; title?: string; detailed?: boolean }
+const locale = getLocale(Astro.url);
+const { eyebrow = locale === 'tr' ? 'Sektörler' : 'Industries', title = locale === 'tr' ? 'Büyük, teknik ve uluslararası projelerin olduğu yerde çalışıyoruz.' : 'We work where projects are large, technical and international.', detailed = false } = Astro.props;
+---
+<section class="section bg-surface">
+  <div class="container-site">
+    <div class="max-w-3xl" data-reveal>
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 class="mt-4 text-h2">{title}</h2>
+    </div>
+    <div class="mt-12 grid gap-1 sm:grid-cols-2 lg:grid-cols-5" data-reveal-group>
+      {industries.map((ind) => (
+        <a href={localizePath(`/industries#${ind.slug}`, locale)} id={detailed ? ind.slug : undefined} class="group block bg-navy-900 text-white">
+          <div class="aspect-[4/3] overflow-hidden">
+            <Image src={img(ind.image)} alt="" widths={[400, 800]} sizes="(min-width: 1024px) 20vw, 50vw" layout="none" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
+          </div>
+          <div class="p-5">
+            <h3 class="text-base font-semibold text-white">{t(ind.title, locale)}</h3>
+            {detailed && <p class="mt-2 text-sm leading-relaxed text-white/65">{t(industryDetails[ind.slug], locale)}</p>}
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

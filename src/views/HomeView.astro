@@ -1,0 +1,33 @@
+---
+import Base from '@layouts/Base.astro';
+import Hero from '@components/sections/Hero.astro';
+import WhatWeDo from '@components/sections/WhatWeDo.astro';
+import WhyContinex from '@components/sections/WhyContinex.astro';
+import HowWeWork from '@components/sections/HowWeWork.astro';
+import IndustriesGrid from '@components/sections/IndustriesGrid.astro';
+import ExperienceCards from '@components/sections/ExperienceCards.astro';
+import Numbers from '@components/sections/Numbers.astro';
+import MarketsGrid from '@components/sections/MarketsGrid.astro';
+import Leadership from '@components/sections/Leadership.astro';
+import InsightsLatest from '@components/sections/InsightsLatest.astro';
+import LogoMarquee from '@components/sections/LogoMarquee.astro';
+import FinalCta from '@components/sections/FinalCta.astro';
+import heroImg from '@assets/images/high-voltage-towers.webp';
+import { getLocale, t } from '@i18n/utils';
+import { site } from '@data/site';
+const locale = getLocale(Astro.url);
+---
+<Base title={site.name} description={t(site.description, locale)} headerTheme="dark">
+  <Hero image={heroImg} imageAlt={locale === 'tr' ? 'Gün batımında yüksek gerilim hatları' : 'High-voltage transmission towers at dusk'} />
+  <WhatWeDo />
+  <WhyContinex />
+  <HowWeWork />
+  <IndustriesGrid />
+  <ExperienceCards />
+  <Numbers />
+  <LogoMarquee tone="light" />
+  <MarketsGrid />
+  <Leadership />
+  <InsightsLatest />
+  <FinalCta />
+</Base>

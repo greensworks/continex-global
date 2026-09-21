@@ -1,0 +1,30 @@
+---
+import Base from '@layouts/Base.astro';
+import PageHero from '@components/sections/PageHero.astro';
+import ServiceDetail from '@components/sections/ServiceDetail.astro';
+import ExperienceCards from '@components/sections/ExperienceCards.astro';
+import FinalCta from '@components/sections/FinalCta.astro';
+import { services, serviceImages, type Service } from '@data/services';
+import { getLocale, localizePath, t } from '@i18n/utils';
+import { useTranslations } from '@i18n/ui';
+import { img } from '@/lib/images';
+
+interface Props { service: Service }
+const { service } = Astro.props;
+const locale = getLocale(Astro.url);
+const tr = useTranslations(locale);
+const index = services.findIndex((s) => s.slug === service.slug);
+const others = services.filter((s) => s.slug !== service.slug);
+---
+<Base title={t(service.title, locale)} description={t(service.summary, locale)} headerTheme="dark">
+  <PageHero eyebrow={tr('nav.whatWeDo')} title={t(service.title, locale)} lead={t(service.summary, locale)} image={img(serviceImages[service.slug])} />
+  <ServiceDetail service={service} index={index} image={serviceImages[service.slug]} />
+  <section class="border-y border-line bg-surface-alt">
+    <div class="container-site flex flex-wrap items-center gap-x-8 gap-y-3 py-6 text-sm">
+      <span class="font-semibold text-navy-900">{tr('label.services')}:</span>
+      {others.map((s) => <a href={localizePath(`/what-we-do/${s.slug}`, locale)} class="text-ink-500 hover:text-navy-900 hover:underline underline-offset-4">{t(s.title, locale)}</a>)}
+    </div>
+  </section>
+  <ExperienceCards />
+  <FinalCta />
+</Base>

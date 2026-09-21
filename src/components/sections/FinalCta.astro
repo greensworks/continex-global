@@ -1,0 +1,18 @@
+---
+/** Closing band with the single primary call to action. */
+import Button from '@components/ui/Button.astro';
+import { getLocale, localizePath, t } from '@i18n/utils';
+import { useTranslations } from '@i18n/ui';
+import { finalCta } from '@data/home';
+const locale = getLocale(Astro.url);
+const tr = useTranslations(locale);
+---
+<section class="bg-navy-900 text-white">
+  <div class="container-site flex flex-col gap-8 py-20 lg:flex-row lg:items-center lg:justify-between lg:py-28">
+    <div class="max-w-3xl" data-reveal>
+      <h2 class="text-h2 text-white">{t(finalCta.title, locale)}</h2>
+      <p class="mt-4 text-lead text-white/70">{t(finalCta.text, locale)}</p>
+    </div>
+    <div data-reveal><Button href={localizePath('/contact', locale)} size="lg">{tr('cta.discuss')}</Button></div>
+  </div>
+</section>

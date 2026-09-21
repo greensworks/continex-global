@@ -1,0 +1,19 @@
+---
+import Base from '@layouts/Base.astro';
+import PageHero from '@components/sections/PageHero.astro';
+import ExperienceCards from '@components/sections/ExperienceCards.astro';
+import LogoMarquee from '@components/sections/LogoMarquee.astro';
+import FinalCta from '@components/sections/FinalCta.astro';
+import { pages } from '@data/pages';
+import { getLocale, t } from '@i18n/utils';
+import { useTranslations } from '@i18n/ui';
+import heroImg from '@assets/images/storage-tanks-night.webp';
+const locale = getLocale(Astro.url);
+const tr = useTranslations(locale);
+---
+<Base title={t(pages.experience.title, locale)} description={t(pages.experience.lead, locale)} headerTheme="dark">
+  <PageHero eyebrow={tr('nav.experience')} title={t(pages.experience.title, locale)} lead={t(pages.experience.lead, locale)} image={heroImg} />
+  <ExperienceCards full showLink={false} title={locale === 'tr' ? 'Üç güncel mandat.' : 'Three recent mandates.'} />
+  <LogoMarquee tone="light" />
+  <FinalCta />
+</Base>

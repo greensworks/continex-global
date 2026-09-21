@@ -57,3 +57,11 @@ export const services: Service[] = [
     },
   },
 ];
+
+/** Photo per service (filename under src/assets/images). */
+export const serviceImages: Record<string, string> = {
+  'market-entry': 'glass-facade',
+  'strategic-partnerships': 'meeting-table',
+  'project-development': 'refinery-dusk',
+  'international-representation': 'storage-tanks-night',
+};

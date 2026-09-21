@@ -1,0 +1,21 @@
+---
+import Base from '@layouts/Base.astro';
+import { pages } from '@data/pages';
+import { site } from '@data/site';
+import { getLocale, t } from '@i18n/utils';
+
+interface Props { kind: 'privacy' | 'cookies' }
+const { kind } = Astro.props;
+const locale = getLocale(Astro.url);
+const title = t(pages.legal[kind].title, locale);
+---
+<Base title={title} description={title} noindex>
+  <section class="section">
+    <div class="container-site max-w-3xl">
+      <h1 class="text-h1">{title}</h1>
+      <p class="mt-6 text-lead text-ink-500">{t(pages.legal.pending, locale)}</p>
+      <p class="mt-6 text-sm text-ink-500">{site.legalName} · {site.address.lines.join(', ')}</p>
+      {kind === 'cookies' && <p class="mt-6"><a href="#" data-open-consent class="text-sm font-semibold text-accent-600 underline underline-offset-4">{locale === 'tr' ? 'Çerez tercihlerini değiştir' : 'Change cookie preferences'}</a></p>}
+    </div>
+  </section>
+</Base>
