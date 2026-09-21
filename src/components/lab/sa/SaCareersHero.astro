@@ -23,11 +23,11 @@ const {
       <a href={b.href} class:list={['flex items-center justify-between px-6 py-4 text-[15px] font-semibold text-neutral-900 transition hover:bg-neutral-50 lg:px-[86px]', i > 0 && 'border-t border-neutral-200 md:border-l md:border-t-0']}>{b.label}<span aria-hidden="true">›</span></a>
     ))}
   </div>
-  <div class="mx-auto grid max-w-[1512px] items-center gap-12 px-6 py-20 lg:grid-cols-[1fr_520px] lg:px-[86px] lg:py-28">
-    <div>
-      <div class="flex items-end gap-8">
-        <span class="font-serif text-[120px] leading-none text-neutral-900 md:text-[139px]" aria-hidden="true">&amp;</span>
-        <h1 class="font-serif text-6xl leading-none text-neutral-900 md:text-[112px]">{title}</h1>
+  <div class="mx-auto grid max-w-[1512px] items-center gap-12 px-6 py-20 lg:grid-cols-[minmax(0,1fr)_minmax(320px,520px)] lg:px-[86px] lg:py-28">
+    <div class="min-w-0">
+      <div class="flex flex-wrap items-end gap-6 md:gap-8">
+        <span class="font-serif text-[96px] leading-none text-neutral-900 md:text-[139px]" aria-hidden="true">&amp;</span>
+        <h1 class="font-serif text-6xl leading-none text-neutral-900 md:text-[88px] xl:text-[112px]">{title}</h1>
       </div>
       <p class="mt-12 max-w-[640px] font-serif text-3xl leading-snug text-neutral-900 md:text-[36px]">{tagline}</p>
       <p class="mt-6 max-w-[640px] text-base leading-relaxed text-neutral-700 md:text-lg">{text}</p>
