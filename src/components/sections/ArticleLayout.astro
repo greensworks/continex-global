@@ -34,7 +34,7 @@ const related = (relatedServices.length ? services.filter((s) => relatedServices
 <article class="bg-surface">
   {image && <div class="h-[300px] w-full overflow-hidden bg-navy-950 md:h-[520px]"><Image src={image} alt="" widths={[768, 1512]} sizes="100vw" layout="none" class="h-full w-full object-cover" loading="eager" /></div>}
   <div class="container-site">
-    <div class:list={['relative max-w-[960px] bg-surface pt-10 md:pr-12', image ? '-mt-24 md:-mt-40' : 'pt-16']}>
+    <div class:list={['relative max-w-[960px] bg-surface pt-10 md:pr-12', image ? '-mt-24 md:-mt-40 md:pl-12' : 'pt-16 md:pl-12']}>
       <a href={backHref} class="text-sm font-semibold text-accent-600 hover:underline underline-offset-4">← {backLabel}</a>
       <p class="mt-6 text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">{label}</p>
       <h1 class="mt-4 text-h1">{title}</h1>
@@ -48,7 +48,7 @@ const related = (relatedServices.length ? services.filter((s) => relatedServices
     <div class="h-[3px] w-full bg-line"><div class="h-full w-0 bg-accent-600" data-progress></div></div>
   </div>
 
-  <div class="container-site grid gap-12 py-12 lg:grid-cols-[minmax(0,760px)_1fr] lg:gap-20">
+  <div class="container-site grid gap-12 py-12 md:pl-[calc(2rem+3rem)] lg:grid-cols-[minmax(0,760px)_1fr] lg:gap-20 lg:pl-[calc(2.5rem+3rem)]">
 
     <div class="min-w-0">
       {highlights.length > 0 && (
