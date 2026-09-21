@@ -20,7 +20,7 @@ const { full = false, eyebrow = locale === 'tr' ? 'Referans çalışmalar' : 'Se
 const n = experience.length;
 const uid = Math.random().toString(36).slice(2, 7);
 ---
-<section class="relative overflow-hidden bg-navy-950 py-16 text-white lg:py-24" data-exp-slider>
+<section class="relative overflow-hidden bg-surface-alt py-16 text-navy-900 lg:py-24" data-exp-slider>
   <div class="flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" data-track>
     {experience.map((c, i) => {
       const next = experience[(i + 1) % n];
@@ -34,18 +34,18 @@ const uid = Math.random().toString(36).slice(2, 7);
             </div>
 
             <div class="lg:col-span-6 lg:pl-6">
-              <p class="flex items-center gap-4 text-sm text-white/80"><span class="font-mono tracking-wider">{String(i + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}</span><span class="h-px w-8 bg-white/40" aria-hidden="true"></span><span>{eyebrow}</span></p>
-              <h2 class="mt-6 font-display text-3xl font-medium leading-tight text-white md:text-[40px] md:leading-[1.15]">{t(c.title, locale)}</h2>
-              <p class="mt-6 max-w-xl text-[15px] leading-relaxed text-white/75">{full ? t(c.need, locale) : t(c.outcome, locale)}</p>
-              {full && <p class="mt-4 max-w-xl text-[15px] leading-relaxed text-white/75">{t(c.outcome, locale)}</p>}
-              <p class="mt-5 text-xs text-white/60">{t(c.client, locale)} · {t(c.sector, locale)} · {t(c.market, locale)} · {t(c.status, locale)}</p>
-              <a href={localizePath(`/selected-experience/${c.slug}`, locale)} class="mt-8 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-white hover:text-steel-300">{tr('cta.readMore')} <span aria-hidden="true">→</span></a>
+              <p class="flex items-center gap-4 text-sm text-ink-500"><span class="font-mono tracking-wider text-accent-600">{String(i + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}</span><span class="h-px w-8 bg-ink-400" aria-hidden="true"></span><span>{eyebrow}</span></p>
+              <h2 class="mt-6 font-display text-3xl font-semibold leading-tight text-navy-900 md:text-[40px] md:leading-[1.15]">{t(c.title, locale)}</h2>
+              <p class="mt-6 max-w-xl text-[15px] leading-relaxed text-ink-700">{full ? t(c.need, locale) : t(c.outcome, locale)}</p>
+              {full && <p class="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-700">{t(c.outcome, locale)}</p>}
+              <p class="mt-5 text-xs text-ink-500">{t(c.client, locale)} · {t(c.sector, locale)} · {t(c.market, locale)} · {t(c.status, locale)}</p>
+              <a href={localizePath(`/selected-experience/${c.slug}`, locale)} class="mt-8 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-navy-900 hover:text-accent-600">{tr('cta.readMore')} <span aria-hidden="true">→</span></a>
               <div class="mt-6">
-                <a href={localizePath(showLink ? '/selected-experience' : '/contact', locale)} class="inline-flex border border-white bg-white px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-navy-950 transition hover:bg-transparent hover:text-white">{showLink ? tr('exp.viewAll') : tr('cta.discuss')}</a>
+                <a href={localizePath(showLink ? '/selected-experience' : '/contact', locale)} class="inline-flex border border-navy-900 bg-navy-900 px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-transparent hover:text-navy-900">{showLink ? tr('exp.viewAll') : tr('cta.discuss')}</a>
               </div>
-              <div class="mt-10 flex items-center gap-6 text-white/80">
-                <button type="button" data-dir="-1" class="transition hover:text-white disabled:opacity-30" aria-label="Previous"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m6-6-6 6 6 6"/></svg></button>
-                <button type="button" data-dir="1" class="transition hover:text-white disabled:opacity-30" aria-label="Next"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+              <div class="mt-10 flex items-center gap-6 text-ink-500">
+                <button type="button" data-dir="-1" class="transition hover:text-navy-900 disabled:opacity-30" aria-label="Previous"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m6-6-6 6 6 6"/></svg></button>
+                <button type="button" data-dir="1" class="transition hover:text-navy-900 disabled:opacity-30" aria-label="Next"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
               </div>
             </div>
 
