@@ -27,6 +27,24 @@ src/
   assets/images | logos | partners
 ```
 
+## Site pages (EN at `/`, TR at `/tr/...`)
+
+Thin files in `src/pages/` render shared views in `src/views/`, so each page exists once and
+serves both languages. Content comes from `src/data/*.ts` (`{ en, tr }` records) and
+`src/content/insights/{en,tr}/`.
+
+| Route | View | Sections |
+|---|---|---|
+| `/` | HomeView | Hero, WhatWeDo, WhyContinex, HowWeWork, IndustriesGrid, ExperienceCards, Numbers, LogoMarquee, MarketsGrid, Leadership, InsightsLatest, FinalCta |
+| `/what-we-do`, `/what-we-do/[slug]` | WhatWeDoView, ServiceView | PageHero, ServiceDetail ×4, HowWeWork |
+| `/industries` | IndustriesView | IndustriesGrid (detailed), ExperienceCards |
+| `/markets` | MarketsView | MarketsGrid with Office / Local team / Strategic partner / Market coverage legend |
+| `/selected-experience` | ExperienceView | ExperienceCards (full) |
+| `/about` | AboutView | Our role, Our model, Leadership, Markets, Numbers, Principles |
+| `/insights`, `/insights/[slug]` | InsightsView, InsightPostView | content collection |
+| `/contact` | ContactView | ContactForm (posts JSON to `PUBLIC_FORM_ENDPOINT`, mailto fallback) |
+| `/privacy-policy`, `/cookie-policy` | LegalView | placeholder until legal text arrives |
+
 ## Conventions
 
 - **Bilingual content** lives in `src/data/*.ts` as `{ en, tr }` records; pick with `t(value, locale)`.
