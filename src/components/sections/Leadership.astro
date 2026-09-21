@@ -9,7 +9,7 @@ import { img } from '@/lib/images';
 interface Props { full?: boolean; eyebrow?: string; title?: string }
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
-const { full = false, eyebrow = tr('nav.leadership'), title = locale === 'tr' ? 'Mandatı alan kişiler işi yapar.' : 'The people who win the mandate do the work.' } = Astro.props;
+const { full = false, eyebrow = tr('nav.leadership'), title = locale === 'tr' ? 'Yetkiyi üstlenen yöneticiler işi bizzat yürütür.' : 'The people who win the mandate do the work.' } = Astro.props;
 ---
 <section class="section bg-surface" id="leadership">
   <div class="container-site">

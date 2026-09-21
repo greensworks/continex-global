@@ -9,7 +9,7 @@ import { img } from '@/lib/images';
 interface Props { full?: boolean; eyebrow?: string; title?: string; showLink?: boolean }
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
-const { full = false, eyebrow = locale === 'tr' ? 'Seçilmiş deneyim' : 'Selected experience', title = locale === 'tr' ? 'Gerçek mandatlar, gerçek sonuçlar.' : 'Real mandates, real outcomes.', showLink = true } = Astro.props;
+const { full = false, eyebrow = locale === 'tr' ? 'Referans çalışmalar' : 'Selected experience', title = locale === 'tr' ? 'Gerçek yetki sözleşmeleri, ölçülebilir sonuçlar.' : 'Real mandates, real outcomes.', showLink = true } = Astro.props;
 const statusTone = { ongoing: 'bg-accent-600', completed: 'bg-emerald-600', advanced: 'bg-steel-300' };
 ---
 <section class="section bg-surface-alt">

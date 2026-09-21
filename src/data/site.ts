@@ -7,15 +7,15 @@ export const site = {
   legalName: 'Continex Global Danışmanlık ve Dış Ticaret Ltd. Şti.',
   tagline: {
     en: 'Cross-Border Business Development & Strategic Advisory',
-    tr: 'Sınır Ötesi İş Geliştirme ve Stratejik Danışmanlık',
+    tr: 'Uluslararası İş Geliştirme ve Stratejik Danışmanlık',
   },
   headline: {
     en: 'Turning Cross-Border Opportunities into Business',
-    tr: 'Sınır Ötesi Fırsatları İşe Dönüştürüyoruz',
+    tr: 'Uluslararası fırsatları somut iş sonuçlarına dönüştürüyoruz',
   },
   description: {
     en: 'Continex helps international companies enter new markets, secure strategic customers and partners, and execute complex commercial and investment opportunities across Türkiye, China, Asia and selected emerging markets.',
-    tr: 'Continex, uluslararası şirketlerin yeni pazarlara girmesine, stratejik müşteri ve iş ortakları edinmesine ve Türkiye, Çin, Asya ile seçilmiş gelişen pazarlarda karmaşık ticari ve yatırım fırsatlarını hayata geçirmesine yardımcı olur.',
+    tr: 'Continex Global; uluslararası şirketlere yeni pazarlara giriş, stratejik müşteri ve iş ortaklarının kazanılması ile Türkiye, Çin, Asya ve seçili gelişmekte olan pazarlarda karmaşık ticari ve yatırım işlemlerinin hayata geçirilmesi süreçlerinde uçtan uca destek sunmaktadır.',
   },
   address: {
     lines: [
@@ -41,6 +41,6 @@ export const site = {
   ],
   coverage: {
     en: 'Türkiye, China, Asia and selected emerging markets',
-    tr: 'Türkiye, Çin, Asya ve seçilmiş gelişen pazarlar',
+    tr: 'Türkiye, Çin, Asya ve seçili gelişmekte olan pazarlar',
   },
 } as const;

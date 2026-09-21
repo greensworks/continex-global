@@ -39,7 +39,7 @@ const others = experience.filter((c) => c.slug !== cs.slug);
       <dt>{tr('label.progress')}</dt><dd>{t(cs.progress, locale)}</dd>
       <dt>{tr('label.outcome')}</dt><dd>{t(cs.outcome, locale)}</dd>
     </dl>
-    <h2>{locale === 'tr' ? 'Diğer mandatlar' : 'Other mandates'}</h2>
+    <h2>{locale === 'tr' ? 'Diğer referans çalışmalar' : 'Other mandates'}</h2>
     <ul>{others.map((o) => <li><a href={localizePath(`/selected-experience/${o.slug}`, locale)}>{t(o.title, locale)}</a> — {t(o.status, locale)}</li>)}</ul>
   </ArticleLayout>
   <InsightsLatest />

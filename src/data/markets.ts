@@ -20,10 +20,10 @@ export interface Market {
  * coverage, as the client asked us to show honestly.
  */
 export const markets: Market[] = [
-  { name: { en: 'Türkiye', tr: 'Türkiye' }, coverage: 'office', text: { en: 'Headquartered in Istanbul. Home market for OEM, industrial and energy mandates.', tr: 'Merkez İstanbul. OEM, sanayi ve enerji mandatlarında ana pazar.' } },
-  { name: { en: 'China', tr: 'Çin' }, coverage: 'partner', text: { en: 'Direct working relationships with manufacturers, EPC groups, investors and state-linked enterprises.', tr: 'Üreticiler, EPC grupları, yatırımcılar ve kamu bağlantılı kuruluşlarla doğrudan çalışma ilişkileri.' } },
-  { name: { en: 'Europe', tr: 'Avrupa' }, coverage: 'coverage', text: { en: 'Market entry, partner search and OEM development for European technology and industrial companies.', tr: 'Avrupalı teknoloji ve sanayi şirketleri için pazara giriş, ortak arama ve OEM geliştirme.' } },
-  { name: { en: 'Middle East', tr: 'Orta Doğu' }, coverage: 'coverage', text: { en: 'Project development and investor relationships in energy and infrastructure.', tr: 'Enerji ve altyapıda proje geliştirme ve yatırımcı ilişkileri.' } },
-  { name: { en: 'Central Asia', tr: 'Orta Asya' }, coverage: 'coverage', text: { en: 'Cross-border trade and project opportunities linked to Türkiye and China.', tr: 'Türkiye ve Çin ile bağlantılı sınır ötesi ticaret ve proje fırsatları.' } },
-  { name: { en: 'Southeast Asia', tr: 'Güneydoğu Asya' }, coverage: 'coverage', text: { en: 'Selected sourcing, technology and investment opportunities.', tr: 'Seçilmiş tedarik, teknoloji ve yatırım fırsatları.' } },
+  { name: { en: 'Türkiye', tr: 'Türkiye' }, coverage: 'office', text: { en: 'Headquartered in Istanbul. Home market for OEM, industrial and energy mandates.', tr: 'Genel merkezimiz İstanbul’da bulunmaktadır. OEM, sanayi ve enerji alanındaki yetki sözleşmelerimizin ana pazarı.' } },
+  { name: { en: 'China', tr: 'Çin' }, coverage: 'partner', text: { en: 'Direct working relationships with manufacturers, EPC groups, investors and state-linked enterprises.', tr: 'Üreticiler, EPC grupları, yatırımcılar ve kamu iştirakleriyle doğrudan ve kurulu çalışma ilişkileri.' } },
+  { name: { en: 'Europe', tr: 'Avrupa' }, coverage: 'coverage', text: { en: 'Market entry, partner search and OEM development for European technology and industrial companies.', tr: 'Avrupalı teknoloji ve sanayi şirketleri için pazara giriş, iş ortağı tespiti ve OEM müşteri geliştirme.' } },
+  { name: { en: 'Middle East', tr: 'Orta Doğu' }, coverage: 'coverage', text: { en: 'Project development and investor relationships in energy and infrastructure.', tr: 'Enerji ve altyapı alanında proje geliştirme ve yatırımcı ilişkileri.' } },
+  { name: { en: 'Central Asia', tr: 'Orta Asya' }, coverage: 'coverage', text: { en: 'Cross-border trade and project opportunities linked to Türkiye and China.', tr: 'Türkiye ve Çin ile bağlantılı uluslararası ticaret ve proje fırsatları.' } },
+  { name: { en: 'Southeast Asia', tr: 'Güneydoğu Asya' }, coverage: 'coverage', text: { en: 'Selected sourcing, technology and investment opportunities.', tr: 'Seçili tedarik, teknoloji ve yatırım fırsatları.' } },
 ];

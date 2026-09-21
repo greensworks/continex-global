@@ -1,4 +1,5 @@
 import { defaultLocale, locales, type Locale } from './config';
+import { localizeSegment, canonicalSegment } from './routes';
 
 /** Resolve the locale from a URL path (/tr/... → 'tr', else default). */
 export function getLocale(url: URL | string): Locale {
@@ -7,21 +8,24 @@ export function getLocale(url: URL | string): Locale {
   return (locales as readonly string[]).includes(seg) ? (seg as Locale) : defaultLocale;
 }
 
-/** Prefix a site-relative path for the given locale. `/about` → `/tr/about`. */
+/**
+ * Turn a canonical, locale-agnostic path (`/what-we-do/market-entry`) into
+ * the URL for a locale (`/tr/ne-yapiyoruz/pazara-giris`). A hash is kept.
+ */
 export function localizePath(path: string, locale: Locale): string {
-  const clean = path.startsWith('/') ? path : `/${path}`;
-  if (locale === defaultLocale) return clean === '' ? '/' : clean;
-  return clean === '/' ? `/${locale}` : `/${locale}${clean}`;
+  const [clean, hash] = (path.startsWith('/') ? path : `/${path}`).split('#');
+  const parts = clean.split('/').filter(Boolean).map((s) => localizeSegment(s, locale));
+  const prefix = locale === defaultLocale ? '' : `/${locale}`;
+  const out = parts.length ? `${prefix}/${parts.join('/')}` : prefix || '/';
+  return hash ? `${out}#${hash}` : out;
 }
 
-/** Strip a locale prefix from a path. `/tr/about` → `/about`. */
+/** Strip the locale prefix and de-localise segments. `/tr/hakkimizda` → `/about`. */
 export function stripLocale(path: string): string {
-  const seg = path.split('/')[1];
-  if ((locales as readonly string[]).includes(seg)) {
-    const rest = path.slice(seg.length + 1);
-    return rest === '' ? '/' : rest;
-  }
-  return path || '/';
+  const parts = path.split('/').filter(Boolean);
+  if ((locales as readonly string[]).includes(parts[0])) parts.shift();
+  const canon = parts.map(canonicalSegment);
+  return canon.length ? `/${canon.join('/')}` : '/';
 }
 
 /** Path of the same page in another locale, for the language switcher. */

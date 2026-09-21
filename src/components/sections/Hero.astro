@@ -1,7 +1,9 @@
 ---
 /**
- * Full-bleed dark hero. Real industrial photography, navy overlay,
- * strong headline, two CTAs. Header renders transparent over it.
+ * Full-bleed dark hero. Background video (muted, looping, H.264 in
+ * /public/media) with a photo poster/fallback, navy overlay, strong
+ * headline, two CTAs. Header renders transparent over it.
+ * Video is skipped for users who prefer reduced motion.
  */
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
@@ -13,6 +15,7 @@ import { site } from '@data/site';
 interface Props {
   image: ImageMetadata;
   imageAlt: string;
+  video?: string | null;
   eyebrow?: string;
   title?: string;
   lead?: string;
@@ -20,24 +23,20 @@ interface Props {
 const locale = getLocale(Astro.url);
 const t = useTranslations(locale);
 const {
-  image, imageAlt,
+  image, imageAlt, video = '/media/hero.mp4',
   eyebrow = pick(site.tagline, locale),
   title = pick(site.headline, locale),
   lead = pick(site.description, locale),
 } = Astro.props;
 ---
 <section class="relative isolate flex min-h-[88svh] items-end overflow-hidden bg-navy-950 text-white">
-  <Image
-    src={image}
-    alt={imageAlt}
-    widths={[768, 1280, 1920, 2560]}
-    sizes="100vw"
-    layout="none"
-    loading="eager"
-    fetchpriority="high"
-    class="absolute inset-0 -z-20 h-full w-full object-cover"
-  />
-  <div class="absolute inset-0 -z-10 bg-[linear-gradient(to_top,rgba(11,26,48,0.92)_0%,rgba(11,26,48,0.55)_45%,rgba(11,26,48,0.25)_100%)]" aria-hidden="true"></div>
+  <Image src={image} alt={imageAlt} widths={[768, 1280, 1920, 2560]} sizes="100vw" layout="none" loading="eager" fetchpriority="high" class="absolute inset-0 -z-30 h-full w-full object-cover" />
+  {video && (
+    <video class="absolute inset-0 -z-20 h-full w-full object-cover motion-reduce:hidden" autoplay muted loop playsinline preload="metadata" aria-hidden="true" data-hero-video>
+      <source src={video} type="video/mp4" />
+    </video>
+  )}
+  <div class="absolute inset-0 -z-10 bg-[linear-gradient(to_top,rgba(11,26,48,0.92)_0%,rgba(11,26,48,0.6)_45%,rgba(11,26,48,0.35)_100%)]" aria-hidden="true"></div>
 
   <div class="container-site pb-16 pt-40 sm:pb-24 lg:pb-28">
     <div class="max-w-4xl">
@@ -51,3 +50,11 @@ const {
     </div>
   </div>
 </section>
+
+<script>
+  // Only start the video once it can play; otherwise the poster photo stays.
+  const v = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+  if (v && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    v.play().catch(() => v.remove());
+  }
+</script>
