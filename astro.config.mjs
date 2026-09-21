@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 // Site URL: domain to be confirmed with the client. Update before go-live.
-const site = process.env.SITE_URL ?? 'https://www.continexglobal.com';
+const site = process.env.SITE_URL ?? 'https://continexglobal.com';
 
 export default defineConfig({
   site,

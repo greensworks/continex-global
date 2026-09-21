@@ -28,9 +28,17 @@ export const site = {
   },
   taxOffice: 'Mecidiyeköy',
   taxNo: '2111472161',
-  phone: '' as string,        // pending from client
-  email: '' as string,        // pending from client
+  phone: '+90 212 347 47 56' as string,
+  phoneExt: '113',
+  email: 'info@continexglobal.com' as string,
+  domain: 'https://continexglobal.com',
   linkedin: '' as string,     // pending from client
+  /** Locations listed on the previous website. Ankara and Kuala Lumpur still need client confirmation as real offices. */
+  locations: [
+    { city: 'Istanbul', label: { en: 'Head office', tr: 'Merkez ofis' }, lines: ['19 Mayıs Mah. 19 Mayıs Cad. Nova Baran Plaza No:4 K:13', '34360 Şişli, İstanbul, Türkiye'], phone: '+90 212 347 47 56', confirmed: true },
+    { city: 'Ankara', label: { en: 'Ankara', tr: 'Ankara' }, lines: ['J.F. Kennedy Caddesi No:84', 'Çankaya, Ankara, Türkiye'], phone: '+90 312 466 00 10', confirmed: false },
+    { city: 'Kuala Lumpur', label: { en: 'Kuala Lumpur', tr: 'Kuala Lumpur' }, lines: ['8072 Pantai Hillpark Ph5', '59200 Kuala Lumpur, Malaysia'], phone: '+60 3 4265 7867', confirmed: false },
+  ],
   coverage: {
     en: 'Türkiye, China, Asia and selected emerging markets',
     tr: 'Türkiye, Çin, Asya ve seçilmiş gelişen pazarlar',
