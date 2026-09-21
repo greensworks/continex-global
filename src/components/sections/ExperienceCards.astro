@@ -20,7 +20,7 @@ const { full = false, eyebrow = locale === 'tr' ? 'Referans çalışmalar' : 'Se
 const n = experience.length;
 const uid = Math.random().toString(36).slice(2, 7);
 ---
-<section class="relative overflow-hidden bg-surface-alt py-16 text-navy-900 lg:py-24" data-exp-slider>
+<section class="section relative overflow-hidden bg-surface-alt text-navy-900" data-exp-slider>
   <div class="flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" data-track>
     {experience.map((c, i) => {
       const next = experience[(i + 1) % n];
