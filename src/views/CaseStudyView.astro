@@ -2,7 +2,6 @@
 import Base from '@layouts/Base.astro';
 import ArticleLayout from '@components/sections/ArticleLayout.astro';
 import InsightsLatest from '@components/sections/InsightsLatest.astro';
-import FinalCta from '@components/sections/FinalCta.astro';
 import type { CaseStudy } from '@data/experience';
 import { experience } from '@data/experience';
 import { getLocale, localizePath, t } from '@i18n/utils';
@@ -43,5 +42,4 @@ const others = experience.filter((c) => c.slug !== cs.slug);
     <ul>{others.map((o) => <li><a href={localizePath(`/selected-experience/${o.slug}`, locale)}>{t(o.title, locale)}</a> — {t(o.status, locale)}</li>)}</ul>
   </ArticleLayout>
   <InsightsLatest />
-  <FinalCta />
 </Base>

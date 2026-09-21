@@ -9,7 +9,7 @@ import { useTranslations } from '@i18n/ui';
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
 ---
-<Base title={t(pages.contact.title, locale)} description={t(pages.contact.lead, locale)}>
+<Base title={t(pages.contact.title, locale)} description={t(pages.contact.lead, locale)} cta={false}>
   <PageHero eyebrow={tr('nav.contact')} title={t(pages.contact.title, locale)} lead={t(pages.contact.lead, locale)} />
   <section class="section">
     <div class="container-site grid gap-14 lg:grid-cols-12">
