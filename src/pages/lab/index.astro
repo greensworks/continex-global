@@ -23,6 +23,11 @@ import RbAwardBadge from '@components/lab/rb/RbAwardBadge.astro';
 import RbContactBox from '@components/lab/rb/RbContactBox.astro';
 import RbBreadcrumb from '@components/lab/rb/RbBreadcrumb.astro';
 import RbFooter from '@components/lab/rb/RbFooter.astro';
+import RbStageOverview from '@components/lab/rb/RbStageOverview.astro';
+import RbSubnavPills from '@components/lab/rb/RbSubnavPills.astro';
+import RbTextBlock from '@components/lab/rb/RbTextBlock.astro';
+import RbLoadMore from '@components/lab/rb/RbLoadMore.astro';
+import RbMediaTiles from '@components/lab/rb/RbMediaTiles.astro';
 // Strategy&
 import SaHeader from '@components/lab/sa/SaHeader.astro';
 import SaHero from '@components/lab/sa/SaHero.astro';
@@ -109,8 +114,9 @@ const trFooterColumns = [
   <Frame name="SoaNav" source={src('SoaNav')}><SoaNav /></Frame>
   <Frame name="BcgHeader" source={src('BcgHeader')}><BcgHeader /></Frame>
 
-  <Group title="Heroes" count={7} />
+  <Group title="Heroes" count={8} />
   <Frame name="RbHero" source={src('RbHero')}><RbHero><RbHeader slot="header" mode="overlay" /></RbHero></Frame>
+  <Frame name="RbStageOverview" source={src('RbStageOverview')}><RbStageOverview><RbHeader slot="header" mode="overlay" /></RbStageOverview></Frame>
   <Frame name="SaHero" source={src('SaHero')}><SaHero /></Frame>
   <Frame name="SaCareersHero" source={src('SaCareersHero')}><SaCareersHero /></Frame>
   <Frame name="KeHero" source={src('KeHero')}><KeHero /></Frame>
@@ -118,7 +124,8 @@ const trFooterColumns = [
   <Frame name="SoaPageHeader" source={src('SoaPageHeader')}><SoaPageHeader /></Frame>
   <Frame name="BcgHero" source={src('BcgHero')}><BcgHero /></Frame>
 
-  <Group title="Navigation, headlines & dividers" count={9} />
+  <Group title="Navigation, headlines & dividers" count={11} />
+  <Frame name="RbSubnavPills" source={src('RbSubnavPills')}><RbSubnavPills /></Frame>
   <Frame name="SaInPageNav" source={src('SaInPageNav')}><SaInPageNav /></Frame>
   <Frame name="KeSubnav" source={src('KeSubnav')}><KeSubnav /></Frame>
   <Frame name="SoaFilterBar" source={src('SoaFilterBar')}><SoaFilterBar /></Frame>
@@ -126,10 +133,12 @@ const trFooterColumns = [
   <Frame name="RbSectionHeadline" source={src('RbSectionHeadline')}><RbSectionHeadline title="Insights to drive real<br />business outcomes" /></Frame>
   <Frame name="RbOverline" source={src('RbOverline')}><RbOverline text="Our latest insights, delivered straight to your inbox" /></Frame>
   <Frame name="RbSeparator" source={src('RbSeparator')}><RbSeparator /></Frame>
-  <Frame name="RbBreadcrumb" source={src('RbBreadcrumb')}><RbBreadcrumb /></Frame>
+  <Frame name="RbLoadMore" source={src('RbLoadMore')}><RbLoadMore /></Frame>
+  <Frame name="RbBreadcrumb" source={src('RbBreadcrumb')}><RbBreadcrumb items={[{ label: 'Start', href: '#' }, { label: 'About', href: '#' }, { label: 'Overview', href: '#top' }]} /></Frame>
   <Frame name="BcgSectionBanner" source={src('BcgSectionBanner')}><BcgSectionBanner link={{ label: 'See more', href: '#' }} /></Frame>
 
-  <Group title="Intro & text blocks" count={8} />
+  <Group title="Intro & text blocks" count={9} />
+  <Frame name="RbTextBlock" source={src('RbTextBlock')}><RbSectionHeadline title="On the company" /><RbTextBlock /></Frame>
   <Frame name="SaStatIntro" source={src('SaStatIntro')}><SaStatIntro /></Frame>
   <Frame name="SaStatIntro" source={src('SaStatIntro')}>
     <SaStatIntro rule title="Join the Strategy& team" text="Support clients to tackle their most pressing challenges. Work with a team that values your ideas and invests in your growth." stat="20+" caption="industries served to date" link={{ label: 'Go to careers', href: '#' }} />
@@ -151,9 +160,10 @@ const trFooterColumns = [
     <KeFeatureRow imageSide="left" title="Life at Kearney" text="Kearney fosters an environment where Originals not only thrive but also feel a genuine sense of belonging." cta={{ label: 'Discover life at Kearney', href: '#' }} image={img1} />
   </Frame>
 
-  <Group title="Cards & grids" count={11} />
+  <Group title="Cards & grids" count={12} />
   <Frame name="RbTileGrid" source={src('RbTileGrid')}><RbTileGrid /></Frame>
   <Frame name="RbJoinTiles" source={src('RbJoinTiles')}><RbJoinTiles /></Frame>
+  <Frame name="RbMediaTiles" source={src('RbMediaTiles')}><RbOverline text="Podcast" line={false} /><RbMediaTiles /></Frame>
   <Frame name="SaImagePanels" source={src('SaImagePanels')}><SaImagePanels /></Frame>
   <Frame name="SaPublications" source={src('SaPublications')}><SaPublications /></Frame>
   <Frame name="KeArticleGrid" source={src('KeArticleGrid')}><KeArticleGrid /></Frame>
