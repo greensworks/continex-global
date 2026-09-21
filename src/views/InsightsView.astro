@@ -1,14 +1,18 @@
 ---
 import Base from '@layouts/Base.astro';
 import PageHero from '@components/sections/PageHero.astro';
+import GuideHeadline from '@components/sections/rb/GuideHeadline.astro';
 import InsightsLatest from '@components/sections/InsightsLatest.astro';
+import Breadcrumb from '@components/sections/rb/Breadcrumb.astro';
 import { pages } from '@data/pages';
-import { getLocale, t } from '@i18n/utils';
+import { getLocale, localizePath, t } from '@i18n/utils';
 import { useTranslations } from '@i18n/ui';
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
 ---
 <Base title={t(pages.insights.title, locale)} description={t(pages.insights.lead, locale)}>
   <PageHero eyebrow={tr('nav.insights')} title={t(pages.insights.title, locale)} lead={t(pages.insights.lead, locale)} />
+  <div class="pt-2"><GuideHeadline title={locale === 'tr' ? 'Sahadan kısa ve uygulamaya dönük değerlendirmeler' : 'Short, practical notes from the field'} /></div>
   <InsightsLatest limit={50} showHeading={false} />
+  <Breadcrumb items={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.insights') }]} />
 </Base>

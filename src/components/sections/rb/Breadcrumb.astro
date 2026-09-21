@@ -1,0 +1,16 @@
+---
+/** Centred breadcrumb under the guide line; current item underlined in accent. */
+interface Props { items: { label: string; href?: string }[] }
+const { items } = Astro.props;
+---
+<nav class="bg-surface py-10 text-center" aria-label="Breadcrumb">
+  <span class="mx-auto block h-10 w-px bg-navy-900/30" aria-hidden="true"></span>
+  <ol class="mt-4 inline-flex flex-wrap items-center justify-center gap-3 text-[12px] font-medium text-ink-500">
+    {items.map((it, i) => (
+      <li class="inline-flex items-center gap-3">
+        {i > 0 && <span class="opacity-40">/</span>}
+        {it.href ? <a href={it.href} class="hover:text-navy-900">{it.label}</a> : <span class="border-b-2 border-accent-600 pb-0.5 text-navy-900">{it.label}</span>}
+      </li>
+    ))}
+  </ol>
+</nav>

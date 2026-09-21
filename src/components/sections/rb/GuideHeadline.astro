@@ -1,0 +1,17 @@
+---
+/** Centre guide line dropping into a headline on the right half (RB "add-line"). */
+interface Props { title: string; as?: 'h1' | 'h2' | 'h3'; line?: 'sm' | 'md' | 'lg'; id?: string }
+const { title, as: Tag = 'h2', line = 'md', id } = Astro.props;
+const lineH = { sm: 'h-10', md: 'h-16 md:h-24', lg: 'h-24 md:h-36' }[line];
+---
+<section class="relative bg-surface" id={id}>
+  <div class="container-site">
+    <div class="grid md:grid-cols-2">
+      <div class="hidden md:block"></div>
+      <div class="relative border-l border-navy-900/30 pb-8 pl-6 md:pl-8" data-reveal>
+        <span class:list={['absolute left-0 top-0 -translate-y-full border-l border-navy-900/30', lineH]} aria-hidden="true"></span>
+        <Tag class="text-h2 max-w-xl" set:html={title} />
+      </div>
+    </div>
+  </div>
+</section>

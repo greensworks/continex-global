@@ -1,46 +1,31 @@
 ---
-/** Up to three latest insights for the current locale. */
+/** Latest insights as RB media tiles (navy caption bar, topic label). */
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
+import MediaTiles from '@components/sections/rb/MediaTiles.astro';
+import Overline from '@components/sections/rb/Overline.astro';
 import { getLocale, localizePath } from '@i18n/utils';
 import { useTranslations } from '@i18n/ui';
 import { pages } from '@data/pages';
 import { t } from '@i18n/utils';
 
-interface Props { limit?: number; showHeading?: boolean }
-const { limit = 3, showHeading = true } = Astro.props;
+interface Props { limit?: number; showHeading?: boolean; line?: boolean }
+const { limit = 3, showHeading = true, line = true } = Astro.props;
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
 const posts = (await getCollection('insights', (e) => e.id.startsWith(`${locale}/`) && !e.data.draft))
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   .slice(0, limit);
-const fmt = new Intl.DateTimeFormat(locale === 'tr' ? 'tr-TR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 const slugOf = (id: string) => id.split('/').slice(1).join('/');
+const topicLabels: Record<string, [string, string]> = {
+  'market-entry': ['Market entry', 'Pazara giriş'], 'china-turkiye': ['Türkiye–China', 'Türkiye–Çin'], 'energy-infrastructure': ['Energy & infrastructure', 'Enerji ve altyapı'],
+  'industrial-automotive': ['Industrial & automotive', 'Sanayi ve otomotiv'], 'joint-ventures': ['Joint ventures', 'Ortak girişimler'], 'project-finance': ['Project finance', 'Proje finansmanı'],
+};
+const tiles = posts.map((p) => ({ label: topicLabels[p.data.topic][locale === 'tr' ? 1 : 0], title: p.data.title, text: p.data.description, href: localizePath(`/insights/${slugOf(p.id)}`, locale), image: p.data.cover }));
 ---
-<section class="section bg-surface-alt">
-  <div class="container-site">
-    {showHeading && (
-      <div class="flex flex-wrap items-end justify-between gap-6" data-reveal>
-        <div class="max-w-3xl">
-          <p class="eyebrow">{t(pages.insights.title, locale)}</p>
-          <h2 class="mt-4 text-h2">{t(pages.insights.lead, locale)}</h2>
-        </div>
-        <a href={localizePath('/insights', locale)} class="text-sm font-semibold text-accent-600 hover:underline underline-offset-4">{tr('cta.viewAll')} →</a>
-      </div>
-    )}
-    {posts.length === 0 ? (
-      <p class="mt-8 text-ink-500">{tr('insights.empty')}</p>
-    ) : (
-      <div class="mt-12 grid gap-8 md:grid-cols-3" data-reveal-group>
-        {posts.map((p) => (
-          <a href={localizePath(`/insights/${slugOf(p.id)}`, locale)} class="group block">
-            {p.data.cover && <div class="aspect-[16/10] overflow-hidden rounded-card bg-surface-muted"><Image src={p.data.cover} alt={p.data.coverAlt ?? ''} widths={[480, 960]} sizes="(min-width: 768px) 33vw, 100vw" layout="none" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" /></div>}
-            <p class="mt-4 text-xs text-ink-400">{fmt.format(p.data.publishDate)}</p>
-            <h3 class="mt-2 text-h3 group-hover:underline underline-offset-4">{p.data.title}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-ink-500">{p.data.description}</p>
-          </a>
-        ))}
-      </div>
-    )}
+{showHeading && <Overline text={t(pages.insights.title, locale)} line={line} />}
+{tiles.length ? <MediaTiles tiles={tiles} /> : <p class="container-site py-8 text-ink-500">{tr('insights.empty')}</p>}
+{showHeading && (
+  <div class="container-site bg-surface py-8 text-center">
+    <a href={localizePath('/insights', locale)} class="inline-flex items-center gap-2 text-sm font-semibold text-accent-600 hover:underline underline-offset-4">{tr('cta.viewAll')} →</a>
   </div>
-</section>
+)}

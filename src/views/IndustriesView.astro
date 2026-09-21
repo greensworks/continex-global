@@ -1,17 +1,34 @@
 ---
 import Base from '@layouts/Base.astro';
 import PageHero from '@components/sections/PageHero.astro';
-import IndustriesGrid from '@components/sections/IndustriesGrid.astro';
+import SubnavPills from '@components/sections/rb/SubnavPills.astro';
+import GuideHeadline from '@components/sections/rb/GuideHeadline.astro';
+import GuideText from '@components/sections/rb/GuideText.astro';
+import Mosaic from '@components/sections/rb/Mosaic.astro';
+import Overline from '@components/sections/rb/Overline.astro';
+import Breadcrumb from '@components/sections/rb/Breadcrumb.astro';
 import ExperienceCards from '@components/sections/ExperienceCards.astro';
 import { pages } from '@data/pages';
-import { getLocale, t } from '@i18n/utils';
+import { industries } from '@data/industries';
+import { getLocale, localizePath, t } from '@i18n/utils';
 import { useTranslations } from '@i18n/ui';
+import { industryTiles, serviceTiles } from '@/lib/tiles';
 import heroImg from '@assets/images/metal-grinding-sparks.webp';
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
+const intro = locale === 'tr'
+  ? ['Sektör seçimimiz, işlemlerin büyük ölçekli, teknik ve çok taraflı olduğu alanlara dayanır. Enerji ve altyapı projelerinde EPC yüklenicileri, teknoloji sağlayıcıları ve yatırımcılar; sanayi ve mobilitede OEM’ler ve tedarikçiler; uluslararası ticarette Türkiye, Çin, Avrupa ve Orta Doğu arasındaki akışlar odağımızdadır.', 'Her sektörde karar alıcılarla doğrudan çalışır, teknik yeterlilik ile ticari müzakereyi aynı süreçte yürütürüz.']
+  : ['We choose sectors where transactions are large, technical and multi-party. In energy and infrastructure that means EPC contractors, technology providers and investors; in industry and mobility, OEMs and their suppliers; in international trade, the flows between Türkiye, China, Europe and the Middle East.', 'In each sector we work directly with decision-makers and run technical qualification and commercial negotiation as one process.'];
 ---
 <Base title={t(pages.industries.title, locale)} description={t(pages.industries.lead, locale)} headerTheme="dark">
   <PageHero eyebrow={tr('nav.industries')} title={t(pages.industries.title, locale)} lead={t(pages.industries.lead, locale)} image={heroImg} />
-  <IndustriesGrid detailed title={locale === 'tr' ? 'Beş temel faaliyet alanı.' : 'Five core sectors.'} />
+  <SubnavPills items={industries.map((i) => ({ label: t(i.title, locale), href: `#${i.slug}` }))} />
+  <div class="pt-2"><GuideHeadline title={locale === 'tr' ? 'Beş temel faaliyet alanı' : 'Five core sectors'} /></div>
+  <GuideText paragraphs={intro} />
+  <Mosaic tiles={industryTiles(locale, true)} />
+  <Overline text={locale === 'tr' ? 'Bu sektörlerde sunduğumuz hizmetler' : 'How we work in these sectors'} />
+  <Mosaic tiles={serviceTiles(locale)} />
+  <div class="h-16 bg-surface"></div>
   <ExperienceCards />
+  <Breadcrumb items={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.industries') }]} />
 </Base>

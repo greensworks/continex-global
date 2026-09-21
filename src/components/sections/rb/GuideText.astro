@@ -1,0 +1,16 @@
+---
+/** Body copy aligned to the right half next to the centre guide line (follows GuideHeadline). */
+interface Props { paragraphs: string[]; link?: { label: string; href: string } }
+const { paragraphs, link } = Astro.props;
+---
+<section class="bg-surface">
+  <div class="container-site">
+    <div class="grid md:grid-cols-2">
+      <div class="hidden md:block"></div>
+      <div class="space-y-5 border-l border-navy-900/30 pb-12 pl-6 text-[15px] leading-relaxed text-ink-700 md:pl-8 md:text-base" data-reveal>
+        {paragraphs.map((p) => <p set:html={p} />)}
+        {link && <p><a href={link.href} class="inline-flex items-center gap-2 text-sm font-semibold text-accent-600 hover:underline underline-offset-4">{link.label} →</a></p>}
+      </div>
+    </div>
+  </div>
+</section>

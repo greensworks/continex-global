@@ -1,0 +1,27 @@
+---
+/** RB expert panel in Continex colours: portrait or initials left, statement, name/role, buttons pinned bottom-right. */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+interface Props { image?: ImageMetadata | null; initials: string; statement: string; name: string; role: string; meta?: string; buttons?: { label: string; href: string }[] }
+const { image = null, initials, statement, name, role, meta, buttons = [] } = Astro.props;
+---
+<div class="relative bg-surface-alt px-6 pb-20 pt-10 md:px-12 md:pb-24 md:pt-14" data-reveal>
+  <div class="grid items-start gap-8 md:grid-cols-[180px_1fr] md:gap-12 lg:grid-cols-[220px_1fr]">
+    <div class="mx-auto aspect-square w-40 overflow-hidden rounded-full bg-surface-muted md:w-full">
+      {image ? <Image src={image} alt={name} width={440} height={440} layout="none" class="h-full w-full object-cover" /> : <div class="grid h-full w-full place-items-center font-display text-4xl font-semibold text-ink-400">{initials}</div>}
+    </div>
+    <div>
+      <p class="font-display text-xl font-medium leading-snug text-navy-900 md:text-2xl lg:text-[26px]">{statement}</p>
+      <div class="mt-8 text-[13px] leading-snug">
+        <p class="font-semibold text-navy-900">{name}</p>
+        <p class="text-accent-600">{role}</p>
+        {meta && <p class="mt-1 text-ink-500">{meta}</p>}
+      </div>
+    </div>
+  </div>
+  {buttons.length > 0 && (
+    <div class="absolute bottom-0 right-0 flex">
+      {buttons.map((b) => <a href={b.href} class="border-l border-white/20 bg-navy-900 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.14em] text-white transition hover:bg-navy-800 md:px-5">{b.label}</a>)}
+    </div>
+  )}
+</div>

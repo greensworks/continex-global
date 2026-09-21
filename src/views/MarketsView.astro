@@ -1,17 +1,32 @@
 ---
 import Base from '@layouts/Base.astro';
 import PageHero from '@components/sections/PageHero.astro';
+import GuideHeadline from '@components/sections/rb/GuideHeadline.astro';
+import GuideText from '@components/sections/rb/GuideText.astro';
+import Overline from '@components/sections/rb/Overline.astro';
+import Mosaic from '@components/sections/rb/Mosaic.astro';
+import Breadcrumb from '@components/sections/rb/Breadcrumb.astro';
 import MarketsGrid from '@components/sections/MarketsGrid.astro';
 import LogoMarquee from '@components/sections/LogoMarquee.astro';
 import { pages } from '@data/pages';
-import { getLocale, t } from '@i18n/utils';
+import { getLocale, localizePath, t } from '@i18n/utils';
 import { useTranslations } from '@i18n/ui';
+import { experienceTiles } from '@/lib/tiles';
 import heroImg from '@assets/images/grain-silos-dusk.webp';
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
+const intro = locale === 'tr'
+  ? ['Türkiye merkezli bir kuruluş olarak ana pazarımız Türkiye’dir. Çin’de üreticiler, EPC grupları ve yatırımcılarla doğrudan çalışma ilişkilerimiz; Avrupa, Orta Doğu, Orta Asya ve Güneydoğu Asya’da ise belirli fırsat ve mandatlara dayalı kapsamımız bulunmaktadır.', 'Haritada yalnızca fiilen sunabildiğimizi gösteriyoruz: ofis, yerel ekip, stratejik ortak ve pazar kapsamı birbirinden açıkça ayrılmıştır.']
+  : ['Türkiye is our home market. In China we hold direct working relationships with manufacturers, EPC groups and investors; in Europe, the Middle East, Central Asia and Southeast Asia our coverage is built around specific opportunities and mandates.', 'We show only what we can actually deliver: office, local team, strategic partner and market coverage are clearly distinguished.'];
 ---
 <Base title={t(pages.markets.title, locale)} description={t(pages.markets.lead, locale)} headerTheme="dark">
   <PageHero eyebrow={tr('nav.markets')} title={t(pages.markets.title, locale)} lead={t(pages.markets.lead, locale)} image={heroImg} />
+  <div class="pt-2"><GuideHeadline title={locale === 'tr' ? 'Türkiye merkezli, Asya ve Avrupa’ya uzanan kapsam' : 'Türkiye-based, with reach across Asia and Europe'} /></div>
+  <GuideText paragraphs={intro} />
   <MarketsGrid />
+  <Overline text={locale === 'tr' ? 'Bu pazarlardaki çalışmalarımız' : 'Work in these markets'} line={false} />
+  <Mosaic tiles={experienceTiles(locale)} />
+  <div class="h-16 bg-surface"></div>
   <LogoMarquee tone="light" />
+  <Breadcrumb items={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.markets') }]} />
 </Base>

@@ -3,9 +3,14 @@ import Base from '@layouts/Base.astro';
 import PageHero from '@components/sections/PageHero.astro';
 import ServiceDetail from '@components/sections/ServiceDetail.astro';
 import HowWeWork from '@components/sections/HowWeWork.astro';
+import SubnavPills from '@components/sections/rb/SubnavPills.astro';
+import Overline from '@components/sections/rb/Overline.astro';
+import Mosaic from '@components/sections/rb/Mosaic.astro';
+import Breadcrumb from '@components/sections/rb/Breadcrumb.astro';
+import { industryTiles } from '@/lib/tiles';
 import { services, serviceImages } from '@data/services';
 import { pages } from '@data/pages';
-import { getLocale, t } from '@i18n/utils';
+import { getLocale, localizePath, t } from '@i18n/utils';
 import { useTranslations } from '@i18n/ui';
 import heroImg from '@assets/images/refinery-dusk.webp';
 
@@ -14,18 +19,10 @@ const tr = useTranslations(locale);
 ---
 <Base title={t(pages.whatWeDo.title, locale)} description={t(pages.whatWeDo.lead, locale)} headerTheme="dark">
   <PageHero eyebrow={tr('nav.whatWeDo')} title={t(pages.whatWeDo.title, locale)} lead={t(pages.whatWeDo.lead, locale)} image={heroImg} />
-  <nav class="border-b border-line bg-surface" aria-label={tr('label.services')}>
-    <ul class="container-site grid grid-cols-2 divide-y divide-line lg:grid-cols-4 lg:divide-x lg:divide-y-0">
-      {services.map((s, i) => (
-        <li>
-          <a href={`#${s.slug}`} class="flex h-full items-start gap-3 px-1 py-5 text-sm font-medium leading-snug text-ink-700 transition hover:text-navy-900 lg:px-4">
-            <span class="mt-0.5 font-mono text-xs text-ink-400">0{i + 1}</span>
-            <span>{t(s.title, locale)}</span>
-          </a>
-        </li>
-      ))}
-    </ul>
-  </nav>
+  <SubnavPills items={services.map((s) => ({ label: t(s.title, locale), href: `#${s.slug}` }))} />
   {services.map((s, i) => <ServiceDetail service={s} index={i} image={serviceImages[s.slug]} />)}
   <HowWeWork />
+  <Overline text={locale === 'tr' ? 'Faaliyet gösterdiğimiz sektörler' : 'Industries we work in'} line={false} />
+  <Mosaic tiles={industryTiles(locale)} />
+  <Breadcrumb items={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.whatWeDo') }]} />
 </Base>

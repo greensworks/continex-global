@@ -1,10 +1,11 @@
 ---
 import Base from '@layouts/Base.astro';
 import Hero from '@components/sections/Hero.astro';
-import WhatWeDo from '@components/sections/WhatWeDo.astro';
+import GuideHeadline from '@components/sections/rb/GuideHeadline.astro';
+import Mosaic from '@components/sections/rb/Mosaic.astro';
+import Overline from '@components/sections/rb/Overline.astro';
 import WhyContinex from '@components/sections/WhyContinex.astro';
 import HowWeWork from '@components/sections/HowWeWork.astro';
-import IndustriesGrid from '@components/sections/IndustriesGrid.astro';
 import ExperienceCards from '@components/sections/ExperienceCards.astro';
 import Numbers from '@components/sections/Numbers.astro';
 import MarketsGrid from '@components/sections/MarketsGrid.astro';
@@ -14,14 +15,20 @@ import LogoMarquee from '@components/sections/LogoMarquee.astro';
 import heroImg from '@assets/images/high-voltage-towers.webp';
 import { getLocale, t } from '@i18n/utils';
 import { site } from '@data/site';
+import { whatWeDo } from '@data/home';
+import { serviceTiles, industryTiles } from '@/lib/tiles';
 const locale = getLocale(Astro.url);
 ---
 <Base title={site.name} description={t(site.description, locale)} headerTheme="dark">
   <Hero image={heroImg} imageAlt={locale === 'tr' ? 'Gün batımında yüksek gerilim hatları' : 'High-voltage transmission towers at dusk'} />
-  <WhatWeDo />
+  <div class="pt-2"><GuideHeadline title={t(whatWeDo.title, locale)} /></div>
+  <Mosaic tiles={serviceTiles(locale)} />
+  <div class="h-16 bg-surface"></div>
   <WhyContinex />
   <HowWeWork />
-  <IndustriesGrid />
+  <Overline text={locale === 'tr' ? 'Sektörler' : 'Industries'} line={false} />
+  <Mosaic tiles={industryTiles(locale)} />
+  <div class="h-16 bg-surface"></div>
   <ExperienceCards />
   <Numbers />
   <LogoMarquee tone="light" />

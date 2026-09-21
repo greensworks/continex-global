@@ -1,34 +1,41 @@
 ---
 import Base from '@layouts/Base.astro';
 import PageHero from '@components/sections/PageHero.astro';
+import SubnavPills from '@components/sections/rb/SubnavPills.astro';
+import GuideHeadline from '@components/sections/rb/GuideHeadline.astro';
+import GuideText from '@components/sections/rb/GuideText.astro';
+import Breadcrumb from '@components/sections/rb/Breadcrumb.astro';
 import Leadership from '@components/sections/Leadership.astro';
 import MarketsGrid from '@components/sections/MarketsGrid.astro';
 import Numbers from '@components/sections/Numbers.astro';
 import { pages } from '@data/pages';
-import { getLocale, t } from '@i18n/utils';
+import { getLocale, localizePath, t } from '@i18n/utils';
 import { useTranslations } from '@i18n/ui';
 import heroImg from '@assets/images/glass-facade.webp';
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
 const a = pages.about;
+const ids = ['role', 'model'];
+const nav = [
+  ...a.sections.map((s, i) => ({ label: t(s.title, locale), href: `#${ids[i]}` })),
+  { label: tr('nav.leadership'), href: '#leadership' },
+  { label: locale === 'tr' ? 'Pazarlarımız' : 'Our markets', href: '#markets' },
+  { label: t(a.principlesTitle, locale), href: '#principles' },
+];
 ---
 <Base title={t(a.title, locale)} description={t(a.lead, locale)} headerTheme="dark">
   <PageHero eyebrow={tr('nav.about')} title={t(a.title, locale)} lead={t(a.lead, locale)} image={heroImg} />
-
+  <SubnavPills items={nav} />
   {a.sections.map((s, i) => (
-    <section class:list={['section', i % 2 ? 'bg-surface-alt' : 'bg-surface']}>
-      <div class="container-site grid gap-8 lg:grid-cols-12">
-        <h2 class="text-h2 lg:col-span-4" data-reveal>{t(s.title, locale)}</h2>
-        <div class="space-y-5 text-lead text-ink-500 lg:col-span-8" data-reveal>{s.text.map((p) => <p>{t(p, locale)}</p>)}</div>
-      </div>
-    </section>
+    <>
+      <div class="pt-2"><GuideHeadline id={ids[i]} title={t(s.title, locale)} /></div>
+      <GuideText paragraphs={s.text.map((p) => t(p, locale))} />
+    </>
   ))}
-
   <Leadership full eyebrow={locale === 'tr' ? 'Yönetim ekibimiz' : 'Our leadership'} />
-  <MarketsGrid eyebrow={locale === 'tr' ? 'Pazarlarımız' : 'Our markets'} />
+  <div id="markets"><MarketsGrid eyebrow={locale === 'tr' ? 'Pazarlarımız' : 'Our markets'} /></div>
   <Numbers />
-
-  <section class="section bg-navy-950 text-white">
+  <section id="principles" class="section bg-navy-950 text-white">
     <div class="container-site">
       <h2 class="text-h2 text-white" data-reveal>{t(a.principlesTitle, locale)}</h2>
       <div class="mt-12 grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-4" data-reveal-group>
@@ -41,4 +48,5 @@ const a = pages.about;
       </div>
     </div>
   </section>
+  <Breadcrumb items={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.about') }]} />
 </Base>
