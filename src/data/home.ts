@@ -3,7 +3,7 @@ import type { Localized } from '@i18n/utils';
 /** Homepage copy from the client brief (second, definitive brief). */
 
 export const whatWeDo = {
-  eyebrow: { en: 'What we do', tr: 'Ne yapıyoruz' },
+  eyebrow: { en: 'What we do', tr: 'Hizmetlerimiz' },
   title: { en: 'We build and execute cross-border business opportunities.', tr: 'Uluslararası iş fırsatlarını yapılandırıyor ve hayata geçiriyoruz.' },
 } satisfies Record<string, Localized>;
 
