@@ -21,14 +21,12 @@ const locale = getLocale(Astro.url);
 ---
 <Base title={site.name} description={t(site.description, locale)} headerTheme="dark">
   <Hero image={heroImg} imageAlt={locale === 'tr' ? 'Gün batımında yüksek gerilim hatları' : 'High-voltage transmission towers at dusk'} />
-  <div class="pt-2"><GuideHeadline title={t(whatWeDo.title, locale)} /></div>
+  <GuideHeadline title={t(whatWeDo.title, locale)} />
   <Mosaic tiles={serviceTiles(locale)} />
-  <div class="h-16 bg-surface"></div>
   <WhyContinex />
   <HowWeWork />
   <Overline text={locale === 'tr' ? 'Sektörler' : 'Industries'} line={false} />
   <Mosaic tiles={industryTiles(locale)} />
-  <div class="h-16 bg-surface"></div>
   <ExperienceCards />
   <Numbers />
   <LogoMarquee tone="light" />

@@ -3,8 +3,8 @@
 interface Props { text: string; line?: boolean; id?: string }
 const { text, line = true, id } = Astro.props;
 ---
-<div class="relative bg-surface py-8 text-center md:py-10" id={id}>
-  {line && <span class="mx-auto block h-12 w-px bg-navy-900/30 md:h-16" aria-hidden="true"></span>}
-  <p class="mt-4 eyebrow">{text}</p>
+<div class="relative bg-surface pb-10 text-center" id={id}>
+  <span class:list={['mx-auto block w-px', line ? 'h-[var(--spacing-section)] bg-navy-900/30' : 'h-[var(--spacing-section)]']} aria-hidden="true"></span>
+  <p class="eyebrow">{text}</p>
   <span class="mx-auto mt-3 block h-px w-8 bg-accent-600" aria-hidden="true"></span>
 </div>

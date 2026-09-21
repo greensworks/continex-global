@@ -12,7 +12,7 @@ const tr = useTranslations(locale);
 ---
 <Base title={t(pages.insights.title, locale)} description={t(pages.insights.lead, locale)}>
   <PageHero eyebrow={tr('nav.insights')} title={t(pages.insights.title, locale)} lead={t(pages.insights.lead, locale)} />
-  <div class="pt-2"><GuideHeadline title={locale === 'tr' ? 'Sahadan kısa ve uygulamaya dönük değerlendirmeler' : 'Short, practical notes from the field'} /></div>
+  <GuideHeadline title={locale === 'tr' ? 'Sahadan kısa ve uygulamaya dönük değerlendirmeler' : 'Short, practical notes from the field'} />
   <InsightsLatest limit={50} showHeading={false} />
   <Breadcrumb items={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.insights') }]} />
 </Base>

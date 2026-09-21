@@ -21,12 +21,11 @@ const intro = locale === 'tr'
 ---
 <Base title={t(pages.markets.title, locale)} description={t(pages.markets.lead, locale)} headerTheme="dark">
   <PageHero eyebrow={tr('nav.markets')} title={t(pages.markets.title, locale)} lead={t(pages.markets.lead, locale)} image={heroImg} />
-  <div class="pt-2"><GuideHeadline title={locale === 'tr' ? 'Türkiye merkezli, Asya ve Avrupa’ya uzanan kapsam' : 'Türkiye-based, with reach across Asia and Europe'} /></div>
+  <GuideHeadline title={locale === 'tr' ? 'Türkiye merkezli, Asya ve Avrupa’ya uzanan kapsam' : 'Türkiye-based, with reach across Asia and Europe'} />
   <GuideText paragraphs={intro} />
   <MarketsGrid />
   <Overline text={locale === 'tr' ? 'Bu pazarlardaki çalışmalarımız' : 'Work in these markets'} line={false} />
   <Mosaic tiles={experienceTiles(locale)} />
-  <div class="h-16 bg-surface"></div>
   <LogoMarquee tone="light" />
   <Breadcrumb items={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.markets') }]} />
 </Base>

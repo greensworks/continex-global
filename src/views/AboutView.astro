@@ -28,7 +28,7 @@ const nav = [
   <SubnavPills items={nav} />
   {a.sections.map((s, i) => (
     <>
-      <div class="pt-2"><GuideHeadline id={ids[i]} title={t(s.title, locale)} /></div>
+      <GuideHeadline id={ids[i]} title={t(s.title, locale)} />
       <GuideText paragraphs={s.text.map((p) => t(p, locale))} />
     </>
   ))}

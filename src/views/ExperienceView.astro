@@ -21,10 +21,9 @@ const intro = locale === 'tr'
 ---
 <Base title={t(pages.experience.title, locale)} description={t(pages.experience.lead, locale)} headerTheme="dark">
   <PageHero eyebrow={tr('nav.experience')} title={t(pages.experience.title, locale)} lead={t(pages.experience.lead, locale)} image={heroImg} />
-  <div class="pt-2"><GuideHeadline title={locale === 'tr' ? 'Üç güncel çalışma' : 'Three recent mandates'} /></div>
+  <GuideHeadline title={locale === 'tr' ? 'Üç güncel çalışma' : 'Three recent mandates'} />
   <GuideText paragraphs={intro} />
   <Mosaic tiles={experienceTiles(locale)} />
-  <div class="h-16 bg-surface"></div>
   <ExperienceCards full showLink={false} />
   <LogoMarquee tone="light" />
   <Breadcrumb items={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.experience') }]} />

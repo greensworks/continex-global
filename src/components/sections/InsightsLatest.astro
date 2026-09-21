@@ -25,7 +25,7 @@ const tiles = posts.map((p) => ({ label: topicLabels[p.data.topic][locale === 't
 {showHeading && <Overline text={t(pages.insights.title, locale)} line={line} />}
 {tiles.length ? <MediaTiles tiles={tiles} /> : <p class="container-site py-8 text-ink-500">{tr('insights.empty')}</p>}
 {showHeading && (
-  <div class="container-site bg-surface py-8 text-center">
+  <div class="container-site -mt-[calc(var(--spacing-section)-2rem)] bg-surface pb-[var(--spacing-section)] text-center">
     <a href={localizePath('/insights', locale)} class="inline-flex items-center gap-2 text-sm font-semibold text-accent-600 hover:underline underline-offset-4">{tr('cta.viewAll')} →</a>
   </div>
 )}

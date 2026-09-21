@@ -6,7 +6,7 @@ interface Tile { label: string; title: string; href: string; image?: ImageMetada
 interface Props { tiles: Tile[] }
 const { tiles } = Astro.props;
 ---
-<section class="bg-surface">
+<section class="bg-surface pb-[var(--spacing-section)]">
   <div class="container-site">
     <div class="grid grid-cols-1 gap-1 sm:grid-cols-2 md:grid-cols-3" data-reveal-group>
       {tiles.map((t) => (

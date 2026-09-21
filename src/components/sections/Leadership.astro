@@ -12,7 +12,7 @@ const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
 const { full = false, eyebrow = tr('nav.leadership'), line = true } = Astro.props;
 ---
-<section id="leadership" class="bg-surface pb-16 lg:pb-20">
+<section id="leadership" class="bg-surface pb-[var(--spacing-section)]">
   <Overline text={eyebrow} line={line} />
   <div class="container-site space-y-6">
     {team.map((p) => (

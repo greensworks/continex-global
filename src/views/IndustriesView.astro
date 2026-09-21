@@ -23,12 +23,11 @@ const intro = locale === 'tr'
 <Base title={t(pages.industries.title, locale)} description={t(pages.industries.lead, locale)} headerTheme="dark">
   <PageHero eyebrow={tr('nav.industries')} title={t(pages.industries.title, locale)} lead={t(pages.industries.lead, locale)} image={heroImg} />
   <SubnavPills items={industries.map((i) => ({ label: t(i.title, locale), href: `#${i.slug}` }))} />
-  <div class="pt-2"><GuideHeadline title={locale === 'tr' ? 'Beş temel faaliyet alanı' : 'Five core sectors'} /></div>
+  <GuideHeadline title={locale === 'tr' ? 'Beş temel faaliyet alanı' : 'Five core sectors'} />
   <GuideText paragraphs={intro} />
   <Mosaic tiles={industryTiles(locale, true)} />
   <Overline text={locale === 'tr' ? 'Bu sektörlerde sunduğumuz hizmetler' : 'How we work in these sectors'} />
   <Mosaic tiles={serviceTiles(locale)} />
-  <div class="h-16 bg-surface"></div>
   <ExperienceCards />
   <Breadcrumb items={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.industries') }]} />
 </Base>
