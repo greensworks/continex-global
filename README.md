@@ -36,5 +36,22 @@ src/
 - **Tracking IDs** go in `.env` (see `.env.example`); scripts load only after cookie consent.
 - **Partner logos**: `approved: false` entries in `partners.ts` are hidden until the client confirms.
 
+## Component lab (`/lab/*`)
+
+Reference sites are rebuilt section by section as Astro components and stacked on a bare page
+(no site header/footer, `noindex`). Every block sits in `ComponentFrame`, whose top-left **Copy**
+button copies that component's `.astro` source to the clipboard.
+
+```
+src/layouts/Lab.astro                 bare layout + copy handler
+src/components/lab/ComponentFrame.astro
+src/components/lab/rb/*.astro         rolandberger.com sections (RbHeader, RbHero, RbTileGrid, …)
+src/pages/lab/roland-berger.astro     → http://localhost:4321/lab/roland-berger
+```
+
+To add another reference site: create `src/components/lab/<prefix>/`, write one component per
+section with sensible default props, then a page under `src/pages/lab/` that wraps each in
+`<ComponentFrame name="…" source={src('…')}>`.
+
 ## Pending from client
 Phone, e-mail, domain, LinkedIn URL, vector logo (current PNG had the old tagline stripped), team portraits, real project photos, hosting target.

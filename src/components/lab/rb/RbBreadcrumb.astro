@@ -1,0 +1,19 @@
+---
+/**
+ * RbBreadcrumb — centred breadcrumb trail under the guide line; the current
+ * item carries a short yellow underline.
+ */
+interface Props { items?: { label: string; href?: string }[] }
+const { items = [{ label: 'Start', href: '#top' }] } = Astro.props;
+---
+<nav class="py-8 text-center" aria-label="Breadcrumb">
+  <span class="mx-auto block h-10 w-px bg-black/70" aria-hidden="true"></span>
+  <ol class="mt-4 inline-flex items-center gap-3 text-[11px] font-medium">
+    {items.map((it, i) => (
+      <li class="inline-flex items-center gap-3">
+        {i > 0 && <span class="opacity-40">/</span>}
+        <a href={it.href} class:list={['inline-block pb-1', i === items.length - 1 && 'border-b-2 border-yellow-400']}>{it.label}</a>
+      </li>
+    ))}
+  </ol>
+</nav>

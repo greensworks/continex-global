@@ -1,0 +1,32 @@
+---
+/**
+ * Wraps a reference component on a lab page and adds a "Copy" button in the
+ * top-left corner. The button copies the component's .astro source.
+ *
+ *   const sources = import.meta.glob('/src/components/lab/rb/*.astro', { query: '?raw', import: 'default', eager: true });
+ *   <ComponentFrame name="RbHero" source={sources['/src/components/lab/rb/RbHero.astro']}>
+ *     <RbHero />
+ *   </ComponentFrame>
+ */
+interface Props {
+  name: string;
+  source: string;
+}
+const { name, source } = Astro.props;
+// JSON so the raw text survives inside <script>; "</" is escaped so an inner </script> cannot close the holder.
+const payload = JSON.stringify(source).replace(/<\//g, '<\\/');
+---
+<section class="group/frame relative" data-frame data-name={name}>
+  <button
+    type="button"
+    data-copy-btn
+    class="absolute left-3 top-3 z-[60] inline-flex items-center gap-2 rounded-md border border-black/10 bg-white/95 px-2.5 py-1.5 text-[11px] font-semibold text-black shadow-[0_6px_20px_-8px_rgba(0,0,0,0.4)] backdrop-blur transition hover:bg-black hover:text-white data-[state=done]:bg-emerald-600 data-[state=done]:text-white data-[state=error]:bg-red-600 data-[state=error]:text-white"
+    aria-label={`Copy ${name} source`}
+  >
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+    <span data-label>Copy</span>
+    <span class="font-mono font-normal opacity-60">{name}.astro</span>
+  </button>
+  <script type="application/json" data-source set:html={payload}></script>
+  <slot />
+</section>

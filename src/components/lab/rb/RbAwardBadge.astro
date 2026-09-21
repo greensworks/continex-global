@@ -1,0 +1,26 @@
+---
+/**
+ * RbAwardBadge — single centred badge / award logo (e.g. Forbes list).
+ * Pass an <img> through the default slot, or use the built-in text badge.
+ */
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  year?: string;
+}
+const { eyebrow = 'World’s', title = 'Best Management Consulting Firms', year = '2026' } = Astro.props;
+---
+<section class="flex justify-center px-6 py-4">
+  <slot>
+    <div class="flex items-stretch overflow-hidden border-2 border-emerald-500 bg-black text-white">
+      <div class="flex flex-col items-center justify-center border-r border-white/20 px-4 py-3">
+        <span class="font-serif text-lg font-bold italic leading-none">Forbes</span>
+        <span class="mt-1 bg-white px-1.5 text-[10px] font-bold text-black">{year}</span>
+      </div>
+      <div class="flex flex-col justify-center px-4 py-3">
+        <span class="text-[9px] uppercase tracking-[0.2em] text-white/70">{eyebrow}</span>
+        <span class="font-display text-sm font-bold uppercase leading-tight tracking-wide">{title}</span>
+      </div>
+    </div>
+  </slot>
+</section>

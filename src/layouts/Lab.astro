@@ -1,0 +1,62 @@
+---
+/**
+ * Bare layout for the component lab: no site header/footer, noindex.
+ * Pages under /lab/* stack reference components inside <ComponentFrame>.
+ */
+import '@fontsource-variable/inter';
+import '@fontsource-variable/manrope';
+import '@/styles/global.css';
+
+interface Props { title: string }
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="en" class="js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title} · Component Lab</title>
+    <link rel="icon" href="/favicon.webp" type="image/webp" />
+  </head>
+  <body class="bg-white text-black antialiased">
+    <slot />
+
+    <script>
+      // Clipboard API first (needs HTTPS or localhost), execCommand as fallback.
+      async function copyText(text: string): Promise<boolean> {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+            return true;
+          }
+        } catch {}
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;pointer-events:none';
+        document.body.appendChild(ta);
+        ta.select();
+        let ok = false;
+        try { ok = document.execCommand('copy'); } catch {}
+        ta.remove();
+        return ok;
+      }
+
+      // One handler for every ComponentFrame copy button on the page.
+      document.querySelectorAll<HTMLButtonElement>('[data-copy-btn]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const frame = btn.closest('[data-frame]')!;
+          const holder = frame.querySelector<HTMLScriptElement>('[data-source]')!;
+          const source = JSON.parse(holder.textContent || '""') as string;
+          const label = btn.querySelector('[data-label]')!;
+          const original = label.textContent;
+          const ok = await copyText(source);
+          label.textContent = ok ? 'Copied' : 'Failed';
+          btn.dataset.state = ok ? 'done' : 'error';
+          setTimeout(() => { label.textContent = original; delete btn.dataset.state; }, 1600);
+        });
+      });
+    </script>
+  </body>
+</html>

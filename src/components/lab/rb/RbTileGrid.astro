@@ -1,0 +1,93 @@
+---
+/**
+ * RbTileGrid — 6-column tile mosaic with hairline gaps.
+ *   span:   'full' (6/6)  'half' (3/6)  'third' (2/6)
+ *   layout: 'split'   text left / image right (used with span 'full')
+ *           'stacked' image top / text below (default)
+ * Regular tiles reveal their description on hover (expandable teaser).
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import imgA from '@assets/images/abstract-light-streaks.webp';
+import imgB from '@assets/images/bg-navy-dots.webp';
+import imgC from '@assets/images/metal-grinding-sparks.webp';
+import imgD from '@assets/images/industrial-pipes-red.webp';
+import imgE from '@assets/images/abstract-liquid.webp';
+import imgF from '@assets/images/glass-facade.webp';
+import imgG from '@assets/images/storage-tanks-night.webp';
+
+export interface Tile {
+  label?: string;
+  title: string;
+  text?: string;
+  href?: string;
+  image: ImageMetadata;
+  alt?: string;
+  span?: 'full' | 'half' | 'third';
+  layout?: 'split' | 'stacked';
+}
+
+interface Props {
+  tiles?: Tile[];
+  /** optional "load more" button under the grid */
+  loadMore?: string | null;
+}
+
+const demo: Tile[] = [
+  { label: 'Study', title: 'The 2040 technology game plan', text: 'Thirty technology trends will grow tenfold by 2040. Where does Europe stand, and what must it do to compete?', image: imgA, span: 'full', layout: 'split' },
+  { label: 'Study', title: 'AI infrastructure: Mapping the global data center race (Part I)', text: 'AI is reshaping global data center infrastructure and its correction risks.', image: imgB, span: 'third' },
+  { label: 'Study', title: 'Building resilience in Europe’s aerospace & defense supply chains', text: 'Securing critical raw materials is essential for resilience.', image: imgC, span: 'third' },
+  { label: 'Study', title: 'EV Charging Index 2026: Currents of change', text: 'Tracking EV adoption and public charging across 34 countries.', image: imgD, span: 'third' },
+  { label: 'Global Topic', title: 'Europe. All in.', text: 'With innovation, green leadership and strategic action Europe can regain competitiveness.', image: imgE, span: 'half' },
+  { label: 'Think:Act Edition', title: 'Becoming artificial', text: 'The leadership skills needed to become truly AI-native.', image: imgF, span: 'half' },
+  { label: 'Global Topic', title: 'Water Management', text: 'Action on water management is required from all members of society.', image: imgG, span: 'full', layout: 'split' },
+];
+
+const { tiles = demo, loadMore = null } = Astro.props;
+const spanCls = { full: 'md:col-span-6', half: 'md:col-span-3', third: 'md:col-span-2' };
+---
+<section class="rb-tiles">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="grid grid-cols-1 gap-1 md:grid-cols-6">
+      {tiles.map((t) => {
+        const Tag = t.href ? 'a' : 'div';
+        const split = t.layout === 'split';
+        return (
+          <Tag href={t.href} class:list={['group relative block bg-neutral-100 text-black', spanCls[t.span ?? 'third'], split && 'grid grid-cols-1 md:grid-cols-2']}>
+            {t.label && <span class="absolute left-4 top-4 z-10 bg-white px-2 py-1 text-[9px] font-bold uppercase tracking-[0.14em]">{t.label}</span>}
+
+            {split ? (
+              <>
+                <div class="order-2 flex min-h-[220px] flex-col justify-end p-5 md:order-1 md:min-h-[300px] md:p-6">
+                  <h3 class="font-display text-xl font-medium leading-tight md:text-2xl">{t.title}</h3>
+                  {t.text && <p class="mt-3 max-h-0 overflow-hidden text-sm leading-relaxed text-neutral-700 transition-[max-height,opacity] duration-300 opacity-0 group-hover:max-h-40 group-hover:opacity-100">{t.text}</p>}
+                </div>
+                <div class="order-1 aspect-[16/10] overflow-hidden md:order-2 md:aspect-auto">
+                  <Image src={t.image} alt={t.alt ?? ''} widths={[480, 768, 1200]} sizes="(min-width: 768px) 40vw, 100vw" layout="none" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
+                </div>
+              </>
+            ) : (
+              <>
+                <div class="aspect-[16/10] overflow-hidden">
+                  <Image src={t.image} alt={t.alt ?? ''} widths={[480, 768]} sizes="(min-width: 768px) 33vw, 100vw" layout="none" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
+                </div>
+                <div class="p-4 md:p-5">
+                  <h3 class="font-display text-[15px] font-medium leading-snug md:text-base">{t.title}</h3>
+                  {t.text && <p class="mt-2 max-h-0 overflow-hidden text-[13px] leading-relaxed text-neutral-700 opacity-0 transition-[max-height,opacity] duration-300 group-hover:max-h-32 group-hover:opacity-100">{t.text}</p>}
+                </div>
+              </>
+            )}
+          </Tag>
+        );
+      })}
+    </div>
+
+    {loadMore && (
+      <div class="mt-6 flex justify-center">
+        <button type="button" class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em]">
+          <span class="grid h-7 w-7 place-items-center rounded-full bg-black text-white">+</span>{loadMore}
+        </button>
+      </div>
+    )}
+  </div>
+</section>

@@ -1,0 +1,55 @@
+---
+/**
+ * RbExpertQuote — grey panel with a round monochrome portrait on the left,
+ * a large quotation, name / role / office, and two black buttons pinned to
+ * the bottom-right.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import defaultPortrait from '@assets/images/portrait-woman-blue.webp';
+
+interface Props {
+  portrait?: ImageMetadata;
+  quote?: string;
+  name?: string;
+  role?: string;
+  office?: string;
+  buttons?: { label: string; href: string }[];
+}
+const {
+  portrait = defaultPortrait,
+  quote = 'Ideas are worth nothing if they cannot be implemented.',
+  name = 'Kai-Stefan Schober',
+  role = 'Senior Partner',
+  office = 'Munich Office, Central Europe',
+  buttons = [
+    { label: 'All experts', href: '#' },
+    { label: 'View full profile', href: '#' },
+  ],
+} = Astro.props;
+---
+<section class="mx-auto max-w-7xl px-6 lg:px-10">
+  <div class="relative bg-neutral-100 px-6 pb-20 pt-10 md:px-12 md:pb-24 md:pt-14">
+    <div class="grid items-start gap-8 md:grid-cols-[200px_1fr] md:gap-12 lg:grid-cols-[240px_1fr]">
+      <div class="mx-auto aspect-square w-40 overflow-hidden rounded-full md:w-full">
+        <Image src={portrait} alt={name} width={480} height={480} layout="none" class="h-full w-full object-cover grayscale" />
+      </div>
+      <div>
+        <blockquote class="font-display text-xl font-medium leading-snug text-black md:text-2xl lg:text-[1.75rem]">
+          &ldquo;{quote}&rdquo;
+        </blockquote>
+        <div class="mt-8 text-[13px] leading-snug">
+          <p class="font-semibold text-black">{name}</p>
+          <p class="italic text-neutral-700">{role}</p>
+          <p class="text-neutral-700">{office}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-0 right-0 flex">
+      {buttons.map((b) => (
+        <a href={b.href} class="border-l border-white/20 bg-black px-4 py-3 text-[10px] font-bold uppercase tracking-[0.14em] text-white transition hover:bg-neutral-800 md:px-5">{b.label}</a>
+      ))}
+    </div>
+  </div>
+</section>
