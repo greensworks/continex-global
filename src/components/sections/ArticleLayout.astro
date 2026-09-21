@@ -9,10 +9,8 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { getLocale, localizePath, t } from '@i18n/utils';
 import { useTranslations } from '@i18n/ui';
-import { team } from '@data/team';
 import { services } from '@data/services';
 import { site } from '@data/site';
-import { img } from '@/lib/images';
 
 interface Props {
   label: string;
@@ -32,9 +30,8 @@ const { label, title, subtitle, date, readMinutes, image, highlights = [], autho
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
 const fmt = new Intl.DateTimeFormat(locale === 'tr' ? 'tr-TR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-const authors = authorSlugs.map((s) => team.find((p) => p.slug === s)).filter(Boolean) as typeof team;
 const related = (relatedServices.length ? services.filter((s) => relatedServices.includes(s.slug)) : services.slice(0, 3));
-const byline = authors.length ? `${locale === 'tr' ? '' : 'By '}${authors.map((a) => a.name).join(', ')}` : site.name;
+const byline = site.name;
 ---
 <article class="bg-surface">
   {image && <div class="h-[300px] w-full overflow-hidden bg-navy-950 md:h-[520px]"><Image src={image} alt="" widths={[768, 1512]} sizes="100vw" layout="none" class="h-full w-full object-cover" loading="eager" /></div>}
@@ -54,22 +51,7 @@ const byline = authors.length ? `${locale === 'tr' ? '' : 'By '}${authors.map((a
     <div class="h-[3px] w-full bg-line"><div class="h-full w-0 bg-accent-600" data-progress></div></div>
   </div>
 
-  <div class="container-site grid gap-12 py-12 lg:grid-cols-[220px_minmax(0,700px)_1fr] lg:gap-16">
-    <aside class="lg:pt-2">
-      {authors.length > 0 && (
-        <>
-          <h2 class="border-t border-line pt-4 text-sm font-semibold text-navy-900">{locale === 'tr' ? 'Yazarlar' : 'Authors'}</h2>
-          <ul>{authors.map((a) => (
-            <li class="border-b border-line py-4">
-              <div class="h-[90px] w-[90px] overflow-hidden rounded-card border-b-2 border-accent-600 bg-surface-muted">{a.image ? <Image src={img(a.image)} alt={a.name} width={180} height={180} layout="none" class="h-full w-full object-cover" /> : <div class="grid h-full place-items-center font-display text-2xl font-semibold text-ink-400">{a.name.split(' ').map((n) => n[0]).join('')}</div>}</div>
-              <p class="mt-3 text-sm font-semibold text-navy-900">{a.name}</p>
-              <p class="text-sm text-ink-500">{t(a.role, locale)}</p>
-            </li>
-          ))}</ul>
-        </>
-      )}
-      <a href={localizePath('/contact', locale)} class="mt-6 block border border-line py-4 text-center text-xs font-semibold uppercase tracking-[0.14em] text-accent-600 transition hover:border-accent-600">{tr('cta.discuss')}</a>
-    </aside>
+  <div class="container-site grid gap-12 py-12 lg:grid-cols-[minmax(0,760px)_1fr] lg:gap-20">
 
     <div class="min-w-0">
       {highlights.length > 0 && (
@@ -101,6 +83,7 @@ const byline = authors.length ? `${locale === 'tr' ? '' : 'By '}${authors.map((a
           <li><a href={localizePath('/insights', locale)} class="text-sm text-ink-900 transition hover:text-accent-600">{tr('nav.insights')}</a></li>
         </ul>
       </section>
+      <a href={localizePath('/contact', locale)} class="mt-6 block border border-line py-4 text-center text-xs font-semibold uppercase tracking-[0.14em] text-accent-600 transition hover:border-accent-600">{tr('cta.discuss')}</a>
     </aside>
   </div>
 </article>
