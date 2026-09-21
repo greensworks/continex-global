@@ -29,9 +29,7 @@ interface Props {
 const { label, title, subtitle, date, readMinutes, image, highlights = [], authorSlugs = [], relatedServices = [], tags = [], backHref, backLabel } = Astro.props;
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
-const fmt = new Intl.DateTimeFormat(locale === 'tr' ? 'tr-TR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 const related = (relatedServices.length ? services.filter((s) => relatedServices.includes(s.slug)) : services.slice(0, 3));
-const byline = site.name;
 ---
 <article class="bg-surface">
   {image && <div class="h-[300px] w-full overflow-hidden bg-navy-950 md:h-[520px]"><Image src={image} alt="" widths={[768, 1512]} sizes="100vw" layout="none" class="h-full w-full object-cover" loading="eager" /></div>}
@@ -41,8 +39,7 @@ const byline = site.name;
       <p class="mt-6 text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">{label}</p>
       <h1 class="mt-4 text-h1">{title}</h1>
       {subtitle && <p class="mt-6 max-w-3xl text-lead text-ink-700">{subtitle}</p>}
-      <p class="mt-4 text-sm text-ink-500">{byline}</p>
-      {(date || readMinutes) && <p class="mt-1 text-sm text-ink-500">{date && fmt.format(date)}{date && readMinutes && <span class="mx-2">•</span>}{readMinutes && `${readMinutes} ${tr('label.readTime')}`}</p>}
+      {readMinutes && <p class="mt-4 text-sm text-ink-500">{readMinutes} {tr('label.readTime')}</p>}
     </div>
   </div>
 
