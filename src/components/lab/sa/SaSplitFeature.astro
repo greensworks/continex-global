@@ -1,0 +1,36 @@
+---
+/**
+ * SaSplitFeature — two-column feature: 654×368 image on one side, serif
+ * heading + paragraph + arrow link on the other. `imageSide` flips it.
+ * Used for "Women at Strategy&", "Vacancies", "Recruitment process",
+ * "Contact – Amsterdam office", "Your career in the Amsterdam office".
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import defaultImg from '@assets/images/glass-facade.webp';
+
+interface Props { title?: string; text?: string; link?: { label: string; href: string } | null; image?: ImageMetadata | null; imageSide?: 'left' | 'right'; rule?: boolean }
+const {
+  title = 'Vacancies',
+  text = 'Whatever you aspire to – whether it’s interesting work, an international career or a strong community – you will find it at Strategy&.',
+  link = { label: 'View our vacancies', href: '#' },
+  image = defaultImg,
+  imageSide = 'left',
+  rule = false,
+} = Astro.props;
+---
+<section class="mx-auto max-w-[1512px] px-6 py-12 lg:px-[86px] lg:py-16">
+  {rule && <hr class="mb-12 border-neutral-300" />}
+  <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+    {image && (
+      <div class:list={['aspect-[654/368] overflow-hidden bg-neutral-100', imageSide === 'right' && 'lg:order-2']}>
+        <Image src={image} alt="" widths={[654, 1308]} sizes="(min-width: 1024px) 50vw, 100vw" layout="none" class="h-full w-full object-cover" />
+      </div>
+    )}
+    <div class="max-w-[598px]">
+      <h2 class="font-serif text-3xl leading-tight text-neutral-900 md:text-[36px]">{title}</h2>
+      <p class="mt-5 text-base leading-relaxed text-neutral-700 md:text-lg">{text}</p>
+      {link && <a href={link.href} class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 underline-offset-4 hover:underline">{link.label}<span aria-hidden="true">›</span></a>}
+    </div>
+  </div>
+</section>

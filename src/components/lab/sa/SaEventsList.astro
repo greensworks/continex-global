@@ -1,0 +1,43 @@
+---
+/**
+ * SaEventsList — "Recruitment events": heading + intro, "Filter by" chip,
+ * a dated event list with dividers and an arrow link.
+ */
+interface Event { date: string; title: string; location: string; href?: string }
+interface Props { title?: string; text?: string; filterLabel?: string; filter?: string; events?: Event[]; link?: { label: string; href: string } }
+const {
+  title = 'Recruitment events',
+  text = 'Strategy& arranges various events, workshops and programmes throughout the year. Discover where you can meet us.',
+  filterLabel = 'Filter by:',
+  filter = 'Events',
+  events = [
+    { date: '14 Oct 2026', title: 'Strategy& Case Workshop', location: 'Amsterdam office' },
+    { date: '22 Oct 2026', title: 'Women in Consulting Evening', location: 'Amsterdam office' },
+    { date: '05 Nov 2026', title: 'Campus Presentation Rotterdam', location: 'Erasmus University' },
+    { date: '19 Nov 2026', title: 'Interview Skills Masterclass', location: 'Online' },
+  ],
+  link = { label: 'View our in-house events', href: '#' },
+} = Astro.props;
+---
+<section class="mx-auto max-w-[1512px] px-6 py-16 lg:px-[86px] lg:py-20">
+  <div class="max-w-[770px]">
+    <h2 class="font-serif text-3xl leading-tight text-neutral-900 md:text-[36px]">{title}</h2>
+    <p class="mt-5 text-base leading-relaxed text-neutral-700 md:text-lg">{text}</p>
+  </div>
+  <div class="mt-8 flex items-center gap-3 text-sm">
+    <span class="text-neutral-600">{filterLabel}</span>
+    <button type="button" class="inline-flex items-center gap-2 border border-neutral-400 px-3 py-1.5 font-semibold">{filter}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+  </div>
+  <ul class="mt-6 max-w-[883px] divide-y divide-neutral-300 border-y border-neutral-300">
+    {events.map((e) => (
+      <li>
+        <a href={e.href ?? '#'} class="grid gap-1 py-5 transition hover:bg-neutral-50 sm:grid-cols-[140px_1fr_auto] sm:items-center sm:gap-6">
+          <span class="text-sm text-neutral-600">{e.date}</span>
+          <span><span class="block font-semibold text-neutral-900">{e.title}</span><span class="block text-sm text-neutral-600">{e.location}</span></span>
+          <span class="hidden text-neutral-500 sm:block" aria-hidden="true">›</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  {link && <a href={link.href} class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 underline-offset-4 hover:underline">{link.label}<span aria-hidden="true">›</span></a>}
+</section>

@@ -1,0 +1,30 @@
+---
+/**
+ * SaFaq — centred serif heading over a list of accordion rows; the list has a
+ * thin red top rule and grey dividers.
+ */
+interface Props { title?: string; items?: { q: string; a: string }[] }
+const {
+  title = 'Frequently asked questions about Strategy&',
+  items = [
+    { q: 'What makes Strategy& unique?', a: 'We combine strategy consulting with the execution capabilities of the PwC network.' },
+    { q: 'What is the difference between PwC and Strategy&?', a: 'Strategy& is the global strategy consulting business of PwC.' },
+    { q: 'What is it like to work at Strategy&?', a: 'Teams are small, senior and entrepreneurial.' },
+    { q: 'What industries does Strategy& serve?', a: 'Energy, industrials, financial services, consumer, technology and more.' },
+  ],
+} = Astro.props;
+---
+<section class="mx-auto max-w-[1512px] px-6 py-16 lg:px-[86px] lg:py-20">
+  <h2 class="mx-auto max-w-[740px] text-center font-serif text-4xl leading-tight text-neutral-900 md:text-[42px]">{title}</h2>
+  <div class="mx-auto mt-12 max-w-[997px] border-t-2 border-red-600">
+    {items.map((it) => (
+      <details class="group border-b border-neutral-300">
+        <summary class="flex cursor-pointer list-none items-center justify-between py-5 pr-2 text-[15px] font-semibold text-neutral-900">
+          {it.q}
+          <svg class="shrink-0 transition group-open:rotate-45" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <p class="pb-6 text-[15px] leading-relaxed text-neutral-700">{it.a}</p>
+      </details>
+    ))}
+  </div>
+</section>

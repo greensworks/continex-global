@@ -1,0 +1,17 @@
+---
+/**
+ * BcgSectionBanner — section heading row (84px): H2, optional paragraph,
+ * optional uppercase text link on the right ("See more experts").
+ */
+interface Props { title?: string; text?: string; link?: { label: string; href: string } | null; as?: 'h2' | 'h3' }
+const { title = 'Our AI Consulting Services', text, link = null, as: Tag = 'h2' } = Astro.props;
+---
+<div class="mx-auto max-w-[1512px] px-6 pt-14 lg:px-20">
+  <div class="flex flex-wrap items-end justify-between gap-6 border-t border-neutral-900 pt-6">
+    <div class="max-w-[1008px]">
+      <Tag class="font-display text-3xl font-medium leading-tight text-neutral-900 md:text-[44px] md:leading-[52px]">{title}</Tag>
+      {text && <p class="mt-5 text-lg leading-relaxed text-neutral-700">{text}</p>}
+    </div>
+    {link && <a href={link.href} class="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-emerald-700 hover:underline">{link.label}<span aria-hidden="true">→</span></a>}
+  </div>
+</div>

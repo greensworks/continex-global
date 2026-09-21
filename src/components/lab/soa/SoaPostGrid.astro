@@ -1,0 +1,48 @@
+---
+/**
+ * SoaPostGrid — 3-column post cards (image 376×259, tag, date, title,
+ * "Read Now") with a Previous / 1 2 3 … 49 / Next pagination row.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import a from '@assets/images/meeting-table.webp';
+import b from '@assets/images/woman-tablet.webp';
+import c from '@assets/images/industrial-pipes-red.webp';
+import d from '@assets/images/storage-tanks-night.webp';
+import e from '@assets/images/glass-facade.webp';
+import f from '@assets/images/refinery-dusk.webp';
+
+interface Post { tag: string; date: string; title: string; image: ImageMetadata; href?: string }
+interface Props { posts?: Post[]; pages?: (number | string)[]; current?: number }
+const {
+  posts = [
+    { tag: 'Insights', date: '21.09.2026', title: 'Marketing Kit: What It Is, What to Include, and Why It Matters', image: a },
+    { tag: 'Insights', date: '18.09.2026', title: 'How a Vietnam Buying Office Team Can Add Value to Your Sourcing', image: b },
+    { tag: 'Insights', date: '14.09.2026', title: 'The EU Packaging and Packaging Waste Regulation (PPWR) for SMEs', image: c },
+    { tag: 'Insights', date: '27.08.2026', title: 'Supplier Diversification Beyond China: Alternative Sourcing Markets in Asia', image: d },
+    { tag: 'Insights', date: '26.08.2026', title: 'Business Culture in Southeast Asia: A Business Etiquette Guide', image: e },
+    { tag: 'Insights', date: '21.08.2026', title: 'Supply Chain Diversification Away from China: Why ASEAN Requires a Different Model', image: f },
+  ],
+  pages = [1, 2, 3, '…', 49],
+  current = 1,
+} = Astro.props;
+---
+<section class="mx-auto max-w-[1170px] px-6 py-8 lg:px-0">
+  <div class="grid gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+    {posts.map((p) => (
+      <a href={p.href ?? '#'} class="group block">
+        <div class="aspect-[376/259] overflow-hidden bg-neutral-100">
+          <Image src={p.image} alt="" widths={[376, 752]} sizes="(min-width: 1024px) 376px, 50vw" layout="none" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
+        </div>
+        <div class="mt-4 flex items-center gap-4 text-sm"><span class="rounded-full bg-teal-100 px-3 py-1 font-semibold text-teal-800">{p.tag}</span><time class="text-neutral-500">{p.date}</time></div>
+        <h3 class="mt-3 text-xl font-semibold leading-snug text-neutral-900 group-hover:text-teal-700">{p.title}</h3>
+        <span class="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-teal-700"><span aria-hidden="true">›</span>Read Now</span>
+      </a>
+    ))}
+  </div>
+  <nav class="mt-14 flex items-center justify-center gap-6 text-sm" aria-label="Pagination">
+    <a href="#" class="text-neutral-500 hover:text-neutral-900">‹ Previous</a>
+    <ol class="flex items-center gap-4">{pages.map((pg) => <li>{pg === current ? <span class="font-bold text-teal-700">{pg}</span> : typeof pg === 'number' ? <a href="#" class="hover:text-teal-700">{pg}</a> : <span>{pg}</span>}</li>)}</ol>
+    <a href="#" class="text-neutral-500 hover:text-neutral-900">Next ›</a>
+  </nav>
+</section>

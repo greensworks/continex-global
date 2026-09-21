@@ -1,0 +1,25 @@
+---
+/**
+ * SaSideTabList — floating vertical anchor list pinned to the right edge
+ * (the careers page's in-page "Tab List"). Renders inline here; in a real
+ * page wrap it in `fixed right-0 top-1/2`.
+ */
+interface Props { items?: { label: string; href: string }[]; active?: number; fixed?: boolean }
+const {
+  items = ['Become part of a community', 'Meet our people', 'Women at Strategy& Amsterdam', 'Vacancies', 'Recruitment process', 'Recruitment events', 'Stories', 'FAQs'].map((l) => ({ label: l, href: '#' })),
+  active = 0,
+  fixed = false,
+} = Astro.props;
+---
+<nav class:list={['w-fit', fixed ? 'fixed right-6 top-1/2 z-30 -translate-y-1/2' : 'mx-auto max-w-[1512px] px-6 py-10 lg:px-[86px]']} aria-label="Page sections">
+  <ul class="space-y-1">
+    {items.map((it, i) => (
+      <li>
+        <a href={it.href} class:list={['group flex items-center gap-3 py-1.5 text-[13px] leading-tight', i === active ? 'font-semibold text-neutral-900' : 'text-neutral-600 hover:text-neutral-900']}>
+          <span class:list={['h-3 w-3 shrink-0 rounded-full border-2', i === active ? 'border-red-600 bg-red-600' : 'border-neutral-400 group-hover:border-neutral-900']} aria-hidden="true"></span>
+          <span class="max-w-[178px]">{it.label}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

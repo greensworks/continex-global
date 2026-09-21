@@ -1,0 +1,25 @@
+---
+/**
+ * BcgHero — editorial hero: very large H1, lead paragraph, an ambient
+ * video / image band (1351×410) and a second paragraph with inline links.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import defaultImg from '@assets/images/abstract-light-streaks.webp';
+
+interface Props { title?: string; lead?: string; media?: ImageMetadata; body?: string }
+const {
+  title = 'AI Transformation',
+  lead = 'AI is more than a bet on the future. It is today’s most powerful lever for growth, productivity and resilience. We help leaders turn it into measurable value.',
+  media = defaultImg,
+  body = 'AI has moved from experimentation to expectation, and the winners are the organizations that put <a href="#" class="underline underline-offset-4">responsible AI</a> governance built in from day one.',
+} = Astro.props;
+---
+<section class="mx-auto max-w-[1512px] px-6 pb-16 pt-16 lg:px-20 lg:pt-24">
+  <h1 class="max-w-[1013px] font-display text-5xl font-medium leading-none tracking-tight text-neutral-900 md:text-[86px]">{title}</h1>
+  <p class="mt-8 max-w-[902px] text-xl leading-relaxed text-neutral-800 md:text-[26px] md:leading-[45px]">{lead}</p>
+  <div class="mt-12 aspect-[1351/410] overflow-hidden bg-neutral-900">
+    <slot><Image src={media} alt="" widths={[768, 1351, 2702]} sizes="100vw" layout="none" class="h-full w-full object-cover" /></slot>
+  </div>
+  <p class="mt-12 max-w-[902px] text-lg leading-relaxed text-neutral-800 md:text-[20px] md:leading-[26px]" set:html={body} />
+</section>

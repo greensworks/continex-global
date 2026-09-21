@@ -1,0 +1,31 @@
+---
+/**
+ * BcgAccordion — full-width "Details" rows: bold summary line, expandable
+ * body with an intro paragraph and bulleted list (HTML allowed).
+ */
+interface Item { summary: string; intro: string; bullets: string[] }
+interface Props { items?: Item[] }
+const {
+  items = [
+    { summary: 'Enterprise Value Assurance: For leaders accountable for AI returns', intro: 'Applied AI must deliver P&amp;L impact. BCG’s AI consulting teams make value visible, trackable and bankable.', bullets: ['<b>Governance and Program Management.</b> We help companies set up the structures that keep transformation on track.', '<b>Value Tracking and Forecasting.</b> We track AI transformation value from pilot to scale.', '<b>Delivery Model and Ecosystems.</b> We build the right mix of internal teams and partners.'] },
+    { summary: 'Enterprise Enablement: For leaders accountable for people and ways of working', intro: 'Technology doesn’t transform organizations, people do. Enablement is where roles are redesigned and culture shifts.', bullets: ['<b>AI-First Org and Operating Model.</b> We embed AI into how work gets done.', '<b>Workforce Reinvention Systems.</b> We help companies build the skills of tomorrow.', '<b>Leadership, Incentives, and Adoption.</b> We help mobilize leaders and teams.'] },
+    { summary: 'Enterprise Foundations: For leaders accountable for data, technology and risk', intro: 'Applied AI depends on trusted foundations: data, platforms and cybersecurity capabilities that allow AI to scale responsibly.', bullets: ['<b>Tech and AI Platform.</b> We help companies select the right platforms.', '<b>Data Foundations and Business Context.</b> With our help, data becomes decision-ready.', '<b>Risk and Responsible AI.</b> We embed risk, compliance and responsible AI by design.'] },
+  ],
+} = Astro.props;
+---
+<section class="mx-auto max-w-[1512px] px-6 py-10 lg:px-20">
+  <div class="divide-y divide-neutral-300 border-y border-neutral-300">
+    {items.map((it) => (
+      <details class="group">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-lg font-semibold text-neutral-900 marker:hidden md:text-[22px]">
+          {it.summary}
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-neutral-900 transition group-open:rotate-45" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </summary>
+        <div class="max-w-[963px] pb-8 text-lg leading-relaxed text-neutral-800">
+          <p set:html={it.intro} />
+          <ul class="mt-5 list-disc space-y-3 pl-6">{it.bullets.map((b) => <li set:html={b} />)}</ul>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>

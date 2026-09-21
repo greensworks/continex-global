@@ -1,0 +1,29 @@
+---
+/**
+ * BcgFeaturePromo — dark promo: small overline, big title, paragraph and
+ * outlined button on the left; animation / visual area (772×436) right.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import defaultImg from '@assets/images/abstract-liquid.webp';
+
+interface Props { overline?: string; title?: string; text?: string; cta?: { label: string; href: string }; visual?: ImageMetadata }
+const {
+  overline = 'New AI-Powered Feature', title = 'BCG Answer',
+  text = 'Discover the answer to your most important business questions. Ask, refine and explore BCG’s thinking through a conversational interface.',
+  cta = { label: 'Ask us a question', href: '#' }, visual = defaultImg,
+} = Astro.props;
+---
+<section class="bg-neutral-950 text-white">
+  <div class="mx-auto grid max-w-[1512px] items-center gap-12 px-6 py-16 lg:grid-cols-[540px_1fr] lg:gap-20 lg:px-20 lg:py-24">
+    <div>
+      <p class="text-[11px] font-bold uppercase tracking-[0.14em] text-emerald-400">{overline}</p>
+      <h2 class="mt-4 font-display text-4xl font-medium leading-tight md:text-[52px]">{title}</h2>
+      <p class="mt-6 text-lg leading-relaxed text-white/80 md:text-[20px] md:leading-[26px]">{text}</p>
+      <a href={cta.href} class="mt-8 inline-flex items-center border-2 border-white px-10 py-3.5 text-[11px] font-bold uppercase tracking-[0.14em] transition hover:bg-white hover:text-black">{cta.label}</a>
+    </div>
+    <div class="aspect-[772/436] overflow-hidden rounded-lg bg-neutral-800">
+      <slot><Image src={visual} alt="" widths={[772, 1544]} sizes="(min-width: 1024px) 772px, 100vw" layout="none" class="h-full w-full object-cover" /></slot>
+    </div>
+  </div>
+</section>

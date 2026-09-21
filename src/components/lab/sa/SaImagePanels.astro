@@ -1,0 +1,41 @@
+---
+/**
+ * SaImagePanels — heading + intro, then three tall photo panels, each with a
+ * black caption block: serif title, question line and an outlined button.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import img1 from '@assets/images/meeting-table.webp';
+import img2 from '@assets/images/abstract-warm-streaks.webp';
+import img3 from '@assets/images/woman-tablet.webp';
+
+interface Panel { title: string; question: string; cta: string; href?: string; image: ImageMetadata }
+interface Props { title?: string; text?: string; panels?: Panel[] }
+const {
+  title = 'How we help you succeed',
+  text = 'We translate your unique capabilities into competitive advantage. Explore our services and get to know the Strategy& consulting teams.',
+  panels = [
+    { title: 'Industries', question: 'What is your industry?', cta: 'Visit our industry teams', image: img1 },
+    { title: 'Reinvention', question: 'What is your ambition?', cta: 'Explore reinvention', image: img2 },
+    { title: 'Consulting services', question: 'What is your business need?', cta: 'Visit our consulting teams', image: img3 },
+  ],
+} = Astro.props;
+---
+<section class="mx-auto max-w-[1512px] px-6 py-16 lg:px-4 lg:py-20">
+  <div class="max-w-[900px] lg:px-[70px]">
+    <h2 class="font-serif text-4xl leading-tight text-neutral-900 md:text-[42px]">{title}</h2>
+    <p class="mt-6 text-base leading-relaxed text-neutral-700 md:text-lg">{text}</p>
+  </div>
+  <div class="mt-12 grid gap-0 md:grid-cols-3">
+    {panels.map((p) => (
+      <article class="relative flex h-[600px] flex-col justify-end overflow-hidden bg-black text-white">
+        <Image src={p.image} alt="" widths={[480, 768]} sizes="(min-width: 768px) 33vw, 100vw" layout="none" class="absolute inset-0 h-[70%] w-full object-cover" />
+        <div class="relative bg-black px-8 py-10 text-center">
+          <h3 class="font-serif text-2xl">{p.title}</h3>
+          <p class="mt-3 text-sm text-white/80">{p.question}</p>
+          <a href={p.href ?? '#'} class="mt-6 inline-flex border border-white px-5 py-2.5 text-sm font-semibold transition hover:bg-white hover:text-black">{p.cta}</a>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

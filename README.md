@@ -45,9 +45,19 @@ button copies that component's `.astro` source to the clipboard.
 ```
 src/layouts/Lab.astro                 bare layout + copy handler
 src/components/lab/ComponentFrame.astro
-src/components/lab/rb/*.astro         rolandberger.com sections (RbHeader, RbHero, RbTileGrid, …)
+src/components/lab/rb/*.astro         rolandberger.com (13)
+src/components/lab/sa/*.astro         strategyand.pwc.com NL home / contact / careers / TR ops (21)
+src/components/lab/ke/*.astro         kearney.com careers / jobs (11)
+src/components/lab/soa/*.astro        sourceofasia.com insights (9)
+src/components/lab/bcg/*.astro        bcg.com AI transformation (15)
+src/pages/lab/index.astro             → http://localhost:4321/lab  (everything, 74 frames)
 src/pages/lab/roland-berger.astro     → http://localhost:4321/lab/roland-berger
 ```
+
+The Strategy&, Kearney, Source of Asia and BCG sections were rebuilt from the Figma file
+(`w6ms0cp4bBw8WhVWzBB1jl`, frame "Component") using its layer structure and text; colours and
+type follow each brand (serif/black for Strategy&, purple outlines for Kearney, teal for SOA,
+green for BCG). Photos are placeholders from `src/assets/images`.
 
 To add another reference site: create `src/components/lab/<prefix>/`, write one component per
 section with sensible default props, then a page under `src/pages/lab/` that wraps each in

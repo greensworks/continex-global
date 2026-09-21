@@ -1,0 +1,42 @@
+---
+/**
+ * KeCarousel — full-width photo slider (scroll-snap, no JS needed), dot
+ * indicators and prev/next buttons.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import a from '@assets/images/meeting-table.webp';
+import b from '@assets/images/woman-tablet.webp';
+import c from '@assets/images/glass-facade.webp';
+import d from '@assets/images/portrait-woman-phone.webp';
+
+interface Props { images?: { src: ImageMetadata; caption?: string }[] }
+const { images = [{ src: a, caption: 'Kearney Games, Lisbon' }, { src: b, caption: 'Offsite, Berlin' }, { src: c, caption: 'New office, Chicago' }, { src: d, caption: 'Women’s Network' }] } = Astro.props;
+const uid = Math.random().toString(36).slice(2, 8);
+---
+<section class="relative" data-ke-carousel>
+  <div class="flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" data-track>
+    {images.map((im, i) => (
+      <figure id={`slide-${uid}-${i}`} class="relative w-full shrink-0 snap-start">
+        <div class="aspect-[1512/734] bg-neutral-900">
+          <Image src={im.src} alt="" widths={[768, 1280, 1920]} sizes="100vw" layout="none" class="h-full w-full object-cover" />
+        </div>
+        {im.caption && <figcaption class="absolute bottom-6 left-6 bg-black/60 px-3 py-1.5 text-sm text-white lg:left-12">{im.caption}</figcaption>}
+      </figure>
+    ))}
+  </div>
+  <div class="mt-4 flex items-center justify-center gap-3">
+    {images.map((_, i) => <a href={`#slide-${uid}-${i}`} class="block h-2 w-2 rounded-full bg-neutral-400 transition hover:bg-purple-700" aria-label={`Slide ${i + 1}`}></a>)}
+  </div>
+  <button type="button" data-dir="-1" class="absolute left-0 top-1/2 grid h-[62px] w-[55px] -translate-y-1/2 place-items-center bg-white/90 text-neutral-900 transition hover:bg-white" aria-label="Previous slide"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 6-6 6 6 6"/></svg></button>
+  <button type="button" data-dir="1" class="absolute right-0 top-1/2 grid h-[62px] w-[55px] -translate-y-1/2 place-items-center bg-white/90 text-neutral-900 transition hover:bg-white" aria-label="Next slide"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 6 6 6-6 6"/></svg></button>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-ke-carousel]').forEach((root) => {
+    const track = root.querySelector<HTMLElement>('[data-track]')!;
+    root.querySelectorAll<HTMLButtonElement>('[data-dir]').forEach((b) => b.addEventListener('click', () => {
+      track.scrollBy({ left: Number(b.dataset.dir) * track.clientWidth, behavior: 'smooth' });
+    }));
+  });
+</script>

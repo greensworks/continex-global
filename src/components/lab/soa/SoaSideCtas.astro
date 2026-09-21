@@ -1,0 +1,25 @@
+---
+/**
+ * SoaSideCtas — two compact CTA boxes: newsletter ("Receive expert updates…
+ * Subscribe now") and Google preferred source ("Follow now").
+ */
+interface Box { text: string; cta: string; href?: string; icon?: 'mail' | 'google' }
+interface Props { boxes?: Box[] }
+const {
+  boxes = [
+    { text: 'Receive expert updates on ASEAN markets, sourcing, and business trends.', cta: 'Subscribe now', icon: 'mail' },
+    { text: 'Add Source of Asia as a preferred source on Google.', cta: 'Follow now', icon: 'google' },
+  ],
+} = Astro.props;
+---
+<section class="mx-auto grid max-w-[1170px] gap-5 px-6 py-6 sm:grid-cols-2 lg:px-0">
+  {boxes.map((b) => (
+    <div class="flex items-center gap-6 border border-neutral-200 bg-neutral-50 p-6">
+      <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white text-teal-700 shadow" aria-hidden="true">
+        {b.icon === 'google' ? <span class="font-display text-lg font-bold">G</span> : <svg width="18" height="14" viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="1" width="22" height="16" rx="2"/><path d="m1 3 11 8 11-8"/></svg>}
+      </span>
+      <p class="flex-1 text-sm leading-relaxed text-neutral-800">{b.text}</p>
+      <a href={b.href ?? '#'} class="shrink-0 bg-teal-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-teal-800">{b.cta}</a>
+    </div>
+  ))}
+</section>

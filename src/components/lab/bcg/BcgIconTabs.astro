@@ -1,0 +1,21 @@
+---
+/**
+ * BcgIconTabs — three (or more) icon cards in a row: 120px illustration
+ * above a short label; the active card gets a green underline.
+ */
+interface Item { label: string; href?: string }
+interface Props { items?: Item[]; active?: number }
+const { items = [{ label: 'Deploy AI in everyday tasks' }, { label: 'Reshape critical functions and workflows' }, { label: 'Invent net-new revenue with AI' }], active = 0 } = Astro.props;
+---
+<section class="mx-auto max-w-[1512px] px-6 py-12 lg:px-20">
+  <div class="grid gap-8 sm:grid-cols-3 lg:max-w-[1013px]">
+    {items.map((it, i) => (
+      <a href={it.href ?? '#'} class:list={['group border-b-4 pb-6 transition', i === active ? 'border-emerald-700' : 'border-transparent hover:border-neutral-300']}>
+        <span class="grid h-[120px] w-[120px] place-items-center rounded-full bg-emerald-50 text-emerald-700" aria-hidden="true">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">{i === 0 ? <path d="M12 3v3m0 12v3M3 12h3m12 0h3M6 6l2 2m8 8 2 2M6 18l2-2m8-8 2-2M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/> : i === 1 ? <path d="M4 6h16M4 12h10M4 18h16M18 9l3 3-3 3"/> : <path d="M3 17 9 11l4 4 8-8M14 7h7v7"/>}</svg>
+        </span>
+        <p class="mt-5 max-w-[276px] text-xl font-medium leading-snug text-neutral-900">{it.label}</p>
+      </a>
+    ))}
+  </div>
+</section>

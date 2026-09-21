@@ -1,0 +1,41 @@
+---
+/**
+ * BcgFooter — dark green footer: tagline, primary links, "How can we
+ * assist you?" + Contact Us, language lens, wordmark + Follow Us, legal
+ * links, EEO paragraph and copyright.
+ */
+interface Props { tagline?: string; links?: string[]; assistTitle?: string; assistText?: string; cta?: { label: string; href: string }; legal?: string[]; eeo?: string; copyright?: string }
+const {
+  tagline = 'Unlocking the Potential of Those Who Advance the World',
+  links = ['Careers', 'Alumni', 'Offices', 'Subscribe', 'About'],
+  assistTitle = 'How can we assist you?',
+  assistText = 'We value the opportunity to connect with you. Please reach out to discuss how we can help.',
+  cta = { label: 'Contact Us', href: '#' },
+  legal = ['Privacy Policy', 'Terms Of Use', 'Sitemap', 'Responsible Disclosure', 'Cookie Preferences'],
+  eeo = 'Boston Consulting Group is an Equal Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, age, religion, sex, sexual orientation, gender identity, national origin, disability or protected veteran status.',
+  copyright = '© 2026 Boston Consulting Group',
+} = Astro.props;
+---
+<footer class="bg-emerald-950 text-white">
+  <div class="mx-auto max-w-[1512px] px-6 py-16 lg:px-20">
+    <div class="grid gap-12 md:grid-cols-3">
+      <p class="max-w-[326px] font-display text-2xl font-medium leading-snug md:text-[30px] md:leading-[38px]">{tagline}</p>
+      <ul class="space-y-3 text-xl">{links.map((l) => <li><a href="#" class="hover:underline">{l}</a></li>)}</ul>
+      <div class="max-w-[326px]">
+        <p class="text-2xl font-medium">{assistTitle}</p>
+        <p class="mt-3 text-base leading-relaxed text-white/80">{assistText}</p>
+        <a href={cta.href} class="mt-6 inline-flex items-center border-2 border-white px-8 py-3 text-[11px] font-bold uppercase tracking-[0.14em] transition hover:bg-white hover:text-emerald-950">{cta.label}</a>
+      </div>
+    </div>
+    <div class="mt-14 flex flex-wrap items-center justify-between gap-6 border-t border-white/15 pt-8">
+      <p class="text-sm"><span class="font-semibold">en</span> <span class="opacity-50">|</span> <a href="#" class="opacity-70 hover:opacity-100">ja</a></p>
+      <div class="flex items-center gap-8">
+        <a href="#" class="font-display text-2xl font-extrabold">BCG</a>
+        <div class="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.14em]">Follow Us{['in', 'X', 'f', 'yt'].map((s) => <a href="#" class="grid h-7 w-7 place-items-center rounded-full bg-white/15 text-[10px] normal-case">{s}</a>)}</div>
+      </div>
+    </div>
+    <ul class="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-xs">{legal.map((l) => <li><a href="#" class="hover:underline">{l}</a></li>)}</ul>
+    <p class="mt-8 text-xs leading-relaxed text-white/70">{eeo}</p>
+    <p class="mt-4 text-xs text-white/70">{copyright}</p>
+  </div>
+</footer>

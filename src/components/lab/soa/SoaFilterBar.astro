@@ -1,0 +1,11 @@
+---
+/**
+ * SoaFilterBar — "Filter by" label with pill links; active pill filled.
+ */
+interface Props { label?: string; items?: string[]; active?: number }
+const { label = 'Filter by', items = ['All', 'News', 'Events', 'Insights', 'Sectorial Notes', 'Country Profiles', 'Newsletter'], active = 0 } = Astro.props;
+---
+<div class="mx-auto flex max-w-[1170px] flex-wrap items-center gap-3 px-6 py-8 lg:px-0">
+  <span class="mr-2 text-base font-semibold text-neutral-900">{label}</span>
+  {items.map((it, i) => <a href="#" class:list={['rounded-full border px-5 py-3 text-sm font-medium transition', i === active ? 'border-teal-700 bg-teal-700 text-white' : 'border-neutral-300 text-neutral-800 hover:border-teal-700']}>{it}</a>)}
+</div>

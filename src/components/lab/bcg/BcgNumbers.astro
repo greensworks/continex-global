@@ -1,0 +1,26 @@
+---
+/**
+ * BcgNumbers — "By the numbers": four huge figures with captions.
+ * Figures animate with the site's [data-count] hook when numeric.
+ */
+interface Stat { value: string; caption: string }
+interface Props { stats?: Stat[] }
+const {
+  stats = [
+    { value: '72%', caption: 'of CEOs say they are the main decision maker on AI in their company' },
+    { value: '$30b+', caption: 'value realized for clients from applied AI' },
+    { value: '6,000+', caption: 'AI practitioners at BCG' },
+    { value: '100', caption: 'Among the first 100 orgs globally certified under ISO 42001' },
+  ],
+} = Astro.props;
+---
+<section class="mx-auto max-w-[1512px] px-6 py-12 lg:px-20">
+  <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+    {stats.map((s) => (
+      <div class="border-l border-neutral-300 pl-6">
+        <p class="font-display text-6xl font-medium leading-none tracking-tight text-emerald-700 md:text-[100px] md:leading-[121px]">{s.value}</p>
+        <p class="mt-4 max-w-[314px] text-lg leading-snug text-neutral-800">{s.caption}</p>
+      </div>
+    ))}
+  </div>
+</section>

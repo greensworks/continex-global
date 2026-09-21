@@ -1,0 +1,27 @@
+---
+/**
+ * BcgHeader — 72px bar: menu button + wordmark on the left, section label
+ * ("Artificial Intelligence:") with Overview / Latest Thinking / Experts in
+ * the middle, search and "Log in" on the right.
+ */
+interface Props { brand?: string; section?: string; links?: { label: string; href: string; active?: boolean }[]; login?: string }
+const { brand = 'BCG', section = 'Artificial Intelligence:', links = [{ label: 'Overview', href: '#', active: true }, { label: 'Latest Thinking', href: '#' }, { label: 'Experts', href: '#' }], login = 'Log in' } = Astro.props;
+---
+<header class="border-b border-neutral-200 bg-white text-neutral-900">
+  <div class="mx-auto flex h-[72px] max-w-[1512px] items-center justify-between px-4 lg:px-8">
+    <div class="flex items-center gap-4">
+      <button type="button" aria-label="Open menu" class="grid h-12 w-12 place-items-center"><span class="block h-0.5 w-6 bg-current shadow-[0_7px_0_0_currentColor,0_-7px_0_0_currentColor]"></span></button>
+      <a href="#" class="font-display text-2xl font-extrabold tracking-tight text-emerald-700">{brand}</a>
+    </div>
+    <div class="hidden items-center gap-6 md:flex">
+      <span class="text-[11px] font-bold uppercase tracking-[0.14em] text-neutral-700">{section}</span>
+      <nav class="flex items-center gap-1 text-[11px] font-bold uppercase tracking-[0.14em]" aria-label="Section">
+        {links.map((l) => <a href={l.href} class:list={['border-b-2 px-2 py-5 transition', l.active ? 'border-emerald-700 text-emerald-700' : 'border-transparent hover:border-neutral-300']}>{l.label}</a>)}
+      </nav>
+    </div>
+    <div class="flex items-center gap-2">
+      <button type="button" aria-label="Search" class="grid h-11 w-11 place-items-center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+      <a href="#" class="hidden text-[11px] font-bold uppercase tracking-[0.14em] sm:block">{login}</a>
+    </div>
+  </div>
+</header>

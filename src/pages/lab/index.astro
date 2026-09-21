@@ -1,0 +1,200 @@
+---
+/**
+ * Component lab — every reference component on one bare page.
+ * Sources: rolandberger.com, strategyand.pwc.com (NL home, contact, careers,
+ * TR operations), kearney.com (careers, jobs), sourceofasia.com (insights),
+ * bcg.com (AI transformation). Each block has a Copy button (.astro source).
+ */
+import Lab from '@layouts/Lab.astro';
+import Frame from '@components/lab/ComponentFrame.astro';
+
+// Roland Berger
+import RbHeader from '@components/lab/rb/RbHeader.astro';
+import RbHero from '@components/lab/rb/RbHero.astro';
+import RbSectionHeadline from '@components/lab/rb/RbSectionHeadline.astro';
+import RbTileGrid from '@components/lab/rb/RbTileGrid.astro';
+import RbOverline from '@components/lab/rb/RbOverline.astro';
+import RbFlagCta from '@components/lab/rb/RbFlagCta.astro';
+import RbExpertQuote from '@components/lab/rb/RbExpertQuote.astro';
+import RbJoinTiles from '@components/lab/rb/RbJoinTiles.astro';
+import RbSeparator from '@components/lab/rb/RbSeparator.astro';
+import RbAwardBadge from '@components/lab/rb/RbAwardBadge.astro';
+import RbContactBox from '@components/lab/rb/RbContactBox.astro';
+import RbBreadcrumb from '@components/lab/rb/RbBreadcrumb.astro';
+import RbFooter from '@components/lab/rb/RbFooter.astro';
+// Strategy&
+import SaHeader from '@components/lab/sa/SaHeader.astro';
+import SaHero from '@components/lab/sa/SaHero.astro';
+import SaInPageNav from '@components/lab/sa/SaInPageNav.astro';
+import SaStatIntro from '@components/lab/sa/SaStatIntro.astro';
+import SaImagePanels from '@components/lab/sa/SaImagePanels.astro';
+import SaFaq from '@components/lab/sa/SaFaq.astro';
+import SaPublications from '@components/lab/sa/SaPublications.astro';
+import SaFollowUs from '@components/lab/sa/SaFollowUs.astro';
+import SaFooter from '@components/lab/sa/SaFooter.astro';
+import SaTextIntro from '@components/lab/sa/SaTextIntro.astro';
+import SaDirections from '@components/lab/sa/SaDirections.astro';
+import SaPeopleGrid from '@components/lab/sa/SaPeopleGrid.astro';
+import SaSplitFeature from '@components/lab/sa/SaSplitFeature.astro';
+import SaCareersHero from '@components/lab/sa/SaCareersHero.astro';
+import SaVideoSection from '@components/lab/sa/SaVideoSection.astro';
+import SaPeopleStrip from '@components/lab/sa/SaPeopleStrip.astro';
+import SaEventsList from '@components/lab/sa/SaEventsList.astro';
+import SaStories from '@components/lab/sa/SaStories.astro';
+import SaInfoBanner from '@components/lab/sa/SaInfoBanner.astro';
+import SaTeamContacts from '@components/lab/sa/SaTeamContacts.astro';
+import SaSideTabs from '@components/lab/sa/SaSideTabs.astro';
+import SaContactCta from '@components/lab/sa/SaContactCta.astro';
+import SaSideTabList from '@components/lab/sa/SaSideTabList.astro';
+// Kearney
+import KeHeader from '@components/lab/ke/KeHeader.astro';
+import KeHero from '@components/lab/ke/KeHero.astro';
+import KeSubnav from '@components/lab/ke/KeSubnav.astro';
+import KeIntro from '@components/lab/ke/KeIntro.astro';
+import KeFeatureRow from '@components/lab/ke/KeFeatureRow.astro';
+import KeArticleGrid from '@components/lab/ke/KeArticleGrid.astro';
+import KeNotice from '@components/lab/ke/KeNotice.astro';
+import KeFooter from '@components/lab/ke/KeFooter.astro';
+import KeJobsIntro from '@components/lab/ke/KeJobsIntro.astro';
+import KeCarousel from '@components/lab/ke/KeCarousel.astro';
+import KeRolesList from '@components/lab/ke/KeRolesList.astro';
+// Source of Asia
+import SoaNav from '@components/lab/soa/SoaNav.astro';
+import SoaPageHeader from '@components/lab/soa/SoaPageHeader.astro';
+import SoaFilterBar from '@components/lab/soa/SoaFilterBar.astro';
+import SoaFeaturedPost from '@components/lab/soa/SoaFeaturedPost.astro';
+import SoaPostGrid from '@components/lab/soa/SoaPostGrid.astro';
+import SoaSideCtas from '@components/lab/soa/SoaSideCtas.astro';
+import SoaServices from '@components/lab/soa/SoaServices.astro';
+import SoaCtaBanner from '@components/lab/soa/SoaCtaBanner.astro';
+import SoaFooter from '@components/lab/soa/SoaFooter.astro';
+// BCG
+import BcgHeader from '@components/lab/bcg/BcgHeader.astro';
+import BcgHero from '@components/lab/bcg/BcgHero.astro';
+import BcgSectionBanner from '@components/lab/bcg/BcgSectionBanner.astro';
+import BcgServiceTiles from '@components/lab/bcg/BcgServiceTiles.astro';
+import BcgNumbers from '@components/lab/bcg/BcgNumbers.astro';
+import BcgRichText from '@components/lab/bcg/BcgRichText.astro';
+import BcgIconTabs from '@components/lab/bcg/BcgIconTabs.astro';
+import BcgAccordion from '@components/lab/bcg/BcgAccordion.astro';
+import BcgCardCarousel from '@components/lab/bcg/BcgCardCarousel.astro';
+import BcgNewsList from '@components/lab/bcg/BcgNewsList.astro';
+import BcgExperts from '@components/lab/bcg/BcgExperts.astro';
+import BcgFeaturePromo from '@components/lab/bcg/BcgFeaturePromo.astro';
+import BcgExploreMore from '@components/lab/bcg/BcgExploreMore.astro';
+import BcgSubscribeRail from '@components/lab/bcg/BcgSubscribeRail.astro';
+import BcgFooter from '@components/lab/bcg/BcgFooter.astro';
+
+import img1 from '@assets/images/portrait-woman-blue.webp';
+import img2 from '@assets/images/grain-silos-dusk.webp';
+
+const raw = import.meta.glob<string>('/src/components/lab/*/*.astro', { query: '?raw', import: 'default', eager: true });
+const src = (name: string) => Object.entries(raw).find(([k]) => k.endsWith(`/${name}.astro`))?.[1] ?? '';
+
+const trFooterColumns = [
+  { title: 'Sektörler', items: ['Otomotiv', 'Telekomünikasyon', 'Ulaştırma ve Lojistik', 'Finansal Hizmetler', 'Tüketici Ürünleri ve Perakende'].map((l) => ({ label: l, href: '#' })) },
+  { title: 'Uzmanlıklarımız', items: ['İş Stratejisi', 'Müşteri Stratejisi', 'Operasyon Stratejisi', 'Organizasyon Stratejisi', 'Teknoloji Stratejisi'].map((l) => ({ label: l, href: '#' })) },
+  { title: 'Size Özel Çözümlerimiz', items: ['Yetkinlik Bazlı Strateji (“CDS”) ve Büyüme', 'Birleşme ve Satınalma Stratejisi', 'Büyümeye Uygunluk (Fit for Growth)'].map((l) => ({ label: l, href: '#' })) },
+  { title: 'Dijital', items: [{ label: 'Medya', href: '#', external: true }] },
+  { title: 'Hakkımızda', items: ['Geçmişimiz ve Kültürümüz', 'Liderlerimiz', 'Dünyadaki Ofislerimiz'].map((l) => ({ label: l, href: '#' })) },
+  { title: 'Kariyer', items: [{ label: 'Çeşitlilik ve Kapsayıcılık', href: '#' }, { label: 'strategy+business', href: '#', external: true }, { label: 'Alumni', href: '#', external: true }, { label: 'İrtibat', href: '#', external: true }] },
+];
+---
+<Lab title="All components">
+  {/* ---------------- Roland Berger ---------------- */}
+  <Frame name="RbHeader" source={src('RbHeader')}><RbHeader mode="static" /></Frame>
+  <Frame name="RbHero" source={src('RbHero')}><RbHero><RbHeader slot="header" mode="overlay" /></RbHero></Frame>
+  <Frame name="RbSectionHeadline" source={src('RbSectionHeadline')}><RbSectionHeadline title="Insights to drive real<br />business outcomes" /></Frame>
+  <Frame name="RbTileGrid" source={src('RbTileGrid')}><RbTileGrid /></Frame>
+  <Frame name="RbOverline" source={src('RbOverline')}><RbOverline text="Our latest insights, delivered straight to your inbox" /></Frame>
+  <Frame name="RbFlagCta" source={src('RbFlagCta')}><RbFlagCta /></Frame>
+  <Frame name="RbExpertQuote" source={src('RbExpertQuote')}><RbOverline text="Meet our experts" /><RbExpertQuote /></Frame>
+  <Frame name="RbJoinTiles" source={src('RbJoinTiles')}><RbOverline text="Join the team" /><RbJoinTiles /></Frame>
+  <Frame name="RbSeparator" source={src('RbSeparator')}><RbSeparator /></Frame>
+  <Frame name="RbAwardBadge" source={src('RbAwardBadge')}><RbOverline text="What others say" line={false} /><RbAwardBadge /></Frame>
+  <Frame name="RbContactBox" source={src('RbContactBox')}><RbSeparator /><RbContactBox /></Frame>
+  <Frame name="RbBreadcrumb" source={src('RbBreadcrumb')}><RbBreadcrumb /></Frame>
+  <Frame name="RbFooter" source={src('RbFooter')}><RbFooter /></Frame>
+
+  {/* ---------------- Strategy& ---------------- */}
+  <Frame name="SaHeader" source={src('SaHeader')}><SaHeader /></Frame>
+  <Frame name="SaHero" source={src('SaHero')}><SaHero /></Frame>
+  <Frame name="SaInPageNav" source={src('SaInPageNav')}><SaInPageNav /></Frame>
+  <Frame name="SaStatIntro" source={src('SaStatIntro')}><SaStatIntro /></Frame>
+  <Frame name="SaImagePanels" source={src('SaImagePanels')}><SaImagePanels /></Frame>
+  <Frame name="SaFaq" source={src('SaFaq')}><SaFaq /></Frame>
+  <Frame name="SaPublications" source={src('SaPublications')}><SaPublications /></Frame>
+  <Frame name="SaStatIntro" source={src('SaStatIntro')}>
+    <SaStatIntro rule title="Join the Strategy& team" text="Support clients to tackle their most pressing challenges. Work with a team that values your ideas and invests in your growth." stat="20+" caption="industries served to date" link={{ label: 'Go to careers', href: '#' }} />
+  </Frame>
+  <Frame name="SaFollowUs" source={src('SaFollowUs')}><SaFollowUs /></Frame>
+  <Frame name="SaFooter" source={src('SaFooter')}><SaFooter /></Frame>
+  <Frame name="SaTextIntro" source={src('SaTextIntro')}><SaTextIntro /></Frame>
+  <Frame name="SaDirections" source={src('SaDirections')}><SaDirections /></Frame>
+  <Frame name="SaPeopleGrid" source={src('SaPeopleGrid')}><SaPeopleGrid /></Frame>
+  <Frame name="SaSplitFeature" source={src('SaSplitFeature')}>
+    <SaSplitFeature />
+    <SaSplitFeature imageSide="right" image={img2} title="Contact – Amsterdam office" text="Thomas R. Malthusstraat 5, 1066 JR Amsterdam. Call +31 (0)88 792 00 00 or send us a message." link={{ label: 'Send a message', href: '#' }} rule />
+  </Frame>
+  <Frame name="SaCareersHero" source={src('SaCareersHero')}><SaCareersHero /></Frame>
+  <Frame name="SaVideoSection" source={src('SaVideoSection')}><SaVideoSection /></Frame>
+  <Frame name="SaPeopleStrip" source={src('SaPeopleStrip')}><SaPeopleStrip /></Frame>
+  <Frame name="SaEventsList" source={src('SaEventsList')}><SaEventsList /></Frame>
+  <Frame name="SaStories" source={src('SaStories')}><SaStories /></Frame>
+  <Frame name="SaInfoBanner" source={src('SaInfoBanner')}><SaInfoBanner /></Frame>
+  <Frame name="SaTeamContacts" source={src('SaTeamContacts')}><SaTeamContacts /></Frame>
+  <Frame name="SaSideTabs" source={src('SaSideTabs')}><SaSideTabs /></Frame>
+  <Frame name="SaContactCta" source={src('SaContactCta')}><SaContactCta /></Frame>
+  <Frame name="SaSideTabList" source={src('SaSideTabList')}><SaSideTabList /></Frame>
+  <Frame name="SaFooter" source={src('SaFooter')}>
+    <SaFooter breadcrumb={[{ label: 'Strategy& Türkiye', href: '#' }, { label: 'Uzmanlıklarımız', href: '#' }, { label: 'Operasyon Stratejisi' }]} columns={trFooterColumns} copyright="© 2023 - 2026 PwC. Her hakkı saklıdır. PwC, PwC ağını ve/veya bir veya daha fazla üye firmasını ifade eder." legal={['Kişisel Verilerin Korunması', 'Yasal Uyarı', 'Site Sahibi', 'Çerezler Hakkında', 'Harici Hizmet Sağlayıcılar'].map((l) => ({ label: l, href: '#' }))} />
+  </Frame>
+
+  {/* ---------------- Kearney ---------------- */}
+  <Frame name="KeHeader" source={src('KeHeader')}><KeHeader /></Frame>
+  <Frame name="KeHero" source={src('KeHero')}><KeHero /></Frame>
+  <Frame name="KeSubnav" source={src('KeSubnav')}><KeSubnav /></Frame>
+  <Frame name="KeIntro" source={src('KeIntro')}><KeIntro /></Frame>
+  <Frame name="KeFeatureRow" source={src('KeFeatureRow')}>
+    <KeFeatureRow />
+    <KeFeatureRow imageSide="left" title="Life at Kearney" text="Kearney fosters an environment where Originals not only thrive but also feel a genuine sense of belonging." cta={{ label: 'Discover life at Kearney', href: '#' }} image={img1} />
+  </Frame>
+  <Frame name="KeArticleGrid" source={src('KeArticleGrid')}><KeArticleGrid /></Frame>
+  <Frame name="KeNotice" source={src('KeNotice')}><KeNotice /></Frame>
+  <Frame name="KeFooter" source={src('KeFooter')}><KeFooter /></Frame>
+  <Frame name="KeHero" source={src('KeHero')}><KeHero align="left" title="Opportunities at Kearney" subtitle="From consulting to internal roles, find paths that fit your ambitions." /></Frame>
+  <Frame name="KeJobsIntro" source={src('KeJobsIntro')}><KeJobsIntro /></Frame>
+  <Frame name="KeCarousel" source={src('KeCarousel')}><KeCarousel /></Frame>
+  <Frame name="KeRolesList" source={src('KeRolesList')}><KeRolesList /></Frame>
+
+  {/* ---------------- Source of Asia ---------------- */}
+  <Frame name="SoaNav" source={src('SoaNav')}><SoaNav /></Frame>
+  <Frame name="SoaPageHeader" source={src('SoaPageHeader')}><SoaPageHeader /></Frame>
+  <Frame name="SoaFilterBar" source={src('SoaFilterBar')}><SoaFilterBar /></Frame>
+  <Frame name="SoaFeaturedPost" source={src('SoaFeaturedPost')}><SoaFeaturedPost /></Frame>
+  <Frame name="SoaPostGrid" source={src('SoaPostGrid')}><SoaPostGrid /></Frame>
+  <Frame name="SoaSideCtas" source={src('SoaSideCtas')}><SoaSideCtas /></Frame>
+  <Frame name="SoaServices" source={src('SoaServices')}><SoaServices /></Frame>
+  <Frame name="SoaCtaBanner" source={src('SoaCtaBanner')}><SoaCtaBanner /></Frame>
+  <Frame name="SoaFooter" source={src('SoaFooter')}><SoaFooter /></Frame>
+
+  {/* ---------------- BCG ---------------- */}
+  <Frame name="BcgHeader" source={src('BcgHeader')}><BcgHeader /></Frame>
+  <Frame name="BcgHero" source={src('BcgHero')}><BcgHero /></Frame>
+  <Frame name="BcgSectionBanner" source={src('BcgSectionBanner')}><BcgSectionBanner /></Frame>
+  <Frame name="BcgServiceTiles" source={src('BcgServiceTiles')}><BcgServiceTiles /></Frame>
+  <Frame name="BcgNumbers" source={src('BcgNumbers')}><BcgSectionBanner title="Our Approach to AI Transformation" /><BcgNumbers /></Frame>
+  <Frame name="BcgRichText" source={src('BcgRichText')}><BcgRichText /></Frame>
+  <Frame name="BcgIconTabs" source={src('BcgIconTabs')}><BcgIconTabs /></Frame>
+  <Frame name="BcgAccordion" source={src('BcgAccordion')}><BcgAccordion /></Frame>
+  <Frame name="BcgCardCarousel" source={src('BcgCardCarousel')}><BcgSectionBanner title="Our Clients’ Success in Artificial Intelligence" /><BcgCardCarousel /></Frame>
+  <Frame name="BcgNewsList" source={src('BcgNewsList')}><BcgSectionBanner title="Our Latest News Headlines" /><BcgNewsList /></Frame>
+  <Frame name="BcgExperts" source={src('BcgExperts')}>
+    <BcgSectionBanner title="Our Artificial Intelligence Consulting Leaders" text="Ushering in the future of AI in business, our AI consulting leaders combine deep technical expertise with decades of industry experience." link={{ label: 'See more experts', href: '#' }} />
+    <BcgExperts />
+  </Frame>
+  <Frame name="BcgFeaturePromo" source={src('BcgFeaturePromo')}><BcgFeaturePromo /></Frame>
+  <Frame name="BcgExploreMore" source={src('BcgExploreMore')}><BcgSectionBanner title="Explore More" /><BcgExploreMore /></Frame>
+  <Frame name="BcgSubscribeRail" source={src('BcgSubscribeRail')}><BcgSubscribeRail /></Frame>
+  <Frame name="BcgFooter" source={src('BcgFooter')}><BcgFooter /></Frame>
+</Lab>

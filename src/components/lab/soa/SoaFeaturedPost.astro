@@ -1,0 +1,30 @@
+---
+/**
+ * SoaFeaturedPost — large 2-column post: image left (584×433), tag + date,
+ * title, excerpt and "Read Now" link right.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import defaultImg from '@assets/images/grain-silos-dusk.webp';
+
+interface Props { image?: ImageMetadata; tag?: string; date?: string; title?: string; text?: string; href?: string; readLabel?: string }
+const {
+  image = defaultImg, tag = 'News', date = '02.07.2026',
+  title = 'Source of Asia Maintains FSC™ Certification for Responsible Furniture Sourcing',
+  text = 'Forest Stewardship Council (FSC™) certification is the benchmark for responsible forestry. Our renewed certification confirms our commitment to sustainable sourcing across ASEAN.',
+  href = '#', readLabel = 'Read Now',
+} = Astro.props;
+---
+<section class="mx-auto max-w-[1170px] px-6 py-6 lg:px-0">
+  <a href={href} class="group grid overflow-hidden border border-neutral-200 md:grid-cols-2">
+    <div class="aspect-[584/433] overflow-hidden bg-neutral-100">
+      <Image src={image} alt="" widths={[584, 1168]} sizes="(min-width: 768px) 50vw, 100vw" layout="none" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
+    </div>
+    <div class="flex flex-col justify-center p-8 lg:p-12">
+      <div class="flex items-center gap-4 text-sm"><span class="rounded-full bg-teal-100 px-3 py-1 font-semibold text-teal-800">{tag}</span><time class="text-neutral-500">{date}</time></div>
+      <h2 class="mt-5 font-display text-2xl font-semibold leading-snug text-neutral-900 md:text-[28px]">{title}</h2>
+      <p class="mt-4 text-base leading-relaxed text-neutral-700">{text}</p>
+      <span class="mt-6 inline-flex items-center gap-2 font-semibold text-teal-700"><span aria-hidden="true">›</span>{readLabel}</span>
+    </div>
+  </a>
+</section>

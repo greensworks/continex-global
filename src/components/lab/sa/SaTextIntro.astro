@@ -1,0 +1,20 @@
+---
+/**
+ * SaTextIntro — serif heading followed by one or more body paragraphs,
+ * left-aligned in a 770px reading column (contact page intro).
+ */
+interface Props { title?: string; paragraphs?: string[] }
+const {
+  title = 'Strategy consulting in the Netherlands',
+  paragraphs = [
+    'Amsterdam is the Netherlands’ capital, known for its international outlook, its port and airport, and a business climate that attracts headquarters from around the world.',
+    'This economic strength is reflected in our client base: we work with leading Dutch and international companies on their most important strategic questions.',
+  ],
+} = Astro.props;
+---
+<section class="mx-auto max-w-[1512px] px-6 py-16 lg:px-[86px] lg:py-20">
+  <div class="max-w-[770px]">
+    <h2 class="font-serif text-4xl leading-tight text-neutral-900 md:text-[42px]">{title}</h2>
+    {paragraphs.map((p) => <p class="mt-6 text-base leading-relaxed text-neutral-700 md:text-lg">{p}</p>)}
+  </div>
+</section>
