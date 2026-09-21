@@ -1,20 +1,30 @@
 ---
-/** Three verified figures (pattern: BcgNumbers). Counters animate via [data-count]. */
+/**
+ * Key figures strip. Left: eyebrow + statement. Right: three large figures
+ * side by side, separated by hairlines, label under the number, one-line
+ * note beneath. Counters animate through [data-count].
+ */
 import { getLocale, t } from '@i18n/utils';
 import { kpis } from '@data/home';
 const locale = getLocale(Astro.url);
+const statement = locale === 'tr'
+  ? 'Yalın bir ekip, geniş bir coğrafya: aktif olduğumuz ülkeler, sektörler ve bölgeler.'
+  : 'A small senior team with a wide footprint: the countries, sectors and regions where we are active today.';
 ---
-<section class="section bg-surface">
-  <div class="container-site">
-    <p class="eyebrow" data-reveal>{t(kpis.eyebrow, locale)}</p>
-    <div class="mt-8 grid gap-10 border-t border-line pt-10 md:grid-cols-3" data-reveal-group>
+<section class="border-y border-line bg-surface-alt">
+  <div class="container-site grid gap-12 py-16 lg:grid-cols-12 lg:gap-16 lg:py-20">
+    <div class="lg:col-span-4" data-reveal>
+      <p class="eyebrow">{t(kpis.eyebrow, locale)}</p>
+      <h2 class="mt-4 text-h3 font-semibold text-navy-900">{statement}</h2>
+    </div>
+    <dl class="grid divide-y divide-line sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:col-span-8" data-reveal-group>
       {kpis.items.map((k) => (
-        <div class="border-l-2 border-accent-600 pl-6">
-          <p class="font-display text-6xl font-semibold leading-none text-navy-900 md:text-7xl"><span data-count={k.value} data-count-suffix={k.suffix}>0</span></p>
-          <p class="mt-3 text-lg font-semibold text-navy-900">{t(k.label, locale)}</p>
-          <p class="mt-1 text-sm text-ink-500">{t(k.note, locale)}</p>
+        <div class="py-6 sm:px-8 sm:py-2 first:sm:pl-0 last:sm:pr-0">
+          <dd class="font-display text-7xl font-semibold leading-none tracking-tight text-navy-900 md:text-[88px]"><span data-count={k.value} data-count-suffix={k.suffix}>0</span></dd>
+          <dt class="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">{t(k.label, locale)}</dt>
+          <p class="mt-2 text-sm leading-relaxed text-ink-500">{t(k.note, locale)}</p>
         </div>
       ))}
-    </div>
+    </dl>
   </div>
 </section>
