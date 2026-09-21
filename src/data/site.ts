@@ -28,9 +28,9 @@ export const site = {
   },
   taxOffice: 'Mecidiyeköy',
   taxNo: '2111472161',
-  phone: '',        // pending from client
-  email: '',        // pending from client
-  linkedin: '',     // pending from client
+  phone: '' as string,        // pending from client
+  email: '' as string,        // pending from client
+  linkedin: '' as string,     // pending from client
   coverage: {
     en: 'Türkiye, China, Asia and selected emerging markets',
     tr: 'Türkiye, Çin, Asya ve seçilmiş gelişen pazarlar',

@@ -31,14 +31,14 @@ const isActive = (href: string) => current === href || (href !== '/' && current.
       <Image src={logoWhite} alt="" width={180} densities={[1, 2]} class="hidden h-8 w-auto group-data-[theme=dark]/header:block group-data-[scrolled]/header:!hidden lg:h-9" loading="eager" />
     </a>
 
-    <nav class="hidden lg:block" aria-label="Primary">
-      <ul class="flex items-center gap-7 text-[0.9375rem] font-medium">
+    <nav class="hidden xl:block" aria-label="Primary">
+      <ul class="flex items-center gap-6 text-[0.9375rem] font-medium 2xl:gap-8">
         {primaryNav.map((item) => (
           <li>
             <a
               href={localizePath(item.href, locale)}
               aria-current={isActive(item.href) ? 'page' : undefined}
-              class="relative py-2 opacity-80 transition hover:opacity-100 aria-[current=page]:opacity-100 after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform hover:after:scale-x-100 aria-[current=page]:after:scale-x-100"
+              class="relative whitespace-nowrap py-2 opacity-80 transition hover:opacity-100 aria-[current=page]:opacity-100 after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform hover:after:scale-x-100 aria-[current=page]:after:scale-x-100"
             >{t(item.key)}</a>
           </li>
         ))}
@@ -57,12 +57,12 @@ const isActive = (href: string) => current === href || (href !== '/' && current.
 
       <a
         href={localizePath(ctaHref, locale)}
-        class="hidden items-center rounded-card bg-accent-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-500 md:inline-flex"
+        class="hidden whitespace-nowrap items-center rounded-card bg-accent-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-500 md:inline-flex"
       >{t('cta.discuss')}</a>
 
       <button
         type="button"
-        class="inline-flex h-10 w-10 items-center justify-center rounded-card lg:hidden"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-card xl:hidden"
         aria-controls="mobile-menu"
         aria-expanded="false"
         aria-label={t('a11y.openMenu')}
@@ -76,7 +76,7 @@ const isActive = (href: string) => current === href || (href !== '/' && current.
     </div>
   </div>
 
-  <div id="mobile-menu" hidden class="border-t border-line bg-white text-navy-900 lg:hidden">
+  <div id="mobile-menu" hidden class="max-h-[calc(100dvh-76px)] overflow-y-auto border-t border-line bg-white text-navy-900 xl:hidden">
     <nav class="container-site py-6" aria-label="Mobile">
       <ul class="flex flex-col divide-y divide-line text-lg font-medium">
         {primaryNav.map((item) => (
