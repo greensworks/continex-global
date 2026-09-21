@@ -1,16 +1,22 @@
 ---
 /**
  * SoaServices — "SOA Services": three cards with title, one-liner,
- * "Discover" link and a tall icon on the right.
+ * "Discover" link and a tall 80×150 image pill on the right.
  */
-interface Service { title: string; text: string; href?: string }
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import a from '@assets/images/high-voltage-towers.webp';
+import b from '@assets/images/storage-tanks-night.webp';
+import c from '@assets/images/glass-facade.webp';
+
+interface Service { title: string; text: string; href?: string; image: ImageMetadata }
 interface Props { title?: string; services?: Service[]; linkLabel?: string }
 const {
   title = 'SOA Services',
   services = [
-    { title: 'Market Expansion', text: 'Develop your market presence in Southeast Asia.' },
-    { title: 'Sourcing & Supply Chain', text: 'Improve your global supply chain efficiency.' },
-    { title: 'Corporate Services', text: 'Outsource your HR, legal and office management.' },
+    { title: 'Market Expansion', text: 'Develop your market presence in Southeast Asia.', image: a },
+    { title: 'Sourcing & Supply Chain', text: 'Improve your global supply chain efficiency.', image: b },
+    { title: 'Corporate Services', text: 'Outsource your HR, legal and office management.', image: c },
   ],
   linkLabel = 'Discover',
 } = Astro.props;
@@ -18,16 +24,16 @@ const {
 <section class="mx-auto max-w-[1170px] px-6 py-16 lg:px-0">
   <h2 class="font-display text-4xl font-semibold text-neutral-900 md:text-[48px]">{title}</h2>
   <div class="mt-10 grid gap-5 md:grid-cols-3">
-    {services.map((s, i) => (
+    {services.map((s) => (
       <a href={s.href ?? '#'} class="group flex justify-between gap-4 border border-neutral-200 p-7 transition hover:border-teal-700">
         <div>
           <h3 class="text-xl font-semibold text-neutral-900">{s.title}</h3>
           <p class="mt-2 text-sm leading-relaxed text-neutral-700">{s.text}</p>
           <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-teal-700"><span aria-hidden="true">›</span>{linkLabel}</span>
         </div>
-        <span class="grid h-[150px] w-[80px] shrink-0 place-items-center rounded-full bg-teal-50 text-teal-700" aria-hidden="true">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">{i === 0 ? <path d="M3 17 9 11l4 4 8-8M14 7h7v7"/> : i === 1 ? <path d="M3 7h13l3 4h2v6h-2a2 2 0 1 1-4 0H9a2 2 0 1 1-4 0H3z"/> : <path d="M4 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16M8 7h4M8 11h4M8 15h4M16 11h4v10"/>}</svg>
-        </span>
+        <div class="h-[150px] w-[80px] shrink-0 overflow-hidden rounded-full bg-teal-50">
+          <Image src={s.image} alt="" width={160} height={300} layout="none" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+        </div>
       </a>
     ))}
   </div>

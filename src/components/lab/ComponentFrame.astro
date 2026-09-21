@@ -16,7 +16,7 @@ const { name, source } = Astro.props;
 // JSON so the raw text survives inside <script>; "</" is escaped so an inner </script> cannot close the holder.
 const payload = JSON.stringify(source).replace(/<\//g, '<\\/');
 ---
-<section class="group/frame relative" data-frame data-name={name}>
+<section class="group/frame relative mb-[50px]" data-frame data-name={name}>
   <button
     type="button"
     data-copy-btn

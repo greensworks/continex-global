@@ -3,7 +3,7 @@
 interface Props { title: string; count?: number }
 const { title, count } = Astro.props;
 ---
-<div class="flex items-center gap-4 border-y border-dashed border-neutral-300 bg-neutral-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500">
+<div class="mb-[50px] flex items-center gap-4 border-y border-dashed border-neutral-300 bg-neutral-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500">
   <span>{title}</span>
   {count !== undefined && <span class="rounded-full bg-neutral-200 px-2 py-0.5 text-[10px] tracking-normal">{count}</span>}
 </div>

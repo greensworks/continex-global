@@ -1,11 +1,15 @@
 ---
 /**
- * SaDirections — "How to get here": address block, map placeholder with a
- * marker, then travel instructions grouped by mode (car / public transport /
- * airplane). Replace the placeholder with an embedded map when needed.
+ * SaDirections — "How to get here": address block, a location photo with a
+ * map marker (swap for an embedded map via the "map" slot), then travel
+ * instructions grouped by mode (car / public transport / airplane).
  */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import defaultImg from '@assets/images/glass-facade.webp';
+
 interface Group { title: string; intro?: string; items?: string[] }
-interface Props { title?: string; address?: string[]; groups?: Group[] }
+interface Props { title?: string; address?: string[]; groups?: Group[]; image?: ImageMetadata }
 const {
   title = 'How to get here',
   address = ['Strategy& Amsterdam', 'PwC Strategy& (Netherlands) B.V.', 'Thomas R. Malthusstraat 5', '1066 JR Amsterdam'],
@@ -14,6 +18,7 @@ const {
     { title: 'By public transportation', items: ['Tram 2 stops in front of the building (Johan Huizingalaan).', 'From Amsterdam Lelylaan station it is a five-minute walk.'] },
     { title: 'By airplane', intro: 'From Amsterdam Airport Schiphol, our office is 15 minutes by taxi or 20 minutes by train and tram.' },
   ],
+  image = defaultImg,
 } = Astro.props;
 ---
 <section class="mx-auto max-w-[1512px] px-6 py-16 lg:px-[86px] lg:py-20">
@@ -24,8 +29,8 @@ const {
 
     <div class="relative mt-8 aspect-[883/400] w-full overflow-hidden bg-neutral-200">
       <slot name="map">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#cfcfcf_1px,transparent_0)] [background-size:22px_22px]"></div>
-        <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full" aria-hidden="true">
+        <Image src={image} alt="" widths={[883, 1766]} sizes="(min-width: 1024px) 883px, 100vw" layout="none" class="h-full w-full object-cover" />
+        <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full drop-shadow" aria-hidden="true">
           <svg width="33" height="51" viewBox="0 0 33 51" fill="#d0021b"><path d="M16.5 0C7.4 0 0 7.4 0 16.5 0 28.9 16.5 51 16.5 51S33 28.9 33 16.5C33 7.4 25.6 0 16.5 0z"/><circle cx="16.5" cy="16.5" r="6" fill="#fff"/></svg>
         </span>
       </slot>
