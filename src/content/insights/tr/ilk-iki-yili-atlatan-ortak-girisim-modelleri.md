@@ -6,6 +6,11 @@ topic: joint-ventures
 cover: "../../../assets/images/metal-grinding-sparks.webp"
 coverAlt: "Fabrikada metal taşlama"
 translationOf: joint-venture-models-that-work
+authors: [bulent-ulusoy, cigdem-balcioglu]
+readMinutes: 4
+highlights:
+  - "Kim satacak, teknolojiyi kim kontrol edecek, ramp-up nasıl finanse edilecek ve ortaklar nasıl çıkacak sorularını yanıtlayın."
+  - "Zorlanan ortak girişimlerin çoğu bu dört soru yanıtlanmadan yapılandırılmıştır."
 ---
 
 Ortak girişimler Türkiye'de üretim ve teknoloji iş birliğinin en yaygın aracıdır. Zorlananların çoğu dört soru yanıtlanmadan yapılandırılmıştır.

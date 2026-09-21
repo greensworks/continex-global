@@ -1,0 +1,19 @@
+---
+/** BaStickyBar — sticky reading bar: label + short title, share icons, 3px reading-progress line. */
+interface Props { label?: string; title?: string; accent?: string; fixed?: boolean }
+const { label = 'Brief', title = 'M&A Midyear Outlook 2026: A Winner’s Paradox', accent = '#CC0000', fixed = false } = Astro.props;
+---
+<div class:list={['z-40 w-full bg-white', fixed ? 'sticky top-0' : 'relative']} data-ba-sticky>
+  <div class="mx-auto flex h-[60px] max-w-[1360px] items-center justify-between px-6 lg:px-10">
+    <p class="flex items-center gap-4 text-sm"><span class="uppercase" style={`color:${accent}`}>{label}</span><span class="text-black">{title}</span></p>
+    <ul class="hidden divide-x divide-[#D8D8D8] text-[#767676] md:flex">{['share', 'link', 'print', 'save'].map((i) => <li class="px-3"><button type="button" aria-label={i}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/></svg></button></li>)}</ul>
+  </div>
+  <div class="h-[3px] w-full bg-[#D8D8D8]"><div class="h-full w-1/3 bg-black transition-[width]" data-progress style={`background:${accent}`}></div></div>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-ba-sticky]').forEach((bar) => {
+    const fill = bar.querySelector<HTMLElement>('[data-progress]')!;
+    const update = () => { const h = document.documentElement.scrollHeight - innerHeight; fill.style.width = `${Math.min(100, (scrollY / h) * 100)}%`; };
+    addEventListener('scroll', update, { passive: true }); update();
+  });
+</script>

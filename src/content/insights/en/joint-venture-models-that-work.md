@@ -5,6 +5,11 @@ publishDate: 2026-07-30
 topic: joint-ventures
 cover: "../../../assets/images/metal-grinding-sparks.webp"
 coverAlt: "Metal grinding in a factory"
+authors: [bulent-ulusoy, cigdem-balcioglu]
+readMinutes: 4
+highlights:
+  - "Define who sells, who controls technology, how ramp-up is funded and how partners exit."
+  - "Most struggling JVs were structured without answering these four questions."
 ---
 
 Joint ventures are the most common vehicle for manufacturing and technology cooperation in Türkiye. Most of the ones that struggle were structured without answering four questions.

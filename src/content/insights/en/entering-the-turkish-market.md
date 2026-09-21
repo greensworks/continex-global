@@ -5,6 +5,12 @@ publishDate: 2026-09-01
 topic: market-entry
 cover: "../../../assets/images/glass-facade.webp"
 coverAlt: "Office building facade in Istanbul"
+authors: [bulent-ulusoy]
+readMinutes: 4
+highlights:
+  - "Türkiye rewards long-term partner commitment over product pitches."
+  - "Supplier qualification at OEMs is a multi-month project that needs a local owner."
+  - "Senior engagement on both sides shortens every cycle."
 ---
 
 Türkiye is a large, industrialised market with a demanding buyer base. International companies that succeed here tend to share three habits.

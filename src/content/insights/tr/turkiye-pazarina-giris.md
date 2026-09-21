@@ -6,6 +6,12 @@ topic: market-entry
 cover: "../../../assets/images/glass-facade.webp"
 coverAlt: "İstanbul'da bir ofis binası cephesi"
 translationOf: entering-the-turkish-market
+authors: [bulent-ulusoy]
+readMinutes: 4
+highlights:
+  - "Türkiye, ürün sunumundan çok uzun vadeli ortak taahhüdünü ödüllendirir."
+  - "OEM’lerdeki tedarikçi yeterliliği aylar süren, yerel sahip gerektiren bir projedir."
+  - "İki taraftaki üst düzey katılım her döngüyü kısaltır."
 ---
 
 Türkiye, talepkâr bir alıcı kitlesine sahip büyük ve sanayileşmiş bir pazar. Burada başarılı olan uluslararası şirketlerin üç ortak alışkanlığı var.

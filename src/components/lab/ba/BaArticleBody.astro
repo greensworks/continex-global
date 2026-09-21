@@ -1,0 +1,14 @@
+---
+/** BaArticleBody — 700px serif reading column (21px/36px), h3 in sans 32px, links with red underline. Default slot = HTML. */
+interface Props { accent?: string }
+const { accent = '#CC0000' } = Astro.props;
+---
+<div class="mx-auto max-w-[700px] px-5 font-serif text-[21px] leading-[36px] text-black lg:px-0 [&_h3]:mt-6 [&_h3]:font-display [&_h3]:text-[32px] [&_h3]:leading-[44px] [&_p]:mt-6 [&_a]:border-b [&_a]:border-current [&_strong]:font-semibold" style={`--ba-accent:${accent}`}>
+  <style>div a { border-color: var(--ba-accent) !important; }</style>
+  <slot>
+    <p>The great M&A rebound of 2025 was no flash in the pan. In the first half of 2026, global deal value continued to climb, powered by megadeals in technology, energy and healthcare. But acquirers, especially those pursuing the largest transactions, are discovering a paradox: the same AI wave that makes targets attractive is rewriting the value case for every deal.</p>
+    <p>First, let’s step back and look at what’s happening. As we noted in our <a href="#">previous reports</a>, a closed strait, tariff turbulence and rate uncertainty did little to slow strategic buyers.</p>
+    <h3>Enter the winner’s paradox in M&A</h3>
+    <p>During the first half of 2026, the broader AI economy accounted for a striking share of megadeal value, and yet integration playbooks written before 2024 do not account for how quickly AI changes the target’s cost base, talent needs and product roadmap.</p>
+  </slot>
+</div>

@@ -1,0 +1,114 @@
+---
+/**
+ * ArticleLayout — Continex article / case study page built on the Bain
+ * pattern: image band with an overlapping white card, sticky reading bar
+ * with progress line, three columns (authors · body · related), "At a
+ * glance" box, tags. Body comes through the default slot.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { getLocale, localizePath, t } from '@i18n/utils';
+import { useTranslations } from '@i18n/ui';
+import { team } from '@data/team';
+import { services } from '@data/services';
+import { site } from '@data/site';
+import { img } from '@/lib/images';
+
+interface Props {
+  label: string;
+  title: string;
+  subtitle?: string;
+  date?: Date;
+  readMinutes?: number;
+  image?: ImageMetadata;
+  highlights?: string[];
+  authorSlugs?: string[];
+  relatedServices?: string[];
+  tags?: string[];
+  backHref: string;
+  backLabel: string;
+}
+const { label, title, subtitle, date, readMinutes, image, highlights = [], authorSlugs = [], relatedServices = [], tags = [], backHref, backLabel } = Astro.props;
+const locale = getLocale(Astro.url);
+const tr = useTranslations(locale);
+const fmt = new Intl.DateTimeFormat(locale === 'tr' ? 'tr-TR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const authors = authorSlugs.map((s) => team.find((p) => p.slug === s)).filter(Boolean) as typeof team;
+const related = (relatedServices.length ? services.filter((s) => relatedServices.includes(s.slug)) : services.slice(0, 3));
+const byline = authors.length ? `${locale === 'tr' ? '' : 'By '}${authors.map((a) => a.name).join(', ')}` : site.name;
+---
+<article class="bg-surface">
+  {image && <div class="h-[300px] w-full overflow-hidden bg-navy-950 md:h-[520px]"><Image src={image} alt="" widths={[768, 1512]} sizes="100vw" layout="none" class="h-full w-full object-cover" loading="eager" /></div>}
+  <div class="container-site">
+    <div class:list={['relative max-w-[960px] bg-surface pt-10 md:pr-12', image ? '-mt-24 md:-mt-40 md:pl-12' : 'pt-16']}>
+      <a href={backHref} class="text-sm font-semibold text-accent-600 hover:underline underline-offset-4">← {backLabel}</a>
+      <p class="mt-6 text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">{label}</p>
+      <h1 class="mt-4 text-h1">{title}</h1>
+      {subtitle && <p class="mt-6 max-w-3xl text-lead text-ink-700">{subtitle}</p>}
+      <p class="mt-4 text-sm text-ink-500">{byline}</p>
+      {(date || readMinutes) && <p class="mt-1 text-sm text-ink-500">{date && fmt.format(date)}{date && readMinutes && <span class="mx-2">•</span>}{readMinutes && `${readMinutes} ${tr('label.readTime')}`}</p>}
+    </div>
+  </div>
+
+  <div class="sticky top-0 z-30 mt-8 border-b border-line bg-surface/95 backdrop-blur" data-article-bar>
+    <div class="container-site flex h-12 items-center gap-4 text-sm"><span class="font-semibold uppercase tracking-[0.14em] text-accent-600">{label}</span><span class="truncate text-ink-700">{title}</span></div>
+    <div class="h-[3px] w-full bg-line"><div class="h-full w-0 bg-accent-600" data-progress></div></div>
+  </div>
+
+  <div class="container-site grid gap-12 py-12 lg:grid-cols-[220px_minmax(0,700px)_1fr] lg:gap-16">
+    <aside class="lg:pt-2">
+      {authors.length > 0 && (
+        <>
+          <h2 class="border-t border-line pt-4 text-sm font-semibold text-navy-900">{locale === 'tr' ? 'Yazarlar' : 'Authors'}</h2>
+          <ul>{authors.map((a) => (
+            <li class="border-b border-line py-4">
+              <div class="h-[90px] w-[90px] overflow-hidden rounded-card border-b-2 border-accent-600 bg-surface-muted">{a.image ? <Image src={img(a.image)} alt={a.name} width={180} height={180} layout="none" class="h-full w-full object-cover" /> : <div class="grid h-full place-items-center font-display text-2xl font-semibold text-ink-400">{a.name.split(' ').map((n) => n[0]).join('')}</div>}</div>
+              <p class="mt-3 text-sm font-semibold text-navy-900">{a.name}</p>
+              <p class="text-sm text-ink-500">{t(a.role, locale)}</p>
+            </li>
+          ))}</ul>
+        </>
+      )}
+      <a href={localizePath('/contact', locale)} class="mt-6 block border border-line py-4 text-center text-xs font-semibold uppercase tracking-[0.14em] text-accent-600 transition hover:border-accent-600">{tr('cta.discuss')}</a>
+    </aside>
+
+    <div class="min-w-0">
+      {highlights.length > 0 && (
+        <section class="border-b border-line pb-6">
+          <h2 class="border-t-[3px] border-accent-600 pt-4 text-base font-semibold text-navy-900">{locale === 'tr' ? 'Bir bakışta' : 'At a glance'}</h2>
+          <ul class="mt-5 space-y-3">{highlights.map((h) => <li class="relative pl-7 text-[15px] leading-relaxed text-ink-700"><span class="absolute left-0 top-2 h-2.5 w-2.5 rounded-full bg-accent-600" aria-hidden="true"></span>{h}</li>)}</ul>
+        </section>
+      )}
+      <div class="prose-site mt-8 text-[18px] leading-[1.75] text-ink-900 [&_h2]:mt-10 [&_h2]:text-h3 [&_h3]:mt-8 [&_h3]:text-xl [&_h3]:font-semibold [&_p]:mt-5 [&_ul]:mt-5 [&_ul]:list-disc [&_ul]:pl-6 [&_li]:mt-2 [&_a]:border-b [&_a]:border-accent-600 [&_strong]:font-semibold [&_dl]:mt-6 [&_dt]:mt-6 [&_dt]:text-sm [&_dt]:font-semibold [&_dt]:uppercase [&_dt]:tracking-[0.14em] [&_dt]:text-accent-600 [&_dd]:mt-2">
+        <slot />
+      </div>
+      {tags.length > 0 && (
+        <section class="mt-12">
+          <h2 class="text-xs font-semibold uppercase tracking-[0.14em] text-navy-900">{locale === 'tr' ? 'Etiketler' : 'Tags'}</h2>
+          <ul class="mt-2 flex flex-wrap gap-1.5">{tags.map((tg) => <li class="border border-line px-3 py-2 text-sm text-ink-700">{tg}</li>)}</ul>
+        </section>
+      )}
+    </div>
+
+    <aside class="lg:justify-self-end lg:w-[220px]">
+      <section class="border-t border-line py-4">
+        <h2 class="text-sm font-semibold text-navy-900">{locale === 'tr' ? 'İlgili hizmetler' : 'Related services'}</h2>
+        <ul class="mt-3 space-y-3">{related.map((s) => <li><a href={localizePath(`/what-we-do/${s.slug}`, locale)} class="border-b border-accent-600 text-sm text-ink-900 hover:text-accent-600">{t(s.title, locale)}</a></li>)}</ul>
+      </section>
+      <section class="border-t border-line py-4">
+        <h2 class="text-sm font-semibold text-navy-900">{locale === 'tr' ? 'Daha fazla' : 'More'}</h2>
+        <ul class="mt-3 space-y-3">
+          <li><a href={localizePath('/selected-experience', locale)} class="border-b border-accent-600 text-sm text-ink-900 hover:text-accent-600">{tr('nav.experience')}</a></li>
+          <li><a href={localizePath('/insights', locale)} class="border-b border-accent-600 text-sm text-ink-900 hover:text-accent-600">{tr('nav.insights')}</a></li>
+        </ul>
+      </section>
+    </aside>
+  </div>
+</article>
+
+<script>
+  const bar = document.querySelector<HTMLElement>('[data-article-bar] [data-progress]');
+  if (bar) {
+    const update = () => { const h = document.documentElement.scrollHeight - innerHeight; bar.style.width = `${Math.min(100, Math.max(0, (scrollY / h) * 100))}%`; };
+    addEventListener('scroll', update, { passive: true }); update();
+  }
+</script>

@@ -90,6 +90,20 @@ import BcgFeaturePromo from '@components/lab/bcg/BcgFeaturePromo.astro';
 import BcgExploreMore from '@components/lab/bcg/BcgExploreMore.astro';
 import BcgSubscribeRail from '@components/lab/bcg/BcgSubscribeRail.astro';
 import BcgFooter from '@components/lab/bcg/BcgFooter.astro';
+// Bain article page
+import BaHeader from '@components/lab/ba/BaHeader.astro';
+import BaArticleHero from '@components/lab/ba/BaArticleHero.astro';
+import BaStickyBar from '@components/lab/ba/BaStickyBar.astro';
+import BaArticleLayout from '@components/lab/ba/BaArticleLayout.astro';
+import BaAuthors from '@components/lab/ba/BaAuthors.astro';
+import BaAtAGlance from '@components/lab/ba/BaAtAGlance.astro';
+import BaArticleBody from '@components/lab/ba/BaArticleBody.astro';
+import BaFigure from '@components/lab/ba/BaFigure.astro';
+import BaRelated from '@components/lab/ba/BaRelated.astro';
+import BaTags from '@components/lab/ba/BaTags.astro';
+import BaCaseStudies from '@components/lab/ba/BaCaseStudies.astro';
+import BaReadyToTalk from '@components/lab/ba/BaReadyToTalk.astro';
+import BaFooter from '@components/lab/ba/BaFooter.astro';
 
 import img1 from '@assets/images/portrait-woman-blue.webp';
 import img2 from '@assets/images/grain-silos-dusk.webp';
@@ -107,14 +121,15 @@ const trFooterColumns = [
 ];
 ---
 <Lab title="All components">
-  <Group title="Headers" count={5} />
+  <Group title="Headers" count={6} />
   <Frame name="RbHeader" source={src('RbHeader')}><RbHeader mode="static" /></Frame>
   <Frame name="SaHeader" source={src('SaHeader')}><SaHeader /></Frame>
   <Frame name="KeHeader" source={src('KeHeader')}><KeHeader /></Frame>
   <Frame name="SoaNav" source={src('SoaNav')}><SoaNav /></Frame>
   <Frame name="BcgHeader" source={src('BcgHeader')}><BcgHeader /></Frame>
+  <Frame name="BaHeader" source={src('BaHeader')}><BaHeader /></Frame>
 
-  <Group title="Heroes" count={8} />
+  <Group title="Heroes" count={9} />
   <Frame name="RbHero" source={src('RbHero')}><RbHero><RbHeader slot="header" mode="overlay" /></RbHero></Frame>
   <Frame name="RbStageOverview" source={src('RbStageOverview')}><RbStageOverview><RbHeader slot="header" mode="overlay" /></RbStageOverview></Frame>
   <Frame name="SaHero" source={src('SaHero')}><SaHero /></Frame>
@@ -123,9 +138,11 @@ const trFooterColumns = [
   <Frame name="KeHero" source={src('KeHero')}><KeHero align="left" title="Opportunities at Kearney" subtitle="From consulting to internal roles, find paths that fit your ambitions." /></Frame>
   <Frame name="SoaPageHeader" source={src('SoaPageHeader')}><SoaPageHeader /></Frame>
   <Frame name="BcgHero" source={src('BcgHero')}><BcgHero /></Frame>
+  <Frame name="BaArticleHero" source={src('BaArticleHero')}><BaArticleHero /></Frame>
 
-  <Group title="Navigation, headlines & dividers" count={11} />
+  <Group title="Navigation, headlines & dividers" count={12} />
   <Frame name="RbSubnavPills" source={src('RbSubnavPills')}><RbSubnavPills /></Frame>
+  <Frame name="BaStickyBar" source={src('BaStickyBar')}><BaStickyBar /></Frame>
   <Frame name="SaInPageNav" source={src('SaInPageNav')}><SaInPageNav /></Frame>
   <Frame name="KeSubnav" source={src('KeSubnav')}><KeSubnav /></Frame>
   <Frame name="SoaFilterBar" source={src('SoaFilterBar')}><SoaFilterBar /></Frame>
@@ -136,6 +153,24 @@ const trFooterColumns = [
   <Frame name="RbLoadMore" source={src('RbLoadMore')}><RbLoadMore /></Frame>
   <Frame name="RbBreadcrumb" source={src('RbBreadcrumb')}><RbBreadcrumb items={[{ label: 'Start', href: '#' }, { label: 'About', href: '#' }, { label: 'Overview', href: '#top' }]} /></Frame>
   <Frame name="BcgSectionBanner" source={src('BcgSectionBanner')}><BcgSectionBanner link={{ label: 'See more', href: '#' }} /></Frame>
+
+  <Group title="Article page (Bain)" count={7} />
+  <Frame name="BaArticleLayout" source={src('BaArticleLayout')}>
+    <BaArticleLayout>
+      <BaAuthors slot="left" />
+      <BaAtAGlance />
+      <BaArticleBody />
+      <div class="mt-14"><BaFigure /></div>
+      <BaTags />
+      <BaRelated slot="right" />
+    </BaArticleLayout>
+  </Frame>
+  <Frame name="BaAtAGlance" source={src('BaAtAGlance')}><BaAtAGlance /></Frame>
+  <Frame name="BaArticleBody" source={src('BaArticleBody')}><BaArticleBody /></Frame>
+  <Frame name="BaFigure" source={src('BaFigure')}><BaFigure number={2} caption="Strategic M&A value is growing across all industries" height={300} /></Frame>
+  <Frame name="BaAuthors" source={src('BaAuthors')}><div class="px-6 py-4"><BaAuthors /></div></Frame>
+  <Frame name="BaRelated" source={src('BaRelated')}><div class="px-6 py-4"><BaRelated /></div></Frame>
+  <Frame name="BaTags" source={src('BaTags')}><BaTags /></Frame>
 
   <Group title="Intro & text blocks" count={9} />
   <Frame name="RbTextBlock" source={src('RbTextBlock')}><RbSectionHeadline title="On the company" /><RbTextBlock /></Frame>
@@ -160,9 +195,10 @@ const trFooterColumns = [
     <KeFeatureRow imageSide="left" title="Life at Kearney" text="Kearney fosters an environment where Originals not only thrive but also feel a genuine sense of belonging." cta={{ label: 'Discover life at Kearney', href: '#' }} image={img1} />
   </Frame>
 
-  <Group title="Cards & grids" count={12} />
+  <Group title="Cards & grids" count={13} />
   <Frame name="RbTileGrid" source={src('RbTileGrid')}><RbTileGrid /></Frame>
   <Frame name="RbJoinTiles" source={src('RbJoinTiles')}><RbJoinTiles /></Frame>
+  <Frame name="BaCaseStudies" source={src('BaCaseStudies')}><BaCaseStudies /></Frame>
   <Frame name="RbMediaTiles" source={src('RbMediaTiles')}><RbOverline text="Podcast" line={false} /><RbMediaTiles /></Frame>
   <Frame name="SaImagePanels" source={src('SaImagePanels')}><SaImagePanels /></Frame>
   <Frame name="SaPublications" source={src('SaPublications')}><SaPublications /></Frame>
@@ -199,7 +235,8 @@ const trFooterColumns = [
   <Frame name="BcgNumbers" source={src('BcgNumbers')}><BcgNumbers /></Frame>
   <Frame name="RbAwardBadge" source={src('RbAwardBadge')}><RbAwardBadge /></Frame>
 
-  <Group title="CTAs & banners" count={9} />
+  <Group title="CTAs & banners" count={10} />
+  <Frame name="BaReadyToTalk" source={src('BaReadyToTalk')}><BaReadyToTalk /></Frame>
   <Frame name="RbFlagCta" source={src('RbFlagCta')}><RbFlagCta /></Frame>
   <Frame name="RbContactBox" source={src('RbContactBox')}><RbContactBox /></Frame>
   <Frame name="SaInfoBanner" source={src('SaInfoBanner')}><SaInfoBanner /></Frame>
@@ -210,7 +247,7 @@ const trFooterColumns = [
   <Frame name="BcgSubscribeRail" source={src('BcgSubscribeRail')}><BcgSubscribeRail /></Frame>
   <Frame name="SaFollowUs" source={src('SaFollowUs')}><SaFollowUs /></Frame>
 
-  <Group title="Footers" count={6} />
+  <Group title="Footers" count={7} />
   <Frame name="RbFooter" source={src('RbFooter')}><RbFooter /></Frame>
   <Frame name="SaFooter" source={src('SaFooter')}><SaFooter /></Frame>
   <Frame name="SaFooter" source={src('SaFooter')}>
@@ -219,4 +256,5 @@ const trFooterColumns = [
   <Frame name="KeFooter" source={src('KeFooter')}><KeFooter /></Frame>
   <Frame name="SoaFooter" source={src('SoaFooter')}><SoaFooter /></Frame>
   <Frame name="BcgFooter" source={src('BcgFooter')}><BcgFooter /></Frame>
+  <Frame name="BaFooter" source={src('BaFooter')}><BaFooter /></Frame>
 </Lab>

@@ -1,0 +1,14 @@
+---
+/**
+ * BaArticleLayout — the three-column article body: authors (180px) left,
+ * 700px reading column centre, related links (220px) right.
+ * Slots: "left", default (body), "right".
+ */
+---
+<div class="mx-auto max-w-[1360px] px-5 lg:px-10">
+  <div class="grid gap-10 pt-4 lg:grid-cols-[330px_660px_1fr]">
+    <div class="lg:pl-5"><slot name="left" /></div>
+    <div class="min-w-0"><slot /></div>
+    <div class="flex lg:justify-end"><slot name="right" /></div>
+  </div>
+</div>

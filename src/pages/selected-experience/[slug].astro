@@ -1,0 +1,7 @@
+---
+import CaseStudyView from '@/views/CaseStudyView.astro';
+import { experience } from '@data/experience';
+export function getStaticPaths() { return experience.map((cs) => ({ params: { slug: cs.slug }, props: { cs } })); }
+const { cs } = Astro.props;
+---
+<CaseStudyView cs={cs} />

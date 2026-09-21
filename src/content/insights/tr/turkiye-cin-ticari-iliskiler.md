@@ -6,6 +6,12 @@ topic: china-turkiye
 cover: "../../../assets/images/storage-tanks-night.webp"
 coverAlt: "Gece endüstriyel depolama tankları"
 translationOf: turkiye-china-business-relationships
+authors: [bulent-ulusoy]
+readMinutes: 4
+highlights:
+  - "Çinli EPC ve teknoloji grupları Türkiye enerji ve altyapısındaki en aktif yabancı oyuncular."
+  - "İşleyen ilişkiler tek bir tanıştırma değil, yapılandırılmış bir arayüz gerektirir."
+  - "Finansman, yerli katkı ve onaylar ilk görüşmeye aittir."
 ---
 
 Çinli teknoloji ve EPC şirketleri Türkiye enerji ve altyapısındaki en aktif yabancı oyuncular arasında. İşleyen ilişkiler nadiren tek bir tanıştırmanın sonucudur.

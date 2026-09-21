@@ -5,6 +5,12 @@ publishDate: 2026-08-18
 topic: china-turkiye
 cover: "../../../assets/images/storage-tanks-night.webp"
 coverAlt: "Industrial storage tanks at night"
+authors: [bulent-ulusoy]
+readMinutes: 4
+highlights:
+  - "Chinese EPC and technology groups are the most active foreign players in Turkish energy and infrastructure."
+  - "Working relationships need a structured interface, not a single introduction."
+  - "Financing, local content and approvals belong in the first conversation."
 ---
 
 Chinese technology and EPC companies are among the most active foreign players in Turkish energy and infrastructure. The relationships that work are rarely the result of a single introduction.

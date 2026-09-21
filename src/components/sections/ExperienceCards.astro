@@ -30,13 +30,14 @@ const statusTone = { ongoing: 'bg-accent-600', completed: 'bg-emerald-600', adva
           </div>
           <div class="p-7 lg:col-span-8 lg:p-9">
             <p class="text-xs font-semibold uppercase tracking-[0.14em] text-ink-400">{t(c.client, locale)} · {t(c.sector, locale)} · {t(c.market, locale)}</p>
-            <h3 class="mt-3 text-h3">{t(c.title, locale)}</h3>
+            <h3 class="mt-3 text-h3"><a href={localizePath(`/selected-experience/${c.slug}`, locale)} class="hover:underline underline-offset-4">{t(c.title, locale)}</a></h3>
             <dl class="mt-6 grid gap-5 text-sm leading-relaxed md:grid-cols-2">
               <div><dt class="font-semibold text-navy-900">{tr('label.need')}</dt><dd class="mt-1 text-ink-500">{t(c.need, locale)}</dd></div>
               <div><dt class="font-semibold text-navy-900">{tr('label.role')}</dt><dd class="mt-1 text-ink-500">{t(c.role, locale)}</dd></div>
               {full && <div><dt class="font-semibold text-navy-900">{tr('label.progress')}</dt><dd class="mt-1 text-ink-500">{t(c.progress, locale)}</dd></div>}
               <div><dt class="font-semibold text-navy-900">{tr('label.outcome')}</dt><dd class="mt-1 text-ink-500">{t(c.outcome, locale)}</dd></div>
             </dl>
+            <a href={localizePath(`/selected-experience/${c.slug}`, locale)} class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent-600 hover:underline underline-offset-4">{tr('cta.readMore')} →</a>
           </div>
         </article>
       ))}

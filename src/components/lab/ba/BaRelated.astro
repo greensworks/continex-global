@@ -1,0 +1,14 @@
+---
+/** BaRelated — right sidebar: grouped link lists ("Related Consulting Services", "How We Can Help") with red underlines. */
+interface Group { title: string; links: { label: string; href: string }[] }
+interface Props { groups?: Group[]; accent?: string }
+const { groups = [{ title: 'Related Consulting Services', links: ['AI, Insights, and Solutions', 'Mergers and Acquisitions', 'Post-Merger Integration'].map((l) => ({ label: l, href: '#' })) }, { title: 'How We Can Help', links: [{ label: 'Artificial Intelligence', href: '#' }] }], accent = '#CC0000' } = Astro.props;
+---
+<aside class="w-[220px]">
+  {groups.map((g) => (
+    <section class="border-t border-[#D8D8D8] py-4">
+      <h2 class="font-display text-[15px] text-black">{g.title}</h2>
+      <ul class="mt-3 space-y-4">{g.links.map((l) => <li><a href={l.href} class="border-b text-[15px] text-black" style={`border-color:${accent}`}>{l.label}</a></li>)}</ul>
+    </section>
+  ))}
+</aside>
