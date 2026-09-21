@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import logoWhite from '@assets/logos/continex-global-logo-white.png';
+import { getLocale, localizePath, t as pick } from '@i18n/utils';
+import { useTranslations } from '@i18n/ui';
+import { primaryNav, ctaHref } from '@data/nav';
+import { services } from '@data/services';
+import { site } from '@data/site';
+
+const locale = getLocale(Astro.url);
+const t = useTranslations(locale);
+const year = new Date().getFullYear();
+---
+<footer class="bg-navy-950 text-white/80">
+  <div class="container-site">
+    <div class="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-12 lg:py-20">
+      <div class="lg:col-span-4">
+        <Image src={logoWhite} alt="Continex Global" width={200} densities={[1, 2]} class="h-9 w-auto" />
+        <p class="mt-5 max-w-sm text-sm leading-relaxed text-white/60">{pick(site.tagline, locale)}</p>
+        <p class="mt-2 max-w-sm text-sm leading-relaxed text-white/60">{pick(site.coverage, locale)}</p>
+      </div>
+
+      <div class="lg:col-span-3">
+        <h2 class="text-eyebrow font-semibold uppercase tracking-[0.14em] text-steel-300">{t('nav.whatWeDo')}</h2>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          {services.map((s) => (
+            <li><a href={localizePath(`/what-we-do/${s.slug}`, locale)} class="transition hover:text-white">{pick(s.title, locale)}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h2 class="text-eyebrow font-semibold uppercase tracking-[0.14em] text-steel-300">{site.name}</h2>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          {primaryNav.filter((n) => n.key !== 'nav.whatWeDo').map((item) => (
+            <li><a href={localizePath(item.href, locale)} class="transition hover:text-white">{t(item.key)}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3">
+        <h2 class="text-eyebrow font-semibold uppercase tracking-[0.14em] text-steel-300">{t('nav.contact')}</h2>
+        <address class="mt-4 text-sm not-italic leading-relaxed text-white/70">
+          {site.address.lines.map((l) => <span class="block">{l}</span>)}
+        </address>
+        {site.email && <a href={`mailto:${site.email}`} class="mt-3 block text-sm transition hover:text-white">{site.email}</a>}
+        {site.phone && <a href={`tel:${site.phone.replace(/\s/g, '')}`} class="block text-sm transition hover:text-white">{site.phone}</a>}
+        <a href={localizePath(ctaHref, locale)} class="mt-6 inline-flex items-center rounded-card border border-white/20 px-4 py-2.5 text-sm font-semibold text-white transition hover:border-white/50">{t('cta.discuss')}</a>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-3 border-t border-white/10 py-6 text-xs text-white/50 md:flex-row md:items-center md:justify-between">
+      <p>&copy; {year} {site.legalName} {t('footer.rights')}</p>
+      <ul class="flex gap-5">
+        <li><a href={localizePath('/privacy-policy', locale)} class="transition hover:text-white">{t('footer.privacy')}</a></li>
+        <li><a href={localizePath('/cookie-policy', locale)} class="transition hover:text-white">{t('footer.cookies')}</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>

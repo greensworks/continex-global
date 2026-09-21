@@ -1,0 +1,11 @@
+---
+import Base from '@layouts/Base.astro';
+import Hero from '@components/sections/Hero.astro';
+import LogoMarquee from '@components/sections/LogoMarquee.astro';
+import heroImg from '@assets/images/high-voltage-towers.webp';
+import { site } from '@data/site';
+---
+<Base title={site.name} description={site.description.tr} headerTheme="dark">
+  <Hero image={heroImg} imageAlt="Gün batımında yüksek gerilim hatları" />
+  <LogoMarquee />
+</Base>

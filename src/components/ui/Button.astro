@@ -1,0 +1,20 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'ghost' | 'inverse';
+  size?: 'md' | 'lg';
+  class?: string;
+}
+const { href, variant = 'primary', size = 'md', class: cls = '' } = Astro.props;
+const base = 'inline-flex items-center justify-center gap-2 rounded-card font-semibold transition focus-visible:outline-offset-4';
+const sizes = { md: 'px-5 py-2.5 text-sm', lg: 'px-6 py-3.5 text-base' };
+const variants = {
+  primary: 'bg-accent-600 text-white hover:bg-accent-500',
+  secondary: 'bg-navy-900 text-white hover:bg-navy-800',
+  ghost: 'border border-line text-navy-900 hover:border-navy-900',
+  inverse: 'border border-white/30 text-white hover:border-white hover:bg-white/5',
+};
+---
+<a href={href} class:list={[base, sizes[size], variants[variant], cls]}>
+  <slot />
+</a>

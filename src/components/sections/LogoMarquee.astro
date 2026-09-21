@@ -1,0 +1,94 @@
+---
+/**
+ * Two-row infinite logo marquee (rows scroll in opposite directions),
+ * pure CSS, pauses on hover, static on reduced-motion.
+ * Pattern borrowed from pixelshield.studio "Our toolkit".
+ */
+import { Image } from 'astro:assets';
+import { approvedPartners, type Partner } from '@data/partners';
+import { getLocale } from '@i18n/utils';
+import { useTranslations } from '@i18n/ui';
+
+interface Props {
+  partners?: Partner[];
+  eyebrow?: string;
+  title?: string;
+  tone?: 'light' | 'muted';
+}
+const locale = getLocale(Astro.url);
+const t = useTranslations(locale);
+const { partners = approvedPartners, eyebrow = t('partners.eyebrow'), title = t('partners.title'), tone = 'muted' } = Astro.props;
+
+const half = Math.ceil(partners.length / 2);
+const rows = [partners.slice(0, half), partners.slice(half)];
+---
+<section class:list={['section', tone === 'muted' ? 'bg-surface-alt' : 'bg-surface']}>
+  <div class="container-site">
+    <div class="mx-auto max-w-2xl text-center" data-reveal>
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 class="mt-4 text-h2">{title}</h2>
+    </div>
+  </div>
+
+  <div class="marquee mt-12 space-y-4" data-reveal>
+    {rows.map((row, i) => (
+      <div class:list={['marquee-track', i % 2 === 1 && 'marquee-track--reverse']} style={`--n:${row.length}`}>
+        {[0, 1].map((dup) => (
+          <ul class="marquee-row" aria-hidden={dup === 1 ? 'true' : undefined}>
+            {row.map((p) => (
+              <li class="marquee-item">
+                <Image src={p.logo} alt={dup === 0 ? p.name : ''} height={40} densities={[1, 2]} class="h-8 w-auto max-w-[140px] object-contain sm:h-9" loading="lazy" />
+              </li>
+            ))}
+          </ul>
+        ))}
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+  .marquee-track {
+    --gap: 1rem;
+    --speed: 55s;
+    display: flex;
+    gap: var(--gap);
+    width: max-content;
+    animation: marquee var(--speed) linear infinite;
+  }
+  .marquee-track--reverse { animation-direction: reverse; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  .marquee-row {
+    display: flex;
+    gap: var(--gap);
+    flex: none;
+  }
+  .marquee-item {
+    display: grid;
+    place-items: center;
+    height: 88px;
+    padding-inline: 2rem;
+    min-width: 200px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+    filter: grayscale(1);
+    opacity: 0.75;
+    transition: filter 0.3s, opacity 0.3s;
+  }
+  .marquee-item:hover { filter: none; opacity: 1; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-50% - var(--gap) / 2)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
+    .marquee-row[aria-hidden] { display: none; }
+    .marquee { mask-image: none; -webkit-mask-image: none; }
+  }
+</style>

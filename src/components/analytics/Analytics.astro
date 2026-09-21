@@ -1,0 +1,64 @@
+---
+/**
+ * Consent-gated tracking loader.
+ * IDs come from PUBLIC_* env vars (see .env.example). Nothing loads until the
+ * CookieConsent component dispatches `cx:consent`.
+ *   analytics  → GA4, Microsoft Clarity, B2B visitor identification
+ *   marketing  → LinkedIn Insight Tag, Meta Pixel
+ */
+const cfg = {
+  ga4: import.meta.env.PUBLIC_GA4_ID || '',
+  clarity: import.meta.env.PUBLIC_CLARITY_ID || '',
+  linkedin: import.meta.env.PUBLIC_LINKEDIN_PARTNER_ID || '',
+  meta: import.meta.env.PUBLIC_META_PIXEL_ID || '',
+  b2b: import.meta.env.PUBLIC_B2B_VISITOR_SCRIPT || '',
+};
+const enabled = Object.values(cfg).some(Boolean);
+---
+{enabled && (
+  <script is:inline define:vars={{ cfg }}>
+    (function () {
+      var loaded = {};
+      function once(key, fn) { if (!loaded[key]) { loaded[key] = true; fn(); } }
+      function script(src, attrs) {
+        var s = document.createElement('script'); s.async = true; s.src = src;
+        if (attrs) Object.keys(attrs).forEach(function (k) { s.setAttribute(k, attrs[k]); });
+        document.head.appendChild(s); return s;
+      }
+
+      function loadAnalytics() {
+        if (cfg.ga4) once('ga4', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () { dataLayer.push(arguments); };
+          gtag('js', new Date());
+          gtag('config', cfg.ga4, { anonymize_ip: true });
+          script('https://www.googletagmanager.com/gtag/js?id=' + cfg.ga4);
+        });
+        if (cfg.clarity) once('clarity', function () {
+          window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
+          script('https://www.clarity.ms/tag/' + cfg.clarity);
+        });
+        if (cfg.b2b) once('b2b', function () { script(cfg.b2b); });
+      }
+
+      function loadMarketing() {
+        if (cfg.linkedin) once('linkedin', function () {
+          window._linkedin_partner_id = cfg.linkedin;
+          window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+          window._linkedin_data_partner_ids.push(cfg.linkedin);
+          script('https://snap.licdn.com/li.lms-analytics/insight.min.js');
+        });
+        if (cfg.meta) once('meta', function () {
+          !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', cfg.meta); fbq('track', 'PageView');
+        });
+      }
+
+      addEventListener('cx:consent', function (e) {
+        var c = e.detail || {};
+        if (c.analytics) loadAnalytics();
+        if (c.marketing) loadMarketing();
+      });
+    })();
+  </script>
+)}

@@ -1,0 +1,80 @@
+---
+/**
+ * KVKK / GDPR consent banner. Stores a JSON consent object in localStorage
+ * under `cx-consent` and dispatches `cx:consent` on change. Analytics.astro
+ * listens to that event and only then injects tracking scripts.
+ */
+import { getLocale, localizePath } from '@i18n/utils';
+const locale = getLocale(Astro.url);
+const copy = {
+  en: {
+    text: 'We use cookies to understand how our site is used and to improve it. Analytics and marketing cookies are only set with your consent.',
+    policy: 'Cookie Policy',
+    acceptAll: 'Accept all',
+    necessary: 'Necessary only',
+    manage: 'Manage',
+    analytics: 'Analytics',
+    marketing: 'Marketing',
+    save: 'Save preferences',
+  },
+  tr: {
+    text: 'Sitemizin nasıl kullanıldığını anlamak ve geliştirmek için çerezler kullanıyoruz. Analitik ve pazarlama çerezleri yalnızca onayınızla yerleştirilir.',
+    policy: 'Çerez Politikası',
+    acceptAll: 'Tümünü kabul et',
+    necessary: 'Yalnızca gerekli',
+    manage: 'Yönet',
+    analytics: 'Analitik',
+    marketing: 'Pazarlama',
+    save: 'Tercihleri kaydet',
+  },
+}[locale];
+---
+<div id="cookie-consent" hidden class="fixed inset-x-4 bottom-4 z-[90] mx-auto max-w-2xl rounded-card border border-line bg-white p-5 text-sm text-ink-700 shadow-[0_20px_60px_-20px_rgba(11,26,48,0.35)] sm:inset-x-6" role="dialog" aria-live="polite" aria-label="Cookie consent">
+  <p>{copy.text} <a href={localizePath('/cookie-policy', locale)} class="font-medium text-navy-800 underline underline-offset-2">{copy.policy}</a></p>
+
+  <form data-consent-form hidden class="mt-4 grid gap-2 border-t border-line pt-4 sm:grid-cols-2">
+    <label class="flex items-center gap-2"><input type="checkbox" checked disabled class="accent-navy-800" /> <span>{locale === 'tr' ? 'Gerekli' : 'Necessary'}</span></label>
+    <label class="flex items-center gap-2"><input type="checkbox" name="analytics" class="accent-navy-800" /> <span>{copy.analytics}</span></label>
+    <label class="flex items-center gap-2"><input type="checkbox" name="marketing" class="accent-navy-800" /> <span>{copy.marketing}</span></label>
+  </form>
+
+  <div class="mt-4 flex flex-wrap gap-2">
+    <button type="button" data-consent="all" class="rounded-card bg-navy-900 px-4 py-2 font-semibold text-white transition hover:bg-navy-800">{copy.acceptAll}</button>
+    <button type="button" data-consent="necessary" class="rounded-card border border-line px-4 py-2 font-medium transition hover:border-ink-400">{copy.necessary}</button>
+    <button type="button" data-consent="manage" class="rounded-card px-4 py-2 font-medium underline-offset-2 hover:underline">{copy.manage}</button>
+    <button type="button" data-consent="save" hidden class="rounded-card bg-navy-900 px-4 py-2 font-semibold text-white">{copy.save}</button>
+  </div>
+</div>
+
+<script>
+  type Consent = { necessary: true; analytics: boolean; marketing: boolean; ts: number };
+  const KEY = 'cx-consent';
+  const root = document.getElementById('cookie-consent')!;
+  const form = root.querySelector<HTMLFormElement>('[data-consent-form]')!;
+  const btn = (n: string) => root.querySelector<HTMLButtonElement>(`[data-consent="${n}"]`)!;
+
+  const read = (): Consent | null => {
+    try { return JSON.parse(localStorage.getItem(KEY) ?? 'null'); } catch { return null; }
+  };
+  const write = (c: Omit<Consent, 'necessary' | 'ts'>) => {
+    const consent: Consent = { necessary: true, ...c, ts: Date.now() };
+    try { localStorage.setItem(KEY, JSON.stringify(consent)); } catch {}
+    dispatchEvent(new CustomEvent('cx:consent', { detail: consent }));
+    root.hidden = true;
+  };
+
+  const existing = read();
+  if (existing) dispatchEvent(new CustomEvent('cx:consent', { detail: existing }));
+  else root.hidden = false;
+
+  btn('all').addEventListener('click', () => write({ analytics: true, marketing: true }));
+  btn('necessary').addEventListener('click', () => write({ analytics: false, marketing: false }));
+  btn('manage').addEventListener('click', () => { form.hidden = false; btn('manage').hidden = true; btn('all').hidden = true; btn('save').hidden = false; });
+  btn('save').addEventListener('click', () => {
+    const fd = new FormData(form);
+    write({ analytics: fd.has('analytics'), marketing: fd.has('marketing') });
+  });
+
+  // Allow re-opening from a footer link: <a href="#" data-open-consent>
+  document.querySelectorAll('[data-open-consent]').forEach((el) => el.addEventListener('click', (e) => { e.preventDefault(); root.hidden = false; }));
+</script>
