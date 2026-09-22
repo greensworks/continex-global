@@ -1,0 +1,10 @@
+{
+  // Static site served from Cloudflare Workers: `npm run build` writes dist/,
+  // `npx wrangler deploy` uploads it as the Worker's assets.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "continex-global",
+  "compatibility_date": "2026-09-22",
+  "assets": {
+    "directory": "./dist"
+  }
+}
