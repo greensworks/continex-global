@@ -29,9 +29,10 @@ export const pages = {
   notFound: {
     title: { en: 'This page is not here', tr: 'Bu sayfa burada değil' },
     lead: {
-      en: 'The link may be outdated or the address mistyped. The sections below cover everything on the site.',
-      tr: 'Bağlantı güncelliğini yitirmiş ya da adres hatalı yazılmış olabilir. Aşağıdaki bölümlerden sitenin tamamına ulaşabilirsiniz.',
+      en: 'The link may be outdated or the address mistyped.',
+      tr: 'Bağlantı güncelliğini yitirmiş ya da adres hatalı yazılmış olabilir.',
     },
+    cta: { en: 'Back to home', tr: 'Ana sayfaya dön' },
   },
   about: {
     title: { en: 'Built for complex cross-border business', tr: 'Karmaşık uluslararası işlemler için yapılandırılmış bir kurum' },
