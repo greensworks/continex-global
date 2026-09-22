@@ -1,0 +1,40 @@
+---
+import Photo from '@components/ui/Photo.astro';
+import { img } from '@/lib/images';
+import { getLocale, localizePath } from '@i18n/utils';
+interface Props { exploreHref?: string }
+const { exploreHref = '#home-about' } = Astro.props;
+const locale = getLocale(Astro.url);
+const tr = locale === 'tr';
+const path = (url: string) => localizePath(url, locale);
+---
+    <section class="opening" aria-labelledby="alternative-title">
+      <Photo src={img('service-project-development')} alt={tr ? 'Enerji projesi sahasında çalışan mühendisler' : 'Engineers working on an energy project site'} widths={[768,1280,1920,2560]} sizes="100vw" loading="eager" fetchpriority="high" class="opening-image" />
+      <video class="opening-video" muted loop playsinline preload="none" aria-hidden="true" data-home2-video><source data-src="/media/hero.mp4" type="video/mp4" /></video>
+      <div class="opening-shade"></div>
+      <div class="container-site opening-copy">
+        <p class="kicker">{tr ? 'Strateji. Erişim. Uygulama.' : 'Strategy. Access. Execution.'}</p>
+        <h1 id="alternative-title">{tr ? <>Sınırları aşan<br/>iş fırsatları.</> : <>Business<br/><span style="color: #bebebe">beyond borders.</span></>}</h1>
+        <div class="opening-bottom"><a class="text-link light" href={path('/what-we-do')}>{tr ? 'Birlikte neler yapabiliriz?' : 'Discover what we do'} <span aria-hidden="true">↗</span></a><a class="scroll-link" href={exploreHref}>{tr ? 'Continex’i keşfedin' : 'Explore Continex'} <span aria-hidden="true">↓</span></a></div>
+      </div>
+    </section>
+<script>
+  const video = document.querySelector<HTMLVideoElement>('[data-home2-video]');
+  if (video && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const source = video.querySelector('source');
+    if (source?.dataset.src) { source.src = source.dataset.src; video.load(); }
+    video.play().catch(() => { video.hidden = true; });
+  }
+</script>
+<style>
+.opening{position:relative;isolation:isolate;min-height:100svh;background:var(--night);color:white;display:flex;align-items:end}.opening :global(.opening-image),.opening-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3}.opening-video{z-index:-2}.opening-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#0a1c3580,transparent 40%,#102637b8)}.opening-copy{padding-block:220px 65px}.opening h1{font-size:clamp(48px,6.5vw,100px);color:white;max-width:1000px}.opening .kicker{font-size:16px;text-transform:none}.opening-bottom{display:flex;gap:24px;align-items:center;justify-content:space-between;margin-top:35px}.scroll-link{font-size:12px;display:flex;align-items:center;gap:20px;margin-right:0}.scroll-link span{font-size:25px}
+.opening{--night:#172d3d}
+.opening h1{font-family:var(--font-sans);font-weight:300;letter-spacing:-.025em;line-height:1.1;text-wrap:initial;text-transform:uppercase}
+@media(max-width:1023px){.opening .container-site{padding-inline:clamp(24px,5.5vw,90px)}}
+.kicker{line-height:1.5;letter-spacing:.06em;margin-bottom:20px}
+.text-link{display:inline-flex;align-items:center;justify-content:center;gap:25px;border:1px solid #ffffff70;border-radius:30px;padding:13px 24px;font-size:12px;text-transform:uppercase;line-height:1.3;align-self:start;color:white}
+.text-link:hover{color:#bebebe}
+.opening a:focus-visible{outline:3px solid #0f6fd6;outline-offset:4px}
+@media(max-width:700px){.opening{min-height:92svh}.opening-copy{padding-block:180px 45px}.opening h1{font-size:clamp(44px,9vw,62px)}.opening .kicker{font-size:13px}.opening-bottom{margin-top:25px}.scroll-link{display:none}}
+@media(prefers-reduced-motion:reduce){.opening-video{display:none}}
+</style>

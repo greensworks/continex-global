@@ -9,8 +9,8 @@ export function getLocale(url: URL | string): Locale {
 }
 
 /**
- * Turn a canonical, locale-agnostic path (`/what-we-do/market-entry`) into
- * the URL for a locale (`/tr/ne-yapiyoruz/pazara-giris`). A hash is kept.
+ * Turn a canonical, locale-agnostic path (`/what-we-do#market-entry`) into
+ * the URL for a locale (`/tr/ne-yapiyoruz#market-entry`). A hash is kept.
  */
 export function localizePath(path: string, locale: Locale): string {
   const [clean, hash] = (path.startsWith('/') ? path : `/${path}`).split('#');

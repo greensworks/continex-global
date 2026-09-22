@@ -1,4 +1,5 @@
 ---
+seoTitle: "Türkiye–Çin Ticari İlişkileri"
 title: "Türkiye–Çin: ticari ilişkiler gerçekte nasıl kuruluyor"
 description: "Çinli üreticiler ve EPC grupları Türkiye enerji, altyapı ve sanayisinde aktif. Her iki taraf için işleyen bir ortaklık nasıl görünür?"
 publishDate: 2026-08-18

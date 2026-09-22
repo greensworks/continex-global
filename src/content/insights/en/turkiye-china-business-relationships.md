@@ -1,4 +1,5 @@
 ---
+seoTitle: "Türkiye–China Business Relationships"
 title: "Türkiye–China: how commercial relationships actually get built"
 description: "Chinese manufacturers and EPC groups are active across Turkish energy, infrastructure and industry. What a workable partnership looks like from both sides."
 publishDate: 2026-08-18

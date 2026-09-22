@@ -11,6 +11,7 @@ import { ctaHref } from '@data/nav';
 import { services } from '@data/services';
 import { industries } from '@data/industries';
 import { site } from '@data/site';
+import { developer } from '@data/developer';
 
 const locale = getLocale(Astro.url);
 const t = useTranslations(locale);
@@ -19,7 +20,7 @@ const columns = [
   {
     title: t('nav.whatWeDo'),
     href: localizePath('/what-we-do', locale),
-    items: services.map((s) => ({ label: pick(s.title, locale), href: localizePath(`/what-we-do/${s.slug}`, locale) })),
+    items: services.map((s) => ({ label: pick(s.title, locale), href: localizePath(`/what-we-do#${s.slug}`, locale) })),
   },
   {
     title: t('nav.industries'),
@@ -82,6 +83,11 @@ const legal = [
         <ul class="flex flex-wrap gap-x-6 gap-y-2">
           {legal.map((l) => <li><a href={l.href} class="hover:underline underline-offset-4">{l.label}</a></li>)}
         </ul>
+        <p class="w-full pt-1 text-[11px] md:text-right">
+          {locale === 'tr' ? 'Web geliştirme' : 'Web development'}
+          <span class="mx-1.5" aria-hidden="true">·</span>
+          <a href={developer.url} class="font-medium text-ink-700 underline-offset-4 transition-colors hover:text-accent-600 hover:underline">{developer.name}</a>
+        </p>
       </div>
     </div>
   </div>

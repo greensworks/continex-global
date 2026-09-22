@@ -1,0 +1,19 @@
+---
+import Photo from '@components/ui/Photo.astro';
+import { img } from '@/lib/images';
+import { industries } from '@data/industries';
+import { getLocale, localizePath, t } from '@i18n/utils';
+const locale = getLocale(Astro.url);
+const tr = locale === 'tr';
+---
+<section class="industry-feature" aria-labelledby="service-industries-title">
+  <div class="industry-photo"><Photo src={img('sector-infrastructure')} alt="" widths={[640,960,1440]} sizes="(min-width:1024px) 50vw, 100vw" class="h-full w-full object-cover" /></div>
+  <div class="industry-copy">
+    <p class="eyebrow text-steel-300">{tr ? 'Sektörel odak' : 'Industry focus'}</p>
+    <h2 id="service-industries-title">{tr ? 'Faaliyet gösterdiğimiz sektörler.' : 'Industries we work in.'}</h2>
+    <ul>{industries.map(i => <li><a href={localizePath(`/industries#${i.slug}`,locale)}>{t(i.title,locale)}<span aria-hidden="true">↗</span></a></li>)}</ul>
+  </div>
+</section>
+<style>
+.industry-feature{display:grid;grid-template-columns:1fr 1fr;background:#0b1a30}.industry-photo{min-height:640px}.industry-copy{padding:72px clamp(32px,5.5vw,88px);color:white}.industry-copy h2{font-size:clamp(34px,3.5vw,50px);line-height:1.12;font-weight:400;letter-spacing:-.035em;color:white;margin-top:20px}.industry-copy ul{margin-top:36px}.industry-copy li{border-top:1px solid #ffffff30}.industry-copy li:last-child{border-bottom:1px solid #ffffff30}.industry-copy a{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:21px 0;font-size:18px;line-height:1.5}.industry-copy a span{color:#98c0d8;font-size:22px}.industry-copy a:hover{color:#98c0d8}@media(max-width:1023px){.industry-feature{grid-template-columns:1fr}.industry-photo{min-height:0;height:340px}.industry-copy{padding:48px 24px}} 
+</style>

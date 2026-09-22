@@ -3,6 +3,10 @@ import '@fontsource-variable/inter';
 import '@fontsource-variable/manrope';
 import '@/styles/global.css';
 import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
+import defaultSocialSource from '@assets/images/cta-people-walking.webp';
+import brandLogo from '@assets/logos/continex-global-logo.png';
+import { seoMetadata, pageGraph } from '@/lib/seo';
 import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
 import FinalCta from '@components/sections/FinalCta.astro';
@@ -11,9 +15,12 @@ import Analytics from '@components/analytics/Analytics.astro';
 import { getLocale, switchLocalePath, stripLocale } from '@i18n/utils';
 import { locales, type Locale } from '@i18n/config';
 import { site } from '@data/site';
+import { developer } from '@data/developer';
 
 interface Props {
   title: string;
+  seoTitle?: string;
+  structuredData?: Record<string, unknown>[];
   description: string;
   /** Path to an OG image in /public, optional */
   ogImage?: string;
@@ -30,11 +37,16 @@ interface Props {
   ctaImage?: ImageMetadata;
 }
 
-const { title, description, localePaths, ogType = 'website', ogImage = '/og-default.jpg', headerTheme = 'light', headerVariant = 'bar', noindex = false, cta = true, ctaImage } = Astro.props;
+const { title, description, localePaths, ogType = 'website', ogImage, headerTheme = 'light', headerVariant = 'bar', noindex = false, cta = true, ctaImage } = Astro.props;
 const locale = getLocale(Astro.url);
-const canonical = new URL(Astro.url.pathname, Astro.site);
-const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
+const canonical = new URL(Astro.url.pathname.replace(/\/+$/, '') || '/', Astro.site);
 const path = stripLocale(Astro.url.pathname);
+const seo = seoMetadata(path, locale, Astro.props.seoTitle ?? title, description);
+const fullTitle = seo.title === site.name ? seo.title : `${seo.title} | ${site.name}`;
+const socialImage = ogImage ?? (await getImage({ src: defaultSocialSource, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 85 })).src;
+const socialUrl = new URL(socialImage, Astro.site).href;
+const schema = { '@context': 'https://schema.org', '@graph': [...pageGraph(Astro.site!, canonical.href, path, locale, title, seo.description, socialUrl, new URL(brandLogo.src, Astro.site).href), ...(Astro.props.structuredData ?? [])] };
+const alternates = Object.entries(localePaths ?? Object.fromEntries(locales.map(l => [l, switchLocalePath(path, l)])));
 const gscToken = import.meta.env.PUBLIC_GSC_VERIFICATION;
 ---
 <!doctype html>
@@ -42,27 +54,34 @@ const gscToken = import.meta.env.PUBLIC_GSC_VERIFICATION;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="creator" content={developer.name} />
     <title>{fullTitle}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={seo.description} />
     <link rel="canonical" href={canonical} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large"} />
     {gscToken && <meta name="google-site-verification" content={gscToken} />}
     <link rel="icon" href="/favicon.webp" type="image/webp" />
     <meta name="theme-color" content="#122744" />
 
-    {locales.map((l) => (
-      <link rel="alternate" hreflang={l} href={new URL(localePaths?.[l] ?? switchLocalePath(path, l), Astro.site)} />
-    ))}
-    <link rel="alternate" hreflang="x-default" href={new URL(localePaths?.en ?? path, Astro.site)} />
+    {!noindex && <>
+      {alternates.map(([language, href]) => <link rel="alternate" hreflang={language} href={new URL(href!, Astro.site)} />)}
+      {alternates.some(([language]) => language === 'en') && <link rel="alternate" hreflang="x-default" href={new URL(alternates.find(([language]) => language === 'en')![1]!, Astro.site)} />}
+    </>}
 
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={fullTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={seo.description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:image" content={socialUrl} />
     <meta property="og:locale" content={locale === 'tr' ? 'tr_TR' : 'en_US'} />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:locale:alternate" content={locale === 'tr' ? 'en_US' : 'tr_TR'} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={seo.description} />
+    <meta name="twitter:image" content={socialUrl} />
+    {!noindex && <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />}
 
     <script is:inline>document.documentElement.classList.add('js');</script>
     <slot name="head" />

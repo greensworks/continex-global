@@ -1,35 +1,27 @@
 ---
 import Base from '@layouts/Base.astro';
-import Hero from '@components/sections/Hero.astro';
-import GuideHeadline from '@components/sections/rb/GuideHeadline.astro';
-import CardRail from '@components/sections/CardRail.astro';
-import Overline from '@components/sections/rb/Overline.astro';
+import BorderlessHero from '@components/sections/home/BorderlessHero.astro';
+import HomeIntro from '@components/sections/home/HomeIntro.astro';
+import HomeServices from '@components/sections/home/HomeServices.astro';
+import HomeExperience from '@components/sections/home/HomeExperience.astro';
+import HomeMarkets from '@components/sections/home/HomeMarkets.astro';
+import HomeInsights from '@components/sections/home/HomeInsights.astro';
 import WhyContinex from '@components/sections/WhyContinex.astro';
-import HowWeWork from '@components/sections/HowWeWork.astro';
-import ExperienceCards from '@components/sections/ExperienceCards.astro';
-import Numbers from '@components/sections/Numbers.astro';
-import MarketsGrid from '@components/sections/MarketsGrid.astro';
-import Faq from '@components/sections/Faq.astro';
 import LogoMarquee from '@components/sections/LogoMarquee.astro';
 import ctaImage from '@assets/images/cta-people-walking.webp';
-import heroImg from '@assets/images/high-voltage-towers.webp';
 import { getLocale, t } from '@i18n/utils';
 import { site } from '@data/site';
-import { whatWeDo } from '@data/home';
-import { serviceTiles, industryTiles } from '@/lib/tiles';
 const locale = getLocale(Astro.url);
 ---
 <Base title={site.name} description={t(site.description, locale)} headerTheme="dark" headerVariant="classic" ctaImage={ctaImage}>
-  <Hero image={heroImg} imageAlt={locale === 'tr' ? 'Gün batımında yüksek gerilim hatları' : 'High-voltage transmission towers at dusk'} />
-  <GuideHeadline title={t(whatWeDo.title, locale)} />
-  <CardRail tiles={serviceTiles(locale)} />
+  <BorderlessHero exploreHref="#home-about" />
+  <HomeInsights />
+  <HomeServices />
+  <HomeExperience />
+  <HomeIntro />
   <WhyContinex />
-  <HowWeWork />
-  <Overline text={locale === 'tr' ? 'Sektörler' : 'Industries'} line={false} />
-  <CardRail tiles={industryTiles(locale)} />
-  <ExperienceCards />
-  <Numbers />
-  <LogoMarquee tone="light" />
-  <MarketsGrid />
-  <Faq />
+  <HomeMarkets />
+  <LogoMarquee tone="light">
+    {locale === 'en' && <Fragment slot="title">Companies we have <span style="color: #bebebe">worked with and alongside.</span></Fragment>}
+  </LogoMarquee>
 </Base>

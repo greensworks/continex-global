@@ -20,7 +20,7 @@ const serviceFor: Record<string, string[]> = {
   'oem-market-development-turkiye': ['international-representation', 'market-entry', 'strategic-partnerships'],
 };
 const related = (serviceFor[cs.slug] ?? []).map(slug => services.find(s => s.slug === slug)!)
-  .filter(Boolean).map(s => ({ title: t(s.title, locale), text: t(s.summary, locale), href: localizePath(`/what-we-do/${s.slug}`, locale) }));
+  .filter(Boolean).map(s => ({ title: t(s.title, locale), text: t(s.summary, locale), href: localizePath(`/what-we-do#${s.slug}`, locale) }));
 ---
 <Base title={t(cs.title, locale)} description={t(cs.need, locale)} headerTheme="dark" cta={false}>
   <CaseStudyLayout cs={cs} image={img(cs.image)} supportImage={img(support[cs.slug])} related={related} />

@@ -4,7 +4,6 @@ import PageHero from '@components/sections/PageHero.astro';
 import GuideSplit from '@components/sections/rb/GuideSplit.astro';
 import Leadership from '@components/sections/Leadership.astro';
 import Principles from '@components/sections/Principles.astro';
-import SideCtas from '@components/sections/SideCtas.astro';
 import ctaImage from '@assets/images/abstract-warm-streaks.webp';
 import { pages } from '@data/pages';
 import { getLocale, localizePath, t } from '@i18n/utils';
@@ -32,7 +31,6 @@ const sectionImages = [
       imageAlt={sectionImages[i]?.alt}
     />
   ))}
-  <Leadership full eyebrow={locale === 'tr' ? 'Yönetim ekibimiz' : 'Our leadership'} />
   <Principles />
-  <SideCtas />
+  <Leadership full eyebrow={locale === 'tr' ? 'Yönetim ekibimiz' : 'Our leadership'} />
 </Base>

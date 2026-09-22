@@ -18,7 +18,7 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      i18n: { defaultLocale: 'en', locales: { en: 'en', tr: 'tr' } },
+      filter: (page) => !['/home-2', '/tr/ana-sayfa-2'].includes(new URL(page).pathname.replace(/\/$/, '')),
     }),
   ],
   image: {

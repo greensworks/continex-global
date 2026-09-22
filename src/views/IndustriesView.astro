@@ -1,15 +1,14 @@
 ---
 import Base from '@layouts/Base.astro';
 import PageHero from '@components/sections/PageHero.astro';
-import GuideHeadline from '@components/sections/rb/GuideHeadline.astro';
-import GuideText from '@components/sections/rb/GuideText.astro';
-import CardRail from '@components/sections/CardRail.astro';
-import Overline from '@components/sections/rb/Overline.astro';
-import ExperienceCards from '@components/sections/ExperienceCards.astro';
-import { pages } from '@data/pages';
+import Photo from '@components/ui/Photo.astro';
+import HomeExperience from '@components/sections/home/HomeExperience.astro';
+import { industries } from '@data/industries';
+import { services } from '@data/services';
+import { img } from '@/lib/images';
+import { pages, industryDetails } from '@data/pages';
 import { getLocale, localizePath, t } from '@i18n/utils';
 import { useTranslations } from '@i18n/ui';
-import { industryTiles, serviceTiles } from '@/lib/tiles';
 import heroImg from '@assets/images/industrial-pipes-red.webp';
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
@@ -19,10 +18,47 @@ const intro = locale === 'tr'
 ---
 <Base title={t(pages.industries.title, locale)} description={t(pages.industries.lead, locale)} headerTheme="dark">
   <PageHero breadcrumb={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.industries') }]} title={t(pages.industries.title, locale)} lead={t(pages.industries.lead, locale)} image={heroImg} />
-  <GuideHeadline title={locale === 'tr' ? 'Beş temel faaliyet alanı' : 'Five core sectors'} />
-  <GuideText paragraphs={intro} />
-  <CardRail tiles={industryTiles(locale, true)} />
-  <Overline text={locale === 'tr' ? 'Bu sektörlerde sunduğumuz hizmetler' : 'How we work in these sectors'} />
-  <CardRail tiles={serviceTiles(locale)} />
-  <ExperienceCards />
+  <section class="sector-intro" id="industry-expertise" aria-labelledby="sector-intro-title">
+    <div class="container-site">
+      <div class="intro-layout">
+        <div><p class="eyebrow">{locale === 'tr' ? 'Sektörel uzmanlık' : 'Industry expertise'}</p><h2 id="sector-intro-title">{locale === 'tr' ? 'Beş temel faaliyet alanı.' : 'Five core sectors.'}</h2></div>
+        <div class="intro-copy">{intro.map(p => <p>{p}</p>)}</div>
+      </div>
+    </div>
+  </section>
+  <section class="sector-collection" aria-label={locale === 'tr' ? 'Faaliyet alanlarımız' : 'Our industries'}>
+    <div class="container-site sector-grid">
+      {industries.map((ind,i) => <article id={ind.slug} class:list={['sector-story',i===0 && 'sector-lead']} aria-labelledby={`${ind.slug}-title`}>
+        <div class="sector-photo"><Photo src={img(ind.image)} alt="" widths={[480,768,1200,1600]} sizes={i===0 ? '(min-width:1280px) 1200px, 100vw' : '(min-width:768px) 50vw, 100vw'} class="h-full w-full object-cover" /></div>
+        <div class="sector-copy">
+          <p class="sector-label"><span aria-hidden="true">0{i+1}</span>{locale === 'tr' ? 'Sektörel odak' : 'Industry focus'}</p>
+          <h2 id={`${ind.slug}-title`}>{t(ind.title,locale)}</h2>
+          <p class="sector-description">{t(industryDetails[ind.slug],locale)}</p>
+          <a href={localizePath('/contact',locale)} class="sector-link" aria-label={`${t(ind.title,locale)}: ${locale === 'tr' ? 'Fırsatınızı görüşelim' : 'Discuss an opportunity'}`}>{locale === 'tr' ? 'Fırsatınızı görüşelim' : 'Discuss an opportunity'}<span aria-hidden="true">↗</span></a>
+        </div>
+      </article>)}
+    </div>
+  </section>
+  <section class="sector-services section" aria-labelledby="sector-services-title">
+    <div class="container-site services-layout">
+      <div><p class="eyebrow text-steel-300">{locale === 'tr' ? 'Uzmanlıktan uygulamaya' : 'From expertise to execution'}</p><h2 id="sector-services-title">{locale === 'tr' ? 'Bu sektörlerde sunduğumuz hizmetler.' : 'How we work in these sectors.'}</h2><a href={localizePath('/what-we-do',locale)} class="all-services">{locale === 'tr' ? 'Tüm hizmetlerimiz' : 'Explore our capabilities'} <span aria-hidden="true">↗</span></a></div>
+      <div class="service-links">{services.map((s,i) => <a href={localizePath(`/what-we-do#${s.slug}`,locale)}><span class="service-number" aria-hidden="true">0{i+1}</span><div><h3>{t(s.title,locale)}</h3><p>{t(s.summary,locale)}</p></div><span class="service-arrow" aria-hidden="true">↗</span></a>)}</div>
+    </div>
+  </section>
+  <HomeExperience />
 </Base>
+<style>
+/* Compact editorial introduction. */
+.sector-intro{background:white;padding:72px 0 48px}
+.intro-layout{max-width:900px;margin:0 auto;text-align:center}
+.intro-layout .eyebrow{font-size:10px;letter-spacing:.16em}
+.intro-layout h2{font-size:clamp(36px,4.3vw,60px);line-height:1.1;letter-spacing:-.04em;font-weight:400;margin-top:16px}
+.intro-copy{max-width:820px;margin:28px auto 0;font-size:16px;line-height:1.85;color:#637181}
+.intro-copy p+p{margin:20px auto 0;max-width:650px;color:#122744;font-size:18px;line-height:1.6}
+
+
+
+
+
+.sector-collection{padding:0 0 100px;background:white}.sector-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px 32px}.sector-story{min-width:0;display:flex;flex-direction:column}.sector-photo{height:340px;overflow:hidden;background:#e8eef4}.sector-copy{padding:32px 0 0;display:flex;flex-direction:column;flex:1}.sector-label{display:flex;gap:20px;font-size:10px;text-transform:uppercase;font-weight:600;letter-spacing:.12em;color:#0f6fd6}.sector-copy h2{font-size:clamp(30px,2.7vw,38px);line-height:1.18;font-weight:400;letter-spacing:-.03em;margin-top:16px}.sector-description{font-size:16px;line-height:1.75;margin-top:20px;color:#536172;max-width:55ch}.sector-link{display:flex;justify-content:space-between;gap:24px;align-items:center;font-size:14px;color:#0f6fd6;border-bottom:1px solid #c9d5e0;padding:28px 0 16px;margin-top:auto}.sector-link span{font-size:25px}.sector-link:hover{color:#122744}.sector-lead{grid-column:span 2;position:relative;min-height:580px;justify-content:end}.sector-lead .sector-photo{position:absolute;inset:0;height:100%}.sector-lead .sector-copy{position:relative;flex:0;background:#0b1a30;color:white;padding:40px 48px;width:52%;margin:64px 0 48px 48px}.sector-lead .sector-label{color:#98c0d8}.sector-lead h2{color:white;font-size:clamp(36px,3.7vw,52px)}.sector-lead .sector-description{color:#c5d0de}.sector-lead .sector-link{color:white;border-color:#ffffff40}.sector-services{background:#0b1a30;color:white}.services-layout{display:grid;grid-template-columns:1fr 1.25fr;gap:100px}.services-layout h2{font-size:clamp(34px,3.5vw,48px);font-weight:400;line-height:1.15;letter-spacing:-.035em;color:white;margin-top:20px}.all-services{display:inline-flex;gap:32px;font-size:14px;border-bottom:1px solid #98c0d8;padding-bottom:12px;margin-top:32px}.service-links>a{display:grid;grid-template-columns:20px 1fr 20px;gap:20px;border-top:1px solid #ffffff30;padding:28px 0}.service-links>a:first-child{padding-top:0;border:0}.service-links h3{font-size:23px;color:white;font-weight:400;line-height:1.3}.service-links p{font-size:14px;color:#bdc9d8;line-height:1.7;margin-top:14px}.service-number{font-size:10px;color:#98c0d8;padding-top:5px}.service-arrow{color:#98c0d8;font-size:23px}.service-links>a:hover h3{color:#98c0d8}@media(max-width:1023px){.services-layout{gap:48px}.sector-lead .sector-copy{width:65%;margin-left:32px}.sector-photo{height:280px}}@media(max-width:767px){.services-layout{grid-template-columns:1fr;gap:28px}.sector-intro{padding:48px 0 36px}.intro-layout{text-align:left}.intro-copy{margin-top:24px;font-size:15px;line-height:1.75}.intro-copy p+p{font-size:17px}.sector-grid{grid-template-columns:1fr;gap:48px}.sector-lead{grid-column:auto;min-height:0}.sector-lead .sector-photo{position:relative;height:300px}.sector-lead .sector-copy{width:auto;margin:-40px 0 0 20px;padding:28px}.sector-photo{height:280px}.sector-copy{padding-top:24px}.sector-collection{padding-bottom:56px}.services-layout{gap:40px}}
+</style>

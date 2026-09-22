@@ -1,4 +1,5 @@
 ---
+seoTitle: "OEM Müşteri ve Tedarikçi Geliştirme"
 title: "Yeterliliğin ötesinde: sürdürülebilir bir OEM müşteri ilişkisi kurmak"
 description: "Teknik değerlendirmeyi, satın alma beklentilerini ve yerel takibi birleştirerek sanayi OEM müşterilerinde disiplinli bir gelişim süreci oluşturmak."
 publishDate: 2026-09-22
@@ -62,4 +63,4 @@ Değerlendirmede şu sorular kullanılabilir:
 
 Sürdürülebilir OEM ilişkisi, ürün önerisi ile çalışma taahhüdü uyumlu kaldığında gelişir. Müşteri geliştirme süreci, bu uyumu ilk odaklı görüşmeden müşterinin değerlendirme aşamalarına kadar görünür kılmalıdır.
 
-[Uluslararası temsil ve işlem yürütme](/tr/ne-yapiyoruz/uluslararasi-temsil) hizmetimizi inceleyin.
+[Uluslararası temsil ve işlem yürütme](/tr/ne-yapiyoruz#international-representation) hizmetimizi inceleyin.

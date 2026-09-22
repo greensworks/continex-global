@@ -26,7 +26,7 @@ const rows = [partners.slice(0, half), partners.slice(half)];
   <div class="container-site">
     <div class="mx-auto max-w-2xl text-center" data-reveal>
       <p class="eyebrow">{eyebrow}</p>
-      <h2 class="mt-4 text-h2">{title}</h2>
+      <h2 class="mt-4 text-h2"><slot name="title">{title}</slot></h2>
     </div>
   </div>
 

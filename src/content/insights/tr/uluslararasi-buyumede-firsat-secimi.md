@@ -1,4 +1,5 @@
 ---
+seoTitle: "Uluslararası Büyümede Fırsat Seçimi"
 title: "Uluslararası büyüme: hangi fırsatın peşinden gidileceğini seçmek"
 description: "Uluslararası fırsatları seçmek, ticari varsayımları sınamak ve yönetim kaynaklarını doğru aşamada devreye almak için bir değerlendirme çerçevesi."
 publishDate: 2026-09-22
@@ -60,4 +61,4 @@ Her aktif fırsat için ortak yapıda kısa bir not kullanılabilir: ticari gere
 
 Disiplinli seçim, uluslararası büyümenin uygulama temelini güçlendirir. Yönetimin enerjisini, ilk ilgiden ticari sonuca uzanan yolu daha açık olan fırsatlara yönlendirir.
 
-[Pazara giriş ve ticari genişleme](/tr/ne-yapiyoruz/pazara-giris) yaklaşımımızı inceleyin.
+[Pazara giriş ve ticari genişleme](/tr/ne-yapiyoruz#market-entry) yaklaşımımızı inceleyin.

@@ -1,4 +1,5 @@
 ---
+seoTitle: "Ortak Girişim Modelleri"
 title: "İlk iki yılı atlatan ortak girişim modelleri"
 description: "Uluslararası ve Türk şirketler arasındaki üretim ve teknoloji ortak girişimleri öngörülebilir nedenlerle başarısız olur. Yapılandırma aşaması için kısa bir kontrol listesi."
 publishDate: 2026-07-30

@@ -1,4 +1,5 @@
 ---
+seoTitle: "Türkiye–China Partnerships: Local Execution"
 title: "Türkiye–China partnerships: making local execution part of the proposition"
 description: "A practical operating framework for connecting international manufacturing capability with customer requirements and delivery responsibilities in Türkiye."
 publishDate: 2026-09-22
@@ -59,4 +60,4 @@ Before expanding the scope of cooperation, leadership should ask:
 
 The quality of a cross-border partnership becomes visible in its everyday coordination. A clear local operating model gives international capability a more credible route into a lasting customer relationship.
 
-Explore our approach to [international representation and deal execution](/what-we-do/international-representation), or [discuss an opportunity](/contact).
+Explore our approach to [international representation and deal execution](/what-we-do#international-representation), or [discuss an opportunity](/contact).

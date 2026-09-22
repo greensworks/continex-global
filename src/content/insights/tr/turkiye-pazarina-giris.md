@@ -1,4 +1,5 @@
 ---
+seoTitle: "Türkiye Pazarına Giriş"
 title: "Türkiye pazarına giriş: uluslararası şirketlerin yanlış yaptığı üç şey"
 description: "Türkiye, broşürle değil yerel ortak stratejisiyle gelen şirketleri ödüllendirir. Başarılı pazar girişlerinde gördüğümüz üç kalıp."
 publishDate: 2026-09-01

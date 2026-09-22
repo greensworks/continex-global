@@ -30,7 +30,7 @@ export function serviceTiles(locale: Locale): Tile[] {
     label,
     title: t(s.title, locale),
     text: t(s.summary, locale),
-    href: localizePath(`/what-we-do/${s.slug}`, locale),
+    href: localizePath(`/what-we-do#${s.slug}`, locale),
     image: img(serviceImages[s.slug]),
     span: i === 0 || i === 3 ? 'full' : 'half',
     layout: i === 0 || i === 3 ? 'split' : 'stacked',

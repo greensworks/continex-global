@@ -1,4 +1,5 @@
 ---
+seoTitle: "Enerji Projelerinde Ticari Hazırlık"
 title: "Enerji projelerinde uygulama öncesi ticari hazırlık"
 description: "Proje sahiplerini, teknoloji sağlayıcılarını ve uygulama ortaklarını kapsam, bilgi ve sıradaki karar etrafında buluşturan bir çalışma çerçevesi."
 publishDate: 2026-09-22
@@ -58,4 +59,4 @@ Karar, gereken bilgi, bilgiden sorumlu taraf ve çözülmemiş bağımlılık ol
 
 Ticari açıdan hazırlanmış bir proje, her katılımcıya daha açık bir değerlendirme zemini sunar. Değer; neyin önerildiği, hangi konuların açık kaldığı ve nasıl ilerlenmek istendiği konusunda ortak anlayış oluşturulmasındadır.
 
-[Proje geliştirme ve stratejik işlemler](/tr/ne-yapiyoruz/proje-gelistirme) hizmetimizi inceleyin.
+[Proje geliştirme ve stratejik işlemler](/tr/ne-yapiyoruz#project-development) hizmetimizi inceleyin.

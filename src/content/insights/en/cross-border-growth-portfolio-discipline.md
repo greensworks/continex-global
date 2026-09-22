@@ -1,4 +1,5 @@
 ---
+seoTitle: "Cross-Border Growth: Choosing Markets"
 title: "Cross-border growth: the discipline of choosing where to compete"
 description: "A leadership framework for selecting international opportunities, testing commercial assumptions and committing resources with greater clarity."
 publishDate: 2026-09-22
@@ -59,4 +60,4 @@ Leadership can use a short common brief for every active opportunity: the thesis
 
 Disciplined selection gives international growth a clearer operating foundation. It helps leadership concentrate effort on opportunities that have a credible route from initial interest to commercial execution.
 
-Explore our approach to [market entry and commercial expansion](/what-we-do/market-entry).
+Explore our approach to [market entry and commercial expansion](/what-we-do#market-entry).

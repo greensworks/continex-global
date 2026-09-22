@@ -1,27 +1,84 @@
 ---
 import Base from '@layouts/Base.astro';
 import PageHero from '@components/sections/PageHero.astro';
-import GuideHeadline from '@components/sections/rb/GuideHeadline.astro';
-import GuideText from '@components/sections/rb/GuideText.astro';
-import CardRail from '@components/sections/CardRail.astro';
-import ExperienceCards from '@components/sections/ExperienceCards.astro';
-import LogoMarquee from '@components/sections/LogoMarquee.astro';
+import heroImg from '@assets/images/experience-hero-v2.webp';
+import Photo from '@components/ui/Photo.astro';
+import { experience } from '@data/experience';
+import { img } from '@/lib/images';
 import { pages } from '@data/pages';
 import { getLocale, localizePath, t } from '@i18n/utils';
-import { useTranslations } from '@i18n/ui';
-import { experienceTiles } from '@/lib/tiles';
-import heroImg from '@assets/images/experience-hero-v2.webp';
 const locale = getLocale(Astro.url);
-const tr = useTranslations(locale);
-const intro = locale === 'tr'
-  ? ['Aşağıdaki çalışmalar gizlilik gereği anonimleştirilmiştir; kapsam, süreç ve sonuçlar gerçek verilere dayanmaktadır. Her çalışmada müşterinin ihtiyacını, Continex’in üstlendiği rolü, sürecin bugünkü durumunu ve ortaya çıkan sonucu aynı yapıda sunuyoruz.']
-  : ['The mandates below are anonymised where confidentiality requires; scope, process and outcomes are real. Each one is presented in the same structure: what the client needed, what Continex did, where the process stands and the result.'];
+const isTr = locale === 'tr';
+const href = (slug: string) => localizePath(`/selected-experience/${slug}`,locale);
+const markets = [{value:'china',label:isTr ? 'Çin' : 'China'},{value:'turkiye',label:'Türkiye'},{value:'regional',label:isTr ? 'Seçilmiş bölgesel pazarlar' : 'Selected regional markets'}];
+const marketKeys: Record<string,string> = {'cross-border-real-estate-china':'china','market-entry-strategic-partners-turkiye':'turkiye regional','oem-market-development-turkiye':'turkiye'};
+const statuses = [{value:'completed',label:isTr ? 'Tamamlandı' : 'Completed'},{value:'advanced',label:isTr ? 'İleri aşama' : 'Advanced stage'},{value:'ongoing',label:isTr ? 'Devam ediyor' : 'Ongoing'}];
 ---
-<Base title={t(pages.experience.title, locale)} description={t(pages.experience.lead, locale)} headerTheme="dark">
-  <PageHero breadcrumb={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.experience') }]} title={t(pages.experience.title, locale)} lead={t(pages.experience.lead, locale)} image={heroImg} imagePosition="75% 0%" />
-  <GuideHeadline title={locale === 'tr' ? 'Üç güncel çalışma' : 'Three recent mandates'} />
-  <GuideText paragraphs={intro} />
-  <CardRail tiles={experienceTiles(locale)} />
-  <ExperienceCards full showLink={false} />
-  <LogoMarquee tone="light" />
+<Base title={t(pages.experience.title,locale)} description={t(pages.experience.lead,locale)} headerTheme="dark">
+  <PageHero
+    breadcrumb={[{ label: isTr ? 'Ana sayfa' : 'Home', href: localizePath('/',locale) }, { label: t(pages.experience.title,locale) }]}
+    title={t(pages.experience.title,locale)}
+    lead={t(pages.experience.lead,locale)}
+    image={heroImg}
+    imageAlt={isTr ? 'Uluslararası iş görüşmesi için bir araya gelen profesyoneller' : 'Professionals meeting for an international business discussion'}
+    imagePosition="75% 0%"
+  />
+  <section class="experience-directory" aria-label={isTr ? 'Çalışma listesi' : 'Mandate directory'} data-experience-directory>
+    <div class="container-site">
+      <form class="directory-filters" aria-label={isTr ? 'Çalışmaları filtreleyin' : 'Filter mandates'} hidden data-filters>
+        <div class="filter-field"><label for="experience-sector">{isTr ? 'Sektör' : 'Sector'}</label><div class="select-wrap"><select id="experience-sector" name="sector"><option value="">{isTr ? 'Tüm sektörler' : 'All sectors'}</option>{experience.map(c=><option value={c.slug}>{t(c.sector,locale)}</option>)}</select><span aria-hidden="true">＋</span></div></div>
+        <div class="filter-field"><label for="experience-market">{isTr ? 'Pazar' : 'Market'}</label><div class="select-wrap"><select id="experience-market" name="market"><option value="">{isTr ? 'Tüm pazarlar' : 'All markets'}</option>{markets.map(m=><option value={m.value}>{m.label}</option>)}</select><span aria-hidden="true">＋</span></div></div>
+        <div class="filter-field"><label for="experience-status">{isTr ? 'Çalışma durumu' : 'Mandate status'}</label><div class="select-wrap"><select id="experience-status" name="status"><option value="">{isTr ? 'Tüm durumlar' : 'All statuses'}</option>{statuses.map(s=><option value={s.value}>{s.label}</option>)}</select><span aria-hidden="true">＋</span></div></div>
+      </form>
+      <div class="directory-grid">
+        {experience.map(c=><article class="mandate-card" data-mandate data-sector={c.slug} data-market={marketKeys[c.slug]} data-status={c.statusKind} aria-labelledby={`${c.slug}-title`}>
+          <a class="mandate-image" href={href(c.slug)} aria-label={t(c.title,locale)}><Photo src={img(c.image)} alt={t(c.sector,locale)} widths={[480,768,1200]} sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" class="mandate-photo" loading="eager" /></a>
+          <ul class="mandate-tags" aria-label={isTr ? 'Sektör ve pazar' : 'Sector and market'}><li>{t(c.sector,locale)}</li><li>{t(c.market,locale)}</li></ul>
+          <h2 id={`${c.slug}-title`}><a href={href(c.slug)}>{t(c.title,locale)}</a></h2>
+          <p class="mandate-client">{t(c.client,locale)}</p>
+          <p class="mandate-summary">{t(c.need,locale)}</p>
+          <div class="mandate-bottom"><p class="mandate-status" data-kind={c.statusKind}><span aria-hidden="true"></span>{t(c.status,locale)}</p><a class="mandate-link" href={href(c.slug)} aria-label={`${isTr ? 'Çalışmayı inceleyin' : 'Read more'}: ${t(c.title,locale)}`}>{isTr ? 'Devamını okuyun' : 'Read more'}<span aria-hidden="true">↗</span></a></div>
+        </article>)}
+      </div>
+      <div class="directory-empty" data-empty hidden><h2>{isTr ? 'Bu filtrelere uygun çalışma bulunamadı.' : 'No mandates match these filters.'}</h2><p>{isTr ? 'Farklı filtreler seçebilir veya tüm çalışmaları görüntüleyebilirsiniz.' : 'Choose different filters or view all mandates.'}</p><button type="button" data-clear>{isTr ? 'Tüm çalışmaları göster' : 'Show all mandates'}</button></div>
+      <p class="directory-note">{isTr ? 'Müşteri isimleri, gizliliğin gerektirdiği durumlarda paylaşılmamaktadır. Çalışmaların kapsamı, durumu ve sonuçları gerçek verilere dayanmaktadır.' : 'Client names are withheld where confidentiality requires. The scope, status and outcomes of these mandates are based on real engagements.'}</p>
+    </div>
+  </section>
 </Base>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-experience-directory]').forEach(directory => {
+    const form = directory.querySelector<HTMLFormElement>('[data-filters]');
+    if (!form) return;
+    const cards = Array.from(directory.querySelectorAll<HTMLElement>('[data-mandate]'));
+    const empty = directory.querySelector<HTMLElement>('[data-empty]');
+    const update = () => {
+      const filters = new FormData(form);
+      const sector = String(filters.get('sector') ?? '');
+      const market = String(filters.get('market') ?? '');
+      const status = String(filters.get('status') ?? '');
+      let visible = 0;
+      cards.forEach(card => {
+        const matches = (!sector || card.dataset.sector === sector) && (!market || card.dataset.market?.split(' ').includes(market)) && (!status || card.dataset.status === status);
+        card.hidden = !matches;
+        if (matches) visible++;
+      });
+      if (empty) empty.hidden = visible !== 0;
+    };
+    form.hidden = false;
+    form.addEventListener('submit',event => event.preventDefault());
+    form.addEventListener('change',update);
+    form.addEventListener('reset',event => {
+      event.preventDefault();
+      form.querySelectorAll('select').forEach(select => { select.value = ''; });
+      update();
+    });
+    directory.querySelector('[data-clear]')?.addEventListener('click',() => { form.reset(); form.querySelector('select')?.focus(); });
+    update();
+  });
+</script>
+<style>
+.experience-directory{background:#fff;padding:32px 0 58px;color:#122744}.directory-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-bottom:25px}.directory-filters[hidden]{display:none}.filter-field{min-width:0;padding:14px 0 12px}.filter-field label{display:block;font-size:10px;line-height:1.5;text-transform:uppercase;letter-spacing:.09em;color:#71808e;margin-bottom:6px}.select-wrap{position:relative}.select-wrap select{appearance:none;background:transparent;border:0;border-radius:0;width:100%;font:inherit;font-size:14px;color:#122744;padding:2px 25px 3px 0;cursor:pointer;text-overflow:ellipsis}.select-wrap>span{position:absolute;right:0;top:0;font-size:20px;line-height:1.4;pointer-events:none;color:#637b90}.directory-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}.mandate-card{display:flex;flex-direction:column;min-width:0}.mandate-card[hidden]{display:none}.mandate-image{display:block;aspect-ratio:16/9;overflow:hidden;background:#edf2f6}.mandate-image :global(img){width:100%;height:100%;object-fit:cover;object-position:70% 30%;transition:transform .45s}.mandate-image:hover :global(img){transform:scale(1.035)}.mandate-tags{display:flex;flex-wrap:wrap;align-content:start;gap:6px;margin-top:24px;min-height:66px;padding:0;list-style:none}.mandate-tags li{padding:5px 11px;border-radius:18px;background:#f0f3f5;color:#536574;font-size:11px;line-height:1.5}.mandate-card h2{font-size:24px;font-weight:400;line-height:1.28;letter-spacing:-.025em;margin-top:18px;text-wrap:initial}.mandate-card h2 a:hover{color:#0f6fd6}.mandate-client{font-size:12px;font-weight:500;line-height:1.6;margin-top:15px;color:#788895}.mandate-summary{font-size:14px;line-height:1.8;color:#596775;margin-top:14px}.mandate-bottom{margin-top:auto;padding-top:24px}.mandate-status{display:flex;align-items:baseline;gap:8px;font-size:11px;line-height:1.5;color:#667b8d;margin-bottom:20px}.mandate-status>span{height:5px;width:5px;background:#0f6fd6;flex-shrink:0}.mandate-status[data-kind=completed]>span{background:#378477}.mandate-status[data-kind=advanced]>span{background:#a17d43}.mandate-link{display:inline-flex;align-items:center;justify-content:center;gap:22px;border:1px solid #9bacba;border-radius:28px;padding:11px 21px;font-size:11px;letter-spacing:.025em;text-transform:uppercase;color:#122744}.mandate-link:hover{background:#122744;border-color:#122744;color:white}.mandate-link>span{font-size:17px}.directory-note{border-top:1px solid #e1e7ec;margin-top:48px;padding-top:22px;font-size:11px;color:#85919b;line-height:1.8;max-width:900px}.directory-empty{padding:50px 24px;text-align:center;background:#f5f7f9}.directory-empty[hidden]{display:none}.directory-empty h2{font-size:24px;font-weight:400}.directory-empty p{font-size:14px;line-height:1.7;margin-top:15px;color:#637485}.directory-empty button{margin-top:22px;border:1px solid #9bacba;border-radius:24px;padding:12px 22px;font-size:13px;cursor:pointer}.experience-directory :is(a,button,select):focus-visible{outline:2px solid #0f6fd6;outline-offset:4px}
+@media(max-width:1023px){.directory-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 25px}.directory-filters{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.mandate-tags{min-height:0}.mandate-card h2{font-size:25px}}
+@media(max-width:639px){.experience-directory{padding:28px 0 40px}.directory-filters{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px}.filter-field{padding:10px 0}.filter-field label{font-size:9px}.select-wrap select{font-size:12px}.directory-grid{grid-template-columns:1fr;gap:40px}.mandate-tags{margin-top:20px}.mandate-card h2{font-size:26px;margin-top:18px}.mandate-summary{font-size:14px}.mandate-bottom{padding-top:20px}.directory-note{margin-top:35px}.mandate-status{margin-bottom:16px}}
+@media(prefers-reduced-motion:reduce){.mandate-image :global(img){transition:none}}
+</style>

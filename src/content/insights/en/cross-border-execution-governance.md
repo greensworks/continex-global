@@ -1,4 +1,5 @@
 ---
+seoTitle: "Cross-Border Partnership Governance"
 title: "From alignment to execution: governing cross-border partnerships"
 description: "How clear decision rights, shared evidence and an escalation process can turn an international partnership into a workable operating model."
 publishDate: 2026-09-22
@@ -60,4 +61,4 @@ Before launching the next phase of a partnership, leadership should be able to a
 
 A partnership becomes easier to manage when authority, evidence and follow-through are connected. The aim is a decision process that remains clear when the work becomes more complex.
 
-Read about our work in [strategic partnerships and joint ventures](/what-we-do/strategic-partnerships).
+Read about our work in [strategic partnerships and joint ventures](/what-we-do#strategic-partnerships).

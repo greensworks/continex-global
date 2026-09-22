@@ -24,7 +24,7 @@ function reveal() {
       el,
       { opacity: 0, y: 24 },
       {
-        opacity: 1, y: 0, duration: 0.9, ease: 'expo.out',
+        opacity: 1, y: 0, duration: 0.9, ease: 'expo.out', immediateRender: false,
         delay: Number(el.dataset.revealDelay ?? 0),
         scrollTrigger: { trigger: el, start: 'top 88%', once: true },
         onStart: () => el.classList.add('is-visible'),
@@ -40,7 +40,7 @@ function reveal() {
       items,
       { opacity: 0, y: 24 },
       {
-        opacity: 1, y: 0, duration: 0.8, ease: 'expo.out', stagger: 0.08,
+        opacity: 1, y: 0, duration: 0.8, ease: 'expo.out', stagger: 0.08, immediateRender: false,
         scrollTrigger: { trigger: group, start: 'top 85%', once: true },
         onStart: () => items.forEach((i) => i.classList.add('is-visible')),
       },

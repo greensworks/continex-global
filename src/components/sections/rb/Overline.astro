@@ -1,10 +1,9 @@
 ---
-/** Small centred overline on the guide line with a short tick beneath (RB pattern). */
-interface Props { text: string; line?: boolean; id?: string }
-const { text, line = true, id } = Astro.props;
+/** Centred section label with a short horizontal accent. */
+interface Props { text: string; id?: string }
+const { text, id } = Astro.props;
 ---
-<div class="relative bg-surface pb-10 text-center" id={id}>
-  <span class:list={['mx-auto block w-px', line ? 'h-[var(--spacing-section)] bg-navy-900/30' : 'h-[var(--spacing-section)]']} aria-hidden="true"></span>
-  <p class="eyebrow">{text}</p>
+<div class="relative bg-surface pt-[var(--spacing-section)] pb-10 text-center" id={id}>
+  <h2 class="eyebrow">{text}</h2>
   <span class="mx-auto mt-3 block h-px w-8 bg-accent-600" aria-hidden="true"></span>
 </div>

@@ -1,4 +1,5 @@
 ---
+seoTitle: "Crisis Management & Strategic Resilience"
 title: "Crisis management: navigating challenges with strategic resilience"
 description: "Crisis management is more than reaction. It is planning, fast decision-making and the resilience to carry a business through disruption."
 publishDate: 2026-09-21

@@ -7,16 +7,17 @@ import { useTranslations } from '@i18n/ui';
 import { team } from '@data/team';
 import { img } from '@/lib/images';
 
-interface Props { full?: boolean; eyebrow?: string; line?: boolean }
+interface Props { full?: boolean; eyebrow?: string }
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
-const { full = false, eyebrow = tr('nav.leadership'), line = true } = Astro.props;
+const { full = false, eyebrow = tr('nav.leadership') } = Astro.props;
 ---
 <section id="leadership" class="bg-surface pb-[var(--spacing-section)]">
-  <Overline text={eyebrow} line={line} />
+  <Overline text={eyebrow} />
   <div class="container-site space-y-6">
     {team.map((p) => (
       <StatementCard
+        id={p.slug}
         image={p.image ? img(p.image) : null}
         initials={p.name.split(' ').map((n) => n[0]).join('')}
         statement={full ? t(p.bio, locale)[full ? 2 : 0] : t(p.short, locale)}

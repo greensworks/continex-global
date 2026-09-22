@@ -1,0 +1,29 @@
+---
+import Photo from '@components/ui/Photo.astro';
+import type { Service } from '@data/services';
+import { img } from '@/lib/images';
+import { getLocale, t } from '@i18n/utils';
+interface Props { service: Service; index: number; image: string }
+const { service, index, image } = Astro.props;
+const locale = getLocale(Astro.url);
+const tr = locale === 'tr';
+---
+<section id={service.slug} class:list={['service-feature',index % 2 === 1 && 'reverse']} aria-labelledby={`${service.slug}-title`}>
+  <div class="container-site">
+    <div class="feature-layout">
+      <div class="feature-photo"><Photo src={img(image)} alt="" widths={[480,768,1200,1600]} sizes="(min-width:1024px) 60vw, 100vw" class="h-full w-full object-cover" /></div>
+      <div class="feature-copy" data-reveal>
+        <p class="feature-label">{tr ? 'Uzmanlık alanımız' : 'Our expertise'}</p>
+        <h2 id={`${service.slug}-title`}>{t(service.title,locale)}</h2>
+        <p class="feature-summary">{t(service.summary,locale)}</p>
+      </div>
+    </div>
+    <div class="scope">
+      <div><p class="scope-label">{tr ? 'Nasıl katkı sağlıyoruz?' : 'How we support you'}</p><p class="scope-note">{tr ? 'Çalışma kapsamı' : 'Scope of our work'}</p></div>
+      <ul>{t(service.points,locale).map(point => <li><span aria-hidden="true">—</span>{point}</li>)}</ul>
+    </div>
+  </div>
+</section>
+<style>
+.service-feature{padding:80px 0 88px;background:white}.service-feature.reverse{background:#f3f6f9}.feature-layout{display:grid;grid-template-columns:1.25fr 1fr;align-items:center}.feature-photo{height:560px;overflow:hidden;background:#e6edf3}.feature-copy{position:relative;margin-left:-72px;background:#edf3f8;padding:48px;z-index:1}.feature-label{display:flex;align-items:center;gap:20px;font-size:10px;letter-spacing:.13em;text-transform:uppercase;font-weight:600;color:#0f6fd6}.feature-copy h2{font-size:clamp(32px,3.3vw,46px);font-weight:400;line-height:1.13;letter-spacing:-.035em;margin-top:24px;color:#122744;text-wrap:balance}.feature-summary{color:#536172;font-size:16px;line-height:1.75;margin-top:24px}.scope{display:grid;grid-template-columns:1fr 2fr;gap:64px;margin-top:48px;padding-top:32px;border-top:1px solid #d2dde7}.scope-label{font-size:17px;color:#122744}.scope-note{font-size:12px;color:#6c7885;margin-top:10px}.scope ul{display:grid;grid-template-columns:1fr 1fr;column-gap:40px}.scope li{display:flex;gap:14px;align-items:baseline;padding:0 0 18px;font-size:14px;line-height:1.6;color:#536172}.scope li span{color:#0f6fd6;flex-shrink:0}.reverse .feature-photo{grid-column:2;grid-row:1}.reverse .feature-copy{grid-column:1;grid-row:1;margin-left:0;margin-right:-72px;background:#0b1a30}.reverse .feature-copy h2{color:white}.reverse .feature-label{color:#98c0d8}.reverse .feature-summary{color:#c1ccda}@media(max-width:1023px){.feature-copy{padding:32px;margin-left:-40px}.reverse .feature-copy{margin-right:-40px}.feature-photo{height:540px}.scope{gap:32px;grid-template-columns:1fr 2fr}}@media(max-width:767px){.service-feature{padding:48px 0}.feature-layout{grid-template-columns:1fr}.feature-photo{height:300px}.feature-copy,.reverse .feature-copy{grid-row:auto;grid-column:auto;margin:-32px 0 0 20px;padding:28px}.reverse .feature-photo{grid-row:auto;grid-column:auto}.feature-copy h2{font-size:32px}.scope{grid-template-columns:1fr;gap:24px;margin-top:32px;padding-top:28px}.scope ul{grid-template-columns:1fr}.scope li{padding-bottom:14px}.scope-note{margin-top:6px}}
+</style>

@@ -1,11 +1,8 @@
 ---
 import Base from '@layouts/Base.astro';
 import PageHero from '@components/sections/PageHero.astro';
-import ServiceDetail from '@components/sections/ServiceDetail.astro';
+import ServiceOverview from '@components/sections/services/ServiceOverview.astro';
 import HowWeWork from '@components/sections/HowWeWork.astro';
-import Overline from '@components/sections/rb/Overline.astro';
-import CardRail from '@components/sections/CardRail.astro';
-import { industryTiles } from '@/lib/tiles';
 import { services, serviceImages } from '@data/services';
 import { pages } from '@data/pages';
 import { getLocale, localizePath, t } from '@i18n/utils';
@@ -16,10 +13,14 @@ import heroImg from '@assets/images/refinery-dusk.webp';
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
 ---
-<Base title={t(pages.whatWeDo.title, locale)} description={t(pages.whatWeDo.lead, locale)} headerTheme="dark" ctaImage={ctaImage}>
+<Base structuredData={services.map(service => ({
+  '@type': 'Service',
+  '@id': new URL(localizePath('/what-we-do', locale) + '#' + service.slug, Astro.site).href,
+  url: new URL(localizePath('/what-we-do', locale) + '#' + service.slug, Astro.site).href,
+  name: t(service.title, locale), description: t(service.summary, locale),
+  provider: { '@id': new URL('/#organization', Astro.site).href },
+}))} title={t(pages.whatWeDo.title, locale)} description={t(pages.whatWeDo.lead, locale)} headerTheme="dark" ctaImage={ctaImage}>
   <PageHero breadcrumb={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.whatWeDo') }]} title={t(pages.whatWeDo.title, locale)} lead={t(pages.whatWeDo.lead, locale)} image={heroImg} />
-  {services.map((s, i) => <ServiceDetail service={s} index={i} image={serviceImages[s.slug]} showLink />)}
+  {services.map((s, i) => <ServiceOverview service={s} index={i} image={serviceImages[s.slug]} />)}
   <HowWeWork />
-  <Overline text={locale === 'tr' ? 'Faaliyet gösterdiğimiz sektörler' : 'Industries we work in'} line={false} />
-  <CardRail tiles={industryTiles(locale)} />
 </Base>

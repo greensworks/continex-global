@@ -1,0 +1,25 @@
+---
+import Photo from '@components/ui/Photo.astro';
+import servicesImage from '@assets/images/shanghai-skyline-business-development.webp';
+import { services } from '@data/services';
+import { getLocale, localizePath, t } from '@i18n/utils';
+const locale = getLocale(Astro.url);
+const tr = locale === 'tr';
+---
+<section class="capabilities" id="home-services" aria-labelledby="home-services-title">
+  <div class="capabilities-photo"><Photo src={servicesImage} alt={tr ? 'Gün batımında Huangpu Nehri kıyısından Şanghay Pudong silüeti' : 'Shanghai’s Pudong skyline from the Huangpu riverfront at sunset'} widths={[480,768,1200,1600,2560]} sizes="(min-width:1024px) 50vw, 100vw" class="h-full w-full object-cover" /></div>
+  <div class="capabilities-content">
+    <p class="eyebrow text-steel-300">{tr ? 'Birlikte neyi başarabiliriz?' : 'What can we achieve together?'}</p>
+    <h2 id="home-services-title">{tr ? 'Hedefinizden başlayalım.' : <>Let’s start with <span style="color: #bebebe">your ambition.</span></>}</h2>
+    <p class="intro">{tr ? 'Yeni bir pazar. Doğru bir ortak. Sonuca ulaşan bir işlem. Stratejiyi sahada hayata geçiren uzmanlık.' : 'A new market. The right partner. A transaction brought to completion. Expertise that puts strategy to work.'}</p>
+    <div class="service-list">
+      {services.map((s,i) => <details open={i===0} name="home-capabilities">
+        <summary><span>{t(s.title,locale)}</span><span class="toggle" aria-hidden="true">+</span></summary>
+        <div class="service-body"><p>{t(s.summary,locale)}</p><a href={localizePath(`/what-we-do#${s.slug}`,locale)}>{tr ? 'Bu hizmeti keşfedin' : 'Explore this service'} <span aria-hidden="true">↗</span></a></div>
+      </details>)}
+    </div>
+  </div>
+</section>
+<style>
+.capabilities{display:grid;grid-template-columns:1fr 1fr;background:#0b1a30}.capabilities-photo{min-height:760px}.capabilities-content{padding:80px clamp(32px,5.5vw,88px);color:white}.capabilities-content h2{font-size:clamp(36px,3.6vw,52px);line-height:1.08;letter-spacing:-.04em;font-weight:400;color:white;margin-top:20px}.intro{color:#b9c6d5;font-size:17px;line-height:1.65;margin-top:24px}.service-list{margin-top:36px}details{border-top:1px solid #ffffff30}details:last-child{border-bottom:1px solid #ffffff30}summary{display:flex;align-items:center;justify-content:space-between;gap:24px;cursor:pointer;padding:22px 0;font-size:19px;line-height:1.4;list-style:none}summary::-webkit-details-marker{display:none}.toggle{font-size:26px;color:#98c0d8;font-weight:300}details[open] .toggle{transform:rotate(45deg)}.service-body{padding:0 32px 24px 0}.service-body p{font-size:14px;color:#b9c6d5;line-height:1.7}.service-body a{display:inline-flex;gap:32px;font-size:13px;margin-top:20px;color:white;padding-bottom:8px}@media(max-width:1023px){.capabilities{grid-template-columns:1fr}.capabilities-photo{min-height:0;height:360px}.capabilities-content{padding:48px 24px}summary{font-size:18px}}@media(prefers-reduced-motion:no-preference){.toggle{transition:transform .2s}}
+</style>

@@ -1,8 +1,0 @@
----
-import ServiceView from '@/views/ServiceView.astro';
-import { services } from '@data/services';
-import { localizeSegment } from '@i18n/routes';
-export function getStaticPaths() { return services.map((s) => ({ params: { slug: localizeSegment(s.slug, 'tr') }, props: { service: s } })); }
-const { service } = Astro.props;
----
-<ServiceView service={service} />

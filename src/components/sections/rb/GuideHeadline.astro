@@ -2,14 +2,13 @@
 /** Centre guide line dropping into a headline on the right half (RB "add-line"). */
 interface Props { title: string; as?: 'h1' | 'h2' | 'h3'; line?: 'sm' | 'md' | 'lg'; id?: string }
 const { title, as: Tag = 'h2', line = 'md', id } = Astro.props;
-const lineH = { sm: 'h-8', md: 'h-[var(--spacing-section)]', lg: 'h-[calc(var(--spacing-section)+2rem)]' }[line];
+const lineHeight = { sm: '2rem', md: 'var(--spacing-section)', lg: 'calc(var(--spacing-section) + 2rem)' }[line];
 ---
 <section class="relative bg-surface pt-[var(--spacing-section)]" id={id}>
   <div class="container-site">
     <div class="grid md:grid-cols-2">
       <div class="hidden md:block"></div>
-      <div class="relative border-l border-navy-900/30 pb-6 pl-6 md:pl-8" data-reveal>
-        <span class:list={['absolute left-0 top-0 -translate-y-full border-l border-navy-900/30', lineH]} aria-hidden="true"></span>
+      <div style={`--guide-rise: ${lineHeight}`} class="guide-rule pb-6 pl-6 md:pl-8">
         <Tag class="text-h2 max-w-xl" set:html={title} />
       </div>
     </div>

@@ -16,6 +16,7 @@ interface Props {
   title: string;
   subtitle?: string;
   date?: Date;
+  updatedDate?: Date;
   readMinutes?: number;
   image?: ImageMetadata;
   imageAlt?: string;
@@ -28,7 +29,7 @@ interface Props {
   backHref: string;
   backLabel: string;
 }
-const { label, title, subtitle, date, readMinutes, image, imageAlt = '', imagePosition = 'center', author, highlights = [], relatedServices = [], tags = [], backHref, backLabel } = Astro.props;
+const { label, title, subtitle, date, updatedDate, readMinutes, image, imageAlt = '', imagePosition = 'center', author, highlights = [], relatedServices = [], tags = [], backHref, backLabel } = Astro.props;
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
 const related = (relatedServices.length ? services.filter((s) => relatedServices.includes(s.slug)) : services.slice(0, 3));
@@ -44,6 +45,7 @@ const related = (relatedServices.length ? services.filter((s) => relatedServices
       <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-ink-500">
         {author && <span class="font-semibold text-navy-900">{author}</span>}
         {date && <time datetime={date.toISOString()}>{new Intl.DateTimeFormat(locale === 'tr' ? 'tr-TR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(date)}</time>}
+        {updatedDate && <span>{locale === 'tr' ? 'Güncelleme:' : 'Updated:'} <time datetime={updatedDate.toISOString()}>{new Intl.DateTimeFormat(locale === 'tr' ? 'tr-TR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(updatedDate)}</time></span>}
         {readMinutes && <span>{readMinutes} {tr('label.readTime')}</span>}
       </div>
     </div>
@@ -77,7 +79,7 @@ const related = (relatedServices.length ? services.filter((s) => relatedServices
     <aside class="lg:sticky lg:top-[184px] lg:w-[220px] lg:self-start lg:justify-self-end">
       <section class="border-t border-line py-4">
         <h2 class="text-sm font-semibold text-navy-900">{locale === 'tr' ? 'İlgili hizmetler' : 'Related services'}</h2>
-        <ul class="mt-3 space-y-3">{related.map((s) => <li><a href={localizePath(`/what-we-do/${s.slug}`, locale)} class="text-sm text-ink-900 transition hover:text-accent-600">{t(s.title, locale)}</a></li>)}</ul>
+        <ul class="mt-3 space-y-3">{related.map((s) => <li><a href={localizePath(`/what-we-do#${s.slug}`, locale)} class="text-sm text-ink-900 transition hover:text-accent-600">{t(s.title, locale)}</a></li>)}</ul>
       </section>
       <section class="border-t border-line py-4">
         <h2 class="text-sm font-semibold text-navy-900">{locale === 'tr' ? 'Daha fazla' : 'More'}</h2>

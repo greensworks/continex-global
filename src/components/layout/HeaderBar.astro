@@ -42,7 +42,7 @@ const metaHref: Record<string, string> = { 'nav.about': '/about', 'nav.insights'
 
   <div class="bg-navy-900">
     <div class="container-site relative flex h-16 items-center justify-between gap-6 text-white md:h-20">
-      <a href={localizePath('/', locale)} class="block shrink-0" aria-label="Continex Global">
+      <a href={localizePath('/', locale)} class="brand-optical block shrink-0" aria-label="Continex Global">
         <Image src={logoWhite} alt="Continex Global" width={180} densities={[1, 2]} class="h-8 w-auto lg:h-9" loading="eager" />
       </a>
 
@@ -72,7 +72,7 @@ const metaHref: Record<string, string> = { 'nav.about': '/about', 'nav.insights'
 
       <a
         href={localizePath(ctaHref, locale)}
-        class="absolute -bottom-3.5 right-4 bg-accent-600 px-3 py-1.5 text-[11px] font-semibold text-white transition hover:bg-accent-500 md:right-8"
+        class="absolute -bottom-3.5 right-4 bg-accent-600 px-3 py-1.5 text-[11px] font-semibold text-white transition hover:bg-accent-500 md:right-8 lg:hidden"
       >{t('cta.discuss')}</a>
     </div>
   </div>

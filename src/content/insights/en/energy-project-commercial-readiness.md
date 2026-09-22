@@ -1,4 +1,5 @@
 ---
+seoTitle: "Energy Projects: Commercial Readiness"
 title: "Energy projects: building commercial readiness before execution"
 description: "A practical framework for aligning project owners, technology providers and delivery partners around scope, evidence and the next decision."
 publishDate: 2026-09-22
@@ -57,4 +58,4 @@ Use a working register with four fields: the decision, the information needed, t
 
 A commercially prepared project gives each participant a clearer basis for engagement. The value lies in a shared understanding of what is being proposed, what remains open and how the parties intend to move forward.
 
-Explore [project development and strategic transactions](/what-we-do/project-development).
+Explore [project development and strategic transactions](/what-we-do#project-development).

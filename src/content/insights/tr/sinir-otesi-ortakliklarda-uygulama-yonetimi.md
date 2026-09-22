@@ -1,4 +1,5 @@
 ---
+seoTitle: "Sınır Ötesi Ortaklıkların Yönetimi"
 title: "Mutabakattan uygulamaya: sınır ötesi ortaklıkların yönetimi"
 description: "Karar yetkisi, ortak bilgi zemini ve üst yönetime taşıma mekanizmasıyla uluslararası ortaklıkları uygulanabilir bir çalışma modeline dönüştürmek."
 publishDate: 2026-09-22
@@ -61,4 +62,4 @@ Bir ortaklığın sonraki aşamasına geçmeden önce yönetim şu sorulara yan�
 
 Yetki, bilgi ve takip birbiriyle bağlantılı olduğunda ortaklık daha yönetilebilir hale gelir. Amaç, iş karmaşıklaştığında da açıklığını koruyan bir karar süreci oluşturmaktır.
 
-[Stratejik ortaklıklar ve ortak girişimler](/tr/ne-yapiyoruz/stratejik-ortakliklar) kapsamındaki çalışmalarımızı inceleyin.
+[Stratejik ortaklıklar ve ortak girişimler](/tr/ne-yapiyoruz#strategic-partnerships) kapsamındaki çalışmalarımızı inceleyin.

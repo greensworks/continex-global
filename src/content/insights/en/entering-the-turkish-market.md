@@ -1,4 +1,5 @@
 ---
+seoTitle: "Entering the Turkish Market"
 title: "Entering the Turkish market: what international companies get wrong"
 description: "Türkiye rewards companies that arrive with a local partner strategy, not a brochure. Three patterns we see in successful market entries."
 publishDate: 2026-09-01

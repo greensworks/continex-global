@@ -1,4 +1,5 @@
 ---
+seoTitle: "OEM Customer & Supplier Development"
 title: "Beyond qualification: building a sustainable OEM customer relationship"
 description: "Connect technical evaluation, purchasing requirements and local follow-through to build a more disciplined route into industrial OEM accounts."
 publishDate: 2026-09-22
@@ -61,4 +62,4 @@ Useful review questions include:
 
 A sustainable OEM relationship develops when the product proposition and the operating commitment remain aligned. Account development should make that alignment visible from the first focused discussion through the customer's evaluation process.
 
-Explore [international representation and deal execution](/what-we-do/international-representation).
+Explore [international representation and deal execution](/what-we-do#international-representation).

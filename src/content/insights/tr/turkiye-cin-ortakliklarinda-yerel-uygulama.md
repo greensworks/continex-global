@@ -1,4 +1,5 @@
 ---
+seoTitle: "Türkiye–Çin Ortaklıklarında Yerel Uygulama"
 title: "Türkiye–Çin ortaklıkları: yerel uygulamayı ticari önerinin parçası yapmak"
 description: "Uluslararası üretim kapasitesini Türkiye’deki müşteri beklentileri ve teslim sorumluluklarıyla buluşturmak için uygulanabilir bir çalışma modeli."
 publishDate: 2026-09-22
@@ -60,4 +61,4 @@ Amaç, faaliyet ile ilerlemenin birbirine karıştırılmasını önlemektir. Bi
 
 Sınır ötesi ortaklığın kalitesi günlük koordinasyonda görünür hale gelir. Açık bir yerel çalışma modeli, uluslararası yetkinliğin kalıcı bir müşteri ilişkisine dönüşmesi için daha sağlam bir zemin sağlar.
 
-[Uluslararası temsil ve işlem yürütme](/tr/ne-yapiyoruz/uluslararasi-temsil) yaklaşımımızı inceleyin veya [fırsatınızı bizimle paylaşın](/tr/iletisim).
+[Uluslararası temsil ve işlem yürütme](/tr/ne-yapiyoruz#international-representation) yaklaşımımızı inceleyin veya [fırsatınızı bizimle paylaşın](/tr/iletisim).

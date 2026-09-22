@@ -28,7 +28,7 @@ const isActive = (href: string) => current === href || (href !== '/' && current.
   ]}
 >
   <div class="container-site flex h-[76px] items-center justify-between gap-6 lg:h-[88px]">
-    <a href={localizePath('/', locale)} class="relative block shrink-0" aria-label="Continex Global">
+    <a href={localizePath('/', locale)} class="brand-optical relative block shrink-0" aria-label="Continex Global">
       <Image src={logo} alt="Continex Global" width={180} densities={[1, 2]} class="h-8 w-auto group-data-[theme=dark]/header:hidden group-data-[scrolled]/header:!block lg:h-9" loading="eager" />
       <Image src={logoWhite} alt="" width={180} densities={[1, 2]} class="hidden h-8 w-auto group-data-[theme=dark]/header:block group-data-[scrolled]/header:!hidden lg:h-9" loading="eager" />
     </a>

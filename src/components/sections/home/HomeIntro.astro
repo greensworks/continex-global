@@ -1,0 +1,25 @@
+---
+import Image from '@components/ui/Photo.astro';
+import { img } from '@/lib/images';
+import { getLocale, localizePath } from '@i18n/utils';
+const locale = getLocale(Astro.url);
+const tr = locale === 'tr';
+---
+<section class="section bg-surface-alt" id="home-about" aria-labelledby="home-about-title">
+  <div class="container-site">
+    <div class="grid items-center gap-9 lg:grid-cols-2 lg:gap-20">
+      <div class="relative" data-reveal>
+        <div class="aspect-[5/4] overflow-hidden bg-surface-muted"><Image src={img('service-partnerships')} alt={tr ? 'Aydınlık bir toplantı odasında görüşen iş insanları' : 'Business colleagues in discussion in a bright meeting room'} widths={[480,768,1200]} sizes="(min-width:1280px) 560px, (min-width:1024px) 45vw, calc(100vw - 40px)" class="h-full w-full object-cover" /></div>
+        <p class="relative ml-6 -mt-10 w-fit max-w-[calc(100%-1.5rem)] bg-navy-900 px-6 py-5 text-sm leading-relaxed text-white sm:ml-10 sm:px-8">{tr ? 'Türkiye merkezli. Uluslararası bakış açısıyla.' : 'Based in Türkiye. Working across borders.'}</p>
+      </div>
+      <div data-reveal>
+        <p class="eyebrow">{tr ? 'Continex hakkında' : 'About Continex'}</p>
+        <h2 id="home-about-title" class="mt-5 text-h2 font-normal">{tr ? 'Uluslararası hedefleriniz için sahada çalışan bir ortak.' : <>An on-the-ground partner for <span style="color: #bebebe">your international ambitions.</span></>}</h2>
+        <p class="mt-6 text-lead text-ink-700">{tr ? 'Şirketleri yeni pazarlar, doğru iş ortakları ve somut ticari fırsatlarla buluşturuyoruz.' : 'We connect companies with new markets, the right partners and concrete commercial opportunities.'}</p>
+        <p class="mt-4 text-base leading-relaxed text-ink-500">{tr ? 'İstanbul merkezli ekibimiz; pazara giriş, ortaklık geliştirme ve uluslararası işlemlerde stratejiyi sahadaki uygulamayla birleştirir. İlk değerlendirmeden müzakere ve kapanışa kadar sürecin içinde görev alırız.' : 'Our Istanbul-based team brings strategy and local execution together across market entry, partnership development and international transactions. We stay involved from the first assessment through negotiation and closing.'}</p>
+        <a href={localizePath('/about', locale)} class="mt-7 inline-flex items-center gap-6 border-b border-accent-600 pb-2 text-sm font-semibold text-accent-600 hover:text-navy-900">{tr ? 'Bizi daha yakından tanıyın' : 'Get to know Continex'} <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+
+  </div>
+</section>

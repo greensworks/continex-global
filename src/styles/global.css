@@ -56,7 +56,7 @@
   --text-eyebrow--letter-spacing: 0.14em;
 
   /* Layout */
-  --container-site: 80rem; /* 1280px */
+  --container-site: 85rem; /* 1360px */
   --spacing-section: clamp(4.5rem, 3rem + 5vw, 8rem);
 
   --radius-card: 0.5rem;
@@ -102,10 +102,36 @@
   .prose-site {
     @apply text-ink-700 leading-relaxed;
   }
-  /* GSAP reveal: hidden until motion.ts runs, unless JS is unavailable */
-  .js [data-reveal] { opacity: 0; }
-  .js [data-reveal].is-visible { opacity: 1; }
-  html:not(.js) [data-reveal] { opacity: 1; }
+  /* Content stays readable if the optional animation bundle fails to load. */
+  [data-reveal] { opacity: 1; }
 }
 
 @utility text-balance { text-wrap: balance; }
+
+/* The 731×142 lockup's wordmark begins at x=77 and centres at y=35.
+   Keep the vertical optical alignment; on desktop the entire logo stays inside the container. */
+.brand-optical {
+  --brand-height: 2rem;
+  --brand-shift: -4px;
+  transform: translate(var(--brand-shift), calc(var(--brand-height) * 36 / 142));
+}
+@media (min-width: 640px) {
+  .brand-optical { --brand-shift: calc(var(--brand-height) * -77 / 142); }
+}
+@media (min-width: 1024px) {
+  .brand-optical { --brand-height: 2.25rem; --brand-shift: 0px; }
+}
+
+/* One continuous rule: avoids the 1px offset between a border and its extension.
+   Keep the rule's container static so adjacent guide sections remain joined. */
+.guide-rule { position: relative; }
+.guide-rule::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: calc(-1 * var(--guide-rise, var(--spacing-section)));
+  bottom: 0;
+  width: 1px;
+  background: color-mix(in srgb, var(--color-navy-900) 30%, transparent);
+  pointer-events: none;
+}

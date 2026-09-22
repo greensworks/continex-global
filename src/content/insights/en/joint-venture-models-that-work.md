@@ -1,4 +1,5 @@
 ---
+seoTitle: "Joint Ventures: Models That Work"
 title: "Joint venture models that survive the first two years"
 description: "Manufacturing and technology JVs between international and Turkish companies fail for predictable reasons. A short checklist for the structuring phase."
 publishDate: 2026-07-30

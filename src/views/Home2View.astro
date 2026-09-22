@@ -1,0 +1,108 @@
+---
+import Base from '@layouts/Base.astro';
+import Photo from '@components/ui/Photo.astro';
+import Hero from '@components/sections/Hero.astro';
+import heroImg from '@assets/images/high-voltage-towers.webp';
+
+import { getCollection } from 'astro:content';
+import { getLocale, localizePath, t } from '@i18n/utils';
+import { site } from '@data/site';
+import { industries } from '@data/industries';
+import { industryDetails } from '@data/pages';
+import { services } from '@data/services';
+import { experience } from '@data/experience';
+import { img } from '@/lib/images';
+import { compareInsights, topicLabel } from '@/lib/insights';
+import ctaImage from '@assets/images/cta-people-walking.webp';
+const locale = getLocale(Astro.url);
+const tr = locale === 'tr';
+const path = (url: string) => localizePath(url, locale);
+const posts = (await getCollection('insights', e => e.id.startsWith(`${locale}/`) && !e.data.draft)).sort(compareInsights).slice(0, 3);
+---
+<Base title={`${site.name} — ${tr ? 'Ana sayfa 2' : 'Home 2'}`} description={t(site.description, locale)} headerTheme="dark" headerVariant="classic" localePaths={{en:'/home-2',tr:'/tr/ana-sayfa-2'}} noindex ctaImage={ctaImage}>
+  <Hero eyebrow={locale === 'tr' ? 'Uluslararası İş Geliştirme' : 'Cross-Border Business Development'} image={heroImg} imageAlt={locale === 'tr' ? 'Gün batımında yüksek gerilim hatları' : 'High-voltage transmission towers at dusk'} />
+  <div class="home-two">
+
+
+    <section class="introduction" id="continex-introduction" aria-labelledby="intro-title">
+      <div class="container-site intro-grid">
+        <div class="intro-heading"><p class="kicker">Continex Global</p><h2 id="intro-title">{tr ? 'Fırsatı işe dönüştürüyoruz.' : 'Turning opportunity into business.'}</h2></div>
+        <div class="intro-copy"><p class="lead">{t(site.description,locale)}</p><p>{tr ? 'Raporlarla yetinmiyoruz. Pazarda aktif rol alıyor, doğru kapıları açıyor ve süreci sonuç üretene kadar ilerletiyoruz.' : 'We do not stop at reports. We work in the market, open the right doors and keep the process moving until it produces a result.'}</p><a class="text-link light" href={path('/about')}>{tr ? 'Bizi tanıyın' : 'Discover Continex'} <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="field-strip" aria-label={tr ? 'Çalışma alanlarımız' : 'Our working environment'}>
+        {['service-partnerships','sector-infrastructure','service-project-development'].map((image,i)=><Photo src={img(image)} alt={tr ? ['Stratejik iş ortaklarıyla görüşme','Altyapı proje sahası','Enerji projesi sahası'][i] : ['Strategic partner meeting','Infrastructure project site','Energy project site'][i]} widths={[480,768,1200]} sizes="(min-width:700px) 40vw, 75vw" class="field-photo" />)}
+      </div>
+    </section>
+    <section class="positioning" aria-labelledby="position-title"><div class="container-site positioning-grid"><div class="statement" aria-hidden="true">{tr ? <>KÜRESEL<br/><span>BAKIŞ.</span><br/>YEREL<br/><span>ERİŞİM.</span></> : <>GLOBAL<br/><span>OUTLOOK.</span><br/>LOCAL<br/><span>ACCESS.</span></>}</div><div class="position-copy"><p class="kicker">{tr ? 'İstanbul’dan uluslararası pazarlara' : 'From Istanbul to international markets'}</p><h2 id="position-title">{tr ? 'Sahada sizinle.' : 'On the ground. By your side.'}</h2><p>{tr ? 'İstanbul merkezli ekibimiz; pazara giriş, ortaklık geliştirme ve uluslararası işlemlerde strateji ile yerel uygulamayı bir araya getirir. İlk değerlendirmeden müzakere ve kapanışa kadar sürecin içinde kalırız.' : 'Our Istanbul-based team brings strategy and local execution together across market entry, partnership development and international transactions. We stay involved from the first assessment through negotiation and closing.'}</p><a class="text-link" href={path('/markets')}>{tr ? 'Pazarlarımız' : 'Our markets'} <span aria-hidden="true">↗</span></a></div></div></section>
+
+    <section class="sector-showcase" aria-labelledby="sectors-title" data-sector-showcase>
+      <div class="container-site section-top"><p class="kicker">{tr ? 'Sektörel odak' : 'Our sector focus'}</p><h2 id="sectors-title">{tr ? 'Büyük projeler. Ortak uzmanlık.' : 'Major projects. Shared expertise.'}</h2></div>
+      <div class="sector-stage">
+        {industries.map((industry,i) => <div id={`sector-panel-${i}`} class="sector-panel" role="tabpanel" aria-labelledby={`sector-tab-${i}`} hidden={i!==0} tabindex="0">
+          <Photo src={img(industry.image)} alt={t(industry.title,locale)} widths={[768,1280,1920]} sizes="100vw" class="sector-image" />
+          <div class="sector-gradient"></div>
+          <div class="container-site sector-content"><div class="sector-copy"><span class="sector-number">0{i+1} / 05</span><h3>{t(industry.title,locale)}</h3><p>{t(industryDetails[industry.slug],locale)}</p><a class="text-link light" href={path(`/industries#${industry.slug}`)}>{tr ? 'Sektörü keşfedin' : 'Explore the sector'} <span aria-hidden="true">↗</span></a></div></div>
+        </div>)}
+      </div>
+      <div class="sector-tabs" role="tablist" aria-label={tr ? 'Sektör seçin' : 'Choose a sector'}>{industries.map((industry,i) => <button type="button" id={`sector-tab-${i}`} role="tab" aria-selected={i===0 ? 'true' : 'false'} aria-controls={`sector-panel-${i}`} tabindex={i===0 ? 0 : -1}><span class="tab-index">0{i+1}</span>{t(industry.title,locale)}<span class="tab-arrow" aria-hidden="true">↗</span></button>)}</div>
+    </section>
+
+    <section class="projects" aria-labelledby="projects-title" data-project-showcase>
+      <div class="container-site">
+        <div class="heading-row"><div><p class="kicker">{tr ? 'Seçilmiş deneyim' : 'Selected experience'}</p><h2 id="projects-title">{tr ? 'Seçilmiş çalışmalarımız' : 'Projects in focus'}</h2></div><a class="text-link" href={path('/selected-experience')}>{tr ? 'Tüm deneyimler' : 'Explore our work'} <span aria-hidden="true">↗</span></a></div>
+        <div class="project-grid">{experience.map((project,i) => <article class="project-card" data-project-panel hidden={i!==0} aria-label={`${i+1} / ${experience.length}`}><div class="project-image"><Photo src={img(project.image)} alt={t(project.sector,locale)} widths={[768,1200,1920]} sizes="(min-width:900px) 65vw, 100vw" class="cover"/></div><div class="project-copy"><p class="kicker">{t(project.market,locale)}</p><h3>{t(project.title,locale)}</h3><p class="project-description">{t(project.outcome,locale)}</p><span class="project-status">{t(project.status,locale)}</span><a class="text-link" href={path(`/selected-experience/${project.slug}`)}>{tr ? 'Çalışmayı inceleyin' : 'Explore the project'} <span aria-hidden="true">↗</span></a></div></article>)}</div>
+        <div class="project-controls"><span data-project-count aria-live="polite">01 / 03</span><button type="button" data-project-prev aria-label={tr ? 'Önceki çalışma' : 'Previous project'}>←</button><button type="button" data-project-next aria-label={tr ? 'Sonraki çalışma' : 'Next project'}>→</button></div>
+      </div>
+    </section>
+
+    <section class="capabilities" aria-labelledby="capabilities-title"><div class="container-site capability-grid"><div class="capability-heading"><p class="kicker">{tr ? 'Ne yapıyoruz' : 'What we do'}</p><h2 id="capabilities-title">{tr ? 'Stratejiden uygulamaya.' : 'Strategy into execution.'}</h2><p>{tr ? 'Strateji, ilişki geliştirme ve ticari uygulamayı tek bir süreçte bir araya getiriyoruz.' : 'We bring strategy, relationship development and commercial execution together in one process.'}</p></div><div class="capability-list">{services.map((service,i) => <a href={path(`/what-we-do#${service.slug}`)}><span class="service-number">0{i+1}</span><div><h3>{t(service.title,locale)}</h3><p>{t(service.summary,locale)}</p></div><span class="service-arrow" aria-hidden="true">↗</span></a>)}</div></div></section>
+
+    <section class="perspectives" aria-labelledby="perspectives-title"><div class="container-site"><div class="heading-row"><div><p class="kicker">{tr ? 'Görüşler ve analizler' : 'Insights & perspectives'}</p><h2 id="perspectives-title">{tr ? 'İleriye bakış.' : 'Looking ahead.'}</h2></div><a class="text-link" href={path('/insights')}>{tr ? 'Tüm görüşler' : 'All insights'} <span aria-hidden="true">↗</span></a></div><div class="insight-grid">{posts.map(post => <a class="insight-card" href={path(`/insights/${post.id.split('/').slice(1).join('/')}`)}><div class="insight-image">{post.data.cover && <Photo src={post.data.cover} alt="" widths={[480,768,1200]} sizes="(min-width:900px) 33vw, 100vw" class="cover" style={`object-position:${post.data.coverPosition}`} />}</div><p class="kicker">{topicLabel(post.data.topic,locale)}</p><h3>{post.data.title}</h3><span class="insight-arrow" aria-hidden="true">↗</span></a>)}</div></div></section>
+
+  </div>
+</Base>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-sector-showcase]').forEach(showcase => {
+    const tabs = Array.from(showcase.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const panels = Array.from(showcase.querySelectorAll<HTMLElement>('[role="tabpanel"]'));
+    const activate = (index: number, focus = false) => {
+      tabs.forEach((tab,i) => { tab.setAttribute('aria-selected',String(i===index)); tab.tabIndex = i===index ? 0 : -1; panels[i].hidden = i!==index; });
+      if (focus) tabs[index].focus();
+    };
+    tabs.forEach((tab,i) => {
+      tab.addEventListener('click', () => activate(i));
+      tab.addEventListener('keydown', event => {
+        let next = i;
+        if(event.key === 'ArrowRight') next = (i+1)%tabs.length;
+        else if(event.key === 'ArrowLeft') next = (i-1+tabs.length)%tabs.length;
+        else if(event.key === 'Home') next = 0;
+        else if(event.key === 'End') next = tabs.length-1;
+        else return;
+        event.preventDefault(); activate(next,true);
+      });
+    });
+  });
+  const projectShowcase = document.querySelector<HTMLElement>('[data-project-showcase]');
+  if (projectShowcase) {
+    const panels = Array.from(projectShowcase.querySelectorAll<HTMLElement>('[data-project-panel]'));
+    const count = projectShowcase.querySelector('[data-project-count]');
+    let current = 0;
+    const change = (direction: number) => {
+      current = (current + direction + panels.length) % panels.length;
+      panels.forEach((panel,i) => { panel.hidden = i !== current; });
+      if (count) count.textContent = `${String(current+1).padStart(2,'0')} / ${String(panels.length).padStart(2,'0')}`;
+    };
+    projectShowcase.querySelector('[data-project-prev]')?.addEventListener('click',() => change(-1));
+    projectShowcase.querySelector('[data-project-next]')?.addEventListener('click',() => change(1));
+  }
+
+</script>
+
+<style>
+.home-two{--ink:#172e43;--night:#172d3d;color:var(--ink);background:#f2f3f2}
+.home-two h1,.home-two h2,.home-two h3{font-family:var(--font-sans);font-weight:300;letter-spacing:-.025em;line-height:1.1;text-wrap:initial}.home-two h1,.home-two h2{text-transform:uppercase}.home-two h2{font-size:clamp(32px,3.3vw,52px)}@media(max-width:1023px){.home-two .container-site{padding-inline:clamp(24px,5.5vw,90px)}}.kicker{font-size:12px;line-height:1.5;text-transform:uppercase;letter-spacing:.06em;margin-bottom:20px}.text-link{display:inline-flex;align-items:center;justify-content:center;gap:25px;border:1px solid #778592;border-radius:30px;padding:13px 24px;font-size:12px;text-transform:uppercase;line-height:1.3;align-self:start}.text-link.light{color:white;border-color:#ffffff70}.text-link:hover{background:#0f6fd6;border-color:#0f6fd6;color:white}.introduction{background:var(--night);color:white;padding-top:85px}.intro-grid{display:grid;grid-template-columns:1fr 2.3fr;column-gap:60px}.intro-heading{grid-column:1/-1;border-left:1px solid #91a4b660;padding-left:clamp(24px,8vw,125px);padding-bottom:50px}.intro-heading h2{max-width:970px;font-size:clamp(38px,4.4vw,68px);color:white}.intro-copy{grid-column:2;max-width:800px;padding-bottom:75px}.intro-copy p{font-size:17px;line-height:1.75;margin-bottom:24px;color:#d6e0e6}.intro-copy .lead{font-size:20px}.field-strip{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:22px;overflow:hidden;padding:0 22px 40px}.field-strip :global(.field-photo){width:100%;height:300px;object-fit:cover}.positioning{padding:85px 0}.positioning-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:100px;align-items:center}.statement{font-size:clamp(64px,7.2vw,110px);font-weight:600;line-height:.94;letter-spacing:-.055em;color:#d0d9df}.statement span{color:#244359}.position-copy{max-width:490px}.position-copy h2{font-size:clamp(30px,3vw,44px)}.position-copy p:not(.kicker){font-size:16px;line-height:1.8;margin:28px 0}.sector-showcase{position:relative;margin:0 24px;isolation:isolate;background:var(--night);color:white}.section-top{position:absolute;inset:0 0 auto;z-index:2;padding-top:55px;pointer-events:none}.section-top h2{color:white;font-size:clamp(30px,3vw,44px)}.sector-stage{position:relative}.sector-panel{position:relative;min-height:780px;display:flex;align-items:end;isolation:isolate}.sector-panel[hidden]{display:none}.sector-panel :global(.sector-image){position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}.sector-gradient{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#13273770,transparent 45%,#13273765)}.sector-content{display:flex;justify-content:end;padding-top:220px;padding-bottom:145px}.sector-copy{width:440px;padding:35px;background:#203a49bf;backdrop-filter:blur(14px)}.sector-number{font-size:11px;color:#c1d5df}.sector-copy h3{font-size:32px;color:white;margin:20px 0}.sector-copy p{font-size:15px;line-height:1.7;margin-bottom:26px}.sector-tabs{position:absolute;bottom:0;inset-inline:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:#132a3a75;backdrop-filter:blur(12px)}.sector-tabs button{display:flex;align-items:center;gap:13px;padding:28px 20px;text-align:left;min-height:110px;font-size:15px;font-weight:300;border-top:2px solid transparent;border-right:1px solid #ffffff45;cursor:pointer}.sector-tabs button[aria-selected=true]{background:#ffffff26;border-top-color:white}.sector-tabs button:hover{background:#ffffff18}.tab-index{font-size:10px;opacity:.7}.tab-arrow{margin-left:auto}.projects{padding:80px 0 55px;background:#f2f3f2}.heading-row{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:35px}.project-card{display:grid;grid-template-columns:1.5fr 1fr;align-items:center;gap:55px}.project-card[hidden]{display:none}.project-image{height:510px;overflow:hidden}.home-two :global(.cover){width:100%;height:100%;object-fit:cover}.project-image :global(img){object-position:70% 30%}.project-copy h3{font-size:clamp(25px,2.5vw,38px);text-transform:uppercase}.project-description{font-size:16px;line-height:1.75;margin:25px 0}.project-status{display:block;font-size:12px;color:#687c8a;margin-bottom:25px}.project-controls{display:flex;align-items:center;justify-content:end;gap:12px;margin-top:22px}.project-controls>span{font-size:12px;margin-right:16px;font-variant-numeric:tabular-nums}.project-controls button{width:45px;height:45px;border:1px solid #8f9faa;border-radius:50%;font-size:21px;cursor:pointer}.project-controls button:hover{background:#dce4e9}.capabilities{padding:65px 0;background:var(--night);color:white}.capability-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:90px}.capability-heading h2{color:white}.capability-heading>p:last-child{font-size:16px;line-height:1.7;margin-top:25px;max-width:35ch;color:#c4d1db}.capability-list>a{display:grid;grid-template-columns:22px 1fr 22px;gap:16px;border-top:1px solid #ffffff35;padding:24px 0}.service-number{font-size:11px;color:#98c0d8}.service-arrow{font-size:23px}.capability-list h3{font-size:23px;color:white}.capability-list p{font-size:14px;line-height:1.7;margin-top:15px;color:#c4d1db}.perspectives{padding:60px 0;background:white}.perspectives .heading-row{margin-bottom:26px}.insight-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:start}.insight-image{height:220px;overflow:hidden;margin-bottom:20px}.insight-card .kicker{font-size:10px;margin-bottom:12px;color:#577181}.insight-card h3{font-size:24px;line-height:1.25}.insight-arrow{display:block;margin-top:18px;font-size:22px}.insight-card:hover h3,.capability-list>a:hover h3{color:#0f6fd6}.home-two button:focus-visible,.home-two a:focus-visible{outline:3px solid #0f6fd6;outline-offset:4px}
+@media(max-width:1000px){.sector-tabs button{font-size:12px;padding:20px 12px}.tab-index,.tab-arrow{display:none}.positioning-grid{gap:40px}.project-card{gap:30px}.project-image{height:450px}.capability-grid{gap:40px}.insight-image{height:180px}}
+@media(max-width:700px){.introduction{padding-top:55px}.intro-grid{display:block}.intro-heading{padding:0 0 30px 20px}.intro-heading h2{font-size:32px;overflow-wrap:anywhere}.intro-copy{padding:0 0 45px 20px}.intro-copy .lead{font-size:18px}.intro-copy p{font-size:15px}.field-strip{gap:12px;padding:0 12px 25px;grid-template-columns:1fr 1fr}.field-strip :global(.field-photo){height:190px}.field-strip :global(.field-photo:last-child){display:none}.positioning{padding:50px 0}.positioning-grid{grid-template-columns:1fr;gap:35px}.statement{font-size:clamp(57px,12vw,80px);line-height:.98}.position-copy{max-width:none}.position-copy p:not(.kicker){font-size:15px;margin:22px 0}.sector-showcase{margin:0}.section-top{padding-top:30px}.section-top h2{font-size:29px}.section-top .kicker{margin-bottom:12px}.sector-panel{min-height:650px}.sector-content{padding-top:180px;padding-bottom:170px;justify-content:stretch}.sector-copy{width:100%;padding:24px}.sector-copy h3{font-size:27px;margin:14px 0}.sector-copy p{font-size:14px;margin-bottom:20px}.sector-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.sector-tabs button{min-height:48px;font-size:12px;padding:12px 18px}.sector-tabs button:last-child{grid-column:1/-1}.projects{padding:50px 0 40px}.heading-row{align-items:start;flex-direction:column;gap:20px;margin-bottom:25px}.project-card{grid-template-columns:1fr;gap:25px}.project-image{height:290px}.project-copy h3{font-size:28px}.project-description{font-size:15px;margin:20px 0}.project-controls{margin-top:20px}.capabilities{padding:50px 0}.capability-grid{grid-template-columns:1fr;gap:30px}.capability-list h3{font-size:22px}.perspectives{padding:40px 0}.perspectives .heading-row{margin-bottom:22px}.insight-grid{grid-template-columns:1fr;gap:22px}.insight-card{display:grid;grid-template-columns:115px 1fr;column-gap:18px;border-bottom:1px solid #e0e5e9;padding-bottom:22px;align-items:start}.insight-image{grid-row:1/4;height:120px;margin:0}.insight-card .kicker{margin-bottom:8px}.insight-card h3{font-size:19px;line-height:1.25}.insight-arrow{font-size:18px;margin-top:10px}.insight-card:last-child{border:0;padding-bottom:0}}
+
+</style>

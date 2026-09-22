@@ -1,4 +1,5 @@
 ---
+seoTitle: "Kriz Yönetimi ve Stratejik Dayanıklılık"
 title: "Kriz yönetimi: zorlukları stratejik dayanıklılıkla yönetmek"
 description: "Kriz yönetimi tepki vermekten ibaret değildir; planlama, hızlı karar alma ve şirketi kesintinin içinden geçirecek dayanıklılık gerektirir."
 publishDate: 2026-09-21
