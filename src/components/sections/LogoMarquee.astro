@@ -1,7 +1,7 @@
 ---
 /**
  * Two-row infinite logo marquee (rows scroll in opposite directions),
- * pure CSS, pauses on hover, static on reduced-motion.
+ * pure CSS, scrolls continuously, static on reduced-motion.
  * Pattern borrowed from pixelshield.studio "Our toolkit".
  */
 import { Image } from 'astro:assets';
@@ -62,7 +62,6 @@ const rows = [partners.slice(0, half), partners.slice(half)];
     animation: marquee var(--speed) linear infinite;
   }
   .marquee-track--reverse { animation-direction: reverse; }
-  .marquee:hover .marquee-track { animation-play-state: paused; }
   .marquee-row {
     display: flex;
     gap: var(--gap);

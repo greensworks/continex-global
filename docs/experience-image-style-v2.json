@@ -1,0 +1,29 @@
+{
+  "generator": "built-in image_gen",
+  "assets": [
+    {
+      "name": "experience-hero-v2",
+      "prompt": "Use case: photorealistic-natural. NEW premium corporate editorial photograph for Continex Global selected experience page. Bright, candid, optimistic KPMG-style human-focused business photography. Input image is ONLY a lighting and photographic style reference, invent different people and composition. Landscape 1536x1024. Natural daylight, white and cool blue office palette, realistic skin and clothing textures, professionally dressed adults, anatomically correct hands. No lettering, logos, watermark, charts or handshakes. Wide environmental composition, subjects grouped in the RIGHT half, heads near vertical centre (40-55% from top), generous architectural space on left for a title; safe panoramic 400px-high hero cropping. Three senior international advisers walking through a spacious sunlit glass office atrium while naturally talking, a woman in light grey suit holding a slim folder, two colleagues in navy and muted blue. Full figures in middle distance, authentic relaxed interaction, elegant curved glass and pale stone, expansive and human, not a posed group portrait.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-86fa11a6-ad15-4c12-a22c-d4f4101c2c73.png",
+      "output": "src/assets/images/experience-hero-v2.webp"
+    },
+    {
+      "name": "case-real-estate-v2",
+      "prompt": "Use case: photorealistic-natural. NEW premium corporate editorial photograph for Continex Global selected experience page. Bright, candid, optimistic KPMG-style human-focused business photography. Input image is ONLY a lighting and photographic style reference, invent different people and composition. Landscape 1536x1024. Natural daylight, white and cool blue office palette, realistic skin and clothing textures, professionally dressed adults, anatomically correct hands. No lettering, logos, watermark, charts or handshakes. Wide environmental composition, subjects grouped in the RIGHT half, heads near vertical centre (40-55% from top), generous architectural space on left for a title; safe panoramic 400px-high hero cropping. Two experienced investment advisers and a local property specialist reviewing a modern commercial property from a bright glass-walled office with city towers visible outside. East Asian woman in navy jacket, Mediterranean man in grey suit, another colleague using a tablet. Medium-wide scene, candid discussion beside the window, no desk blocking them. Real estate investment context without paperwork closeup, elegant architectural lines and daylight.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-da2a1455-8de6-46e1-889e-bd996c17a077.png",
+      "output": "src/assets/images/case-real-estate-v2.webp"
+    },
+    {
+      "name": "case-industrial-partners-v2",
+      "prompt": "Use case: photorealistic-natural. NEW premium corporate editorial photograph for Continex Global selected experience page. Bright, candid, optimistic KPMG-style human-focused business photography. Input image is ONLY a lighting and photographic style reference, invent different people and composition. Landscape 1536x1024. Natural daylight, white and cool blue office palette, realistic skin and clothing textures, professionally dressed adults, anatomically correct hands. No lettering, logos, watermark, charts or handshakes. Wide environmental composition, subjects grouped in the RIGHT half, heads near vertical centre (40-55% from top), generous architectural space on left for a title; safe panoramic 400px-high hero cropping. Three senior business development professionals from different backgrounds having an engaged strategic partnership conversation around a small meeting table in a bright contemporary office. A woman explains an idea to two men, subtle natural smiles, a closed laptop and simple blank notepad. Medium-wide environmental scene, spacious glass walls and soft greenery, not generic conference room darkness. People seen three-quarter view with believable eye contact.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-6a8baabd-4de7-4d99-bbde-60d7dc92649f.png",
+      "output": "src/assets/images/case-industrial-partners-v2.webp"
+    },
+    {
+      "name": "case-oem-qualification-v2",
+      "prompt": "Use case: photorealistic-natural. NEW premium corporate editorial photograph for Continex Global selected experience page. Bright, candid, optimistic KPMG-style human-focused business photography. Input image is ONLY a lighting and photographic style reference, invent different people and composition. Landscape 1536x1024. Natural daylight, white and cool blue office palette, realistic skin and clothing textures, professionally dressed adults, anatomically correct hands. No lettering, logos, watermark, charts or handshakes. Wide environmental composition, subjects grouped in the RIGHT half, heads near vertical centre (40-55% from top), generous architectural space on left for a title; safe panoramic 400px-high hero cropping. An automotive engineering specialist and a commercial director, one woman and one man, reviewing a precision metal component with a tablet in an airy modern automotive development centre. Smart business casual shirts and understated jackets, no lab coats or hardhats in this clean office area. A softly blurred vehicle prototype behind glass gives context. Medium-wide natural editorial scene, people are main focus, authentic collaborative expressions, component secondary.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-3bbfa6b6-37e6-4bd1-8d88-546dcd7fd93d.png",
+      "output": "src/assets/images/case-oem-qualification-v2.webp"
+    }
+  ]
+}

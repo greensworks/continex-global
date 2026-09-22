@@ -1,0 +1,35 @@
+---
+/** Insights feed: the newest post as a large featured card, the rest as cards. */
+import { getCollection } from 'astro:content';
+import { compareInsights, topicLabel } from '@/lib/insights';
+import FeaturedInsight from '@components/sections/FeaturedInsight.astro';
+import InsightsGrid from '@components/sections/InsightsGrid.astro';
+import { getLocale, localizePath } from '@i18n/utils';
+import { useTranslations } from '@i18n/ui';
+
+interface Props { limit?: number; /** full section spacing above the feed */ topSpace?: boolean }
+const { limit = 50, topSpace = false } = Astro.props;
+const locale = getLocale(Astro.url);
+const tr = useTranslations(locale);
+const posts = (await getCollection('insights', (e) => e.id.startsWith(`${locale}/`) && !e.data.draft))
+  .sort(compareInsights)
+  .slice(0, limit);
+const slugOf = (id: string) => id.split('/').slice(1).join('/');
+const featured = posts[0];
+---
+{featured ? (
+  <>
+    <FeaturedInsight
+      image={featured.data.cover}
+      tag={topicLabel(featured.data.topic, locale)}
+      title={featured.data.title}
+      text={featured.data.description}
+      href={localizePath(`/insights/${slugOf(featured.id)}`, locale)}
+      readLabel={tr('cta.readMore')}
+      topSpace={topSpace}
+    />
+    <InsightsGrid limit={limit - 1} skip={1} />
+  </>
+) : (
+  <p class="container-site py-8 text-ink-500">{tr('insights.empty')}</p>
+)}

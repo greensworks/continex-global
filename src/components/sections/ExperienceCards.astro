@@ -7,7 +7,7 @@
  * and swipe friendly; arrows only scroll the track.
  * `full` adds the "need" paragraph (experience page).
  */
-import { Image } from 'astro:assets';
+import Image from '@components/ui/Photo.astro';
 import { getLocale, localizePath, t } from '@i18n/utils';
 import { useTranslations } from '@i18n/ui';
 import { experience } from '@data/experience';
@@ -17,6 +17,12 @@ interface Props { full?: boolean; eyebrow?: string; title?: string; showLink?: b
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
 const { full = false, eyebrow = locale === 'tr' ? 'Referans çalışmalar' : 'Selected experience', showLink = true } = Astro.props;
+const detailImages: Record<string, string> = {
+  'cross-border-real-estate-china': 'insight-china-local-execution-v2',
+  'market-entry-strategic-partners-turkiye': 'insight-energy-readiness-v2',
+  'oem-market-development-turkiye': 'insight-oem-development-v2',
+};
+const photo = (c: (typeof experience)[number]) => full ? detailImages[c.slug] : c.image;
 const n = experience.length;
 const uid = Math.random().toString(36).slice(2, 7);
 ---
@@ -25,15 +31,15 @@ const uid = Math.random().toString(36).slice(2, 7);
     {experience.map((c, i) => {
       const next = experience[(i + 1) % n];
       return (
-        <article id={`exp-${uid}-${i}`} class="w-full shrink-0 snap-start">
-          <div class="container-site grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
-            <div class="lg:col-span-4">
+        <article id={`exp-${uid}-${i}`} class="flex w-full shrink-0 snap-start">
+          <div class="container-site grid w-full items-stretch gap-10 lg:grid-cols-12 lg:gap-12">
+            <div class="self-start lg:col-span-4">
               <div class="aspect-[4/5] overflow-hidden">
-                <Image src={img(c.image)} alt="" widths={[480, 960]} sizes="(min-width: 1024px) 33vw, 100vw" layout="none" class="h-full w-full object-cover" />
+                <Image src={img(photo(c))} alt="" widths={[480, 960]} sizes="(min-width: 1024px) 33vw, 100vw" layout="none" class="h-full w-full object-cover" style={{ objectPosition: full ? 'center' : '75% center' }} />
               </div>
             </div>
 
-            <div class="lg:col-span-6 lg:pl-6">
+            <div class="flex flex-col lg:col-span-6 lg:pl-6">
               <p class="flex items-center gap-4 text-sm text-ink-500"><span class="font-mono tracking-wider text-accent-600">{String(i + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}</span><span class="h-px w-8 bg-ink-400" aria-hidden="true"></span><span>{eyebrow}</span></p>
               <h2 class="mt-6 font-display text-3xl font-semibold leading-tight text-navy-900 md:text-[40px] md:leading-[1.15]">{t(c.title, locale)}</h2>
               <p class="mt-6 max-w-xl text-[15px] leading-relaxed text-ink-700">{full ? t(c.need, locale) : t(c.outcome, locale)}</p>
@@ -43,15 +49,15 @@ const uid = Math.random().toString(36).slice(2, 7);
               <div class="mt-6">
                 <a href={localizePath(showLink ? '/selected-experience' : '/contact', locale)} class="inline-flex border border-navy-900 bg-navy-900 px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-transparent hover:text-navy-900">{showLink ? tr('exp.viewAll') : tr('cta.discuss')}</a>
               </div>
-              <div class="mt-10 flex items-center gap-6 text-ink-500">
+              <div class="mt-auto flex items-center gap-6 pt-10 text-ink-500">
                 <button type="button" data-dir="-1" class="transition hover:text-navy-900 disabled:opacity-30" aria-label="Previous"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m6-6-6 6 6 6"/></svg></button>
                 <button type="button" data-dir="1" class="transition hover:text-navy-900 disabled:opacity-30" aria-label="Next"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
               </div>
             </div>
 
-            <div class="hidden lg:col-span-2 lg:block">
+            <div class="hidden self-start lg:col-span-2 lg:block">
               <div class="aspect-[3/4] translate-x-1/2 overflow-hidden opacity-90">
-                <Image src={img(next.image)} alt="" widths={[480, 960]} sizes="20vw" layout="none" class="h-full w-full object-cover" />
+                <Image src={img(photo(next))} alt="" widths={[480, 960]} sizes="20vw" layout="none" class="h-full w-full object-cover" style={{ objectPosition: full ? 'center' : '75% center' }} />
               </div>
             </div>
           </div>

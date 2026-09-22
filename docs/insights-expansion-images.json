@@ -1,0 +1,41 @@
+{
+  "generator": "built-in image_gen",
+  "date": "2026-09-22",
+  "assets": [
+    {
+      "name": "insight-growth-discipline",
+      "kind": "abstract",
+      "prompt": "Premium editorial cover for Continex Global, a diversified international business group and strategic advisory firm. Sophisticated Big Four annual-report art direction, original design, no imitation of any specific brand. Landscape 1536x1024, composition survives wide hero and 4:3 card crop, extremely crisp, navy #152b47, steel blue, pale stone and restrained warm light. No lettering, no logos, no watermarks, no financial charts, no collage. Use case: stylized-concept. PURE ABSTRACT sculptural composition: five solid translucent and matte rectangular architectural volumes of different heights on a pale stone plane, one precise navy horizontal beam creating visual alignment across three of them. Clear geometric rhythm, generous negative space, refined museum-quality 3D material study, satin glass and brushed aluminium, soft daylight, subtle physically realistic shadows. Metaphor for disciplined selection and portfolio coherence. No recognizable buildings, people, landscapes, arrows, money or objects.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-a6cad9dd-8bfd-467f-9ccc-65b212af189a.png",
+      "output": "src/assets/images/insight-growth-discipline.webp"
+    },
+    {
+      "name": "insight-execution-governance",
+      "kind": "abstract",
+      "prompt": "Premium editorial cover for Continex Global, a diversified international business group and strategic advisory firm. Sophisticated Big Four annual-report art direction, original design, no imitation of any specific brand. Landscape 1536x1024, composition survives wide hero and 4:3 card crop, extremely crisp, navy #152b47, steel blue, pale stone and restrained warm light. No lettering, no logos, no watermarks, no financial charts, no collage. Use case: stylized-concept. PURE ABSTRACT editorial still life of two elegant curved brushed-metal planes and one dark blue solid circular ring aligned around a central open space, carefully balanced interlocking geometry without actual chain links. Sculptural gallery-quality render, muted steel blue and warm ivory background, beautiful grazing light, sharp edges and subtle material grain. Metaphor for shared accountability and coordinated decision-making. Geometric abstraction only, no people, globe, handshake, scenery or recognizable equipment.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-70b23a5e-b211-4408-8f34-ba16d4b078fd.png",
+      "output": "src/assets/images/insight-execution-governance.webp"
+    },
+    {
+      "name": "insight-energy-readiness",
+      "kind": "photographic",
+      "prompt": "Premium editorial cover for Continex Global, a diversified international business group and strategic advisory firm. Sophisticated Big Four annual-report art direction, original design, no imitation of any specific brand. Landscape 1536x1024, composition survives wide hero and 4:3 card crop, extremely crisp, navy #152b47, steel blue, pale stone and restrained warm light. No lettering, no logos, no watermarks, no financial charts, no collage. Use case: photorealistic-natural. Wide sophisticated aerial architectural photograph of a modern renewable energy installation: orderly solar panels in the foreground, a small unbranded grid substation with realistic equipment and access roads in middle distance, distant wind turbines on rolling hills. Early morning clear neutral light, believable industrial layout, refined composition, no people. Emphasise coordinated infrastructure and commercial readiness, not a generic green ecology advertisement.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-a9e40077-00a3-4fba-a568-4f66d4f2eca1.png",
+      "output": "src/assets/images/insight-energy-readiness.webp"
+    },
+    {
+      "name": "insight-oem-development",
+      "kind": "photographic",
+      "prompt": "Premium editorial cover for Continex Global, a diversified international business group and strategic advisory firm. Sophisticated Big Four annual-report art direction, original design, no imitation of any specific brand. Landscape 1536x1024, composition survives wide hero and 4:3 card crop, extremely crisp, navy #152b47, steel blue, pale stone and restrained warm light. No lettering, no logos, no watermarks, no financial charts, no collage. Use case: photorealistic-natural. Sophisticated documentary editorial photograph inside a clean industrial metrology laboratory. A coordinate measuring machine with a precise probe inspecting a machined aluminium automotive housing secured on a black granite table. Three-quarter view, authentic machinery, softly visible orderly manufacturing hall through glass in background, natural cool light and fine material detail. No hands or people, no readable screen, no brands. Theme technical qualification becoming a sustainable industrial supplier relationship.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-b6c1694c-e80d-43a3-9da5-0ee3fd62724f.png",
+      "output": "src/assets/images/insight-oem-development.webp"
+    },
+    {
+      "name": "insight-china-local-execution",
+      "kind": "photographic",
+      "prompt": "Premium editorial cover for Continex Global, a diversified international business group and strategic advisory firm. Sophisticated Big Four annual-report art direction, original design, no imitation of any specific brand. Landscape 1536x1024, composition survives wide hero and 4:3 card crop, extremely crisp, navy #152b47, steel blue, pale stone and restrained warm light. No lettering, no logos, no watermarks, no financial charts, no collage. Use case: photorealistic-natural. Premium documentary architectural photograph from an elevated perspective of a modern rail-to-sea intermodal freight terminal. Foreground rail lines with a stationary freight train, orderly muted-blue containers and precise gantry cranes, a coastal commercial port and pale distant urban skyline. Crisp midday side light, subdued corporate colours, realistic freight geometry, calm balanced composition, not sunset. Theme practical local coordination along international Türkiye–China supply chains. No flags, labels, maps or people.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-8c8b2538-4c99-4b5b-89a1-bd142ab28d1a.png",
+      "output": "src/assets/images/insight-china-local-execution.webp"
+    }
+  ]
+}

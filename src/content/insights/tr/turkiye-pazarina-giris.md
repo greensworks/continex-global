@@ -3,8 +3,8 @@ title: "Türkiye pazarına giriş: uluslararası şirketlerin yanlış yaptığ�
 description: "Türkiye, broşürle değil yerel ortak stratejisiyle gelen şirketleri ödüllendirir. Başarılı pazar girişlerinde gördüğümüz üç kalıp."
 publishDate: 2026-09-01
 topic: market-entry
-cover: "../../../assets/images/glass-facade.webp"
-coverAlt: "İstanbul'da bir ofis binası cephesi"
+cover: "../../../assets/images/insight-turkiye-market.webp"
+coverAlt: "İstanbul Boğazı’nda vapur ve kıyıdaki binalar"
 translationOf: entering-the-turkish-market
 authors: [bulent-ulusoy]
 readMinutes: 4

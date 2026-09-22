@@ -2,13 +2,14 @@
 import '@fontsource-variable/inter';
 import '@fontsource-variable/manrope';
 import '@/styles/global.css';
+import type { ImageMetadata } from 'astro';
 import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
 import FinalCta from '@components/sections/FinalCta.astro';
 import CookieConsent from '@components/layout/CookieConsent.astro';
 import Analytics from '@components/analytics/Analytics.astro';
 import { getLocale, switchLocalePath, stripLocale } from '@i18n/utils';
-import { locales } from '@i18n/config';
+import { locales, type Locale } from '@i18n/config';
 import { site } from '@data/site';
 
 interface Props {
@@ -16,14 +17,20 @@ interface Props {
   description: string;
   /** Path to an OG image in /public, optional */
   ogImage?: string;
-  /** 'dark' = transparent header over a dark hero; 'light' = solid header */
+  ogType?: 'website' | 'article';
+  localePaths?: Partial<Record<Locale, string>>;
+  /** 'dark' = hero runs behind the header; 'light' = header sits on a spacer */
   headerTheme?: 'dark' | 'light';
+  /** 'classic' = homepage bar over the hero; 'bar' = inner-page RB header */
+  headerVariant?: 'classic' | 'bar';
   noindex?: boolean;
   /** closing CTA band above the footer */
   cta?: boolean;
+  /** photo behind the closing CTA (defaults to one chosen per page) */
+  ctaImage?: ImageMetadata;
 }
 
-const { title, description, ogImage = '/og-default.jpg', headerTheme = 'light', noindex = false, cta = true } = Astro.props;
+const { title, description, localePaths, ogType = 'website', ogImage = '/og-default.jpg', headerTheme = 'light', headerVariant = 'bar', noindex = false, cta = true, ctaImage } = Astro.props;
 const locale = getLocale(Astro.url);
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
@@ -44,11 +51,11 @@ const gscToken = import.meta.env.PUBLIC_GSC_VERIFICATION;
     <meta name="theme-color" content="#122744" />
 
     {locales.map((l) => (
-      <link rel="alternate" hreflang={l} href={new URL(switchLocalePath(path, l), Astro.site)} />
+      <link rel="alternate" hreflang={l} href={new URL(localePaths?.[l] ?? switchLocalePath(path, l), Astro.site)} />
     ))}
-    <link rel="alternate" hreflang="x-default" href={new URL(path, Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(localePaths?.en ?? path, Astro.site)} />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
@@ -64,11 +71,11 @@ const gscToken = import.meta.env.PUBLIC_GSC_VERIFICATION;
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded focus:bg-navy-900 focus:px-4 focus:py-2 focus:text-white">
       {locale === 'tr' ? 'İçeriğe geç' : 'Skip to content'}
     </a>
-    <Header theme={headerTheme} />
+    <Header theme={headerTheme} variant={headerVariant} localePaths={localePaths} />
     <main id="main" class="flex-1">
       <slot />
     </main>
-    {cta && <FinalCta />}
+    {cta && <FinalCta image={ctaImage} />}
     <Footer />
     <CookieConsent />
     <Analytics />

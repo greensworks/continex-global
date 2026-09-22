@@ -1,0 +1,11 @@
+{
+  "generator": "built-in image_gen",
+  "assets": [
+    {
+      "name": "insight-resilience-v2",
+      "prompt": "Use case: stylized-concept. Design a sophisticated editorial COVER IMAGE for Continex Global insight about crisis management and strategic resilience. Attached image is a STYLE/COMPOSITION reference only: full-bleed photographic background with strong cobalt blue to lavender-pink duotone wash and a crisply defined vertical rectangular portrait window layered in front. Generate an original new scene, not those same people. Landscape 1536x1024. Background shows soft out-of-focus silhouettes of colleagues in a modern strategy discussion, seated facing a composed senior female business leader. Foreground portrait window at x 48%-78%, from y 15%-85%: a confident experienced woman with natural curly dark hair, wearing a crisp ivory blouse, calmly explaining an action plan with a small natural open-hand gesture; reassuring thoughtful expression, not a celebration or applause. Portrait is sharp natural colour with pale lavender background, no frame outline, strong clean rectangular edges, subtle translucent offset lavender rectangle behind it creates an intentional graphic collage. Saturated cobalt left, indigo lower background, luminous lilac and pale warm pink on right. Elegant corporate magazine art direction, luminous colour overlays and depth, optimistic composed atmosphere, realistic hands and face. Main face at x63%, y35%, safely visible in wide crops. No letters, text, logos, watermark, charts or fake interface. The result should visibly feel art-directed and layered, not a plain office stock photo.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-8f9a14d7-8f2c-4a94-be8d-bf7aac72aaf5.png",
+      "output": "src/assets/images/insight-resilience-v2.webp"
+    }
+  ]
+}

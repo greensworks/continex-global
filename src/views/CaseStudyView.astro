@@ -1,45 +1,27 @@
 ---
 import Base from '@layouts/Base.astro';
-import ArticleLayout from '@components/sections/ArticleLayout.astro';
-import InsightsLatest from '@components/sections/InsightsLatest.astro';
+import CaseStudyLayout from '@components/sections/CaseStudyLayout.astro';
 import type { CaseStudy } from '@data/experience';
-import { experience } from '@data/experience';
+import { services } from '@data/services';
 import { getLocale, localizePath, t } from '@i18n/utils';
-import { useTranslations } from '@i18n/ui';
 import { img } from '@/lib/images';
 
 interface Props { cs: CaseStudy }
 const { cs } = Astro.props;
 const locale = getLocale(Astro.url);
-const tr = useTranslations(locale);
-const serviceFor: Record<string, string[]> = {
-  'cross-border-real-estate-china': ['project-development', 'international-representation'],
-  'market-entry-strategic-partners-turkiye': ['market-entry', 'strategic-partnerships'],
-  'oem-market-development-turkiye': ['international-representation', 'market-entry'],
+const support: Record<string, string> = {
+  'cross-border-real-estate-china': 'about-architecture',
+  'market-entry-strategic-partners-turkiye': 'case-industrial-partners',
+  'oem-market-development-turkiye': 'sector-mobility',
 };
-const others = experience.filter((c) => c.slug !== cs.slug);
+const serviceFor: Record<string, string[]> = {
+  'cross-border-real-estate-china': ['project-development', 'international-representation', 'strategic-partnerships'],
+  'market-entry-strategic-partners-turkiye': ['market-entry', 'strategic-partnerships', 'international-representation'],
+  'oem-market-development-turkiye': ['international-representation', 'market-entry', 'strategic-partnerships'],
+};
+const related = (serviceFor[cs.slug] ?? []).map(slug => services.find(s => s.slug === slug)!)
+  .filter(Boolean).map(s => ({ title: t(s.title, locale), text: t(s.summary, locale), href: localizePath(`/what-we-do/${s.slug}`, locale) }));
 ---
-<Base title={t(cs.title, locale)} description={t(cs.need, locale)}>
-  <ArticleLayout
-    label={tr('nav.experience')}
-    title={t(cs.title, locale)}
-    subtitle={t(cs.need, locale)}
-    image={img(cs.image)}
-    highlights={[t(cs.status, locale), `${t(cs.client, locale)} · ${t(cs.sector, locale)} · ${t(cs.market, locale)}`, t(cs.outcome, locale)]}
-    authorSlugs={['bulent-ulusoy', 'cigdem-balcioglu']}
-    relatedServices={serviceFor[cs.slug]}
-    tags={[t(cs.sector, locale), t(cs.market, locale), t(cs.status, locale)]}
-    backHref={localizePath('/selected-experience', locale)}
-    backLabel={tr('exp.viewAll')}
-  >
-    <dl>
-      <dt>{tr('label.need')}</dt><dd>{t(cs.need, locale)}</dd>
-      <dt>{tr('label.role')}</dt><dd>{t(cs.role, locale)}</dd>
-      <dt>{tr('label.progress')}</dt><dd>{t(cs.progress, locale)}</dd>
-      <dt>{tr('label.outcome')}</dt><dd>{t(cs.outcome, locale)}</dd>
-    </dl>
-    <h2>{locale === 'tr' ? 'Diğer referans çalışmalar' : 'Other mandates'}</h2>
-    <ul>{others.map((o) => <li><a href={localizePath(`/selected-experience/${o.slug}`, locale)}>{t(o.title, locale)}</a> — {t(o.status, locale)}</li>)}</ul>
-  </ArticleLayout>
-  <InsightsLatest />
+<Base title={t(cs.title, locale)} description={t(cs.need, locale)} headerTheme="dark" cta={false}>
+  <CaseStudyLayout cs={cs} image={img(cs.image)} supportImage={img(support[cs.slug])} related={related} />
 </Base>

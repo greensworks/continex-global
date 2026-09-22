@@ -8,3 +8,7 @@ npm-debug.log*
 !.env.example
 .vercel/
 .netlify/
+
+# Local tooling and one-off exports
+.claude/settings.local.json
+output/

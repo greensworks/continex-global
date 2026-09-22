@@ -1,0 +1,89 @@
+{
+  "pages": 44,
+  "referencedImageFiles": 362,
+  "missing": [],
+  "generatedAssets": 16,
+  "unusedGeneratedAssets": [],
+  "insightsAvif": [
+    {
+      "file": "/_astro/insight-resilience.DCUCL81I_1Pek5e.avif",
+      "width": "480w",
+      "bytes": 21292
+    },
+    {
+      "file": "/_astro/insight-resilience.DCUCL81I_2sGVQ.avif",
+      "width": "768w",
+      "bytes": 51505
+    },
+    {
+      "file": "/_astro/insight-resilience.DCUCL81I_Z1R9bds.avif",
+      "width": "1200w",
+      "bytes": 96001
+    },
+    {
+      "file": "/_astro/insight-resilience.DCUCL81I_Z1g3LPa.avif",
+      "width": "1536w",
+      "bytes": 156773
+    },
+    {
+      "file": "/_astro/insight-turkiye-market.CdkxDYgC_Z2tSiX1.avif",
+      "width": "384w",
+      "bytes": 15806
+    },
+    {
+      "file": "/_astro/insight-turkiye-market.CdkxDYgC_Dgqvy.avif",
+      "width": "640w",
+      "bytes": 40530
+    },
+    {
+      "file": "/_astro/insight-turkiye-market.CdkxDYgC_1EOD77.avif",
+      "width": "800w",
+      "bytes": 59569
+    },
+    {
+      "file": "/_astro/insight-turkiye-market.CdkxDYgC_Z2ik3Tw.avif",
+      "width": "1200w",
+      "bytes": 115741
+    },
+    {
+      "file": "/_astro/insight-china-trade.r9SWTj3F_Z1V4xmz.avif",
+      "width": "384w",
+      "bytes": 17884
+    },
+    {
+      "file": "/_astro/insight-china-trade.r9SWTj3F_Z1f3GxV.avif",
+      "width": "640w",
+      "bytes": 42233
+    },
+    {
+      "file": "/_astro/insight-china-trade.r9SWTj3F_Z1aiN5K.avif",
+      "width": "800w",
+      "bytes": 63259
+    },
+    {
+      "file": "/_astro/insight-china-trade.r9SWTj3F_Z2fu4AY.avif",
+      "width": "1200w",
+      "bytes": 121085
+    },
+    {
+      "file": "/_astro/insight-joint-venture.B9r8o4PL_Z183291.avif",
+      "width": "384w",
+      "bytes": 10487
+    },
+    {
+      "file": "/_astro/insight-joint-venture.B9r8o4PL_1dUgsL.avif",
+      "width": "640w",
+      "bytes": 21852
+    },
+    {
+      "file": "/_astro/insight-joint-venture.B9r8o4PL_ZV9QeN.avif",
+      "width": "800w",
+      "bytes": 29699
+    },
+    {
+      "file": "/_astro/insight-joint-venture.B9r8o4PL_1IbS1O.avif",
+      "width": "1200w",
+      "bytes": 50686
+    }
+  ]
+}

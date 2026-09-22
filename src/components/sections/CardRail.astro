@@ -1,0 +1,75 @@
+---
+/**
+ * Horizontal card rail: the row starts on the container's left edge and
+ * bleeds off the right edge of the viewport. Scroll, swipe or drag it, or
+ * use the arrows. Takes the same tiles as the mosaic.
+ */
+import Image from '@components/ui/Photo.astro';
+import type { Tile } from '@/lib/tiles';
+
+interface Props { tiles: Tile[]; eyebrow?: string }
+const { tiles, eyebrow } = Astro.props;
+---
+<section class="bg-surface pb-[var(--spacing-section)]" data-rail>
+  <div class="container-site">
+    <div class="flex items-end justify-between gap-6">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <div class="ml-auto hidden items-center gap-4 text-ink-500 md:flex">
+        <button type="button" data-dir="-1" class="grid h-10 w-10 place-items-center border border-line transition hover:border-navy-900 hover:text-navy-900" aria-label="Previous">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m6-6-6 6 6 6"/></svg>
+        </button>
+        <button type="button" data-dir="1" class="grid h-10 w-10 place-items-center border border-line transition hover:border-navy-900 hover:text-navy-900" aria-label="Next">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div
+      class="mt-6 mr-[calc((100%-100vw)/2)] flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2 pr-5 [scrollbar-width:none] sm:pr-8 lg:pr-10 [&::-webkit-scrollbar]:hidden"
+      data-track
+    >
+      {tiles.map((t) => {
+        const Tag = t.href ? 'a' : 'div';
+        return (
+          <Tag id={t.id} href={t.href} class="group w-[280px] shrink-0 scroll-mt-[140px] snap-start md:w-[380px]">
+            <div class="relative aspect-[4/3] overflow-hidden bg-surface-muted">
+              <Image src={t.image} style={{ objectPosition: t.imagePosition ?? 'center' }} alt={t.alt ?? ''} widths={[320, 480, 768, 1200]} sizes="(min-width: 768px) 380px, 280px" layout="none" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
+              {t.label && <span class="absolute left-4 top-4 bg-white px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-navy-900">{t.label}</span>}
+            </div>
+            <h3 class="mt-4 text-lg font-semibold leading-snug text-navy-900 md:text-xl">{t.title}</h3>
+            {t.text && <p class="mt-2 max-w-[34ch] text-[14px] leading-relaxed text-ink-500">{t.text}</p>}
+          </Tag>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-rail]').forEach((root) => {
+    const track = root.querySelector<HTMLElement>('[data-track]')!;
+    const step = () => (track.firstElementChild as HTMLElement)?.getBoundingClientRect().width + 20 || track.clientWidth;
+
+    root.querySelectorAll<HTMLButtonElement>('[data-dir]').forEach((b) =>
+      b.addEventListener('click', () => track.scrollBy({ left: step() * Number(b.dataset.dir), behavior: 'smooth' })),
+    );
+
+    // Drag to scroll with a mouse; touch and trackpad scroll natively.
+    let down = false, startX = 0, startLeft = 0, moved = false;
+    track.addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      down = true; moved = false; startX = e.clientX; startLeft = track.scrollLeft;
+      track.style.cursor = 'grabbing';
+    });
+    track.addEventListener('pointermove', (e) => {
+      if (!down) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 3) moved = true;
+      track.scrollLeft = startLeft - dx;
+    });
+    const end = () => { down = false; track.style.cursor = ''; };
+    track.addEventListener('pointerup', end);
+    track.addEventListener('pointerleave', end);
+    track.addEventListener('click', (e) => { if (moved) { e.preventDefault(); moved = false; } }, true);
+  });
+</script>

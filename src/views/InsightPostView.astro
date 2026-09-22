@@ -1,10 +1,13 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { render } from 'astro:content';
+import { render, getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
 import Base from '@layouts/Base.astro';
 import ArticleLayout from '@components/sections/ArticleLayout.astro';
 import ExperienceCards from '@components/sections/ExperienceCards.astro';
+import { topicLabel } from '@/lib/insights';
 import { getLocale, localizePath } from '@i18n/utils';
+import { img } from '@/lib/images';
 import { useTranslations } from '@i18n/ui';
 
 interface Props { post: CollectionEntry<'insights'> }
@@ -12,13 +15,28 @@ const { post } = Astro.props;
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
 const { Content } = await render(post);
-const topicLabels: Record<string, [string, string]> = {
-  'market-entry': ['Market entry', 'Pazara giriş'], 'china-turkiye': ['Türkiye–China', 'Türkiye–Çin'], 'energy-infrastructure': ['Energy & infrastructure', 'Enerji ve altyapı'],
-  'industrial-automotive': ['Industrial & automotive', 'Sanayi ve otomotiv'], 'joint-ventures': ['Joint ventures', 'Ortak girişimler'], 'project-finance': ['Project finance', 'Proje finansmanı'],
+const canonicalSlug = post.data.translationOf ?? post.id.split('/').slice(1).join('/');
+const translations = await getCollection('insights', (entry) => !entry.data.draft &&
+  (entry.data.translationOf ?? entry.id.split('/').slice(1).join('/')) === canonicalSlug);
+const localePaths = Object.fromEntries(translations.map((entry) => {
+  const [language, ...segments] = entry.id.split('/');
+  return [language, localizePath(`/insights/${segments.join('/')}`, language === 'tr' ? 'tr' : 'en')];
+}));
+const socialImage = post.data.cover ? await getImage({ src: post.data.cover, width: 1200, height: 630, fit: 'cover', format: 'webp', quality: 82 }) : undefined;
+const relatedServices: Record<string, string[]> = {
+  'market-entry': ['market-entry', 'international-representation'],
+  'china-turkiye': ['international-representation', 'strategic-partnerships'],
+  'energy-infrastructure': ['project-development', 'strategic-partnerships'],
+  'industrial-automotive': ['international-representation', 'market-entry'],
+  'joint-ventures': ['strategic-partnerships', 'project-development'],
 };
-const topic = topicLabels[post.data.topic][locale === 'tr' ? 1 : 0];
+const topic = topicLabel(post.data.topic, locale);
+const ctaImages: Record<string, string> = {
+  'market-entry': 'abstract-soft-gray', 'china-turkiye': 'bg-navy-dots', 'energy-infrastructure': 'refinery-dusk',
+  'industrial-automotive': 'metal-grinding-sparks', 'joint-ventures': 'meeting-table', 'project-finance': 'storage-tanks-night', 'risk-crisis': 'bg-navy-dark',
+};
 ---
-<Base title={post.data.title} description={post.data.description}>
+<Base localePaths={localePaths} ogImage={socialImage?.src} ogType="article" title={post.data.title} description={post.data.description} ctaImage={img(ctaImages[post.data.topic] ?? 'meeting-table')}>
   <ArticleLayout
     label={tr('nav.insights')}
     title={post.data.title}
@@ -26,8 +44,12 @@ const topic = topicLabels[post.data.topic][locale === 'tr' ? 1 : 0];
     date={post.data.publishDate}
     readMinutes={post.data.readMinutes}
     image={post.data.cover}
+    imageAlt={post.data.coverAlt}
+    imagePosition={post.data.coverPosition}
+    author={post.data.author}
     highlights={post.data.highlights}
     authorSlugs={post.data.authors}
+    relatedServices={relatedServices[post.data.topic]}
     tags={[topic]}
     backHref={localizePath('/insights', locale)}
     backLabel={tr('insights.back')}

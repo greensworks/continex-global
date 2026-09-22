@@ -1,18 +1,17 @@
 ---
+import { getImage } from 'astro:assets';
+import { img } from '@/lib/images';
 import Base from '@layouts/Base.astro';
 import PageHero from '@components/sections/PageHero.astro';
-import GuideHeadline from '@components/sections/rb/GuideHeadline.astro';
-import InsightsLatest from '@components/sections/InsightsLatest.astro';
-import Breadcrumb from '@components/sections/rb/Breadcrumb.astro';
+import InsightsFeed from '@components/sections/InsightsFeed.astro';
 import { pages } from '@data/pages';
 import { getLocale, localizePath, t } from '@i18n/utils';
 import { useTranslations } from '@i18n/ui';
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
+const socialImage = await getImage({ src: img('insight-growth-discipline-v2'), width: 1200, height: 630, fit: 'cover', format: 'webp', quality: 82 });
 ---
-<Base title={t(pages.insights.title, locale)} description={t(pages.insights.lead, locale)}>
-  <PageHero eyebrow={tr('nav.insights')} title={t(pages.insights.title, locale)} lead={t(pages.insights.lead, locale)} />
-  <GuideHeadline title={locale === 'tr' ? 'Sahadan kısa ve uygulamaya dönük değerlendirmeler' : 'Short, practical notes from the field'} />
-  <InsightsLatest limit={50} showHeading={false} />
-  <Breadcrumb items={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.insights') }]} />
+<Base ogImage={socialImage.src} title={t(pages.insights.title, locale)} description={t(pages.insights.lead, locale)} cta={false}>
+  <PageHero breadcrumb={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.insights') }]} title={t(pages.insights.title, locale)} lead={t(pages.insights.lead, locale)} />
+  <InsightsFeed topSpace />
 </Base>

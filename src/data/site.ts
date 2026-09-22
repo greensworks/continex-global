@@ -10,8 +10,8 @@ export const site = {
     tr: 'Uluslararası İş Geliştirme ve Stratejik Danışmanlık',
   },
   headline: {
-    en: 'Turning Cross-Border Opportunities into Business',
-    tr: 'Uluslararası fırsatları somut iş sonuçlarına dönüştürüyoruz',
+    en: 'Turning Cross-Border <span class="block text-mist-300">Opportunities into Business</span>',
+    tr: 'Uluslararası fırsatları <span class="block text-mist-300">somut iş sonuçlarına dönüştürüyoruz</span>',
   },
   description: {
     en: 'Continex helps international companies enter new markets, secure strategic customers and partners, and execute complex commercial and investment opportunities across Türkiye, China, Asia and selected emerging markets.',

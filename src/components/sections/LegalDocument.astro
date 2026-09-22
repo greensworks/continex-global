@@ -1,0 +1,75 @@
+---
+/**
+ * Legal document body: numbered clauses on the left, a sticky rail with the
+ * table of contents, the other policies and the company details on the right.
+ */
+import { legalDocs, type LegalKind } from '@data/legal';
+import { site } from '@data/site';
+import { getLocale, localizePath, t } from '@i18n/utils';
+
+interface Props { kind: LegalKind }
+const { kind } = Astro.props;
+const locale = getLocale(Astro.url);
+const isTr = locale === 'tr';
+const doc = legalDocs[kind];
+const updated = new Intl.DateTimeFormat(isTr ? 'tr-TR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(doc.updated));
+const anchor = (heading: string) => heading.toLowerCase().replace(/[^a-z0-9ğüşöçı]+/gi, '-').replace(/(^-|-$)/g, '');
+const policies: { kind: LegalKind; href: string }[] = [
+  { kind: 'privacy', href: '/privacy-policy' },
+  { kind: 'terms', href: '/terms-and-conditions' },
+  { kind: 'cookies', href: '/cookie-policy' },
+];
+const others = policies.filter((p) => p.kind !== kind);
+---
+<section class="section">
+  <div class="container-site grid gap-12 lg:grid-cols-[minmax(0,760px)_1fr] lg:gap-20">
+    <div class="min-w-0">
+      <p class="text-xs text-ink-400">{isTr ? 'Son güncelleme' : 'Last updated'}: {updated}</p>
+
+      <div class="mt-8 divide-y divide-line">
+        {doc.sections.map((section, i) => (
+          <section id={anchor(t(section.title, locale))} class="scroll-mt-32 py-8 first:pt-0">
+            <h2 class="flex items-baseline gap-4 text-h3">
+              <span class="font-mono text-xs text-ink-400">{String(i + 1).padStart(2, '0')}</span>{t(section.title, locale)}
+            </h2>
+            {section.paragraphs.map((p) => <p class="mt-4 text-[15px] leading-relaxed text-ink-700 lg:pl-9">{t(p, locale)}</p>)}
+          </section>
+        ))}
+      </div>
+
+      {kind === 'cookies' && (
+        <p class="mt-6 lg:pl-9">
+          <a href="#" data-open-consent class="inline-flex items-center rounded-card border border-line px-4 py-2.5 text-sm font-semibold text-navy-900 transition hover:border-navy-900">
+            {isTr ? 'Çerez tercihlerini değiştir' : 'Change cookie preferences'}
+          </a>
+        </p>
+      )}
+    </div>
+
+    <aside class="lg:sticky lg:top-28 lg:w-[240px] lg:self-start lg:justify-self-end">
+      <section class="border-t border-line py-4">
+        <h2 class="text-sm font-semibold text-navy-900">{isTr ? 'Bu sayfada' : 'On this page'}</h2>
+        <ol class="mt-3 space-y-2 text-sm">
+          {doc.sections.map((section) => (
+            <li><a href={`#${anchor(t(section.title, locale))}`} class="text-ink-500 transition hover:text-accent-600">{t(section.title, locale)}</a></li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="border-t border-line py-4">
+        <h2 class="text-sm font-semibold text-navy-900">{isTr ? 'Diğer politikalar' : 'Other policies'}</h2>
+        <ul class="mt-3 space-y-2 text-sm">
+          {others.map((o) => (
+            <li><a href={localizePath(o.href, locale)} class="text-ink-900 transition hover:text-accent-600">{t(legalDocs[o.kind].title, locale)}</a></li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="border-t border-line py-4 text-sm text-ink-500">
+        <p class="font-semibold text-navy-900">{site.legalName}</p>
+        <p class="mt-2">{site.address.lines.join(', ')}</p>
+        <a href={`mailto:${site.email}`} class="mt-2 block text-navy-900 transition hover:text-accent-600">{site.email}</a>
+      </section>
+    </aside>
+  </div>
+</section>

@@ -1,19 +1,16 @@
 ---
 import Base from '@layouts/Base.astro';
 import PageHero from '@components/sections/PageHero.astro';
-import SubnavPills from '@components/sections/rb/SubnavPills.astro';
 import GuideHeadline from '@components/sections/rb/GuideHeadline.astro';
 import GuideText from '@components/sections/rb/GuideText.astro';
-import Mosaic from '@components/sections/rb/Mosaic.astro';
+import CardRail from '@components/sections/CardRail.astro';
 import Overline from '@components/sections/rb/Overline.astro';
-import Breadcrumb from '@components/sections/rb/Breadcrumb.astro';
 import ExperienceCards from '@components/sections/ExperienceCards.astro';
 import { pages } from '@data/pages';
-import { industries } from '@data/industries';
 import { getLocale, localizePath, t } from '@i18n/utils';
 import { useTranslations } from '@i18n/ui';
 import { industryTiles, serviceTiles } from '@/lib/tiles';
-import heroImg from '@assets/images/metal-grinding-sparks.webp';
+import heroImg from '@assets/images/industrial-pipes-red.webp';
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
 const intro = locale === 'tr'
@@ -21,13 +18,11 @@ const intro = locale === 'tr'
   : ['We choose sectors where transactions are large, technical and multi-party. In energy and infrastructure that means EPC contractors, technology providers and investors; in industry and mobility, OEMs and their suppliers; in international trade, the flows between Türkiye, China, Europe and the Middle East.', 'In each sector we work directly with decision-makers and run technical qualification and commercial negotiation as one process.'];
 ---
 <Base title={t(pages.industries.title, locale)} description={t(pages.industries.lead, locale)} headerTheme="dark">
-  <PageHero eyebrow={tr('nav.industries')} title={t(pages.industries.title, locale)} lead={t(pages.industries.lead, locale)} image={heroImg} />
-  <SubnavPills items={industries.map((i) => ({ label: t(i.title, locale), href: `#${i.slug}` }))} />
+  <PageHero breadcrumb={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.industries') }]} title={t(pages.industries.title, locale)} lead={t(pages.industries.lead, locale)} image={heroImg} />
   <GuideHeadline title={locale === 'tr' ? 'Beş temel faaliyet alanı' : 'Five core sectors'} />
   <GuideText paragraphs={intro} />
-  <Mosaic tiles={industryTiles(locale, true)} />
+  <CardRail tiles={industryTiles(locale, true)} />
   <Overline text={locale === 'tr' ? 'Bu sektörlerde sunduğumuz hizmetler' : 'How we work in these sectors'} />
-  <Mosaic tiles={serviceTiles(locale)} />
+  <CardRail tiles={serviceTiles(locale)} />
   <ExperienceCards />
-  <Breadcrumb items={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.industries') }]} />
 </Base>

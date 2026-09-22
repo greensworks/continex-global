@@ -3,26 +3,23 @@ import Base from '@layouts/Base.astro';
 import PageHero from '@components/sections/PageHero.astro';
 import ServiceDetail from '@components/sections/ServiceDetail.astro';
 import HowWeWork from '@components/sections/HowWeWork.astro';
-import SubnavPills from '@components/sections/rb/SubnavPills.astro';
 import Overline from '@components/sections/rb/Overline.astro';
-import Mosaic from '@components/sections/rb/Mosaic.astro';
-import Breadcrumb from '@components/sections/rb/Breadcrumb.astro';
+import CardRail from '@components/sections/CardRail.astro';
 import { industryTiles } from '@/lib/tiles';
 import { services, serviceImages } from '@data/services';
 import { pages } from '@data/pages';
 import { getLocale, localizePath, t } from '@i18n/utils';
 import { useTranslations } from '@i18n/ui';
+import ctaImage from '@assets/images/abstract-liquid.webp';
 import heroImg from '@assets/images/refinery-dusk.webp';
 
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
 ---
-<Base title={t(pages.whatWeDo.title, locale)} description={t(pages.whatWeDo.lead, locale)} headerTheme="dark">
-  <PageHero eyebrow={tr('nav.whatWeDo')} title={t(pages.whatWeDo.title, locale)} lead={t(pages.whatWeDo.lead, locale)} image={heroImg} />
-  <SubnavPills items={services.map((s) => ({ label: t(s.title, locale), href: `#${s.slug}` }))} />
-  {services.map((s, i) => <ServiceDetail service={s} index={i} image={serviceImages[s.slug]} />)}
+<Base title={t(pages.whatWeDo.title, locale)} description={t(pages.whatWeDo.lead, locale)} headerTheme="dark" ctaImage={ctaImage}>
+  <PageHero breadcrumb={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.whatWeDo') }]} title={t(pages.whatWeDo.title, locale)} lead={t(pages.whatWeDo.lead, locale)} image={heroImg} />
+  {services.map((s, i) => <ServiceDetail service={s} index={i} image={serviceImages[s.slug]} showLink />)}
   <HowWeWork />
   <Overline text={locale === 'tr' ? 'Faaliyet gösterdiğimiz sektörler' : 'Industries we work in'} line={false} />
-  <Mosaic tiles={industryTiles(locale)} />
-  <Breadcrumb items={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.whatWeDo') }]} />
+  <CardRail tiles={industryTiles(locale)} />
 </Base>

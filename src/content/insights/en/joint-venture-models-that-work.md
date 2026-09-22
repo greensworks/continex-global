@@ -3,8 +3,8 @@ title: "Joint venture models that survive the first two years"
 description: "Manufacturing and technology JVs between international and Turkish companies fail for predictable reasons. A short checklist for the structuring phase."
 publishDate: 2026-07-30
 topic: joint-ventures
-cover: "../../../assets/images/metal-grinding-sparks.webp"
-coverAlt: "Metal grinding in a factory"
+cover: "../../../assets/images/insight-joint-venture.webp"
+coverAlt: "Complementary precision-machined metal components on a workbench"
 authors: [bulent-ulusoy, cigdem-balcioglu]
 readMinutes: 4
 highlights:

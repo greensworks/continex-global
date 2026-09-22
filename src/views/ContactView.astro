@@ -1,35 +1,14 @@
 ---
 import Base from '@layouts/Base.astro';
 import PageHero from '@components/sections/PageHero.astro';
-import ContactForm from '@components/sections/ContactForm.astro';
+import ContactDetails from '@components/sections/ContactDetails.astro';
 import { pages } from '@data/pages';
-import { site } from '@data/site';
-import { getLocale, t } from '@i18n/utils';
+import { getLocale, localizePath, t } from '@i18n/utils';
 import { useTranslations } from '@i18n/ui';
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
 ---
 <Base title={t(pages.contact.title, locale)} description={t(pages.contact.lead, locale)} cta={false}>
-  <PageHero eyebrow={tr('nav.contact')} title={t(pages.contact.title, locale)} lead={t(pages.contact.lead, locale)} />
-  <section class="section">
-    <div class="container-site grid gap-14 lg:grid-cols-12">
-      <div class="lg:col-span-7" data-reveal><ContactForm /></div>
-      <aside class="space-y-8 text-sm lg:col-span-4 lg:col-start-9" data-reveal>
-        <div>
-          <a href={`mailto:${site.email}`} class="block text-lg font-semibold text-navy-900 hover:underline underline-offset-4">{site.email}</a>
-        </div>
-        {site.locations.filter((l) => l.confirmed).map((l) => (
-          <div>
-            <h2 class="eyebrow">{t(l.label, locale)}</h2>
-            <address class="mt-3 not-italic leading-relaxed text-ink-700">{l.lines.map((x) => <span class="block">{x}</span>)}</address>
-            <a href={`tel:${l.phone.replace(/\s/g, '')}`} class="mt-2 block text-ink-700 hover:text-navy-900">{l.phone}{l.city === 'Istanbul' && site.phoneExt ? ` · ${locale === 'tr' ? 'dahili' : 'ext.'} ${site.phoneExt}` : ''}</a>
-          </div>
-        ))}
-        <div>
-          <h2 class="eyebrow">{tr('contact.legal')}</h2>
-          <p class="mt-3 leading-relaxed text-ink-500">{site.legalName}<br />{locale === 'tr' ? 'Vergi Dairesi' : 'Tax office'}: {site.taxOffice} · {locale === 'tr' ? 'Vergi No' : 'Tax no'}: {site.taxNo}</p>
-        </div>
-      </aside>
-    </div>
-  </section>
+  <PageHero breadcrumb={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.contact') }]} title={t(pages.contact.title, locale)} lead={t(pages.contact.lead, locale)} />
+  <ContactDetails />
 </Base>

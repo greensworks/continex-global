@@ -1,9 +1,0 @@
----
-/** BaTags — "TAGS" heading with outlined tag chips. */
-interface Props { title?: string; tags?: string[] }
-const { title = 'Tags', tags = ['AI, Insights, and Solutions', 'Artificial Intelligence', 'Artificial Intelligence Insights', 'CIO Insights', 'Mergers and Acquisitions', 'Post-Merger Integration'] } = Astro.props;
----
-<section class="mx-auto max-w-[700px] px-5 py-12 lg:px-0">
-  <h2 class="text-[14px] uppercase text-black">{title}</h2>
-  <ul class="mt-2 flex flex-wrap gap-1">{tags.map((t) => <li><a href="#" class="inline-block border border-[#D8D8D8] bg-white px-3 py-2 text-[14px] leading-4 text-black transition hover:border-black">{t}</a></li>)}</ul>
-</section>

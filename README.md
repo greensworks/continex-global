@@ -6,80 +6,58 @@ Astro 7 · Tailwind CSS 4 · GSAP · static output · EN (default) + TR (`/tr/..
 npm install
 npm run dev      # http://localhost:4321
 npm run build    # → dist/
-npm run check    # astro check (types)
+npm run preview  # serve dist/
+npm run check    # astro check (types + template diagnostics)
 ```
 
 ## Structure
 
 ```
 src/
-  layouts/Base.astro          <head>, hreflang, OG, header/footer, consent, analytics
+  pages/            thin route files (EN at /, TR under /tr) that render a view
+  views/            one per page: composes section components, holds no markup of its own
+  layouts/Base.astro  <head>, hreflang, OG, header/footer, cookie consent, analytics
   components/
-    layout/    Header, Footer, CookieConsent
-    ui/        Button, SectionHeading
-    sections/  Hero, LogoMarquee, … (one file per homepage/page section)
-    analytics/ Analytics.astro (consent-gated GA4 / Clarity / LinkedIn / Meta / B2B)
-  data/        site.ts (company facts), nav.ts, services.ts, industries.ts, partners.ts
-  i18n/        config.ts, utils.ts (localizePath…), ui.ts (small UI strings)
-  content/insights/{en,tr}/   blog posts (content collection)
-  scripts/motion.ts           GSAP scroll reveals + counters ([data-reveal], [data-count])
-  styles/global.css           Tailwind v4 @theme tokens (colours, type scale, spacing)
-  assets/images | logos | partners
+    layout/         Header (classic + bar variants), Footer, CookieConsent
+    sections/       one file per page section (Hero, CardRail, Faq, FinalCta, …)
+    sections/rb/    guide-line patterns: GuideHeadline, GuideText, GuideSplit, Overline, StatementCard
+    ui/             Button, Photo (the shared <Image> wrapper)
+    analytics/      consent-gated GA4 / Clarity / LinkedIn / Meta tags
+  data/             bilingual content as { en, tr } records (site, services, industries, …)
+  lib/              images.ts (asset lookup), tiles.ts (card data + Tile type), insights.ts
+  i18n/             config.ts, routes.ts (localised slugs), utils.ts, ui.ts (UI strings)
+  content/insights/{en,tr}/   articles as a content collection
+  scripts/motion.ts GSAP reveals and counters
+  styles/global.css Tailwind v4 @theme tokens (colour, type scale, spacing)
+  assets/           images · logos · partners
 ```
 
-## Site pages (EN at `/`, TR at `/tr/...`)
+## Pages
 
-Thin files in `src/pages/` render shared views in `src/views/`, so each page exists once and
-serves both languages. Content comes from `src/data/*.ts` (`{ en, tr }` records) and
-`src/content/insights/{en,tr}/`.
+Each route exists once as a view and serves both languages; TR slugs are mapped in `i18n/routes.ts`.
 
-| Route | View | Sections |
+| Route | View | Main sections |
 |---|---|---|
-| `/` | HomeView | Hero, WhatWeDo, WhyContinex, HowWeWork, IndustriesGrid, ExperienceCards, Numbers, LogoMarquee, MarketsGrid, Leadership, InsightsLatest, FinalCta |
-| `/what-we-do`, `/what-we-do/[slug]` | WhatWeDoView, ServiceView | PageHero, ServiceDetail ×4, HowWeWork |
-| `/industries` | IndustriesView | IndustriesGrid (detailed), ExperienceCards |
-| `/markets` | MarketsView | MarketsGrid with Office / Local team / Strategic partner / Market coverage legend |
-| `/selected-experience` | ExperienceView | ExperienceCards (full) |
-| `/about` | AboutView | Our role, Our model, Leadership, Markets, Numbers, Principles |
-| `/insights`, `/insights/[slug]` | InsightsView, InsightPostView | content collection |
-| `/contact` | ContactView | ContactForm (posts JSON to `PUBLIC_FORM_ENDPOINT`, mailto fallback) |
-| `/privacy-policy`, `/cookie-policy` | LegalView | placeholder until legal text arrives |
+| `/` | HomeView | Hero, GuideHeadline, CardRail ×2, WhyContinex, HowWeWork, ExperienceCards, Numbers, LogoMarquee, MarketsGrid, Faq |
+| `/what-we-do`, `/what-we-do/[slug]` | WhatWeDoView, ServiceView | PageHero, ServiceDetail, ServiceLinks, HowWeWork, CardRail |
+| `/industries` | IndustriesView | PageHero, GuideHeadline + GuideText, CardRail ×2, ExperienceCards |
+| `/markets` | MarketsView | PageHero, GuideText, MarketsGrid, CardRail, LogoMarquee |
+| `/selected-experience`, `/selected-experience/[slug]` | ExperienceView, CaseStudyView | PageHero / CaseStudyLayout (mandate hero, facts, chapters, outcome rail) |
+| `/about` | AboutView | PageHero, GuideSplit ×2, Leadership, Principles, SideCtas |
+| `/insights`, `/insights/[slug]` | InsightsView, InsightPostView | InsightsFeed (featured + grid), ArticleLayout |
+| `/contact` | ContactView | PageHero, ContactDetails (form + offices; posts JSON to `PUBLIC_FORM_ENDPOINT`, mailto fallback) |
+| `/privacy-policy`, `/cookie-policy`, `/terms-and-conditions` | LegalView | LegalDocument |
 
 ## Conventions
 
-- **Bilingual content** lives in `src/data/*.ts` as `{ en, tr }` records; pick with `t(value, locale)`.
-- **Pages**: `src/pages/foo.astro` (EN) + `src/pages/tr/foo.astro` (TR) — both import the same section components.
-- **Motion**: add `data-reveal` to any block; `data-reveal-group` staggers children; `data-count="18"` for counters. Keep it subtle.
-- **Colours**: only tokens from `global.css`. Navy + steel from the logo, one electric-blue accent. No gradients except photo overlays.
-- **Tracking IDs** go in `.env` (see `.env.example`); scripts load only after cookie consent.
-- **Partner logos**: `approved: false` entries in `partners.ts` are hidden until the client confirms.
+- **Content** lives in `src/data/*.ts` as `{ en, tr }` records; read it with `t(value, locale)`.
+- **Views compose, components render.** A view imports section components and passes data; markup belongs in a component.
+- **Images** go through `components/ui/Photo.astro`; sources live in `src/assets/images` and are looked up by name with `img()`.
+- **Motion**: `data-reveal` on a block, `data-reveal-group` to stagger children, `data-count="18"` for counters.
+- **Colour and type** come only from the tokens in `global.css` — navy + steel from the logo, one electric-blue accent.
+- **Tracking IDs** live in `.env` (see `.env.example`); scripts load only after cookie consent.
+- **Partner logos**: entries marked `approved: false` in `partners.ts` stay hidden until the client confirms them.
 
-## Component lab (`/lab/*`)
+## Pending from the client
 
-Reference sites are rebuilt section by section as Astro components and stacked on a bare page
-(no site header/footer, `noindex`). Every block sits in `ComponentFrame`, whose top-left **Copy**
-button copies that component's `.astro` source to the clipboard.
-
-```
-src/layouts/Lab.astro                 bare layout + copy handler
-src/components/lab/ComponentFrame.astro
-src/components/lab/rb/*.astro         rolandberger.com (13)
-src/components/lab/sa/*.astro         strategyand.pwc.com NL home / contact / careers / TR ops (21)
-src/components/lab/ke/*.astro         kearney.com careers / jobs (11)
-src/components/lab/soa/*.astro        sourceofasia.com insights (9)
-src/components/lab/bcg/*.astro        bcg.com AI transformation (15)
-src/pages/lab/index.astro             → http://localhost:4321/lab  (everything, 74 frames)
-src/pages/lab/roland-berger.astro     → http://localhost:4321/lab/roland-berger
-```
-
-The Strategy&, Kearney, Source of Asia and BCG sections were rebuilt from the Figma file
-(`w6ms0cp4bBw8WhVWzBB1jl`, frame "Component") using its layer structure and text; colours and
-type follow each brand (serif/black for Strategy&, purple outlines for Kearney, teal for SOA,
-green for BCG). Photos are placeholders from `src/assets/images`.
-
-To add another reference site: create `src/components/lab/<prefix>/`, write one component per
-section with sensible default props, then a page under `src/pages/lab/` that wraps each in
-`<ComponentFrame name="…" source={src('…')}>`.
-
-## Pending from client
-Phone, e-mail, domain, LinkedIn URL, vector logo (current PNG had the old tagline stripped), team portraits, real project photos, hosting target.
+Domain, LinkedIn URL, vector logo, team portraits, real project photography, hosting target.

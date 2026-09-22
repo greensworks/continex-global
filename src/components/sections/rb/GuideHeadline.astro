@@ -2,7 +2,7 @@
 /** Centre guide line dropping into a headline on the right half (RB "add-line"). */
 interface Props { title: string; as?: 'h1' | 'h2' | 'h3'; line?: 'sm' | 'md' | 'lg'; id?: string }
 const { title, as: Tag = 'h2', line = 'md', id } = Astro.props;
-const lineH = { sm: 'h-8', md: 'h-[calc(var(--spacing-section)-1rem)]', lg: 'h-[calc(var(--spacing-section)+2rem)]' }[line];
+const lineH = { sm: 'h-8', md: 'h-[var(--spacing-section)]', lg: 'h-[calc(var(--spacing-section)+2rem)]' }[line];
 ---
 <section class="relative bg-surface pt-[var(--spacing-section)]" id={id}>
   <div class="container-site">

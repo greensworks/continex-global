@@ -1,0 +1,243 @@
+{
+  "pagesBuilt": 54,
+  "insightPages": 20,
+  "newLocalizedArticles": 10,
+  "newCovers": 5,
+  "abstractCovers": 2,
+  "referencedImageVariants": 433,
+  "errors": [],
+  "articles": [
+    {
+      "file": "src/content/insights/en/cross-border-growth-portfolio-discipline.md",
+      "words": 664,
+      "readMinutes": 4
+    },
+    {
+      "file": "src/content/insights/en/oem-supplier-commercial-development.md",
+      "words": 664,
+      "readMinutes": 4
+    },
+    {
+      "file": "src/content/insights/en/energy-project-commercial-readiness.md",
+      "words": 633,
+      "readMinutes": 4
+    },
+    {
+      "file": "src/content/insights/en/china-turkiye-partnership-local-execution.md",
+      "words": 653,
+      "readMinutes": 4
+    },
+    {
+      "file": "src/content/insights/en/cross-border-execution-governance.md",
+      "words": 660,
+      "readMinutes": 4
+    },
+    {
+      "file": "src/content/insights/tr/enerji-projelerinde-ticari-hazirlik.md",
+      "words": 549,
+      "readMinutes": 3
+    },
+    {
+      "file": "src/content/insights/tr/oem-musterilerinde-tedarikci-gelistirme.md",
+      "words": 548,
+      "readMinutes": 3
+    },
+    {
+      "file": "src/content/insights/tr/uluslararasi-buyumede-firsat-secimi.md",
+      "words": 555,
+      "readMinutes": 3
+    },
+    {
+      "file": "src/content/insights/tr/sinir-otesi-ortakliklarda-uygulama-yonetimi.md",
+      "words": 548,
+      "readMinutes": 3
+    },
+    {
+      "file": "src/content/insights/tr/turkiye-cin-ortakliklarinda-yerel-uygulama.md",
+      "words": 556,
+      "readMinutes": 3
+    }
+  ],
+  "routes": [
+    {
+      "path": "/insights",
+      "alternates": {
+        "en": "https://continexglobal.com/insights",
+        "tr": "https://continexglobal.com/tr/gorusler",
+        "x-default": "https://continexglobal.com/insights"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-growth-discipline-v2.BZYGrAVJ_Z25byFY.webp"
+    },
+    {
+      "path": "/insights/cross-border-growth-portfolio-discipline",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/cross-border-growth-portfolio-discipline",
+        "tr": "https://continexglobal.com/tr/gorusler/uluslararasi-buyumede-firsat-secimi",
+        "x-default": "https://continexglobal.com/insights/cross-border-growth-portfolio-discipline"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-growth-discipline-v2.BZYGrAVJ_Z25byFY.webp"
+    },
+    {
+      "path": "/insights/joint-venture-models-that-work",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/joint-venture-models-that-work",
+        "tr": "https://continexglobal.com/tr/gorusler/ilk-iki-yili-atlatan-ortak-girisim-modelleri",
+        "x-default": "https://continexglobal.com/insights/joint-venture-models-that-work"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-joint-venture.B9r8o4PL_247viX.webp"
+    },
+    {
+      "path": "/insights/turkiye-china-business-relationships",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/turkiye-china-business-relationships",
+        "tr": "https://continexglobal.com/tr/gorusler/turkiye-cin-ticari-iliskiler",
+        "x-default": "https://continexglobal.com/insights/turkiye-china-business-relationships"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-china-trade.r9SWTj3F_Z10VgGL.webp"
+    },
+    {
+      "path": "/insights/cross-border-execution-governance",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/cross-border-execution-governance",
+        "tr": "https://continexglobal.com/tr/gorusler/sinir-otesi-ortakliklarda-uygulama-yonetimi",
+        "x-default": "https://continexglobal.com/insights/cross-border-execution-governance"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-execution-governance-v2.CwyHD9rs_6RuDK.webp"
+    },
+    {
+      "path": "/insights/oem-supplier-commercial-development",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/oem-supplier-commercial-development",
+        "tr": "https://continexglobal.com/tr/gorusler/oem-musterilerinde-tedarikci-gelistirme",
+        "x-default": "https://continexglobal.com/insights/oem-supplier-commercial-development"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-oem-development-v2.Zh88UklR_rbPkC.webp"
+    },
+    {
+      "path": "/insights/entering-the-turkish-market",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/entering-the-turkish-market",
+        "tr": "https://continexglobal.com/tr/gorusler/turkiye-pazarina-giris",
+        "x-default": "https://continexglobal.com/insights/entering-the-turkish-market"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-turkiye-market.CdkxDYgC_Z1OVSOO.webp"
+    },
+    {
+      "path": "/insights/crisis-management-strategic-resilience",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/crisis-management-strategic-resilience",
+        "tr": "https://continexglobal.com/tr/gorusler/kriz-yonetimi-stratejik-dayaniklilik",
+        "x-default": "https://continexglobal.com/insights/crisis-management-strategic-resilience"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-resilience.DCUCL81I_1hoUKt.webp"
+    },
+    {
+      "path": "/insights/energy-project-commercial-readiness",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/energy-project-commercial-readiness",
+        "tr": "https://continexglobal.com/tr/gorusler/enerji-projelerinde-ticari-hazirlik",
+        "x-default": "https://continexglobal.com/insights/energy-project-commercial-readiness"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-energy-readiness-v2.CoZA1KBp_Z1T9Jso.webp"
+    },
+    {
+      "path": "/insights/china-turkiye-partnership-local-execution",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/china-turkiye-partnership-local-execution",
+        "tr": "https://continexglobal.com/tr/gorusler/turkiye-cin-ortakliklarinda-yerel-uygulama",
+        "x-default": "https://continexglobal.com/insights/china-turkiye-partnership-local-execution"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-china-local-execution-v2.BcN6Ewu7_Z1wSgcQ.webp"
+    },
+    {
+      "path": "/tr/gorusler",
+      "alternates": {
+        "en": "https://continexglobal.com/insights",
+        "tr": "https://continexglobal.com/tr/gorusler",
+        "x-default": "https://continexglobal.com/insights"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-growth-discipline-v2.BZYGrAVJ_Z25byFY.webp"
+    },
+    {
+      "path": "/tr/gorusler/turkiye-cin-ortakliklarinda-yerel-uygulama",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/china-turkiye-partnership-local-execution",
+        "tr": "https://continexglobal.com/tr/gorusler/turkiye-cin-ortakliklarinda-yerel-uygulama",
+        "x-default": "https://continexglobal.com/insights/china-turkiye-partnership-local-execution"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-china-local-execution-v2.BcN6Ewu7_Z1wSgcQ.webp"
+    },
+    {
+      "path": "/tr/gorusler/turkiye-cin-ticari-iliskiler",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/turkiye-china-business-relationships",
+        "tr": "https://continexglobal.com/tr/gorusler/turkiye-cin-ticari-iliskiler",
+        "x-default": "https://continexglobal.com/insights/turkiye-china-business-relationships"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-china-trade.r9SWTj3F_Z10VgGL.webp"
+    },
+    {
+      "path": "/tr/gorusler/ilk-iki-yili-atlatan-ortak-girisim-modelleri",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/joint-venture-models-that-work",
+        "tr": "https://continexglobal.com/tr/gorusler/ilk-iki-yili-atlatan-ortak-girisim-modelleri",
+        "x-default": "https://continexglobal.com/insights/joint-venture-models-that-work"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-joint-venture.B9r8o4PL_247viX.webp"
+    },
+    {
+      "path": "/tr/gorusler/uluslararasi-buyumede-firsat-secimi",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/cross-border-growth-portfolio-discipline",
+        "tr": "https://continexglobal.com/tr/gorusler/uluslararasi-buyumede-firsat-secimi",
+        "x-default": "https://continexglobal.com/insights/cross-border-growth-portfolio-discipline"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-growth-discipline-v2.BZYGrAVJ_Z25byFY.webp"
+    },
+    {
+      "path": "/tr/gorusler/enerji-projelerinde-ticari-hazirlik",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/energy-project-commercial-readiness",
+        "tr": "https://continexglobal.com/tr/gorusler/enerji-projelerinde-ticari-hazirlik",
+        "x-default": "https://continexglobal.com/insights/energy-project-commercial-readiness"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-energy-readiness-v2.CoZA1KBp_Z1T9Jso.webp"
+    },
+    {
+      "path": "/tr/gorusler/kriz-yonetimi-stratejik-dayaniklilik",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/crisis-management-strategic-resilience",
+        "tr": "https://continexglobal.com/tr/gorusler/kriz-yonetimi-stratejik-dayaniklilik",
+        "x-default": "https://continexglobal.com/insights/crisis-management-strategic-resilience"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-resilience.DCUCL81I_1hoUKt.webp"
+    },
+    {
+      "path": "/tr/gorusler/oem-musterilerinde-tedarikci-gelistirme",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/oem-supplier-commercial-development",
+        "tr": "https://continexglobal.com/tr/gorusler/oem-musterilerinde-tedarikci-gelistirme",
+        "x-default": "https://continexglobal.com/insights/oem-supplier-commercial-development"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-oem-development-v2.Zh88UklR_rbPkC.webp"
+    },
+    {
+      "path": "/tr/gorusler/turkiye-pazarina-giris",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/entering-the-turkish-market",
+        "tr": "https://continexglobal.com/tr/gorusler/turkiye-pazarina-giris",
+        "x-default": "https://continexglobal.com/insights/entering-the-turkish-market"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-turkiye-market.CdkxDYgC_Z1OVSOO.webp"
+    },
+    {
+      "path": "/tr/gorusler/sinir-otesi-ortakliklarda-uygulama-yonetimi",
+      "alternates": {
+        "en": "https://continexglobal.com/insights/cross-border-execution-governance",
+        "tr": "https://continexglobal.com/tr/gorusler/sinir-otesi-ortakliklarda-uygulama-yonetimi",
+        "x-default": "https://continexglobal.com/insights/cross-border-execution-governance"
+      },
+      "ogImage": "https://continexglobal.com/_astro/insight-execution-governance-v2.CwyHD9rs_6RuDK.webp"
+    }
+  ]
+}

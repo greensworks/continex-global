@@ -2,6 +2,7 @@
 import Base from '@layouts/Base.astro';
 import PageHero from '@components/sections/PageHero.astro';
 import ServiceDetail from '@components/sections/ServiceDetail.astro';
+import ServiceLinks from '@components/sections/ServiceLinks.astro';
 import ExperienceCards from '@components/sections/ExperienceCards.astro';
 import { services, serviceImages, type Service } from '@data/services';
 import { getLocale, localizePath, t } from '@i18n/utils';
@@ -13,16 +14,16 @@ const { service } = Astro.props;
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
 const index = services.findIndex((s) => s.slug === service.slug);
-const others = services.filter((s) => s.slug !== service.slug);
+const detailImages: Record<string, string> = {
+  'market-entry': 'office-tablet',
+  'strategic-partnerships': 'meeting-table',
+  'project-development': 'sector-infrastructure',
+  'international-representation': 'markets-connections',
+};
 ---
 <Base title={t(service.title, locale)} description={t(service.summary, locale)} headerTheme="dark">
-  <PageHero eyebrow={tr('nav.whatWeDo')} title={t(service.title, locale)} lead={t(service.summary, locale)} image={img(serviceImages[service.slug])} />
-  <ServiceDetail service={service} index={index} image={serviceImages[service.slug]} />
-  <section class="border-y border-line bg-surface-alt">
-    <div class="container-site flex flex-wrap items-center gap-x-8 gap-y-3 py-6 text-sm">
-      <span class="font-semibold text-navy-900">{tr('label.services')}:</span>
-      {others.map((s) => <a href={localizePath(`/what-we-do/${s.slug}`, locale)} class="text-ink-500 hover:text-navy-900 hover:underline underline-offset-4">{t(s.title, locale)}</a>)}
-    </div>
-  </section>
+  <PageHero breadcrumb={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.whatWeDo'), href: localizePath('/what-we-do', locale) }, { label: t(service.title, locale) }]} title={t(service.title, locale)} lead={t(service.summary, locale)} image={img(serviceImages[service.slug])} />
+  <ServiceDetail service={service} index={index} image={detailImages[service.slug]} />
+  <ServiceLinks current={service.slug} />
   <ExperienceCards />
 </Base>

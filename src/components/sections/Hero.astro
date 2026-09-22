@@ -5,7 +5,7 @@
  * headline, two CTAs. Header renders transparent over it.
  * Video is skipped for users who prefer reduced motion.
  */
-import { Image } from 'astro:assets';
+import Image from '@components/ui/Photo.astro';
 import type { ImageMetadata } from 'astro';
 import Button from '@components/ui/Button.astro';
 import { getLocale, localizePath, t as pick } from '@i18n/utils';
@@ -39,9 +39,9 @@ const {
   <div class="absolute inset-0 -z-10 bg-[linear-gradient(to_top,rgba(11,26,48,0.92)_0%,rgba(11,26,48,0.6)_45%,rgba(11,26,48,0.35)_100%)]" aria-hidden="true"></div>
 
   <div class="container-site pb-16 pt-40 sm:pb-24 lg:pb-28">
-    <div class="max-w-4xl">
+    <div class="max-w-6xl">
       <p class="eyebrow text-steel-300" data-reveal>{eyebrow}</p>
-      <h1 class="mt-5 text-display font-semibold text-white" data-reveal data-reveal-delay="0.08">{title}</h1>
+      <h1 class="mt-5 text-display font-semibold text-white" data-reveal data-reveal-delay="0.08" set:html={title} />
       <p class="mt-7 max-w-2xl text-lead text-white/75" data-reveal data-reveal-delay="0.16">{lead}</p>
       <div class="mt-10 flex flex-wrap gap-3" data-reveal data-reveal-delay="0.24">
         <Button href={localizePath('/contact', locale)} size="lg">{t('cta.discuss')}</Button>

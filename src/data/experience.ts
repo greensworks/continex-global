@@ -29,7 +29,7 @@ export const experience: CaseStudy[] = [
     role: { en: 'Investment assessment, transaction structuring, commercial negotiations, coordination with local stakeholders and professional advisers, and management of the cross-border process between investor and seller.', tr: 'Yatırım değerlendirmesi, işlem yapılandırması, ticari müzakereler, yerel paydaşlar ve profesyonel danışmanlarla koordinasyon ile yatırımcı ve satıcı arasındaki uluslararası işlem sürecinin yönetimi.' },
     progress: { en: 'Supported the transaction from initial evaluation and negotiation through the principal commercial terms and transaction documentation, aligning the parties on key commercial and execution issues.', tr: 'İşlem; ilk değerlendirme ve müzakere aşamasından ana ticari koşulların ve işlem dokümantasyonunun oluşturulmasına kadar Continex tarafından yürütülmüş, taraflar kritik ticari ve uygulama konularında mutabakata taşınmıştır.' },
     outcome: { en: 'Principal commercial terms agreed, transaction documentation at an advanced stage, deal progressing toward closing.', tr: 'Ana ticari koşullar üzerinde mutabakat sağlanmış, işlem dokümantasyonu ileri aşamaya gelmiş olup işlem kapanışa doğru ilerlemektedir.' },
-    image: 'glass-facade',
+    image: 'case-real-estate-v2',
   },
   {
     slug: 'market-entry-strategic-partners-turkiye',
@@ -43,7 +43,7 @@ export const experience: CaseStudy[] = [
     role: { en: 'Market mapping, identification and approach of multiple potential partners, senior-level discussions, evaluation of cooperation models, and support in negotiating and developing selected partnerships.', tr: 'Pazar analizi, çok sayıda potansiyel iş ortağının tespiti ve temas kurulması, üst düzey görüşmelerin yürütülmesi, alternatif iş birliği modellerinin değerlendirilmesi ve seçilen ortaklıkların müzakere ve geliştirme süreçlerine destek.' },
     progress: { en: 'Combined market-entry strategy, partner identification, senior relationship development and commercial negotiation into one workstream.', tr: 'Pazara giriş stratejisi, iş ortağı tespiti, üst düzey ilişki geliştirme ve ticari müzakere tek bir bütünleşik iş akışı altında yürütülmüştür.' },
     outcome: { en: 'Multiple strategic and commercial partners identified and engaged; cooperation frameworks established with selected parties; concrete commercial projects initiated with several of them.', tr: 'Birden fazla stratejik ve ticari iş ortağı belirlenerek temas kurulmuş; seçilen taraflarla iş birliği çerçeveleri oluşturulmuş ve bunların bir kısmıyla somut ticari projeler başlatılmıştır.' },
-    image: 'metal-grinding-sparks',
+    image: 'case-industrial-partners-v2',
   },
   {
     slug: 'oem-market-development-turkiye',
@@ -57,6 +57,6 @@ export const experience: CaseStudy[] = [
     role: { en: 'Exclusive mandate covering market mapping, prioritisation of target OEM accounts, engagement with procurement, engineering and technical decision-makers, coordination of supplier qualification and approval processes.', tr: 'Pazar analizi, hedef OEM hesaplarının önceliklendirilmesi, satın alma, mühendislik ve teknik karar alıcılarla temas ile tedarikçi yeterlilik ve onay süreçlerinin koordinasyonunu kapsayan münhasır yetki sözleşmesi.' },
     progress: { en: 'Continex acts as the manufacturer’s strategic interface in Türkiye, connecting its international teams with leading OEMs and coordinating both senior-level engagement and individual opportunities.', tr: 'Continex, üreticinin Türkiye’deki stratejik temsilcisi olarak uluslararası ekiplerini önde gelen OEM’lerle bir araya getirmekte; üst düzey temasları ve münferit fırsatların ilerleyişini koordine etmektedir.' },
     outcome: { en: 'Active discussions and qualification processes with multiple leading automotive and industrial manufacturers; several opportunities progressing through technical and commercial evaluation.', tr: 'Önde gelen çok sayıda otomotiv ve sanayi üreticisiyle aktif görüşmeler ve yeterlilik süreçleri yürütülmekte; birden fazla fırsat teknik ve ticari değerlendirme aşamasında ilerlemektedir.' },
-    image: 'industrial-pipes-red',
+    image: 'case-oem-qualification-v2',
   },
 ];

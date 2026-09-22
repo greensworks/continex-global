@@ -3,8 +3,8 @@ title: "Entering the Turkish market: what international companies get wrong"
 description: "Türkiye rewards companies that arrive with a local partner strategy, not a brochure. Three patterns we see in successful market entries."
 publishDate: 2026-09-01
 topic: market-entry
-cover: "../../../assets/images/glass-facade.webp"
-coverAlt: "Office building facade in Istanbul"
+cover: "../../../assets/images/insight-turkiye-market.webp"
+coverAlt: "Ferry and waterfront buildings on the Bosphorus"
 authors: [bulent-ulusoy]
 readMinutes: 4
 highlights:

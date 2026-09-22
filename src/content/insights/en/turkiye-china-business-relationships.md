@@ -3,8 +3,8 @@ title: "Türkiye–China: how commercial relationships actually get built"
 description: "Chinese manufacturers and EPC groups are active across Turkish energy, infrastructure and industry. What a workable partnership looks like from both sides."
 publishDate: 2026-08-18
 topic: china-turkiye
-cover: "../../../assets/images/storage-tanks-night.webp"
-coverAlt: "Industrial storage tanks at night"
+cover: "../../../assets/images/insight-china-trade.webp"
+coverAlt: "Container ship and loading cranes at a maritime terminal"
 authors: [bulent-ulusoy]
 readMinutes: 4
 highlights:

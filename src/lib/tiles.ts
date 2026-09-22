@@ -5,14 +5,28 @@ import { industries } from '@data/industries';
 import { industryDetails } from '@data/pages';
 import { experience } from '@data/experience';
 import { img } from './images';
-import type { MosaicTile } from '@components/sections/rb/Mosaic.astro';
+import type { ImageMetadata } from 'astro';
+
+/** One card in a rail: photo, label, title and an optional teaser. */
+export interface Tile {
+  id?: string;
+  label?: string;
+  title: string;
+  text?: string;
+  href?: string;
+  image: ImageMetadata;
+  alt?: string;
+  /** CSS object-position for the card photo */
+  imagePosition?: string;
+}
 
 const L = (locale: Locale, en: string, tr: string) => (locale === 'tr' ? tr : en);
 
 /** Four services: first and last as split tiles, middle two as halves. */
-export function serviceTiles(locale: Locale): MosaicTile[] {
+export function serviceTiles(locale: Locale): Tile[] {
   const label = L(locale, 'Service', 'Hizmet');
   return services.map((s, i) => ({
+    id: s.slug,
     label,
     title: t(s.title, locale),
     text: t(s.summary, locale),
@@ -24,9 +38,10 @@ export function serviceTiles(locale: Locale): MosaicTile[] {
 }
 
 /** Five industries: three thirds, then two halves. */
-export function industryTiles(locale: Locale, detailed = false): MosaicTile[] {
+export function industryTiles(locale: Locale, detailed = false): Tile[] {
   const label = L(locale, 'Industry', 'Sektör');
   return industries.map((ind, i) => ({
+    id: ind.slug,
     label,
     title: t(ind.title, locale),
     text: detailed ? t(industryDetails[ind.slug], locale) : undefined,
@@ -37,13 +52,14 @@ export function industryTiles(locale: Locale, detailed = false): MosaicTile[] {
 }
 
 /** Three mandates as thirds, labelled with their status. */
-export function experienceTiles(locale: Locale): MosaicTile[] {
+export function experienceTiles(locale: Locale): Tile[] {
   return experience.map((c) => ({
     label: t(c.status, locale),
     title: t(c.title, locale),
     text: t(c.outcome, locale),
     href: localizePath(`/selected-experience/${c.slug}`, locale),
     image: img(c.image),
+    imagePosition: '75% center',
     span: 'third',
   }));
 }

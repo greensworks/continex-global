@@ -1,8 +1,8 @@
 ---
 import Base from '@layouts/Base.astro';
 import PageHero from '@components/sections/PageHero.astro';
+import LegalDocument from '@components/sections/LegalDocument.astro';
 import { legalDocs, type LegalKind } from '@data/legal';
-import { site } from '@data/site';
 import { getLocale, localizePath, t } from '@i18n/utils';
 import { useTranslations } from '@i18n/ui';
 
@@ -12,45 +12,12 @@ const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
 const doc = legalDocs[kind];
 const title = t(doc.title, locale);
-const updated = new Intl.DateTimeFormat(locale === 'tr' ? 'tr-TR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(doc.updated));
-const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9ğüşöçı]+/gi, '-').replace(/(^-|-$)/g, '');
-const others: { kind: LegalKind; href: string }[] = [
-  { kind: 'privacy', href: '/privacy-policy' }, { kind: 'terms', href: '/terms-and-conditions' }, { kind: 'cookies', href: '/cookie-policy' },
-].filter((o) => o.kind !== kind) as { kind: LegalKind; href: string }[];
 ---
-<Base title={title} description={t(doc.intro, locale)} noindex>
-  <PageHero eyebrow={tr('footer.legal')} title={title} lead={t(doc.intro, locale)} />
-
-  <section class="section">
-    <div class="container-site grid gap-12 lg:grid-cols-[minmax(0,760px)_1fr] lg:gap-20">
-      <div class="min-w-0">
-        <p class="text-xs text-ink-400">{locale === 'tr' ? 'Son güncelleme' : 'Last updated'}: {updated}</p>
-        <div class="mt-8 divide-y divide-line">
-          {doc.sections.map((s, i) => (
-            <section id={slug(t(s.title, locale))} class="scroll-mt-32 py-8 first:pt-0">
-              <h2 class="flex items-baseline gap-4 text-h3"><span class="font-mono text-xs text-ink-400">{String(i + 1).padStart(2, '0')}</span>{t(s.title, locale)}</h2>
-              {s.paragraphs.map((p) => <p class="mt-4 text-[15px] leading-relaxed text-ink-700 lg:pl-9">{t(p, locale)}</p>)}
-            </section>
-          ))}
-        </div>
-        {kind === 'cookies' && <p class="mt-6 lg:pl-9"><a href="#" data-open-consent class="inline-flex items-center rounded-card border border-line px-4 py-2.5 text-sm font-semibold text-navy-900 transition hover:border-navy-900">{locale === 'tr' ? 'Çerez tercihlerini değiştir' : 'Change cookie preferences'}</a></p>}
-      </div>
-
-      <aside class="lg:sticky lg:top-28 lg:self-start lg:justify-self-end lg:w-[240px]">
-        <section class="border-t border-line py-4">
-          <h2 class="text-sm font-semibold text-navy-900">{locale === 'tr' ? 'Bu sayfada' : 'On this page'}</h2>
-          <ol class="mt-3 space-y-2 text-sm">{doc.sections.map((s) => <li><a href={`#${slug(t(s.title, locale))}`} class="text-ink-500 transition hover:text-accent-600">{t(s.title, locale)}</a></li>)}</ol>
-        </section>
-        <section class="border-t border-line py-4">
-          <h2 class="text-sm font-semibold text-navy-900">{locale === 'tr' ? 'Diğer politikalar' : 'Other policies'}</h2>
-          <ul class="mt-3 space-y-2 text-sm">{others.map((o) => <li><a href={localizePath(o.href, locale)} class="text-ink-900 transition hover:text-accent-600">{t(legalDocs[o.kind].title, locale)}</a></li>)}</ul>
-        </section>
-        <section class="border-t border-line py-4 text-sm text-ink-500">
-          <p class="font-semibold text-navy-900">{site.legalName}</p>
-          <p class="mt-2">{site.address.lines.join(', ')}</p>
-          <a href={`mailto:${site.email}`} class="mt-2 block text-navy-900 hover:text-accent-600">{site.email}</a>
-        </section>
-      </aside>
-    </div>
-  </section>
+<Base title={title} description={t(doc.intro, locale)} cta={false} noindex>
+  <PageHero
+    breadcrumb={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: title }]}
+    title={title}
+    lead={t(doc.intro, locale)}
+  />
+  <LegalDocument kind={kind} />
 </Base>

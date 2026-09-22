@@ -3,16 +3,14 @@ import Base from '@layouts/Base.astro';
 import PageHero from '@components/sections/PageHero.astro';
 import GuideHeadline from '@components/sections/rb/GuideHeadline.astro';
 import GuideText from '@components/sections/rb/GuideText.astro';
-import Overline from '@components/sections/rb/Overline.astro';
-import Mosaic from '@components/sections/rb/Mosaic.astro';
-import Breadcrumb from '@components/sections/rb/Breadcrumb.astro';
+import CardRail from '@components/sections/CardRail.astro';
 import ExperienceCards from '@components/sections/ExperienceCards.astro';
 import LogoMarquee from '@components/sections/LogoMarquee.astro';
 import { pages } from '@data/pages';
 import { getLocale, localizePath, t } from '@i18n/utils';
 import { useTranslations } from '@i18n/ui';
 import { experienceTiles } from '@/lib/tiles';
-import heroImg from '@assets/images/storage-tanks-night.webp';
+import heroImg from '@assets/images/experience-hero-v2.webp';
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
 const intro = locale === 'tr'
@@ -20,11 +18,10 @@ const intro = locale === 'tr'
   : ['The mandates below are anonymised where confidentiality requires; scope, process and outcomes are real. Each one is presented in the same structure: what the client needed, what Continex did, where the process stands and the result.'];
 ---
 <Base title={t(pages.experience.title, locale)} description={t(pages.experience.lead, locale)} headerTheme="dark">
-  <PageHero eyebrow={tr('nav.experience')} title={t(pages.experience.title, locale)} lead={t(pages.experience.lead, locale)} image={heroImg} />
+  <PageHero breadcrumb={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.experience') }]} title={t(pages.experience.title, locale)} lead={t(pages.experience.lead, locale)} image={heroImg} imagePosition="75% 0%" />
   <GuideHeadline title={locale === 'tr' ? 'Üç güncel çalışma' : 'Three recent mandates'} />
   <GuideText paragraphs={intro} />
-  <Mosaic tiles={experienceTiles(locale)} />
+  <CardRail tiles={experienceTiles(locale)} />
   <ExperienceCards full showLink={false} />
   <LogoMarquee tone="light" />
-  <Breadcrumb items={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.experience') }]} />
 </Base>

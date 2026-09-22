@@ -1,9 +1,0 @@
----
-/** BaAtAGlance — summary box: 3px red top rule, "At a Glance" heading, serif bullets with red dots. */
-interface Props { title?: string; items?: string[]; accent?: string }
-const { title = 'At a Glance', items = ['Global M&A activity continues to reach new heights.', 'In the first half of 2026, megadeals valued at greater than $10 billion dominated.', 'Companies face the challenge of simultaneously pursuing M&A and AI transformation.', 'For many, success will start by asking six fundamental questions.'], accent = '#CC0000' } = Astro.props;
----
-<section class="mx-auto max-w-[700px] border-b border-[#D8D8D8] px-5 pb-4 pt-6 lg:px-0">
-  <h2 class="border-t-[3px] pt-4 font-display text-[18px] text-black" style={`border-color:${accent}`}>{title}</h2>
-  <ul class="mt-6 space-y-4">{items.map((it) => <li class="relative pl-8 font-serif text-[16px] leading-[18px] text-black"><span class="absolute left-0.5 top-1 h-3 w-3 rounded-full" style={`background:${accent}`} aria-hidden="true"></span>{it}</li>)}</ul>
-</section>

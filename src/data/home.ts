@@ -4,12 +4,18 @@ import type { Localized } from '@i18n/utils';
 
 export const whatWeDo = {
   eyebrow: { en: 'What we do', tr: 'Hizmetlerimiz' },
-  title: { en: 'We build and execute cross-border business opportunities.', tr: 'Uluslararası iş fırsatlarını yapılandırıyor ve hayata geçiriyoruz.' },
+  title: {
+    en: 'We build and execute cross-border <span class="text-mist-300">business opportunities.</span>',
+    tr: 'Uluslararası <span class="text-mist-300">iş fırsatlarını</span> yapılandırıyor ve hayata geçiriyoruz.',
+  },
 } satisfies Record<string, Localized>;
 
 export const whyContinex = {
   eyebrow: { en: 'Why Continex', tr: 'Neden Continex' },
-  title: { en: 'More than advice. Active commercial execution.', tr: 'Danışmanlığın ötesinde: sahada ticari sonuç.' },
+  title: {
+    en: 'More than advice. <span class="text-mist-300">Active commercial execution.</span>',
+    tr: 'Danışmanlığın ötesinde: <span class="text-mist-300">sahada ticari sonuç.</span>',
+  },
   lead: {
     en: 'We do not stop at reports. We work in the market, open the right doors and keep the process moving until it produces a result.',
     tr: 'Çalışmalarımız rapor teslimiyle sona ermez. Hedef pazarda doğrudan görev alır, doğru muhataplara erişim sağlar ve süreci ticari bir sonuca ulaşana kadar yönetiriz.',
@@ -24,7 +30,10 @@ export const whyContinex = {
 
 export const howWeWork = {
   eyebrow: { en: 'How we work', tr: 'Nasıl çalışıyoruz' },
-  title: { en: 'A simple, disciplined process from first conversation to closing.', tr: 'İlk temastan kapanışa kadar yalın ve disiplinli bir çalışma yöntemi.' },
+  title: {
+    en: 'A simple, disciplined process <span class="text-mist-300">from first conversation to closing.</span>',
+    tr: '<span class="text-mist-300">İlk temastan kapanışa kadar</span> yalın ve disiplinli bir çalışma yöntemi.',
+  },
   steps: [
     { title: { en: 'Define', tr: 'Tanımlama' }, text: { en: 'Clarify the objective, the target market and what a successful outcome looks like.', tr: 'Hedef, hedef pazar ve başarı kriterleri müşteriyle birlikte netleştirilir.' } },
     { title: { en: 'Assess', tr: 'Değerlendirme' }, text: { en: 'Map the market, the candidates and the realistic routes to the result.', tr: 'Pazar, potansiyel muhataplar ve sonuca ulaştıracak gerçekçi seçenekler analiz edilir.' } },
@@ -47,3 +56,51 @@ export const finalCta = {
   title: { en: 'Exploring a market, partnership or cross-border opportunity?', tr: 'Yeni bir pazar, ortaklık veya uluslararası yatırım fırsatını mı değerlendiriyorsunuz?' },
   text: { en: 'Tell us what you are working on. We will come back with a clear view of whether and how we can help.', tr: 'Gündeminizdeki konuyu bizimle paylaşın; nasıl katkı sağlayabileceğimize ilişkin net bir değerlendirmeyle size dönüş yapalım.' },
 } satisfies Record<string, Localized>;
+
+export const faq = {
+  title: { en: 'Frequently asked questions about Continex Global', tr: 'Continex Global hakkında sık sorulan sorular' },
+  items: [
+    {
+      q: { en: 'What exactly does Continex Global do?', tr: 'Continex Global tam olarak ne yapar?' },
+      a: {
+        en: 'We build and execute cross-border business opportunities: entering a new market, finding and signing the right partner, developing a project and running the commercial process through to a transaction. We work as part of your team, in the market, not as an outside observer.',
+        tr: 'Uluslararası iş fırsatlarını yapılandırır ve hayata geçiririz: yeni bir pazara giriş, doğru iş ortağının bulunması ve anlaşmanın imzalanması, proje geliştirme ve ticari sürecin işlem kapanışına kadar yürütülmesi. Dışarıdan gözlemci olarak değil, hedef pazarda ekibinizin bir parçası olarak çalışırız.',
+      },
+    },
+    {
+      q: { en: 'How is this different from a consulting firm?', tr: 'Bu, danışmanlık şirketlerinden nasıl farklı?' },
+      a: {
+        en: 'A report is not a result. We take responsibility for the commercial outcome: opening doors at owner and CEO level, running the negotiations and coordinating the parties until something is signed or closed.',
+        tr: 'Rapor tek başına sonuç değildir. Ticari sonucun sorumluluğunu üstleniriz: şirket sahibi ve üst yönetim düzeyinde kapıları açar, müzakereleri yürütür ve imza ya da kapanış gerçekleşene kadar tarafları koordine ederiz.',
+      },
+    },
+    {
+      q: { en: 'Which markets and sectors do you cover?', tr: 'Hangi pazarlarda ve sektörlerde çalışıyorsunuz?' },
+      a: {
+        en: 'Türkiye is our home market and China is our strongest international relationship base; we also work across Europe, the Middle East, Central Asia and Southeast Asia. Our sectors are energy and power, infrastructure and construction, industrial and manufacturing, mobility and automotive, and international trade and supply chains.',
+        tr: 'Ana pazarımız Türkiye, en güçlü uluslararası ilişki tabanımız ise Çin’dir; ayrıca Avrupa, Orta Doğu, Orta Asya ve Güneydoğu Asya’da çalışırız. Sektörlerimiz enerji, altyapı ve inşaat, sanayi ve imalat, mobilite ve otomotiv ile uluslararası ticaret ve tedarik zincirleridir.',
+      },
+    },
+    {
+      q: { en: 'Do you work with both companies entering Türkiye and Turkish companies going abroad?', tr: 'Hem Türkiye’ye giren hem de yurt dışına açılan şirketlerle çalışıyor musunuz?' },
+      a: {
+        en: 'Yes, in both directions. International companies use us to enter and build traction in Türkiye and the wider region; Turkish companies use us to reach partners, customers and investors in China, Europe and the Middle East.',
+        tr: 'Evet, her iki yönde de. Uluslararası şirketler Türkiye ve çevre bölgeye giriş yapıp ticari ivme kazanmak için; Türk şirketleri ise Çin, Avrupa ve Orta Doğu’da iş ortağı, müşteri ve yatırımcıya ulaşmak için bizimle çalışır.',
+      },
+    },
+    {
+      q: { en: 'How does an engagement start?', tr: 'Bir çalışma nasıl başlar?' },
+      a: {
+        en: 'With a conversation about what you are trying to achieve. We come back with an honest view of whether the objective is realistic, what the route to it looks like and what our role would be. Every mandate is defined by a commercial result, not by a number of meetings.',
+        tr: 'Hedefinizi konuştuğumuz bir görüşmeyle. Hedefin gerçekçi olup olmadığına, sonuca giden yolun neye benzediğine ve bizim rolümüzün ne olacağına dair açık bir değerlendirmeyle size döneriz. Her görev, toplantı sayısıyla değil, ölçülebilir bir ticari sonuçla tanımlanır.',
+      },
+    },
+    {
+      q: { en: 'How do you handle confidentiality?', tr: 'Gizliliği nasıl yönetiyorsunuz?' },
+      a: {
+        en: 'Mandates are confidential by default. The work we publish is anonymised where the client requires it, and we do not use a client’s name, documents or pipeline in another process.',
+        tr: 'Görevler esas olarak gizlidir. Yayımladığımız çalışmalar, müşterinin talebi hâlinde anonimleştirilir; hiçbir müşterinin adı, belgeleri veya iş hattı başka bir süreçte kullanılmaz.',
+      },
+    },
+  ],
+};

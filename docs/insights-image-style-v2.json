@@ -1,0 +1,57 @@
+{
+  "generator": "built-in image_gen",
+  "date": "2026-09-22",
+  "direction": "User-provided KPMG-style references: flowing vivid abstracts and bright people-led business photography",
+  "assets": [
+    {
+      "name": "insight-growth-discipline-v2",
+      "kind": "abstract",
+      "refs": [
+        "/var/folders/ml/3xclyk310p981gdwdm5gf_8r0000gn/T/codex-clipboard-57eeb08c-f3d7-4a28-839c-7f04799910c2.png"
+      ],
+      "prompt": "Use case: stylized-concept. Create a NEW abstract editorial cover for an international corporate advisory Insights page. Input image is a STYLE reference: luminous flowing translucent ribbons, rich gradients, dynamic movement, polished KPMG-like report-cover photography. Wide landscape 1536x1024. Original composition of sweeping silky light membranes in vivid amber, coral red, golden yellow and teal, flowing diagonally toward an off-centre convergence, rich dark teal recesses and radiant highlights, beautiful layered fine edges. Full-bleed, deeply dimensional, elegant and energetic, not architecture, no solid blocks or sculptures. Crisp high quality gradient detail, no text, logos, watermark or frame. Safe for 3:2, 4:3 and panoramic crops.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-f954b02f-c646-4492-aa58-913a8b9b0083.png",
+      "output": "src/assets/images/insight-growth-discipline-v2.webp"
+    },
+    {
+      "name": "insight-execution-governance-v2",
+      "kind": "abstract",
+      "refs": [
+        "/var/folders/ml/3xclyk310p981gdwdm5gf_8r0000gn/T/codex-clipboard-57eeb08c-f3d7-4a28-839c-7f04799910c2.png"
+      ],
+      "prompt": "Use case: stylized-concept. Create a NEW abstract editorial image for partnership governance, using attached image ONLY as reference for luminous flowing translucency and sophisticated corporate report art direction. Wide landscape 1536x1024. An original sweeping open spiral of translucent fluid light ribbons, distinct cobalt blue, cyan and violet layers with a luminous magenta accent, rhythmically converging and unfolding across frame. Flowing curved membranes with fine crisp illuminated edges and rich deep-blue recesses, bright enough to feel optimistic. Full-bleed immersive abstraction, no physical sculpture, metal, geometric blocks, architecture, charts, lettering, logos or watermark. Sophisticated KPMG-style corporate editorial visual. Central composition safe for wide hero crops.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-2cbb110f-0eab-4cab-841e-f0fa9df3fbed.png",
+      "output": "src/assets/images/insight-execution-governance-v2.webp"
+    },
+    {
+      "name": "insight-energy-readiness-v2",
+      "kind": "photo",
+      "refs": [
+        "/var/folders/ml/3xclyk310p981gdwdm5gf_8r0000gn/T/codex-clipboard-4f03ab65-2117-44de-a576-5c5ba749999e.png"
+      ],
+      "prompt": "Use case: photorealistic-natural. New editorial photograph for an energy project advisory article. Reference image supplies bright natural office atmosphere, candid human collaboration, subtle glass reflections and sophisticated KPMG corporate photography, not exact people or poses. Landscape 1536x1024. Three experienced diverse professionals, a woman project director and two colleagues, discussing a renewable-energy project around a laptop and an unmarked site plan in a bright modern glass meeting room. Eye-level medium-wide candid scene, engaged relaxed expressions, authentic smart business clothing in blue and neutral tones, generous white daylight, refined warm skin tones, very subtle office reflections away from faces. Small solar installation visible through distant windows as contextual detail, people remain the focus. Faces centrally grouped safe for panoramic and card cropping. Realistic anatomy and hands, fine texture, no fake readable text, no logos, no watermark, no posed handshake.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-8035f483-86f3-4fdd-ab0d-e08ae6aebe0d.png",
+      "output": "src/assets/images/insight-energy-readiness-v2.webp"
+    },
+    {
+      "name": "insight-oem-development-v2",
+      "kind": "photo",
+      "refs": [
+        "/var/folders/ml/3xclyk310p981gdwdm5gf_8r0000gn/T/codex-clipboard-4f03ab65-2117-44de-a576-5c5ba749999e.png"
+      ],
+      "prompt": "Use case: photorealistic-natural. New corporate editorial photograph for an article on building OEM customer relationships. Input image is ONLY visual reference for bright candid collaborative human-led corporate photography. Landscape 1536x1024. Four business and engineering professionals, two women and two men in their 30s to 50s, standing around a laptop in an airy modern engineering-office collaboration area. A small precision automotive component on the table gives context but people and their natural engaged interaction are the main subject. One colleague explains while the others listen, relaxed slight smiles, no one looking at camera, believable hands and body spacing. Daylight, bright white and subtle blue palette, natural skin tones, realistic photographic texture, restrained glass reflections at frame edges. Medium-wide eye-level editorial framing, heads and laptop centrally placed safe for panoramic crop. KPMG-like editorial photography quality, no text, logos, watermarks or handshake.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-3214f97a-b962-4637-8b59-08f93639941b.png",
+      "output": "src/assets/images/insight-oem-development-v2.webp"
+    },
+    {
+      "name": "insight-china-local-execution-v2",
+      "kind": "photo",
+      "refs": [
+        "/var/folders/ml/3xclyk310p981gdwdm5gf_8r0000gn/T/codex-clipboard-4d34584f-9436-4320-9bd9-079dff1da64a.png"
+      ],
+      "prompt": "Use case: photorealistic-natural. New editorial photograph for Türkiye–China cross-border business cooperation. Input photo is a STYLE reference for sunlit glass-office architecture and professionals walking, not an edit or identity reference. Landscape 1536x1024. Two senior business colleagues, an East Asian woman in a pale grey suit and a Mediterranean man in a navy suit, walking together beside a contemporary curved glass office building, naturally conversing while discussing one tablet held by the woman. Optimistic authentic professional moment, both watching the tablet or each other, not the camera. Bright clear morning daylight, blue sky reflections, airy elegant office district, crisp realistic textures, natural skin tones, smart understated business attire. Eye-level medium-wide composition with people in central portion and architectural breathing room, torsos and heads survive panoramic crop. KPMG-style business editorial photography. No logos, no legible text, no watermark, no handshake.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-2552d102-2e42-4e9e-9935-bfb14156bccc.png",
+      "output": "src/assets/images/insight-china-local-execution-v2.webp"
+    }
+  ]
+}

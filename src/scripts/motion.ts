@@ -22,9 +22,9 @@ function reveal() {
     if (reduced) { el.classList.add('is-visible'); return; }
     gsap.fromTo(
       el,
-      { autoAlpha: 0, y: 24 },
+      { opacity: 0, y: 24 },
       {
-        autoAlpha: 1, y: 0, duration: 0.9, ease: 'expo.out',
+        opacity: 1, y: 0, duration: 0.9, ease: 'expo.out',
         delay: Number(el.dataset.revealDelay ?? 0),
         scrollTrigger: { trigger: el, start: 'top 88%', once: true },
         onStart: () => el.classList.add('is-visible'),
@@ -38,9 +38,9 @@ function reveal() {
     if (reduced) { items.forEach((i) => i.classList.add('is-visible')); return; }
     gsap.fromTo(
       items,
-      { autoAlpha: 0, y: 24 },
+      { opacity: 0, y: 24 },
       {
-        autoAlpha: 1, y: 0, duration: 0.8, ease: 'expo.out', stagger: 0.08,
+        opacity: 1, y: 0, duration: 0.8, ease: 'expo.out', stagger: 0.08,
         scrollTrigger: { trigger: group, start: 'top 85%', once: true },
         onStart: () => items.forEach((i) => i.classList.add('is-visible')),
       },

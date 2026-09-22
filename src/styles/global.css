@@ -20,6 +20,8 @@
   --color-steel-200: #c2dbe9;
   --color-steel-100: #e4eff6;
 
+  --color-mist-300: #bebebe;   /* muted grey for headline emphasis */
+
   --color-accent-600: #0f6fd6; /* electric blue, single accent */
   --color-accent-500: #1a82ec;
   --color-accent-400: #3f9bf3;
@@ -62,6 +64,10 @@
 }
 
 @layer base {
+  /* Anchor targets clear the fixed header. */
+  [id] {
+    scroll-margin-top: 140px;
+  }
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;

@@ -1,112 +1,15 @@
 ---
-import { Image } from 'astro:assets';
-import logo from '@assets/logos/continex-global-logo.png';
-import logoWhite from '@assets/logos/continex-global-logo-white.png';
-import { getLocale, localizePath, switchLocalePath, stripLocale } from '@i18n/utils';
-import { locales, localeLabels } from '@i18n/config';
-import { useTranslations } from '@i18n/ui';
-import { primaryNav, ctaHref } from '@data/nav';
+/**
+ * Two headers: "classic" (transparent bar over the homepage hero, turning
+ * solid white on scroll) and "bar" (RB pattern: white meta strip over a
+ * full-bleed navy bar) for the inner pages.
+ */
+import HeaderClassic from './HeaderClassic.astro';
+import HeaderBar from './HeaderBar.astro';
 
-interface Props { theme?: 'dark' | 'light' }
-const { theme = 'light' } = Astro.props;
+import type { Locale } from '@i18n/config';
 
-const locale = getLocale(Astro.url);
-const t = useTranslations(locale);
-const current = stripLocale(Astro.url.pathname);
-const isActive = (href: string) => current === href || (href !== '/' && current.startsWith(href + '/'));
+interface Props { localePaths?: Partial<Record<Locale, string>>; theme?: 'dark' | 'light'; variant?: 'classic' | 'bar' }
+const { localePaths, theme = 'light', variant = 'bar' } = Astro.props;
 ---
-<header
-  id="site-header"
-  data-theme={theme}
-  class:list={[
-    'group/header fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,color] duration-300',
-    'data-[theme=light]:bg-white/90 data-[theme=light]:backdrop-blur data-[theme=light]:text-navy-900',
-    'data-[theme=dark]:text-white',
-    'data-[scrolled]:bg-white/95 data-[scrolled]:backdrop-blur data-[scrolled]:!text-navy-900 data-[scrolled]:shadow-[0_1px_0_0_var(--color-line)]',
-  ]}
->
-  <div class="container-site flex h-[76px] items-center justify-between gap-6 lg:h-[88px]">
-    <a href={localizePath('/', locale)} class="relative block shrink-0" aria-label="Continex Global">
-      <Image src={logo} alt="Continex Global" width={180} densities={[1, 2]} class="h-8 w-auto group-data-[theme=dark]/header:hidden group-data-[scrolled]/header:!block lg:h-9" loading="eager" />
-      <Image src={logoWhite} alt="" width={180} densities={[1, 2]} class="hidden h-8 w-auto group-data-[theme=dark]/header:block group-data-[scrolled]/header:!hidden lg:h-9" loading="eager" />
-    </a>
-
-    <nav class="hidden xl:block" aria-label="Primary">
-      <ul class="flex items-center gap-6 text-[0.9375rem] font-medium 2xl:gap-8">
-        {primaryNav.map((item) => (
-          <li>
-            <a
-              href={localizePath(item.href, locale)}
-              aria-current={isActive(item.href) ? 'page' : undefined}
-              class="relative whitespace-nowrap py-2 opacity-80 transition hover:opacity-100 aria-[current=page]:opacity-100 after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform hover:after:scale-x-100 aria-[current=page]:after:scale-x-100"
-            >{t(item.key)}</a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-
-    <div class="flex items-center gap-3">
-      <div class="flex items-center text-xs font-semibold tracking-wide" aria-label={t('a11y.switchLang')}>
-        {locales.map((l, i) => (
-          <>
-            {i > 0 && <span class="mx-1.5 opacity-40" aria-hidden="true">/</span>}
-            <a href={switchLocalePath(Astro.url.pathname, l)} hreflang={l} aria-current={l === locale ? 'true' : undefined} class="opacity-60 transition hover:opacity-100 aria-[current=true]:opacity-100">{localeLabels[l]}</a>
-          </>
-        ))}
-      </div>
-
-      <a
-        href={localizePath(ctaHref, locale)}
-        class="hidden whitespace-nowrap items-center rounded-card bg-accent-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-500 md:inline-flex"
-      >{t('cta.discuss')}</a>
-
-      <button
-        type="button"
-        class="inline-flex h-10 w-10 items-center justify-center rounded-card xl:hidden"
-        aria-controls="mobile-menu"
-        aria-expanded="false"
-        aria-label={t('a11y.openMenu')}
-        data-menu-toggle
-      >
-        <span class="relative block h-3.5 w-6">
-          <span class="absolute inset-x-0 top-0 h-0.5 bg-current transition-transform duration-300 [[aria-expanded=true]_&]:translate-y-1.5 [[aria-expanded=true]_&]:rotate-45"></span>
-          <span class="absolute inset-x-0 bottom-0 h-0.5 bg-current transition-transform duration-300 [[aria-expanded=true]_&]:-translate-y-1.5 [[aria-expanded=true]_&]:-rotate-45"></span>
-        </span>
-      </button>
-    </div>
-  </div>
-
-  <div id="mobile-menu" hidden class="max-h-[calc(100dvh-76px)] overflow-y-auto border-t border-line bg-white text-navy-900 xl:hidden">
-    <nav class="container-site py-6" aria-label="Mobile">
-      <ul class="flex flex-col divide-y divide-line text-lg font-medium">
-        {primaryNav.map((item) => (
-          <li><a href={localizePath(item.href, locale)} class="block py-3.5">{t(item.key)}</a></li>
-        ))}
-      </ul>
-      <a href={localizePath(ctaHref, locale)} class="mt-6 inline-flex w-full items-center justify-center rounded-card bg-accent-600 px-4 py-3 font-semibold text-white">{t('cta.discuss')}</a>
-    </nav>
-  </div>
-</header>
-{/* Spacer so content is not hidden under a solid header. Dark theme heroes handle their own padding. */}
-{theme === 'light' && <div class="h-[76px] lg:h-[88px]" aria-hidden="true"></div>}
-
-<script>
-  const header = document.getElementById('site-header')!;
-  const toggle = header.querySelector<HTMLButtonElement>('[data-menu-toggle]')!;
-  const menu = document.getElementById('mobile-menu')!;
-
-  const onScroll = () => {
-    if (window.scrollY > 24 || toggle.getAttribute('aria-expanded') === 'true') header.dataset.scrolled = '';
-    else delete header.dataset.scrolled;
-  };
-  onScroll();
-  addEventListener('scroll', onScroll, { passive: true });
-
-  toggle.addEventListener('click', () => {
-    const open = toggle.getAttribute('aria-expanded') !== 'true';
-    toggle.setAttribute('aria-expanded', String(open));
-    menu.hidden = !open;
-    document.body.style.overflow = open ? 'hidden' : '';
-    onScroll();
-  });
-</script>
+{variant === 'classic' ? <HeaderClassic theme={theme} localePaths={localePaths} /> : <HeaderBar theme={theme} localePaths={localePaths} />}

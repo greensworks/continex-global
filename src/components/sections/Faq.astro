@@ -1,0 +1,31 @@
+---
+/**
+ * FAQ — centred heading over accordion rows; the list carries an accent
+ * top rule and hairline dividers (Strategy& pattern, Continex palette).
+ */
+import { getLocale, t } from '@i18n/utils';
+import { faq } from '@data/home';
+
+interface Props { title?: string; items?: { q: string; a: string }[] }
+const locale = getLocale(Astro.url);
+const {
+  title = t(faq.title, locale),
+  items = faq.items.map((it) => ({ q: t(it.q, locale), a: t(it.a, locale) })),
+} = Astro.props;
+---
+<section class="section bg-surface">
+  <div class="container-site">
+    <h2 class="mx-auto max-w-[740px] text-center text-h2" data-reveal>{title}</h2>
+    <div class="mx-auto mt-12 max-w-[900px] border-t-2 border-accent-600" data-reveal-group>
+      {items.map((it) => (
+        <details name="faq" class="group border-b border-line">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-[15px] font-semibold text-navy-900 transition hover:text-accent-600">
+            {it.q}
+            <svg class="shrink-0 text-accent-600 transition group-open:rotate-45" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p class="max-w-[760px] pb-6 text-[15px] leading-relaxed text-ink-700">{it.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

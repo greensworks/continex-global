@@ -3,8 +3,8 @@ title: "İlk iki yılı atlatan ortak girişim modelleri"
 description: "Uluslararası ve Türk şirketler arasındaki üretim ve teknoloji ortak girişimleri öngörülebilir nedenlerle başarısız olur. Yapılandırma aşaması için kısa bir kontrol listesi."
 publishDate: 2026-07-30
 topic: joint-ventures
-cover: "../../../assets/images/metal-grinding-sparks.webp"
-coverAlt: "Fabrikada metal taşlama"
+cover: "../../../assets/images/insight-joint-venture.webp"
+coverAlt: "Bir çalışma tezgâhında birbirini tamamlayan hassas işlenmiş metal parçalar"
 translationOf: joint-venture-models-that-work
 authors: [bulent-ulusoy, cigdem-balcioglu]
 readMinutes: 4

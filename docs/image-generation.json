@@ -1,0 +1,102 @@
+{
+  "generator": "built-in image_gen",
+  "date": "2026-09-22",
+  "assets": [
+    {
+      "name": "insight-resilience",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium editorial photograph for Continex Global, a Türkiye-based cross-border business development and strategic advisory website. Wide landscape 3:2, 2400px or larger if supported. Crisp fine detail, restrained navy, steel blue and natural warm highlights, realistic materials, sophisticated documentary photography, no text, no logos, no watermarks, no collage, no graphic overlays. A large modern cable-stayed bridge seen obliquely from water level after a storm, taut cables and solid pylons, distant coastal commercial district, dramatic slate clouds opening to clear light. Strategic resilience metaphor, believable architecture, centre composition safe for wide and card crops.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-f6c087a3-fb98-436d-a6fd-b794ed40a5ec.png",
+      "output": "src/assets/images/insight-resilience.webp"
+    },
+    {
+      "name": "insight-turkiye-market",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium editorial photograph for Continex Global, a Türkiye-based cross-border business development and strategic advisory website. Wide landscape 3:2, 2400px or larger if supported. Crisp fine detail, restrained navy, steel blue and natural warm highlights, realistic materials, sophisticated documentary photography, no text, no logos, no watermarks, no collage, no graphic overlays. Elevated editorial view of Istanbul Bosphorus with a ferry and waterfront commercial buildings, bridge receding into distance, clear morning light, authentic urban scale, business market entry story rather than tourist postcard.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-2d43c920-8cb8-4021-a4c5-f508dedce9b3.png",
+      "output": "src/assets/images/insight-turkiye-market.webp"
+    },
+    {
+      "name": "insight-china-trade",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium editorial photograph for Continex Global, a Türkiye-based cross-border business development and strategic advisory website. Wide landscape 3:2, 2400px or larger if supported. Crisp fine detail, restrained navy, steel blue and natural warm highlights, realistic materials, sophisticated documentary photography, no text, no logos, no watermarks, no collage, no graphic overlays. Modern international container terminal, elegant aerial oblique perspective, a container ship beside loading cranes, precise orderly rows of muted coloured containers, sea and distant industrial coast, early morning atmospheric but sharply detailed. Türkiye–China commercial trade theme.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-24f402e3-cacd-43bf-963e-272ed7812025.png",
+      "output": "src/assets/images/insight-china-trade.webp"
+    },
+    {
+      "name": "insight-joint-venture",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium editorial photograph for Continex Global, a Türkiye-based cross-border business development and strategic advisory website. Wide landscape 3:2, 2400px or larger if supported. Crisp fine detail, restrained navy, steel blue and natural warm highlights, realistic materials, sophisticated documentary photography, no text, no logos, no watermarks, no collage, no graphic overlays. Close editorial still life of two complementary precision-machined metal components being aligned on a dark engineering workbench, finely milled steel surfaces, a subtle technical drawing out of focus with no legible writing, natural side light. A tangible metaphor for long-term compatible business partnerships, no people.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-a9f954db-7ab7-456b-9c20-1f4200a691b0.png",
+      "output": "src/assets/images/insight-joint-venture.webp"
+    },
+    {
+      "name": "service-market-entry",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photograph for Continex Global international strategic advisory website, wide landscape 3:2, crisp realistic high resolution. Navy and steel-blue accents, warm natural light, refined authentic documentary style. No text, logos, watermark, collage or graphic overlays. View through a contemporary business district passage, layered modern glass buildings framing a bustling distant waterfront, one unobtrusive walking professional seen from behind, directional perspective suggesting access to a new market.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-7025b863-b399-4670-81a2-9f33511c3366.png",
+      "output": "src/assets/images/service-market-entry.webp"
+    },
+    {
+      "name": "service-partnerships",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photograph for Continex Global international strategic advisory website, wide landscape 3:2, crisp realistic high resolution. Navy and steel-blue accents, warm natural light, refined authentic documentary style. No text, logos, watermark, collage or graphic overlays. Candid medium-wide photograph of four diverse senior business professionals in a restrained contemporary meeting room having an engaged collaborative discussion over a few plain papers, natural gestures, anatomically correct hands, no posing or handshakes, city softly visible beyond.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-dc46cc68-d688-42c2-8dcc-3b1c50bae2c1.png",
+      "output": "src/assets/images/service-partnerships.webp"
+    },
+    {
+      "name": "service-project-development",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photograph for Continex Global international strategic advisory website, wide landscape 3:2, crisp realistic high resolution. Navy and steel-blue accents, warm natural light, refined authentic documentary style. No text, logos, watermark, collage or graphic overlays. Two engineers seen from behind wearing hard hats and safety vests overlooking a large solar installation under development, solar panels, power infrastructure and gentle hills, measured professional atmosphere, detailed equipment, no brand names.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-7bea2345-d5e6-4869-a7b8-09ff20ce4085.png",
+      "output": "src/assets/images/service-project-development.webp"
+    },
+    {
+      "name": "service-representation",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photograph for Continex Global international strategic advisory website, wide landscape 3:2, crisp realistic high resolution. Navy and steel-blue accents, warm natural light, refined authentic documentary style. No text, logos, watermark, collage or graphic overlays. Editorial close view of a professional workspace prepared for international commercial negotiations: a neatly opened unmarked document folder, pen, closed navy notebook and water glasses on a beautiful dark conference table, glass office architecture softly receding behind, focus on material textures, no legible print.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-eadac4ad-1a93-4e55-b07f-2f1f193573d3.png",
+      "output": "src/assets/images/service-representation.webp"
+    },
+    {
+      "name": "sector-mobility",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photograph for Continex Global business advisory website. Landscape 3:2 composition suitable for wide hero and card cropping, crisp realistic detail, restrained navy and steel blue, warm natural highlights, polished documentary aesthetic. No text, logos, watermark, graphic overlays or collage. Inside an immaculate automotive assembly plant, unbranded silver vehicle body on an automated production line, blue industrial robots and overhead structural beams, realistic mechanical scale and precise metal detail, no people.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-02457530-723e-4a20-b75a-ef02babe8804.png",
+      "output": "src/assets/images/sector-mobility.webp"
+    },
+    {
+      "name": "sector-infrastructure",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photograph for Continex Global business advisory website. Landscape 3:2 composition suitable for wide hero and card cropping, crisp realistic detail, restrained navy and steel blue, warm natural highlights, polished documentary aesthetic. No text, logos, watermark, graphic overlays or collage. Aerial oblique view of a major modern transport interchange under careful construction, concrete viaduct with several spans, railway tracks and tower cranes in distant construction site, realistic load-bearing structure, warm late-afternoon light.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-957add53-de74-407e-a546-632a051e7037.png",
+      "output": "src/assets/images/sector-infrastructure.webp"
+    },
+    {
+      "name": "sector-supply-chain",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photograph for Continex Global business advisory website. Landscape 3:2 composition suitable for wide hero and card cropping, crisp realistic detail, restrained navy and steel blue, warm natural highlights, polished documentary aesthetic. No text, logos, watermark, graphic overlays or collage. View down a sophisticated logistics distribution warehouse, orderly tall steel shelves with unmarked cardboard pallets, central aisle and loading doors, a small forklift safely parked, dramatic geometric perspective, bright clean skylight, no text.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-45f87a9e-7542-4de5-89e1-6ff71e9c1f99.png",
+      "output": "src/assets/images/sector-supply-chain.webp"
+    },
+    {
+      "name": "case-real-estate",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photograph for Continex Global business advisory website. Landscape 3:2 composition suitable for wide hero and card cropping, crisp realistic detail, restrained navy and steel blue, warm natural highlights, polished documentary aesthetic. No text, logos, watermark, graphic overlays or collage. Architectural editorial photograph of an elegant contemporary commercial office complex in an East Asian financial district, three glass towers with plaza and landscaped trees, low angle but horizontal landscape image, blue hour with a few warm illuminated windows, credible commercial real estate investment imagery, no identifiable brands.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-03cc3405-3c4d-4cfe-9a50-1331203bb23d.png",
+      "output": "src/assets/images/case-real-estate.webp"
+    },
+    {
+      "name": "case-industrial-partners",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for Continex Global cross-border strategic advisory. Wide landscape 3:2, sharp fine detail, navy and steel-blue accents, restrained warm highlights, credible sophisticated contemporary environments. No text, logos, watermark, collage or overlays. A modern precision manufacturing facility photographed from an elevated gallery, orderly CNC machines and factory workstations, central depth perspective, small distant engineers with appropriate protective equipment, bright diffuse daylight, contemporary industrial investment and local partner development theme.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-122a143f-f2f9-40ec-a9c0-6fdf4471e441.png",
+      "output": "src/assets/images/case-industrial-partners.webp"
+    },
+    {
+      "name": "case-oem-qualification",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for Continex Global cross-border strategic advisory. Wide landscape 3:2, sharp fine detail, navy and steel-blue accents, restrained warm highlights, credible sophisticated contemporary environments. No text, logos, watermark, collage or overlays. Close editorial view of a precision automotive metal component being measured with a digital caliper on a clean technical inspection station, blue nitrile-gloved hands correctly holding the instrument, no legible display, machined aluminium and stainless steel, very crisp surface detail, supplier qualification theme.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-f9653981-781b-480d-b7aa-000cdf24499b.png",
+      "output": "src/assets/images/case-oem-qualification.webp"
+    },
+    {
+      "name": "about-architecture",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for Continex Global cross-border strategic advisory. Wide landscape 3:2, sharp fine detail, navy and steel-blue accents, restrained warm highlights, credible sophisticated contemporary environments. No text, logos, watermark, collage or overlays. Interior architectural photograph of a spacious contemporary corporate atrium with elegant travertine floor, glass walls, slim dark metal frames and one sculptural staircase, soft side daylight, quiet sense of trust, open depth, no people, no signage. Wide composition with uncluttered lower-left space for website heading.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-2dcae2e0-e2fd-417c-a732-d00a6889d7ba.png",
+      "output": "src/assets/images/about-architecture.webp"
+    },
+    {
+      "name": "markets-connections",
+      "prompt": "Use case: photorealistic-natural. Premium editorial photography for Continex Global cross-border strategic advisory. Wide landscape 3:2, sharp fine detail, navy and steel-blue accents, restrained warm highlights, credible sophisticated contemporary environments. No text, logos, watermark, collage or overlays. Aerial coastal seascape of a large cargo vessel moving through a maritime strait, two distant ships and layered shorelines, long gentle wake suggesting international connections, deep navy water, pale horizon, blue hour just before sunrise, beautifully restrained composition with clear open water for headline, realistic vessel and coastline.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0c609-1d6a-7aa3-8bb0-504afdb56d75/exec-3973109f-45b1-445f-b6c3-f3106d035139.png",
+      "output": "src/assets/images/markets-connections.webp"
+    }
+  ]
+}

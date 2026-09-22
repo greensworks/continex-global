@@ -2,16 +2,16 @@
 import Base from '@layouts/Base.astro';
 import Hero from '@components/sections/Hero.astro';
 import GuideHeadline from '@components/sections/rb/GuideHeadline.astro';
-import Mosaic from '@components/sections/rb/Mosaic.astro';
+import CardRail from '@components/sections/CardRail.astro';
 import Overline from '@components/sections/rb/Overline.astro';
 import WhyContinex from '@components/sections/WhyContinex.astro';
 import HowWeWork from '@components/sections/HowWeWork.astro';
 import ExperienceCards from '@components/sections/ExperienceCards.astro';
 import Numbers from '@components/sections/Numbers.astro';
 import MarketsGrid from '@components/sections/MarketsGrid.astro';
-import Leadership from '@components/sections/Leadership.astro';
-import InsightsLatest from '@components/sections/InsightsLatest.astro';
+import Faq from '@components/sections/Faq.astro';
 import LogoMarquee from '@components/sections/LogoMarquee.astro';
+import ctaImage from '@assets/images/cta-people-walking.webp';
 import heroImg from '@assets/images/high-voltage-towers.webp';
 import { getLocale, t } from '@i18n/utils';
 import { site } from '@data/site';
@@ -19,18 +19,17 @@ import { whatWeDo } from '@data/home';
 import { serviceTiles, industryTiles } from '@/lib/tiles';
 const locale = getLocale(Astro.url);
 ---
-<Base title={site.name} description={t(site.description, locale)} headerTheme="dark">
+<Base title={site.name} description={t(site.description, locale)} headerTheme="dark" headerVariant="classic" ctaImage={ctaImage}>
   <Hero image={heroImg} imageAlt={locale === 'tr' ? 'Gün batımında yüksek gerilim hatları' : 'High-voltage transmission towers at dusk'} />
   <GuideHeadline title={t(whatWeDo.title, locale)} />
-  <Mosaic tiles={serviceTiles(locale)} />
+  <CardRail tiles={serviceTiles(locale)} />
   <WhyContinex />
   <HowWeWork />
   <Overline text={locale === 'tr' ? 'Sektörler' : 'Industries'} line={false} />
-  <Mosaic tiles={industryTiles(locale)} />
+  <CardRail tiles={industryTiles(locale)} />
   <ExperienceCards />
   <Numbers />
   <LogoMarquee tone="light" />
   <MarketsGrid />
-  <Leadership />
-  <InsightsLatest />
+  <Faq />
 </Base>

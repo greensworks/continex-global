@@ -8,7 +8,7 @@ const locale = getLocale(Astro.url);
   <div class="container-site grid gap-12 lg:grid-cols-12">
     <div class="lg:col-span-5" data-reveal>
       <p class="eyebrow text-steel-300">{t(whyContinex.eyebrow, locale)}</p>
-      <h2 class="mt-4 text-h2 text-white">{t(whyContinex.title, locale)}</h2>
+      <h2 class="mt-4 text-h2 text-white" set:html={t(whyContinex.title, locale)} />
       <p class="mt-6 text-lead text-white/70">{t(whyContinex.lead, locale)}</p>
     </div>
     <div class="grid gap-px bg-white/10 sm:grid-cols-2 lg:col-span-7" data-reveal-group>

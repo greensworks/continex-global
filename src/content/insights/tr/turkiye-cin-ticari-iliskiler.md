@@ -3,8 +3,8 @@ title: "Türkiye–Çin: ticari ilişkiler gerçekte nasıl kuruluyor"
 description: "Çinli üreticiler ve EPC grupları Türkiye enerji, altyapı ve sanayisinde aktif. Her iki taraf için işleyen bir ortaklık nasıl görünür?"
 publishDate: 2026-08-18
 topic: china-turkiye
-cover: "../../../assets/images/storage-tanks-night.webp"
-coverAlt: "Gece endüstriyel depolama tankları"
+cover: "../../../assets/images/insight-china-trade.webp"
+coverAlt: "Bir yük terminalinde konteyner gemisi ve yükleme vinçleri"
 translationOf: turkiye-china-business-relationships
 authors: [bulent-ulusoy]
 readMinutes: 4

@@ -1,52 +1,38 @@
 ---
 import Base from '@layouts/Base.astro';
 import PageHero from '@components/sections/PageHero.astro';
-import SubnavPills from '@components/sections/rb/SubnavPills.astro';
-import GuideHeadline from '@components/sections/rb/GuideHeadline.astro';
-import GuideText from '@components/sections/rb/GuideText.astro';
-import Breadcrumb from '@components/sections/rb/Breadcrumb.astro';
+import GuideSplit from '@components/sections/rb/GuideSplit.astro';
 import Leadership from '@components/sections/Leadership.astro';
-import MarketsGrid from '@components/sections/MarketsGrid.astro';
-import Numbers from '@components/sections/Numbers.astro';
+import Principles from '@components/sections/Principles.astro';
+import SideCtas from '@components/sections/SideCtas.astro';
+import ctaImage from '@assets/images/abstract-warm-streaks.webp';
 import { pages } from '@data/pages';
 import { getLocale, localizePath, t } from '@i18n/utils';
 import { useTranslations } from '@i18n/ui';
-import heroImg from '@assets/images/glass-facade.webp';
+import heroImg from '@assets/images/about-architecture.webp';
+import roleImg from '@assets/images/meeting-table.webp';
+import modelImg from '@assets/images/office-tablet.webp';
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
 const a = pages.about;
 const ids = ['role', 'model'];
-const nav = [
-  ...a.sections.map((s, i) => ({ label: t(s.title, locale), href: `#${ids[i]}` })),
-  { label: tr('nav.leadership'), href: '#leadership' },
-  { label: locale === 'tr' ? 'Pazarlarımız' : 'Our markets', href: '#markets' },
-  { label: t(a.principlesTitle, locale), href: '#principles' },
+const sectionImages = [
+  { src: roleImg, alt: locale === 'tr' ? 'Toplantı masasında görüşen iş insanları' : 'Colleagues meeting across a table' },
+  { src: modelImg, alt: locale === 'tr' ? 'Ofiste tablet üzerinde çalışan iş insanı' : 'Business professional working on a tablet' },
 ];
 ---
-<Base title={t(a.title, locale)} description={t(a.lead, locale)} headerTheme="dark">
-  <PageHero eyebrow={tr('nav.about')} title={t(a.title, locale)} lead={t(a.lead, locale)} image={heroImg} />
-  <SubnavPills items={nav} />
+<Base title={t(a.title, locale)} description={t(a.lead, locale)} headerTheme="dark" ctaImage={ctaImage}>
+  <PageHero breadcrumb={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.about') }]} title={t(a.title, locale)} lead={t(a.lead, locale)} image={heroImg} />
   {a.sections.map((s, i) => (
-    <>
-      <GuideHeadline id={ids[i]} title={t(s.title, locale)} />
-      <GuideText paragraphs={s.text.map((p) => t(p, locale))} />
-    </>
+    <GuideSplit
+      id={ids[i]}
+      title={t(s.title, locale)}
+      paragraphs={s.text.map((p) => t(p, locale))}
+      image={sectionImages[i]?.src}
+      imageAlt={sectionImages[i]?.alt}
+    />
   ))}
   <Leadership full eyebrow={locale === 'tr' ? 'Yönetim ekibimiz' : 'Our leadership'} />
-  <div id="markets"><MarketsGrid eyebrow={locale === 'tr' ? 'Pazarlarımız' : 'Our markets'} /></div>
-  <Numbers />
-  <section id="principles" class="section bg-navy-950 text-white">
-    <div class="container-site">
-      <h2 class="text-h2 text-white" data-reveal>{t(a.principlesTitle, locale)}</h2>
-      <div class="mt-12 grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-4" data-reveal-group>
-        {a.principles.map((p) => (
-          <div class="bg-navy-950 p-7">
-            <h3 class="text-lg font-semibold text-white">{t(p.title, locale)}</h3>
-            <p class="mt-3 text-sm leading-relaxed text-white/65">{t(p.text, locale)}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-  <Breadcrumb items={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: tr('nav.about') }]} />
+  <Principles />
+  <SideCtas />
 </Base>

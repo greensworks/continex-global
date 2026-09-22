@@ -1,0 +1,41 @@
+---
+/** Contact section: the enquiry form beside the office, e-mail and legal details. */
+import ContactForm from '@components/sections/ContactForm.astro';
+import { site } from '@data/site';
+import { getLocale, t } from '@i18n/utils';
+import { useTranslations } from '@i18n/ui';
+
+const locale = getLocale(Astro.url);
+const tr = useTranslations(locale);
+const offices = site.locations.filter((l) => l.confirmed);
+const ext = locale === 'tr' ? 'dahili' : 'ext.';
+---
+<section class="section">
+  <div class="container-site grid gap-14 lg:grid-cols-12">
+    <div class="lg:col-span-7" data-reveal><ContactForm /></div>
+
+    <aside class="space-y-8 text-sm lg:col-span-4 lg:col-start-9" data-reveal>
+      <a href={`mailto:${site.email}`} class="block text-lg font-semibold text-navy-900 hover:underline underline-offset-4">{site.email}</a>
+
+      {offices.map((office) => (
+        <div>
+          <h2 class="eyebrow">{t(office.label, locale)}</h2>
+          <address class="mt-3 not-italic leading-relaxed text-ink-700">
+            {office.lines.map((line) => <span class="block">{line}</span>)}
+          </address>
+          <a href={`tel:${office.phone.replace(/\s/g, '')}`} class="mt-2 block text-ink-700 transition hover:text-navy-900">
+            {office.phone}{office.city === 'Istanbul' && site.phoneExt ? ` · ${ext} ${site.phoneExt}` : ''}
+          </a>
+        </div>
+      ))}
+
+      <div>
+        <h2 class="eyebrow">{tr('contact.legal')}</h2>
+        <p class="mt-3 leading-relaxed text-ink-500">
+          {site.legalName}<br />
+          {locale === 'tr' ? 'Vergi Dairesi' : 'Tax office'}: {site.taxOffice} · {locale === 'tr' ? 'Vergi No' : 'Tax no'}: {site.taxNo}
+        </p>
+      </div>
+    </aside>
+  </div>
+</section>

@@ -8,7 +8,7 @@ const locale = getLocale(Astro.url);
   <div class="container-site">
     <div class="max-w-3xl" data-reveal>
       <p class="eyebrow">{t(howWeWork.eyebrow, locale)}</p>
-      <h2 class="mt-4 text-h2">{t(howWeWork.title, locale)}</h2>
+      <h2 class="mt-4 text-h2" set:html={t(howWeWork.title, locale)} />
     </div>
     <ol class="mt-14 grid gap-10 border-t border-navy-900/20 pt-8 sm:grid-cols-2 lg:grid-cols-5" data-reveal-group>
       {howWeWork.steps.map((s, i) => (

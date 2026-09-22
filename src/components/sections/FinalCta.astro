@@ -4,13 +4,38 @@
  * dark panel with the headline and one line of text on the left and a white
  * button on the right.
  */
-import { Image } from 'astro:assets';
-import { getLocale, localizePath, t } from '@i18n/utils';
+import Image from '@components/ui/Photo.astro';
+import type { ImageMetadata } from 'astro';
+import { getLocale, localizePath, stripLocale, t } from '@i18n/utils';
 import { useTranslations } from '@i18n/ui';
 import { finalCta } from '@data/home';
-import bg from '@assets/images/metal-grinding-sparks.webp';
+import { img } from '@/lib/images';
+
+interface Props { image?: ImageMetadata }
 const locale = getLocale(Astro.url);
 const tr = useTranslations(locale);
+
+/** A different photo behind the CTA on every page. */
+const byPath: Record<string, string> = {
+  '/': 'metal-grinding-sparks',
+  '/what-we-do': 'storage-tanks-night',
+  '/industries': 'grain-silos-dusk',
+  '/markets': 'refinery-dusk',
+  '/selected-experience': 'markets-connections',
+  '/insights': 'meeting-table',
+  '/about': 'industrial-pipes-red',
+  '/what-we-do/market-entry': 'grain-silos-dusk',
+  '/what-we-do/strategic-partnerships': 'industrial-pipes-red',
+  '/what-we-do/project-development': 'refinery-dusk',
+  '/what-we-do/international-representation': 'high-voltage-towers',
+  '/privacy-policy': 'abstract-light-streaks',
+  '/cookie-policy': 'abstract-warm-streaks',
+  '/terms-and-conditions': 'abstract-liquid',
+};
+const rotation = ['industrial-pipes-red', 'refinery-dusk', 'storage-tanks-night', 'grain-silos-dusk', 'markets-connections', 'meeting-table', 'office-tablet', 'metal-grinding-sparks'];
+const path = stripLocale(Astro.url.pathname).replace(/\/$/, '') || '/';
+const hash = [...path].reduce((a, c) => a + c.charCodeAt(0), 0);
+const bg = Astro.props.image ?? img(byPath[path] ?? rotation[hash % rotation.length]);
 ---
 <section class="relative isolate overflow-hidden bg-navy-950 text-white">
   <Image src={bg} alt="" widths={[768, 1280, 1920]} sizes="100vw" layout="none" class="absolute inset-0 -z-10 h-full w-full object-cover" />
