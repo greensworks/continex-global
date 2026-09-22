@@ -1,0 +1,19 @@
+---
+import Base from '@layouts/Base.astro';
+import PageHero from '@components/sections/PageHero.astro';
+import NotFoundLinks from '@components/sections/NotFoundLinks.astro';
+import { pages } from '@data/pages';
+import { getLocale, localizePath, t } from '@i18n/utils';
+import { useTranslations } from '@i18n/ui';
+const locale = getLocale(Astro.url);
+const tr = useTranslations(locale);
+const copy = pages.notFound;
+---
+<Base title={t(copy.title, locale)} description={t(copy.lead, locale)} cta={false} noindex>
+  <PageHero
+    breadcrumb={[{ label: tr('nav.home'), href: localizePath('/', locale) }, { label: '404' }]}
+    title={t(copy.title, locale)}
+    lead={t(copy.lead, locale)}
+  />
+  <NotFoundLinks />
+</Base>

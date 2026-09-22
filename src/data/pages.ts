@@ -26,6 +26,13 @@ export const pages = {
     title: { en: 'Discuss an opportunity', tr: 'Fırsatınızı birlikte değerlendirelim' },
     lead: { en: 'Tell us about the market, partnership or project you are considering. We respond to every serious enquiry personally.', tr: 'Değerlendirmekte olduğunuz pazar, ortaklık veya projeyi bizimle paylaşın. Her talebe kurucu ortaklarımız bizzat dönüş yapmaktadır.' },
   },
+  notFound: {
+    title: { en: 'This page is not here', tr: 'Bu sayfa burada değil' },
+    lead: {
+      en: 'The link may be outdated or the address mistyped. The sections below cover everything on the site.',
+      tr: 'Bağlantı güncelliğini yitirmiş ya da adres hatalı yazılmış olabilir. Aşağıdaki bölümlerden sitenin tamamına ulaşabilirsiniz.',
+    },
+  },
   about: {
     title: { en: 'Built for complex cross-border business', tr: 'Karmaşık uluslararası işlemler için yapılandırılmış bir kurum' },
     lead: { en: 'Continex Global is a Türkiye-based business development and strategic advisory firm. We find, develop and execute international opportunities for companies that need more than an introduction.', tr: 'Continex Global, Türkiye merkezli bir uluslararası iş geliştirme ve stratejik danışmanlık kuruluşudur. Bir tanıştırmanın ötesinde somut sonuç arayan şirketler için uluslararası fırsatları tespit ediyor, geliştiriyor ve hayata geçiriyoruz.' },
