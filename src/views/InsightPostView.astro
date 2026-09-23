@@ -46,12 +46,22 @@ const articleSchema = {
   author: authors.length ? authors.map(person => ({ '@type': 'Person', name: person.name, url: new URL(localizePath('/about', locale) + '#' + person.slug, Astro.site).href })) : { '@type': post.data.author === site.name ? 'Organization' : 'Person', name: post.data.author, ...(post.data.author === site.name ? { '@id': new URL('/#organization', Astro.site).href } : {}) },
   publisher: { '@id': new URL('/#organization', Astro.site).href },
 };
+// Reserve a separate closing image for each article, shared by its translations.
 const ctaImages: Record<string, string> = {
-  'market-entry': 'abstract-soft-gray', 'china-turkiye': 'bg-navy-dots', 'energy-infrastructure': 'refinery-dusk',
-  'industrial-automotive': 'metal-grinding-sparks', 'joint-ventures': 'meeting-table', 'project-finance': 'storage-tanks-night', 'risk-crisis': 'bg-navy-dark',
+  'entering-the-turkish-market': 'case-real-estate',
+  'turkiye-china-business-relationships': 'insight-resilience',
+  'cross-border-growth-portfolio-discipline': 'insight-growth-discipline',
+  'cross-border-execution-governance': 'insight-execution-governance',
+  'china-turkiye-partnership-local-execution': 'insight-china-local-execution',
+  'energy-project-commercial-readiness': 'insight-energy-readiness',
+  'oem-supplier-commercial-development': 'insight-oem-development',
+  'joint-venture-models-that-work': 'case-oem-qualification',
+  'crisis-management-strategic-resilience': 'bg-navy-dark',
 };
+const ctaImage = ctaImages[canonicalSlug];
+if (!ctaImage) throw new Error(`Missing dedicated insight CTA image: ${canonicalSlug}`);
 ---
-<Base seoTitle={post.data.seoTitle} structuredData={[articleSchema]} localePaths={localePaths} ogImage={socialImage?.src} ogType="article" title={post.data.title} description={post.data.description} ctaImage={img(ctaImages[post.data.topic] ?? 'meeting-table')}>
+<Base seoTitle={post.data.seoTitle} structuredData={[articleSchema]} localePaths={localePaths} ogImage={socialImage?.src} ogType="article" title={post.data.title} description={post.data.description} ctaImage={img(ctaImage)}>
   <Fragment slot="head">
     <meta property="article:published_time" content={post.data.publishDate.toISOString()} />
     {post.data.updatedDate && <meta property="article:modified_time" content={post.data.updatedDate.toISOString()} />}
