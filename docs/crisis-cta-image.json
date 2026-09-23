@@ -1,0 +1,11 @@
+{
+  "generator": "built-in image_gen",
+  "assets": [
+    {
+      "name": "cta-crisis-lighthouse",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide closing CTA background photograph for Continex Global's crisis management and strategic resilience article. Premium corporate editorial photography, landscape 1536x1024. Coastal lighthouse on a solid stone breakwater, viewed obliquely across deep blue water after a storm. Cloud cover clearing with natural warm sunlight illuminating the lighthouse and textured sea, a calm distant commercial coastline. Restrained navy, steel blue, warm stone palette matching a sophisticated international advisory website. Strong readable scene surviving a panoramic crop across the middle third; lighthouse on right third, uncluttered darker sea on left for a translucent text panel. Crisp realistic architectural detail, believable sea, reassuring stability and direction. No text, logos, watermarks, diagrams, overlays or frames.",
+      "source": "/Users/busrayesil/.codex/generated_images/01a0ceee-41c7-7323-8a93-ce6c7f0f2897/exec-f2b78f3e-282c-4f65-9945-fc54b826ca5a.png",
+      "output": "src/assets/images/cta-crisis-lighthouse.webp"
+    }
+  ]
+}
